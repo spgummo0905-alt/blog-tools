@@ -1,0 +1,350 @@
+<!-- 2027 정부 지원금 찾기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kgs" data-kgs>
+  <style>
+    .kgs{--kgs-accent:#3b6ef5;--kgs-accent-soft:#eef3ff;--kgs-text:#1d2433;--kgs-sub:#6b7385;--kgs-line:#e3e7ef;--kgs-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kgs-line);border-radius:20px;background:var(--kgs-bg);
+      color:var(--kgs-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kgs [hidden]{display:none!important}
+    .kgs *,.kgs *::before,.kgs *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kgs .kgs-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kgs .kgs-desc{margin-top:4px;font-size:14px;color:var(--kgs-sub);word-break:keep-all}
+    .kgs .kgs-tabs{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kgs .kgs-tab{height:40px;border:0;border-radius:10px;background:none;color:var(--kgs-sub);font-size:14px;font-weight:600;cursor:pointer;
+      white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+    .kgs .kgs-tab:hover{color:var(--kgs-text)}
+    .kgs .kgs-tab.kgs-on{background:#fff;color:var(--kgs-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kgs .kgs-label{display:block;margin:18px 0 0;font-size:14px;font-weight:600;color:var(--kgs-text);word-break:keep-all}
+    .kgs .kgs-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kgs .kgs-chip{min-height:36px;padding:0 13px;border:1.5px solid var(--kgs-line);border-radius:999px;background:#fff;color:var(--kgs-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;word-break:keep-all}
+    .kgs .kgs-chip:hover{border-color:#c9d3ea;color:var(--kgs-text)}
+    .kgs .kgs-chip.kgs-on{border-color:var(--kgs-accent);background:var(--kgs-accent-soft);color:var(--kgs-accent)}
+    .kgs .kgs-hint{margin-top:6px;font-size:12.5px;color:var(--kgs-sub);word-break:keep-all}
+    .kgs .kgs-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .kgs .kgs-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kgs .kgs-result.kgs-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kgs .kgs-result-inner{overflow:hidden}
+    .kgs .kgs-main{margin-top:6px;padding:20px;border-radius:16px;background:var(--kgs-accent-soft);text-align:center}
+    .kgs .kgs-main-label{font-size:14px;color:var(--kgs-sub)}
+    .kgs .kgs-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kgs-accent);line-height:1.2}
+    .kgs .kgs-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kgs .kgs-sub{margin-top:6px;font-size:14px;color:var(--kgs-sub);word-break:keep-all}
+    .kgs .kgs-list{margin-top:8px;list-style:none}
+    .kgs .kgs-card{margin-top:8px;padding:14px;border:1px solid var(--kgs-line);border-radius:14px;background:#fff}
+    .kgs .kgs-card:first-child{margin-top:0}
+    .kgs .kgs-card-h{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .kgs .kgs-name{font-size:16px;font-weight:700;color:var(--kgs-text);word-break:keep-all}
+    .kgs .kgs-badge{flex:none;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;
+      background:#f1f3f8;color:var(--kgs-sub)}
+    .kgs .kgs-badge.kgs-ok{background:var(--kgs-accent-soft);color:var(--kgs-accent)}
+    .kgs .kgs-row{display:grid;grid-template-columns:5em 1fr;gap:6px;margin-top:6px;font-size:13.5px;word-break:keep-all}
+    .kgs .kgs-row b{font-weight:600;color:var(--kgs-sub);white-space:nowrap}
+    .kgs .kgs-nowrap{white-space:nowrap}
+    .kgs .kgs-months{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:16px}
+    .kgs .kgs-month{position:relative;height:40px;border:1.5px solid var(--kgs-line);border-radius:12px;background:#fff;color:var(--kgs-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kgs .kgs-month:hover{border-color:#c9d3ea;color:var(--kgs-text)}
+    .kgs .kgs-month.kgs-has::after{content:"";position:absolute;top:5px;right:6px;width:6px;height:6px;border-radius:50%;background:var(--kgs-accent)}
+    .kgs .kgs-month.kgs-on{border-color:var(--kgs-accent);background:var(--kgs-accent);color:#fff}
+    .kgs .kgs-month.kgs-on::after{background:#fff}
+    .kgs .kgs-empty{margin-top:8px;padding:16px 14px;border:1px dashed var(--kgs-line);border-radius:14px;font-size:14px;color:var(--kgs-sub);word-break:keep-all}
+    .kgs .kgs-note{margin-top:12px;font-size:12.5px;color:var(--kgs-sub);word-break:keep-all}
+    .kgs .kgs-actions{display:flex;gap:8px;margin-top:14px}
+    .kgs .kgs-btn{flex:1;height:44px;border:1.5px solid var(--kgs-line);border-radius:12px;background:#fff;color:var(--kgs-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kgs .kgs-btn:hover{background:#f4f6fa}
+    .kgs .kgs-btn:active{transform:scale(.98)}
+    .kgs .kgs-btn.kgs-primary{border-color:var(--kgs-accent);background:var(--kgs-accent);color:#fff}
+    .kgs .kgs-btn.kgs-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kgs{padding:18px;border-radius:16px}.kgs .kgs-big{font-size:38px}.kgs .kgs-chip{padding:0 11px;font-size:13.5px}
+      .kgs .kgs-months{grid-template-columns:repeat(4,1fr)}}
+    @media (prefers-reduced-motion:reduce){.kgs .kgs-result,.kgs .kgs-btn,.kgs .kgs-chip,.kgs .kgs-tab,.kgs .kgs-month{transition:none}}
+  </style>
+
+  <p class="kgs-title">2027 정부 지원금 찾기</p>
+  <p class="kgs-desc">내 상황을 고르면 해당될 수 있는 지원금과 신청 시기·신청처를 바로 보여 줘요.</p>
+
+  <div class="kgs-tabs" role="tablist" aria-label="보기 방식">
+    <button type="button" class="kgs-tab kgs-on" role="tab" aria-selected="true" data-tab="find">나에게 맞는 지원금</button>
+    <button type="button" class="kgs-tab" role="tab" aria-selected="false" data-tab="cal">월별 신청 달력</button>
+  </div>
+
+  <div data-pane="find">
+    <p class="kgs-label">나이 (만 나이)</p>
+    <div class="kgs-chips" data-group="age">
+      <button type="button" class="kgs-chip" data-v="y20">19~20세</button>
+      <button type="button" class="kgs-chip" data-v="y34">21~34세</button>
+      <button type="button" class="kgs-chip" data-v="mid">35~64세</button>
+      <button type="button" class="kgs-chip" data-v="old">65세 이상</button>
+    </div>
+
+    <p class="kgs-label">가구 형태</p>
+    <div class="kgs-chips" data-group="house">
+      <button type="button" class="kgs-chip" data-v="single">1인 가구</button>
+      <button type="button" class="kgs-chip" data-v="one">홑벌이 가구</button>
+      <button type="button" class="kgs-chip" data-v="two">맞벌이 가구</button>
+    </div>
+    <p class="kgs-hint">홑벌이는 배우자·부양자녀·70세 이상 부모 중 한 명 이상과 사는데 맞벌이가 아닌 가구예요(근로장려금 기준).</p>
+
+    <p class="kgs-label">가장 어린 자녀</p>
+    <div class="kgs-chips" data-group="kid">
+      <button type="button" class="kgs-chip kgs-on" data-v="none">자녀 없음</button>
+      <button type="button" class="kgs-chip" data-v="k2">만 2세 미만</button>
+      <button type="button" class="kgs-chip" data-v="k9">만 2~8세</button>
+      <button type="button" class="kgs-chip" data-v="k18">만 9~17세</button>
+    </div>
+
+    <p class="kgs-label">근로·사업소득</p>
+    <div class="kgs-chips" data-group="inc">
+      <button type="button" class="kgs-chip" data-v="work">근로소득만 있음</button>
+      <button type="button" class="kgs-chip" data-v="biz">사업소득도 있음</button>
+      <button type="button" class="kgs-chip kgs-on" data-v="none">없음</button>
+    </div>
+
+    <p class="kgs-label">무주택이고 부모와 따로 월세로 사나요?</p>
+    <div class="kgs-chips" data-group="rent">
+      <button type="button" class="kgs-chip" data-v="yes">예</button>
+      <button type="button" class="kgs-chip kgs-on" data-v="no">아니요</button>
+    </div>
+
+    <p class="kgs-label">기초생활수급·차상위</p>
+    <div class="kgs-chips" data-group="wel">
+      <button type="button" class="kgs-chip" data-v="basic">기초생활수급자</button>
+      <button type="button" class="kgs-chip" data-v="near">차상위계층</button>
+      <button type="button" class="kgs-chip kgs-on" data-v="none">해당 없음</button>
+    </div>
+
+    <p class="kgs-msg" data-msg role="status" aria-live="polite"></p>
+
+    <div class="kgs-result" data-result aria-live="polite">
+      <div class="kgs-result-inner">
+        <div class="kgs-main">
+          <p class="kgs-main-label">해당될 수 있는 지원 제도</p>
+          <p class="kgs-big"><span data-count>0</span><small>개</small></p>
+          <p class="kgs-sub" data-summary></p>
+        </div>
+        <ul class="kgs-list" data-list></ul>
+        <p class="kgs-note">대략 조건만 맞춰 본 결과라 수급 여부 판정이 아니에요. 소득·재산 기준은 홈택스(장려금)·복지로(복지 서비스 모의계산)에서 꼭 확인하세요. ‘2026년 기준’은 2027년 금액·일정이 발표되면 바뀔 수 있어요.</p>
+        <div class="kgs-actions">
+          <button type="button" class="kgs-btn" data-reset>다시 입력</button>
+          <button type="button" class="kgs-btn kgs-primary" data-copy>결과 복사</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div data-pane="cal" hidden>
+    <div class="kgs-months" data-months></div>
+    <div class="kgs-main" style="margin-top:12px">
+      <p class="kgs-main-label">2027년 <span data-mlabel></span> 신청 일정</p>
+      <p class="kgs-sub" data-msummary></p>
+    </div>
+    <ul class="kgs-list" data-mlist></ul>
+    <p class="kgs-note">부모급여·아동수당, 기초연금, 국민내일배움카드는 정해진 기간 없이 1년 내내 신청할 수 있어요. ‘2027 미발표’ 항목은 2026년 일정을 참고로 보여 줘요.</p>
+    <div class="kgs-actions">
+      <button type="button" class="kgs-btn kgs-primary" data-mcopy>이 달 일정 복사</button>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kgs]');
+    if (!root || root.__kgs) return;
+    root.__kgs = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var lastText = '', monthText = '', curMonth = 1;
+
+    // ===== 제도 데이터 (기준일 2026-11-13, README 출처 표와 함께 갱신) =====
+    // ok: true 이면 2027년 일정이 법령으로 정해진 것, false 이면 2026년 기준
+    var EITC = { single: ['2,200만원', '165만원'], one: ['3,200만원', '285만원'], two: ['4,400만원', '330만원'] };
+
+    function programs(s) {
+      var out = [], youth = s.age === 'y20' || s.age === 'y34';
+      var hasInc = s.inc !== 'none', kid = s.kid;
+      if (hasInc) {
+        var e = EITC[s.house];
+        out.push({ name: '근로장려금', ok: true,
+          when: '정기 신청 2027년 5월 1일~31일 (2026년 소득)' + (s.inc === 'work' ? ' · 근로소득만 있으면 반기 신청 3월·9월 1일~15일도 가능' : ''),
+          cond: '2026년 가구 총소득 ' + e[0] + ' 미만, 재산 2억 4천만원 미만',
+          money: '최대 ' + e[1] + ' (현행 기준)', where: '국세청 홈택스·손택스 (장려금 상담 1566‑3636)' });
+      }
+      if (hasInc && kid !== 'none' && s.house !== 'single') {
+        out.push({ name: '자녀장려금', ok: true,
+          when: '정기 신청 2027년 5월 1일~31일 (2026년 소득)',
+          cond: '만 18세 미만 부양자녀, 부부합산 총소득 7,000만원 미만, 재산 2억 4천만원 미만',
+          money: '자녀 1명당 최대 100만원', where: '국세청 홈택스·손택스' });
+      }
+      if (kid === 'k2') {
+        out.push({ name: '부모급여 + 아동수당', ok: false,
+          when: '상시 신청 (출생일 포함 60일 안에 신청하면 출생한 달부터 지급)',
+          cond: '만 2세 미만(부모급여), 만 9세 미만(아동수당). 소득 기준 없음',
+          money: '부모급여 0세 월 100만원·1세 월 50만원, 아동수당 월 10만원부터', where: '복지로, 정부24 행복출산 원스톱, 행정복지센터' });
+      } else if (kid === 'k9') {
+        out.push({ name: '아동수당', ok: false,
+          when: '상시 신청 (출생 후 60일이 지났다면 신청한 달부터 지급)',
+          cond: '만 9세 미만(2026년 기준), 소득 기준 없음',
+          money: '월 10만원부터 (비수도권·인구감소지역 추가)', where: '복지로, 행정복지센터' });
+      }
+      if (youth && s.rent === 'yes') {
+        out.push({ name: '청년월세 지원', ok: false,
+          when: '2027년 신청 기간 미발표 (2026년엔 3월 30일~5월 29일)',
+          cond: '만 19~34세 무주택, 청년가구 중위소득 60% 이하·원가구 100% 이하, 재산 기준 있음',
+          money: '월 최대 20만원, 최장 24개월', where: '복지로, 행정복지센터' });
+      }
+      if (youth && hasInc) {
+        out.push({ name: '청년미래적금', ok: false,
+          when: '다음(3차) 모집 일정 미발표 (2026년엔 6월·10월 모집)',
+          cond: '만 19~34세 소득이 있는 청년, 개인소득·가구소득 기준 있음(2026년 기준)',
+          money: '월 50만원 한도 3년 납입, 정부기여금 6%(우대형 12%)', where: '취급 은행 앱 (서민금융진흥원 안내)' });
+      }
+      if (s.wel === 'basic') {
+        out.push({ name: '에너지바우처', ok: false,
+          when: '2027년 신청 기간 미발표 (2026년엔 6월 15일~12월 31일)',
+          cond: '생계·의료·주거·교육급여 수급자 + 노인·영유아·중증질환자·한부모·소년소녀가정·다자녀 등 가구원',
+          money: '세대원 수별 연 29만 5,200원~70만 1,300원 (2026년)', where: '복지로, 행정복지센터' });
+      }
+      if (s.wel !== 'none') {
+        out.push({ name: '문화누리카드', ok: false,
+          when: '2027년 발급 기간 미발표 (2026년엔 2월 2일~11월 30일)',
+          cond: '만 6세 이상 기초생활수급자·차상위계층',
+          money: '1인 연 15만원 (13~18세·60~64세는 1만원 추가, 2026년)', where: '문화누리카드 누리집·앱, 행정복지센터' });
+      }
+      if (s.age === 'y20') {
+        out.push({ name: '청년문화예술패스', ok: false,
+          when: '2027년 신청 기간 미발표 (2026년엔 2월 25일부터 선착순)',
+          cond: '그해 만 19~20세가 되는 청년 (2026년엔 2006·2007년생)',
+          money: '최대 15만원(수도권)·20만원(비수도권) (2026년)', where: '청년문화예술패스 누리집' });
+      }
+      if (s.age === 'old') {
+        out.push({ name: '기초연금', ok: false,
+          when: '상시 신청 (만 65세 생일이 속한 달의 1개월 전부터)',
+          cond: '소득인정액 단독 월 247만원·부부 395만 2천원 이하 (2026년)',
+          money: '단독 월 최대 34만 9,700원 (2026년, 매년 물가 반영)', where: '복지로, 행정복지센터, 국민연금공단 지사' });
+      }
+      out.push({ name: '국민내일배움카드', ok: false,
+        when: '상시 신청',
+        cond: '구직자·재직자·자영업자 등 대부분 (일부 고소득·재학생 등 제외)',
+        money: '5년간 훈련비 300만원 (대상에 따라 추가)', where: '고용24, 고용센터' });
+      return out;
+    }
+
+    // ===== 2027년 월별 신청 달력 =====
+    var CAL = {
+      2: [['문화누리카드 발급·재충전 시작', false, '2026년엔 2월 2일 시작 (11월 30일까지)', '문화누리카드 누리집·행정복지센터'],
+          ['청년문화예술패스 신청 시작', false, '2026년엔 2월 25일 시작, 선착순', '청년문화예술패스 누리집']],
+      3: [['근로장려금 반기 신청 (2026년 하반기 근로소득분)', true, '3월 1일~15일. 2026년 9월에 상반기분을 신청했다면 다시 안 해도 돼요', '홈택스·손택스'],
+          ['청년월세 지원 신청', false, '2026년엔 3월 30일~5월 29일 접수', '복지로·행정복지센터']],
+      5: [['근로·자녀장려금 정기 신청 (2026년 소득)', true, '5월 1일~31일', '홈택스·손택스']],
+      6: [['근로·자녀장려금 기한 후 신청 시작', true, '6월 1일~11월 30일, 산정액의 95% 지급', '홈택스·손택스'],
+          ['에너지바우처 신청 시작', false, '2026년엔 6월 15일~12월 31일', '복지로·행정복지센터'],
+          ['청년미래적금 가입 신청', false, '2026년엔 1차 6월 22일~7월 3일', '취급 은행 앱']],
+      9: [['근로장려금 반기 신청 (2027년 상반기 근로소득분)', true, '9월 1일~15일. 세제개편안이 국회를 통과하면 이 신청분부터 새 기준 적용 예정', '홈택스·손택스']],
+      10: [['청년미래적금 가입 신청', false, '2026년엔 2차 10월 7일~16일', '취급 은행 앱']],
+      11: [['근로·자녀장려금 기한 후 신청 마감', true, '11월 30일까지', '홈택스·손택스'],
+           ['문화누리카드 발급 마감', false, '2026년엔 11월 30일 마감', '문화누리카드 누리집·행정복지센터']],
+      12: [['에너지바우처 신청 마감', false, '2026년엔 12월 31일 마감', '복지로·행정복지센터'],
+           ['문화누리카드 사용 기한', false, '2026년엔 12월 31일까지 사용, 남은 금액 소멸', '-']]
+    };
+
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function badge(ok, okText, noText) { return '<span class="kgs-badge' + (ok ? ' kgs-ok' : '') + '">' + (ok ? okText : noText) + '</span>'; }
+
+    // ===== 탭 =====
+    $$('[data-tab]').forEach(function (t) {
+      t.addEventListener('click', function () {
+        $$('[data-tab]').forEach(function (b) { var on = b === t; b.classList.toggle('kgs-on', on); b.setAttribute('aria-selected', on); });
+        $$('[data-pane]').forEach(function (p) { p.hidden = p.getAttribute('data-pane') !== t.getAttribute('data-tab'); });
+      });
+    });
+
+    // ===== 지원금 찾기 =====
+    function val(g) { var on = root.querySelector('[data-group="' + g + '"] .kgs-on'); return on ? on.getAttribute('data-v') : ''; }
+    function chipText(g) { var on = root.querySelector('[data-group="' + g + '"] .kgs-on'); return on ? on.textContent : ''; }
+
+    function hide(text) { result.classList.remove('kgs-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var s = { age: val('age'), house: val('house'), kid: val('kid'), inc: val('inc'), rent: val('rent'), wel: val('wel') };
+      if (!s.age || !s.house) return hide(!s.age && !s.house ? '' : (!s.age ? '나이를 골라 주세요.' : '가구 형태를 골라 주세요.'));
+      if (s.house === 'single' && s.kid !== 'none') return hide('자녀가 있으면 1인 가구가 아니에요. 홑벌이나 맞벌이 가구를 골라 주세요.');
+      if (s.house === 'two' && s.inc === 'none') return hide('맞벌이 가구는 근로·사업소득이 있는 가구예요. 소득 항목을 다시 골라 주세요.');
+      var list = programs(s);
+      msg.textContent = '';
+      $('[data-count]').textContent = list.length;
+      var nOk = list.filter(function (p) { return p.ok; }).length;
+      $('[data-summary]').textContent = nOk ? '2027년 일정 확정 ' + nOk + '개 · 2026년 기준 ' + (list.length - nOk) + '개' : '모두 2026년 기준이에요. 2027년 발표 때 바뀔 수 있어요';
+      $('[data-list]').innerHTML = list.map(function (p) {
+        return '<li class="kgs-card"><div class="kgs-card-h"><p class="kgs-name">' + esc(p.name) + '</p>' + badge(p.ok, '일정 확정', '2026년 기준') + '</div>' +
+          '<p class="kgs-row"><b>신청 시기</b><span>' + esc(p.when) + '</span></p>' +
+          '<p class="kgs-row"><b>대략 조건</b><span>' + esc(p.cond) + '</span></p>' +
+          '<p class="kgs-row"><b>금액</b><span>' + esc(p.money) + '</span></p>' +
+          '<p class="kgs-row"><b>신청처</b><span>' + esc(p.where) + '</span></p></li>';
+      }).join('');
+      result.classList.add('kgs-show');
+      lastText = '[2027 정부 지원금 찾기 결과]\n내 상황: ' + [chipText('age'), chipText('house'), '자녀 ' + chipText('kid').replace('자녀 ', ''), '소득 ' + chipText('inc'),
+        '월세 ' + chipText('rent'), chipText('wel')].join(' · ') + '\n' +
+        list.map(function (p) { return '\n■ ' + p.name + (p.ok ? '' : ' (2026년 기준)') + '\n- 신청 시기: ' + p.when + '\n- 대략 조건: ' + p.cond + '\n- 금액: ' + p.money + '\n- 신청처: ' + p.where; }).join('\n') +
+        '\n\n※ 대략 조건만 맞춘 결과예요. 실제 수급 여부는 홈택스·복지로 등 공식 사이트에서 확인하세요.';
+    }
+
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var c = e.target.closest('.kgs-chip');
+        if (!c) return;
+        $$('[data-group="' + g.getAttribute('data-group') + '"] .kgs-chip').forEach(function (b) { b.classList.toggle('kgs-on', b === c); });
+        calc();
+      });
+    });
+
+    var DEF = { age: '', house: '', kid: 'none', inc: 'none', rent: 'no', wel: 'none' };
+    $('[data-reset]').addEventListener('click', function () {
+      Object.keys(DEF).forEach(function (g) {
+        $$('[data-group="' + g + '"] .kgs-chip').forEach(function (b) { b.classList.toggle('kgs-on', b.getAttribute('data-v') === DEF[g]); });
+      });
+      hide('');
+      var first = $('[data-group="age"] .kgs-chip'); if (first) first.focus();
+    });
+
+    // ===== 달력 =====
+    var months = $('[data-months]'), html = '';
+    for (var m = 1; m <= 12; m++) html += '<button type="button" class="kgs-month' + (CAL[m] ? ' kgs-has' : '') + '" data-m="' + m + '" aria-label="' + m + '월' + (CAL[m] ? ' 일정 있음' : '') + '">' + m + '월</button>';
+    months.innerHTML = html;
+
+    function showMonth(m) {
+      curMonth = m;
+      $$('[data-m]').forEach(function (b) { b.classList.toggle('kgs-on', +b.getAttribute('data-m') === m); });
+      $('[data-mlabel]').textContent = m + '월';
+      var items = CAL[m] || [];
+      var nOk = items.filter(function (i) { return i[1]; }).length;
+      $('[data-msummary]').textContent = items.length ? '일정 ' + items.length + '개 (2027 확정 ' + nOk + '개)' : '정해진 신청 기간이 없는 달이에요';
+      $('[data-mlist]').innerHTML = items.length ? items.map(function (i) {
+        return '<li class="kgs-card"><div class="kgs-card-h"><p class="kgs-name">' + esc(i[0]) + '</p>' + badge(i[1], '2027 확정', '2027 미발표') + '</div>' +
+          '<p class="kgs-row"><b>기간</b><span>' + esc(i[2]) + '</span></p>' +
+          '<p class="kgs-row"><b>신청처</b><span>' + esc(i[3]) + '</span></p></li>';
+      }).join('') : '<li class="kgs-empty">이 달에 시작·마감하는 신청은 없어요. 상시 신청 제도(부모급여·아동수당, 기초연금, 국민내일배움카드)는 언제든 신청할 수 있어요.</li>';
+      monthText = '[2027년 ' + m + '월 정부 지원금 신청 일정]\n' + (items.length ? items.map(function (i) {
+        return '- ' + i[0] + (i[1] ? '' : ' (2027 미발표)') + ': ' + i[2] + ' / ' + i[3];
+      }).join('\n') : '- 정해진 신청 기간 없음 (상시 신청 제도만)');
+    }
+    months.addEventListener('click', function (e) { var b = e.target.closest('[data-m]'); if (b) showMonth(+b.getAttribute('data-m')); });
+    var now = new Date();
+    showMonth(now.getFullYear() === 2027 ? now.getMonth() + 1 : 5);
+
+    function copy(btn, text, label) {
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = label; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    }
+    $('[data-copy]').addEventListener('click', function () { copy(this, lastText, '결과 복사'); });
+    $('[data-mcopy]').addEventListener('click', function () { copy(this, monthText, '이 달 일정 복사'); });
+  })();
+  </script>
+</div>
+<!-- 2027 정부 지원금 찾기 위젯 끝 -->
