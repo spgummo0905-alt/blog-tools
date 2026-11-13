@@ -1,0 +1,603 @@
+<!-- 랜덤 뽑기 모음 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="krp" data-krp>
+  <style>
+    .krp{--krp-accent:#3b6ef5;--krp-accent-soft:#eef3ff;--krp-text:#1d2433;--krp-sub:#6b7385;--krp-line:#e3e7ef;--krp-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--krp-line);border-radius:20px;background:var(--krp-bg);
+      color:var(--krp-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .krp [hidden]{display:none!important}
+    .krp *,.krp *::before,.krp *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .krp .krp-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .krp .krp-desc{margin-top:4px;font-size:14px;color:var(--krp-sub);word-break:keep-all}
+    .krp .krp-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .krp .krp-tab{height:40px;border:0;border-radius:10px;background:none;color:var(--krp-sub);font-size:14px;font-weight:600;cursor:pointer;
+      white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+    .krp .krp-tab:hover{color:var(--krp-text)}
+    .krp .krp-tab.krp-on{background:#fff;color:var(--krp-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .krp .krp-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--krp-text)}
+    .krp .krp-label span{font-weight:500;color:var(--krp-sub);font-size:13px}
+    .krp .krp-link{border:0;background:none;color:var(--krp-accent);font-size:13px;font-weight:600;cursor:pointer;padding:2px}
+    .krp .krp-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--krp-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--krp-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .krp .krp-in.krp-sm{height:44px;font-size:15px;padding:0 12px}
+    .krp textarea.krp-in{height:auto;min-height:112px;padding:12px 14px;font-size:16px;font-weight:500;line-height:1.5;resize:vertical}
+    .krp .krp-in::placeholder{color:#b3b9c6;font-weight:500}
+    .krp .krp-in:focus{border-color:var(--krp-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .krp .krp-in:disabled{opacity:.6}
+    .krp .krp-field{position:relative;flex:1;min-width:0}
+    .krp .krp-field .krp-in{padding-right:34px}
+    .krp .krp-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--krp-sub);pointer-events:none}
+    .krp .krp-row{display:flex;gap:8px}
+    .krp .krp-step{display:flex;align-items:center;gap:6px}
+    .krp .krp-step button{width:44px;height:44px;border:1.5px solid var(--krp-line);border-radius:12px;background:#fff;color:var(--krp-text);font-size:20px;font-weight:600;cursor:pointer}
+    .krp .krp-step button:disabled{opacity:.4;cursor:default}
+    .krp .krp-step b{min-width:52px;text-align:center;font-size:18px}
+    .krp .krp-pairs{display:grid;gap:6px}
+    .krp .krp-pair{display:grid;grid-template-columns:22px 1fr 1fr;gap:6px;align-items:center}
+    .krp .krp-check{display:flex;align-items:center;gap:8px;margin-top:12px;font-size:14px;color:var(--krp-text);cursor:pointer;word-break:keep-all}
+    .krp .krp-check input{width:18px;height:18px;accent-color:var(--krp-accent);flex:none}
+    .krp .krp-pair i{font-style:normal;font-size:12px;color:var(--krp-sub);text-align:center}
+    .krp .krp-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .krp .krp-chip{height:32px;padding:0 12px;border:1.5px solid var(--krp-line);border-radius:999px;background:#fff;color:var(--krp-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .krp .krp-chip:hover{border-color:#c9d3ea;color:var(--krp-text)}
+    .krp .krp-chip.krp-on{border-color:var(--krp-accent);background:var(--krp-accent-soft);color:var(--krp-accent)}
+    .krp .krp-hint{margin-top:6px;font-size:12.5px;color:var(--krp-sub);word-break:keep-all}
+    .krp .krp-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .krp .krp-msg:empty{min-height:0;margin:0}
+    .krp .krp-board{margin-top:16px;padding:12px 8px;border:1px solid var(--krp-line);border-radius:16px;background:#fbfcfe}
+    .krp .krp-heads,.krp .krp-foots{display:grid}
+    .krp .krp-head{min-width:0;height:34px;margin:0 2px;padding:0 2px;border:1.5px solid var(--krp-line);border-radius:10px;background:#fff;color:var(--krp-text);
+      font-size:12.5px;font-weight:700;cursor:pointer;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:border-color .2s,background .2s}
+    .krp .krp-head:hover{border-color:var(--krp-accent)}
+    .krp .krp-foot{min-width:0;margin:0 2px;padding:6px 2px;border-radius:10px;background:#f1f3f8;color:var(--krp-sub);font-size:12px;font-weight:700;
+      text-align:center;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;transition:background .3s,color .3s}
+    .krp .krp-svg{display:block;width:100%;height:220px}
+    .krp .krp-wheelbox{position:relative;width:100%;max-width:300px;margin:16px auto 0}
+    .krp .krp-wheelbox svg{display:block;width:100%;height:auto}
+    .krp .krp-btn{flex:1;height:44px;border:1.5px solid var(--krp-line);border-radius:12px;background:#fff;color:var(--krp-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .krp .krp-btn:hover{background:#f4f6fa}
+    .krp .krp-btn:active{transform:scale(.98)}
+    .krp .krp-btn:disabled{opacity:.5;cursor:default}
+    .krp .krp-btn.krp-primary{border-color:var(--krp-accent);background:var(--krp-accent);color:#fff}
+    .krp .krp-btn.krp-primary:hover{background:#2f5fe0}
+    .krp .krp-big{display:flex;width:100%;flex:none;margin-top:12px;height:52px;align-items:center;justify-content:center;font-size:16px}
+    .krp .krp-actions{display:flex;gap:8px;margin-top:12px}
+    .krp .krp-main{margin-top:12px;padding:18px 16px;border-radius:16px;background:var(--krp-accent-soft);text-align:center;word-break:keep-all}
+    .krp .krp-main-label{font-size:14px;color:var(--krp-sub)}
+    .krp .krp-big-v{margin-top:2px;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--krp-accent);line-height:1.3;word-break:break-all}
+    .krp .krp-list{margin-top:4px;list-style:none;font-size:15px;font-weight:600;text-align:left}
+    .krp .krp-list li{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px dashed #d6deef}
+    .krp .krp-list li:last-child{border-bottom:0}
+    .krp .krp-dot{flex:none;width:10px;height:10px;border-radius:50%}
+    .krp .krp-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(56px,1fr));gap:8px;margin-top:16px}
+    .krp .krp-card{position:relative;height:64px;border:0;background:none;cursor:pointer;perspective:400px;font-size:13px;font-weight:700}
+    .krp .krp-card:disabled{cursor:default}
+    .krp .krp-card-in{position:absolute;inset:0;transition:transform .45s ease;transform-style:preserve-3d}
+    .krp .krp-card.krp-open .krp-card-in{transform:rotateY(180deg)}
+    .krp .krp-face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;border-radius:12px;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+    .krp .krp-back{border:1.5px solid #c9d6f7;background:var(--krp-accent-soft);color:var(--krp-accent)}
+    .krp .krp-face small{position:absolute;top:4px;left:7px;font-size:10.5px;font-weight:600;opacity:.75}
+    .krp .krp-front{transform:rotateY(180deg);border:1.5px solid var(--krp-line);background:#fff;color:var(--krp-sub)}
+    .krp .krp-win .krp-front{border-color:var(--krp-accent);background:var(--krp-accent);color:#fff}
+    .krp .krp-status{margin-top:12px;font-size:14px;font-weight:600;text-align:center;word-break:keep-all}
+    .krp .krp-status b{color:var(--krp-accent)}
+    .krp .krp-teams{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+    .krp .krp-team{padding:12px 14px;border:1px solid var(--krp-line);border-top-width:4px;border-radius:14px;background:#fff;word-break:keep-all}
+    .krp .krp-team-h{display:flex;justify-content:space-between;font-size:14px;font-weight:800}
+    .krp .krp-team-h span{font-size:12px;font-weight:600;color:var(--krp-sub)}
+    .krp .krp-team-m{margin-top:4px;font-size:14px;line-height:1.7}
+    .krp .krp-note{margin-top:16px;padding-top:12px;border-top:1px solid var(--krp-line);font-size:12.5px;color:var(--krp-sub);word-break:keep-all}
+    @media (max-width:420px){.krp{padding:18px;border-radius:16px}.krp .krp-in{font-size:17px}.krp .krp-tab{font-size:13px}
+      .krp .krp-board{padding:10px 4px}.krp .krp-head{font-size:11.5px;margin:0 1px}.krp .krp-foot{font-size:11px;margin:0 1px}.krp .krp-big-v{font-size:26px}}
+    @media (prefers-reduced-motion:reduce){.krp .krp-in,.krp .krp-btn,.krp .krp-chip,.krp .krp-tab,.krp .krp-head,.krp .krp-foot,.krp .krp-card-in{transition:none}}
+  </style>
+
+  <p class="krp-title">랜덤 뽑기 모음</p>
+  <p class="krp-desc">사다리타기, 돌림판, 제비뽑기, 팀 나누기를 설치 없이 바로 해요.</p>
+
+  <div class="krp-tabs" role="tablist" aria-label="뽑기 종류">
+    <button type="button" class="krp-tab krp-on" role="tab" aria-selected="true" data-tab="ladder">사다리</button>
+    <button type="button" class="krp-tab" role="tab" aria-selected="false" data-tab="wheel">돌림판</button>
+    <button type="button" class="krp-tab" role="tab" aria-selected="false" data-tab="lot">제비뽑기</button>
+    <button type="button" class="krp-tab" role="tab" aria-selected="false" data-tab="team">팀 나누기</button>
+  </div>
+
+  <!-- 사다리타기 -->
+  <div data-panel="ladder" role="tabpanel">
+    <div class="krp-label">참가자 수 <button type="button" class="krp-link" data-l-clear>다시 입력</button></div>
+    <div class="krp-step">
+      <button type="button" data-l-minus aria-label="참가자 줄이기">−</button><b data-l-n>4명</b><button type="button" data-l-plus aria-label="참가자 늘리기">+</button>
+    </div>
+    <div class="krp-label">이름 / 결과 <span>비우면 회색 글씨대로 들어가요</span></div>
+    <div class="krp-pairs" data-l-pairs></div>
+    <label class="krp-check"><input type="checkbox" data-l-hide checked> 도착하기 전까지 결과 가리기</label>
+    <div class="krp-board">
+      <div class="krp-heads" data-l-heads></div>
+      <svg class="krp-svg" data-l-svg aria-hidden="true"></svg>
+      <div class="krp-foots" data-l-foots></div>
+    </div>
+    <p class="krp-hint">위쪽 이름을 누르면 사다리를 타고 내려가요. 가로줄과 아래 결과 칸의 순서는 매번 무작위로 정해져요.</p>
+    <button type="button" class="krp-btn krp-primary krp-big" data-l-all>전체 결과 보기</button>
+    <p class="krp-msg" data-l-msg role="status" aria-live="polite"></p>
+    <div class="krp-main" data-l-res hidden aria-live="polite">
+      <p class="krp-main-label">사다리타기 결과</p>
+      <ul class="krp-list" data-l-list></ul>
+    </div>
+    <div class="krp-actions">
+      <button type="button" class="krp-btn" data-l-again>다시 하기</button>
+      <button type="button" class="krp-btn krp-primary" data-copy="ladder">결과 복사</button>
+    </div>
+  </div>
+
+  <!-- 돌림판 -->
+  <div data-panel="wheel" role="tabpanel" hidden>
+    <div class="krp-label">항목 (2~20개) <button type="button" class="krp-link" data-w-clear>다시 입력</button></div>
+    <textarea class="krp-in" data-w-in rows="4" aria-label="돌림판 항목" placeholder="짜장면, 짬뽕, 볶음밥, 탕수육&#10;(줄바꿈이나 쉼표로 구분)"></textarea>
+    <p class="krp-hint" data-w-count>비워 두면 예시 항목 4개로 돌아가요.</p>
+    <p class="krp-msg" data-w-msg role="status" aria-live="polite"></p>
+    <div class="krp-wheelbox">
+      <svg viewBox="-104 -112 208 216" data-w-svg role="img" aria-label="돌림판"></svg>
+    </div>
+    <button type="button" class="krp-btn krp-primary krp-big" data-w-spin>돌리기</button>
+    <div class="krp-main" data-w-res hidden aria-live="polite">
+      <p class="krp-main-label">돌림판 결과</p>
+      <p class="krp-big-v" data-w-v></p>
+    </div>
+    <div class="krp-actions">
+      <button type="button" class="krp-btn" data-w-again>다시 하기</button>
+      <button type="button" class="krp-btn krp-primary" data-copy="wheel">결과 복사</button>
+    </div>
+  </div>
+
+  <!-- 제비뽑기 -->
+  <div data-panel="lot" role="tabpanel" hidden>
+    <div class="krp-label">제비 개수 <button type="button" class="krp-link" data-p-clear>다시 입력</button></div>
+    <div class="krp-row">
+      <div class="krp-field"><input class="krp-in" data-p-total inputmode="numeric" maxlength="3" value="10" aria-label="전체 제비 개수"><span class="krp-unit">장</span></div>
+      <div class="krp-field"><input class="krp-in" data-p-win inputmode="numeric" maxlength="3" value="2" aria-label="당첨 개수"><span class="krp-unit">당첨</span></div>
+    </div>
+    <p class="krp-hint">전체 2~100장, 당첨은 1장부터 전체보다 적게 넣어 주세요.</p>
+    <p class="krp-msg" data-p-msg role="status" aria-live="polite"></p>
+    <div data-p-area>
+      <div class="krp-cards" data-p-cards></div>
+      <p class="krp-status" data-p-status aria-live="polite"></p>
+      <button type="button" class="krp-btn krp-big" data-p-all>남은 제비 모두 열기</button>
+    </div>
+    <div class="krp-actions">
+      <button type="button" class="krp-btn" data-p-again>다시 하기</button>
+      <button type="button" class="krp-btn krp-primary" data-copy="lot">결과 복사</button>
+    </div>
+  </div>
+
+  <!-- 팀 나누기 -->
+  <div data-panel="team" role="tabpanel" hidden>
+    <div class="krp-label">이름 목록 <button type="button" class="krp-link" data-t-clear>다시 입력</button></div>
+    <textarea class="krp-in" data-t-in rows="4" aria-label="이름 목록" placeholder="철수, 영희, 민수, 지영&#10;(줄바꿈이나 쉼표로 구분)"></textarea>
+    <p class="krp-hint" data-t-count>2명 이상 넣으면 바로 나눠져요.</p>
+    <div class="krp-label">나누는 기준</div>
+    <div class="krp-row">
+      <div class="krp-chips" style="flex:none;align-items:center">
+        <button type="button" class="krp-chip krp-on" data-t-mode="teams" aria-pressed="true">팀 수</button>
+        <button type="button" class="krp-chip" data-t-mode="size" aria-pressed="false">팀당 인원</button>
+      </div>
+      <div class="krp-field"><input class="krp-in krp-sm" data-t-n inputmode="numeric" maxlength="3" value="2" aria-label="팀 수"><span class="krp-unit" data-t-unit>팀</span></div>
+    </div>
+    <p class="krp-msg" data-t-msg role="status" aria-live="polite"></p>
+    <div data-t-res hidden aria-live="polite">
+      <p class="krp-status" data-t-sum></p>
+      <div class="krp-teams" data-t-teams></div>
+    </div>
+    <div class="krp-actions">
+      <button type="button" class="krp-btn" data-t-again>다시 섞기</button>
+      <button type="button" class="krp-btn krp-primary" data-copy="team">결과 복사</button>
+    </div>
+  </div>
+
+  <p class="krp-note">결과는 브라우저의 암호학적 난수 생성기(crypto.getRandomValues)로 정해서 누구에게도 유리하지 않아요. 입력한 내용은 어디에도 저장·전송되지 않고, 새로고침하면 지워져요.</p>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-krp]');
+    if (!root || root.__krp) return;
+    root.__krp = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var SVGNS = 'http://www.w3.org/2000/svg';
+    var LINE = ['#3b6ef5', '#e0565b', '#1f8f6c', '#e8912a', '#6a52e8', '#0f86a6', '#d4589a', '#8a6d3b', '#5b6b8c', '#2f3e9e'];
+    var PIE = [['#3b6ef5', '#fff'], ['#bcd0ff', '#1d2433'], ['#1f8f6c', '#fff'], ['#c6ecdc', '#1d2433'], ['#f2a541', '#1d2433'],
+      ['#ffe2b3', '#1d2433'], ['#6a52e8', '#fff'], ['#ddd5ff', '#1d2433'], ['#e0565b', '#fff'], ['#ffd0d2', '#1d2433']];
+    function reduced() { return !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches); }
+
+    // ---- 공정한 난수: crypto.getRandomValues + 거절 샘플링(편향 없음) ----
+    function rand32() {
+      var c = window.crypto || window.msCrypto;
+      if (c && c.getRandomValues) { var a = new Uint32Array(1); c.getRandomValues(a); return a[0]; }
+      return Math.floor(Math.random() * 4294967296);
+    }
+    function randInt(n) { // 0 이상 n 미만 정수
+      var lim = 4294967296 - (4294967296 % n), x;
+      do { x = rand32(); } while (x >= lim);
+      return x % n;
+    }
+    function randFloat() { return rand32() / 4294967296; }
+    function shuffle(arr) { // Fisher-Yates
+      for (var i = arr.length - 1; i > 0; i--) { var j = randInt(i + 1), t = arr[i]; arr[i] = arr[j]; arr[j] = t; }
+      return arr;
+    }
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function sv(tag, attrs) { var e = document.createElementNS(SVGNS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+    function parseList(s) { return s.split(/[\n,，]/).map(function (x) { return x.trim(); }).filter(function (x) { return x; }); }
+    function digits(input, len) { var v = input.value.replace(/\D/g, '').slice(0, len); if (v !== input.value) input.value = v; return v; }
+
+    // ---- 탭 ----
+    var current = 'ladder';
+    $$('[data-tab]').forEach(function (t) {
+      t.addEventListener('click', function () {
+        current = t.getAttribute('data-tab');
+        $$('[data-tab]').forEach(function (x) { var on = x === t; x.classList.toggle('krp-on', on); x.setAttribute('aria-selected', on); });
+        $$('[data-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== current; });
+        if (current === 'ladder') drawLadder();
+      });
+    });
+
+    // ================= 사다리타기 =================
+    var L = { n: 4, rungs: [], levels: 10, slot: [], done: {}, order: [], gen: 0 };
+    var lPairs = $('[data-l-pairs]'), lHeads = $('[data-l-heads]'), lFoots = $('[data-l-foots]'), lSvg = $('[data-l-svg]');
+    var lMsg = $('[data-l-msg]'), lRes = $('[data-l-res]'), lList = $('[data-l-list]');
+
+    function lName(i) { var inp = lPairs.querySelectorAll('[data-name]')[i]; return (inp && inp.value.trim()) || '참가자' + (i + 1); }
+    function lPrize(i) { var inp = lPairs.querySelectorAll('[data-prize]')[i]; return (inp && inp.value.trim()) || (i === 0 ? '당첨' : '꽝'); }
+
+    function buildPairs() {
+      var names = $$('[data-name]').map(function (x) { return x.value; }), prizes = $$('[data-prize]').map(function (x) { return x.value; });
+      lPairs.innerHTML = '';
+      for (var i = 0; i < L.n; i++) {
+        var row = el('div', 'krp-pair');
+        row.appendChild(el('i', '', i + 1));
+        var a = el('input', 'krp-in krp-sm'); a.setAttribute('data-name', ''); a.placeholder = '참가자' + (i + 1); a.maxLength = 20; a.value = names[i] || ''; a.setAttribute('aria-label', (i + 1) + '번 이름');
+        var b = el('input', 'krp-in krp-sm'); b.setAttribute('data-prize', ''); b.placeholder = i === 0 ? '당첨' : '꽝'; b.maxLength = 20; b.value = prizes[i] || ''; b.setAttribute('aria-label', (i + 1) + '번 결과');
+        row.appendChild(a); row.appendChild(b);
+        lPairs.appendChild(row);
+      }
+      $('[data-l-n]').textContent = L.n + '명';
+      $('[data-l-minus]').disabled = L.n <= 2;
+      $('[data-l-plus]').disabled = L.n >= 10;
+    }
+
+    // 가로줄 무작위 생성: 같은 높이에서 이웃한 가로줄은 만들지 않음(한 점에 두 줄이 만나지 않게)
+    function genLadder() {
+      var n = L.n, lv = L.levels, grid = [], r, g, guard = 0;
+      for (r = 0; r < lv; r++) {
+        grid.push([]);
+        for (g = 0; g < n - 1; g++) grid[r][g] = !(g > 0 && grid[r][g - 1]) && randInt(100) < 45;
+      }
+      for (g = 0; g < n - 1; g++) { // 모든 칸 사이에 가로줄이 최소 1개는 있게
+        var has = false, free = [];
+        for (r = 0; r < lv; r++) { if (grid[r][g]) has = true; if (!(g > 0 && grid[r][g - 1]) && !(g < n - 2 && grid[r][g + 1])) free.push(r); }
+        if (has) continue;
+        if (free.length) { grid[free[randInt(free.length)]][g] = true; continue; }
+        // 빈 높이가 없으면 이웃 가로줄 하나를 지우고 자리를 만듦(지운 칸은 다시 검사)
+        var gg = g; r = randInt(lv); grid[r][gg] = true;
+        if (gg + 1 < n - 1) grid[r][gg + 1] = false;
+        if (gg > 0 && grid[r][gg - 1]) { if (guard++ < 50) { grid[r][gg - 1] = false; g = gg - 2; } else grid[r][gg] = false; }
+      }
+      L.rungs = [];
+      for (r = 0; r < lv; r++) for (g = 0; g < n - 1; g++) if (grid[r][g]) L.rungs.push({ r: r, g: g, j: (randFloat() - 0.5) * 0.5 });
+      // 아래 결과 칸 순서도 무작위로 섞어, 누가 어느 줄을 고르든 결과가 고르게 나오게 함
+      L.slot = []; for (g = 0; g < n; g++) L.slot.push(g); shuffle(L.slot);
+      L.done = {}; L.order = []; L.gen++;
+    }
+
+    function rungAt(r, g) { for (var k = 0; k < L.rungs.length; k++) if (L.rungs[k].r === r && L.rungs[k].g === g) return L.rungs[k]; return null; }
+    function geom() { var w = lSvg.getBoundingClientRect().width || 300, h = 220; return { w: w, h: h, x: function (c) { return (c + 0.5) * w / L.n; }, y: function (r, j) { return 14 + (r + 0.5 + (j || 0)) * (h - 28) / L.levels; } }; }
+    function trace(i, G) { // i번 참가자가 내려가는 점 목록과 도착 칸
+      var c = i, pts = [[G.x(c), 0]];
+      for (var r = 0; r < L.levels; r++) {
+        var right = c < L.n - 1 ? rungAt(r, c) : null, left = c > 0 ? rungAt(r, c - 1) : null, k = right || left;
+        if (!k) continue;
+        var y = G.y(r, k.j); pts.push([G.x(c), y]); c = right ? c + 1 : c - 1; pts.push([G.x(c), y]);
+      }
+      pts.push([G.x(c), G.h]);
+      return { pts: pts, end: c };
+    }
+    function result(i) { return L.slot[trace(i, geom()).end]; }
+    function pathD(pts) { return 'M' + pts.map(function (p) { return p[0].toFixed(1) + ' ' + p[1].toFixed(1); }).join('L'); }
+
+    function drawLadder() {
+      if (lSvg.getBoundingClientRect().width === 0) return;
+      var G = geom(), i;
+      lSvg.setAttribute('viewBox', '0 0 ' + G.w + ' ' + G.h);
+      lSvg.innerHTML = '';
+      for (i = 0; i < L.n; i++) lSvg.appendChild(sv('line', { x1: G.x(i), y1: 0, x2: G.x(i), y2: G.h, stroke: '#c3cbdc', 'stroke-width': 3, 'stroke-linecap': 'round' }));
+      L.rungs.forEach(function (k) { var y = G.y(k.r, k.j); lSvg.appendChild(sv('line', { x1: G.x(k.g), y1: y, x2: G.x(k.g + 1), y2: y, stroke: '#c3cbdc', 'stroke-width': 3, 'stroke-linecap': 'round' })); });
+      L.order.forEach(function (p) { if (L.done[p]) lSvg.appendChild(sv('path', { d: pathD(trace(p, G).pts), fill: 'none', stroke: LINE[p], 'stroke-width': 4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' })); });
+    }
+
+    function renderLabels() {
+      lHeads.style.gridTemplateColumns = lFoots.style.gridTemplateColumns = 'repeat(' + L.n + ',minmax(0,1fr))';
+      lHeads.innerHTML = ''; lFoots.innerHTML = '';
+      var G = geom(), ends = {};
+      for (var i = 0; i < L.n; i++) if (L.done[i]) ends[trace(i, G).end] = i;
+      for (i = 0; i < L.n; i++) {
+        var named = lPairs.querySelectorAll('[data-name]')[i].value.trim();
+        var h = el('button', 'krp-head', named ? lName(i) : String(i + 1)); h.type = 'button'; h.title = lName(i); h.setAttribute('data-go', i);
+        if (L.done[i]) { h.style.borderColor = LINE[i]; h.style.color = LINE[i]; }
+        lHeads.appendChild(h);
+        var shown = ends[i] != null || !$('[data-l-hide]').checked, pz = lPrize(L.slot[i]);
+        var f = el('div', 'krp-foot', shown ? pz : '?'); if (shown) f.title = pz;
+        if (ends[i] != null) { f.style.background = LINE[ends[i]]; f.style.color = '#fff'; }
+        lFoots.appendChild(f);
+      }
+      lList.innerHTML = '';
+      L.order.forEach(function (p) {
+        if (!L.done[p]) return;
+        var li = el('li'), d = el('span', 'krp-dot'); d.style.background = LINE[p];
+        li.appendChild(d); li.appendChild(el('span', '', lName(p) + ' → ' + lPrize(result(p))));
+        lList.appendChild(li);
+      });
+      lRes.hidden = !lList.children.length;
+    }
+
+    function go(i, fast) {
+      lMsg.textContent = '';
+      if (L.done[i] || L.busy && L.busy[i]) { if (L.done[i]) { L.order.splice(L.order.indexOf(i), 1); L.order.push(i); drawLadder(); renderLabels(); } return; }
+      var G = geom(), t = trace(i, G), gen = L.gen;
+      if (reduced() || !G.w || lSvg.getBoundingClientRect().width === 0) { L.done[i] = true; L.order.push(i); drawLadder(); renderLabels(); return; }
+      L.busy = L.busy || {}; L.busy[i] = true;
+      var pts = t.pts, segs = [], total = 0;
+      for (var k = 1; k < pts.length; k++) { var d = Math.abs(pts[k][0] - pts[k - 1][0]) + Math.abs(pts[k][1] - pts[k - 1][1]); segs.push(d); total += d; }
+      var dur = Math.min(2400, Math.max(900, total / (fast ? 0.6 : 0.32)));
+      var path = sv('path', { fill: 'none', stroke: LINE[i], 'stroke-width': 4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round' });
+      lSvg.appendChild(path);
+      var start = null;
+      function step(ts) {
+        if (gen !== L.gen) return; // 사다리를 새로 만들면 중단
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1), dist = total * p, out = [pts[0]];
+        for (var s = 0; s < segs.length; s++) {
+          if (dist >= segs[s]) { out.push(pts[s + 1]); dist -= segs[s]; continue; }
+          var a = pts[s], b = pts[s + 1], f = segs[s] ? dist / segs[s] : 0;
+          out.push([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f]); break;
+        }
+        path.setAttribute('d', pathD(out));
+        if (p < 1) return requestAnimationFrame(step);
+        delete L.busy[i]; L.done[i] = true; L.order.push(i);
+        if (!path.isConnected) drawLadder();
+        renderLabels();
+      }
+      requestAnimationFrame(step);
+    }
+
+    function newLadder() { genLadder(); L.busy = {}; lMsg.textContent = ''; drawLadder(); renderLabels(); }
+    lHeads.addEventListener('click', function (e) { var b = e.target.closest('[data-go]'); if (b) go(+b.getAttribute('data-go')); });
+    lPairs.addEventListener('input', renderLabels);
+    $('[data-l-minus]').addEventListener('click', function () { if (L.n > 2) { L.n--; buildPairs(); newLadder(); } });
+    $('[data-l-plus]').addEventListener('click', function () { if (L.n < 10) { L.n++; buildPairs(); newLadder(); } });
+    $('[data-l-all]').addEventListener('click', function () { for (var i = 0; i < L.n; i++) go(i, true); });
+    $('[data-l-again]').addEventListener('click', newLadder);
+    $('[data-l-hide]').addEventListener('change', renderLabels);
+    $('[data-l-clear]').addEventListener('click', function () { $$('[data-name],[data-prize]').forEach(function (x) { x.value = ''; }); L.n = 4; buildPairs(); newLadder(); });
+
+    // ================= 돌림판 =================
+    var W = { items: [], rot: 0, spinning: false, win: -1 };
+    var wIn = $('[data-w-in]'), wSvg = $('[data-w-svg]'), wMsg = $('[data-w-msg]'), wSpin = $('[data-w-spin]'), wRes = $('[data-w-res]'), wGroup = null;
+    var W_SAMPLE = ['짜장면', '짬뽕', '볶음밥', '탕수육'];
+
+    function wItems() {
+      var list = parseList(wIn.value);
+      if (!list.length) { $('[data-w-count]').textContent = '비워 두면 예시 항목 4개로 돌아가요.'; return W_SAMPLE.slice(); }
+      $('[data-w-count]').textContent = '항목 ' + list.length + '개';
+      if (list.length < 2) { wMsg.textContent = '항목을 2개 이상 넣어 주세요.'; return null; }
+      if (list.length > 20) { wMsg.textContent = '항목은 20개까지 넣을 수 있어요. (지금 ' + list.length + '개)'; return null; }
+      return list;
+    }
+    function pt(deg, r) { var a = (deg - 90) * Math.PI / 180; return [Math.cos(a) * r, Math.sin(a) * r]; }
+    function drawWheel() {
+      var n = W.items.length, R = 96, step = 360 / n;
+      wSvg.innerHTML = '';
+      wGroup = sv('g', { transform: 'rotate(' + W.rot + ')' });
+      var fs = n <= 6 ? 13 : n <= 10 ? 11 : n <= 15 ? 9.5 : 8.5, maxc = n <= 6 ? 8 : n <= 12 ? 6 : 5;
+      for (var i = 0; i < n; i++) {
+        var ci = i % PIE.length; if (i === n - 1 && n > 1 && ci === 0) ci = 2;
+        var a0 = pt(i * step, R), a1 = pt((i + 1) * step, R), big = step > 180 ? 1 : 0;
+        var slice = sv('path', { d: 'M0 0L' + a0[0].toFixed(2) + ' ' + a0[1].toFixed(2) + 'A' + R + ' ' + R + ' 0 ' + big + ' 1 ' + a1[0].toFixed(2) + ' ' + a1[1].toFixed(2) + 'Z',
+          fill: PIE[ci][0], stroke: i === W.win ? '#1d2433' : '#fff', 'stroke-width': i === W.win ? 2.5 : 1.5 });
+        wGroup.appendChild(slice);
+        var mid = (i + 0.5) * step, tp = pt(mid, R * 0.62), label = W.items[i];
+        if (label.length > maxc) label = label.slice(0, maxc - 1) + '…';
+        var tx = sv('text', { x: tp[0].toFixed(2), y: tp[1].toFixed(2), fill: PIE[ci][1], 'font-size': fs, 'font-weight': 700, 'text-anchor': 'middle', 'dominant-baseline': 'central',
+          transform: 'rotate(' + (mid - 90 + (mid > 180 ? 180 : 0)) + ' ' + tp[0].toFixed(2) + ' ' + tp[1].toFixed(2) + ')' });
+        tx.textContent = label;
+        wGroup.appendChild(tx);
+      }
+      wSvg.appendChild(wGroup);
+      wSvg.appendChild(sv('circle', { cx: 0, cy: 0, r: R, fill: 'none', stroke: '#e3e7ef', 'stroke-width': 2 }));
+      wSvg.appendChild(sv('circle', { cx: 0, cy: 0, r: 12, fill: '#fff', stroke: '#e3e7ef', 'stroke-width': 2 }));
+      wSvg.appendChild(sv('path', { d: 'M-11 -110L11 -110L0 -86Z', fill: '#1d2433', stroke: '#fff', 'stroke-width': 2, 'stroke-linejoin': 'round' }));
+    }
+    function wUpdate() {
+      if (W.spinning) return;
+      wMsg.textContent = '';
+      var items = wItems();
+      wSpin.disabled = !items;
+      if (!items) return;
+      W.items = items; W.win = -1; wRes.hidden = true;
+      drawWheel();
+    }
+    function spin() {
+      if (W.spinning || !W.items.length || wSpin.disabled) return;
+      var n = W.items.length, win = randInt(n), off = 0.15 + randFloat() * 0.7;
+      var target = (win + off) * 360 / n;          // 바늘(12시)에 올 원판 각도
+      var from = W.rot, delta = (((-target - from) % 360) + 360) % 360;
+      var to = from + 360 * 6 + delta;
+      W.win = -1; wRes.hidden = true;
+      function finish() {
+        W.rot = to % 360; W.win = win; W.spinning = false; wSpin.disabled = false; wIn.disabled = false;
+        drawWheel();
+        $('[data-w-v]').textContent = W.items[win]; wRes.hidden = false;
+      }
+      if (reduced()) { W.rot = to; finish(); return; }
+      W.spinning = true; wSpin.disabled = true; wIn.disabled = true; drawWheel();
+      var dur = 4200, start = null;
+      function step(ts) {
+        if (!start) start = ts;
+        var p = Math.min((ts - start) / dur, 1), e = 1 - Math.pow(1 - p, 4);
+        W.rot = from + (to - from) * e; wGroup.setAttribute('transform', 'rotate(' + W.rot.toFixed(3) + ')');
+        if (p < 1) requestAnimationFrame(step); else finish();
+      }
+      requestAnimationFrame(step);
+    }
+    wIn.addEventListener('input', wUpdate);
+    wSpin.addEventListener('click', spin);
+    $('[data-w-again]').addEventListener('click', spin);
+    $('[data-w-clear]').addEventListener('click', function () { if (W.spinning) return; wIn.value = ''; wUpdate(); wIn.focus(); });
+
+    // ================= 제비뽑기 =================
+    var P = { deck: [], picks: [], total: 0, win: 0 };
+    var pTotal = $('[data-p-total]'), pWin = $('[data-p-win]'), pMsg = $('[data-p-msg]'), pCards = $('[data-p-cards]'), pArea = $('[data-p-area]');
+
+    function pStatus() {
+      var left = P.total - P.picks.length, winLeft = P.win - P.picks.filter(function (k) { return P.deck[k]; }).length;
+      var s = $('[data-p-status]');
+      if (!P.picks.length) s.innerHTML = '제비 <b>' + P.total + '장</b> 중 당첨 <b>' + P.win + '장</b>. 아무 제비나 눌러 뒤집어 보세요.';
+      else if (!left) s.innerHTML = '모든 제비를 열었어요.';
+      else s.innerHTML = '남은 제비 <b>' + left + '장</b> · 남은 당첨 <b>' + winLeft + '장</b>' + (winLeft ? '' : ' (당첨이 모두 나왔어요)');
+      $('[data-p-all]').disabled = !left;
+    }
+    function pBuild() {
+      pMsg.textContent = '';
+      var t = digits(pTotal, 3), w = digits(pWin, 3);
+      if (!t || !w) { pArea.hidden = true; return; }
+      t = +t; w = +w;
+      if (t < 2 || t > 100) { pArea.hidden = true; pMsg.textContent = '전체 제비는 2장부터 100장까지 만들 수 있어요.'; return; }
+      if (w < 1 || w >= t) { pArea.hidden = true; pMsg.textContent = '당첨은 1장 이상, 전체(' + t + '장)보다 적게 넣어 주세요.'; return; }
+      P.total = t; P.win = w; P.picks = [];
+      var deck = []; for (var i = 0; i < t; i++) deck.push(i < w);
+      P.deck = shuffle(deck);
+      pCards.innerHTML = '';
+      for (i = 0; i < t; i++) {
+        var c = el('button', 'krp-card'); c.type = 'button'; c.setAttribute('data-k', i); c.setAttribute('aria-label', (i + 1) + '번 제비');
+        var inn = el('span', 'krp-card-in');
+        inn.appendChild(el('span', 'krp-face krp-back', i + 1));
+        inn.appendChild(el('span', 'krp-face krp-front', ''));
+        c.appendChild(inn); pCards.appendChild(c);
+      }
+      pArea.hidden = false; pStatus();
+    }
+    function flip(k) {
+      if (P.picks.indexOf(k) >= 0) return;
+      var c = pCards.querySelector('[data-k="' + k + '"]'), w = P.deck[k];
+      var fr = c.querySelector('.krp-front'); fr.textContent = w ? '당첨' : '꽝'; fr.insertBefore(el('small', '', k + 1), fr.firstChild);
+      c.classList.add('krp-open'); if (w) c.classList.add('krp-win');
+      c.disabled = true; c.setAttribute('aria-label', (k + 1) + '번 제비: ' + (w ? '당첨' : '꽝'));
+      P.picks.push(k); pStatus();
+    }
+    pCards.addEventListener('click', function (e) { var c = e.target.closest('[data-k]'); if (c) flip(+c.getAttribute('data-k')); });
+    pTotal.addEventListener('input', pBuild); pWin.addEventListener('input', pBuild);
+    $('[data-p-all]').addEventListener('click', function () { for (var k = 0; k < P.total; k++) flip(k); });
+    $('[data-p-again]').addEventListener('click', pBuild);
+    $('[data-p-clear]').addEventListener('click', function () { pTotal.value = '10'; pWin.value = '2'; pBuild(); });
+
+    // ================= 팀 나누기 =================
+    var T = { mode: 'teams', keys: {}, text: '' };
+    var tIn = $('[data-t-in]'), tN = $('[data-t-n]'), tMsg = $('[data-t-msg]'), tRes = $('[data-t-res]');
+
+    // 이름마다 무작위 순번을 붙여 정렬(=무작위 섞기). 이름을 더 넣어도 기존 순번은 유지돼 결과가 덜 출렁여요
+    function tUpdate() {
+      tMsg.textContent = ''; tRes.hidden = true; T.text = '';
+      var names = parseList(tIn.value), nv = digits(tN, 3);
+      $('[data-t-count]').textContent = names.length ? names.length + '명' : '2명 이상 넣으면 바로 나눠져요.';
+      if (!names.length) return;
+      if (names.length < 2) { tMsg.textContent = '이름을 2명 이상 넣어 주세요.'; return; }
+      if (names.length > 300) { tMsg.textContent = '이름은 300명까지 넣을 수 있어요.'; return; }
+      if (!nv) return;
+      var m = names.length, v = +nv, teams;
+      if (T.mode === 'teams') {
+        if (v < 2) { tMsg.textContent = '팀은 2팀 이상으로 나눠 주세요.'; return; }
+        if (v > m) { tMsg.textContent = '팀 수(' + v + '팀)가 인원(' + m + '명)보다 많아요.'; return; }
+        teams = v;
+      } else {
+        if (v < 1) { tMsg.textContent = '팀당 인원은 1명 이상이어야 해요.'; return; }
+        if (v >= m) { tMsg.textContent = '팀당 인원이 전체 인원(' + m + '명)보다 적어야 2팀 이상 나눠져요.'; return; }
+        teams = Math.ceil(m / v);
+      }
+      var seen = {}, list = names.map(function (nm, i) {
+        var id = nm + '\u0000' + (seen[nm] = (seen[nm] || 0) + 1);
+        if (T.keys[id] == null) T.keys[id] = rand32();
+        return { nm: nm, k: T.keys[id], i: i };
+      });
+      list.sort(function (a, b) { return a.k - b.k || a.i - b.i; });
+      var base = Math.floor(m / teams), extra = m % teams, idx = 0, out = [], box = $('[data-t-teams]');
+      box.innerHTML = '';
+      for (var t = 0; t < teams; t++) {
+        var size = base + (t < extra ? 1 : 0), mem = list.slice(idx, idx + size).map(function (x) { return x.nm; }); idx += size;
+        out.push((t + 1) + '팀: ' + mem.join(', '));
+        var card = el('div', 'krp-team'); card.style.borderTopColor = LINE[t % LINE.length];
+        var h = el('p', 'krp-team-h'); h.appendChild(el('b', '', (t + 1) + '팀')); h.appendChild(el('span', '', size + '명'));
+        h.firstChild.style.color = LINE[t % LINE.length];
+        card.appendChild(h); card.appendChild(el('p', 'krp-team-m', mem.join(', ')));
+        box.appendChild(card);
+      }
+      $('[data-t-sum]').textContent = m + '명을 ' + teams + '팀으로 나눴어요' + (extra ? ' (팀별 인원 차이는 최대 1명)' : '');
+      T.text = out.join(' / ');
+      tRes.hidden = false;
+    }
+    $$('[data-t-mode]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        T.mode = b.getAttribute('data-t-mode');
+        $$('[data-t-mode]').forEach(function (x) { var on = x === b; x.classList.toggle('krp-on', on); x.setAttribute('aria-pressed', on); });
+        $('[data-t-unit]').textContent = T.mode === 'teams' ? '팀' : '명';
+        tN.setAttribute('aria-label', T.mode === 'teams' ? '팀 수' : '팀당 인원');
+        if (T.mode === 'size' && tN.value === '2') tN.value = '3';
+        else if (T.mode === 'teams' && tN.value === '3') tN.value = '2';
+        tUpdate();
+      });
+    });
+    tIn.addEventListener('input', tUpdate); tN.addEventListener('input', tUpdate);
+    $('[data-t-again]').addEventListener('click', function () { T.keys = {}; tUpdate(); });
+    $('[data-t-clear]').addEventListener('click', function () { tIn.value = ''; T.keys = {}; tUpdate(); tIn.focus(); });
+
+    // ================= 결과 복사 =================
+    function copyText(which) {
+      if (which === 'ladder') {
+        var done = L.order.filter(function (p) { return L.done[p]; });
+        if (!done.length) { lMsg.textContent = '먼저 이름을 눌러 결과를 확인해 주세요.'; return null; }
+        return '사다리타기 결과: ' + done.map(function (p) { return lName(p) + ' → ' + lPrize(result(p)); }).join(' / ');
+      }
+      if (which === 'wheel') {
+        if (W.win < 0) { wMsg.textContent = '먼저 돌림판을 돌려 주세요.'; return null; }
+        return '돌림판 결과: ' + W.items[W.win] + ' (' + W.items.join(', ') + ' 중)';
+      }
+      if (which === 'lot') {
+        if (pArea.hidden || !P.picks.length) { pMsg.textContent = '먼저 제비를 뒤집어 주세요.'; return null; }
+        return '제비뽑기 결과 (' + P.total + '장 중 당첨 ' + P.win + '장): ' +
+          P.picks.map(function (k) { return (k + 1) + '번 ' + (P.deck[k] ? '당첨' : '꽝'); }).join(', ') + ' / 남은 제비 ' + (P.total - P.picks.length) + '장';
+      }
+      if (!T.text) { if (!tMsg.textContent) tMsg.textContent = '먼저 이름을 2명 이상 넣어 주세요.'; return null; }
+      return T.text;
+    }
+    $$('[data-copy]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = copyText(btn.getAttribute('data-copy'));
+        if (text == null) return;
+        function ok() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+        function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); ok(); }
+        if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback);
+        else fallback();
+      });
+    });
+
+    // ---- 시작 ----
+    buildPairs(); genLadder(); drawLadder(); renderLabels();
+    wUpdate(); pBuild(); tUpdate();
+    var lastW = 0;
+    function onResize() { var w = lSvg.getBoundingClientRect().width; if (w && w !== lastW) { lastW = w; drawLadder(); } }
+    if (window.ResizeObserver) new ResizeObserver(onResize).observe(lSvg); else window.addEventListener('resize', onResize);
+  })();
+  </script>
+</div>
+<!-- 랜덤 뽑기 모음 위젯 끝 -->
