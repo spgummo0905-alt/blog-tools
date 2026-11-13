@@ -1,0 +1,437 @@
+<p><strong>전역일은 입대일에 복무기간을 더한 날의 하루 전날이에요. 2026년 현재 복무기간은 육군·해병대 18개월, 해군 20개월, 공군 21개월, 사회복무요원 21개월이에요.</strong> 예를 들어 2026년 3월 9일에 육군으로 입대하면 2027년 9월 8일에 전역해요. 아래 계산기에 입대일만 넣으면 전역일과 D-day, 복무율을 바로 볼 수 있어요.</p>
+<!-- 전역일 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kdc" data-kdc>
+  <style>
+    .kdc{--kdc-accent:#3b6ef5;--kdc-accent-soft:#eef3ff;--kdc-text:#1d2433;--kdc-sub:#6b7385;--kdc-line:#e3e7ef;--kdc-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kdc-line);border-radius:20px;background:var(--kdc-bg);
+      color:var(--kdc-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kdc [hidden]{display:none!important}
+    .kdc *,.kdc *::before,.kdc *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kdc .kdc-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kdc .kdc-desc{margin-top:4px;font-size:14px;color:var(--kdc-sub);word-break:keep-all}
+    .kdc .kdc-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kdc-text)}
+    .kdc .kdc-label small{font-size:12.5px;font-weight:500;color:var(--kdc-sub)}
+    .kdc .kdc-row{display:flex;gap:8px}
+    .kdc .kdc-field{position:relative;flex:1;min-width:0}
+    .kdc .kdc-field.kdc-y{flex:1.4}
+    .kdc .kdc-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kdc-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kdc-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kdc .kdc-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kdc .kdc-in:focus{border-color:var(--kdc-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kdc .kdc-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kdc-sub);pointer-events:none}
+    .kdc .kdc-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kdc .kdc-chip{height:34px;padding:0 12px;border:1.5px solid var(--kdc-line);border-radius:999px;background:#fff;color:var(--kdc-sub);
+      font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+    .kdc .kdc-chip:hover{border-color:#c9d3ea;color:var(--kdc-text)}
+    .kdc .kdc-chip.kdc-on{border-color:var(--kdc-accent);background:var(--kdc-accent-soft);color:var(--kdc-accent)}
+    .kdc .kdc-chip span{font-weight:500;opacity:.8;margin-left:3px}
+    .kdc .kdc-group{margin-top:10px;font-size:12px;color:var(--kdc-sub)}
+    .kdc .kdc-group:first-child{margin-top:0}
+    .kdc .kdc-group + .kdc-chips{margin-top:6px}
+    .kdc .kdc-base{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:16px;font-size:13px;color:var(--kdc-sub)}
+    .kdc .kdc-link{border:0;background:none;color:var(--kdc-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px;white-space:nowrap}
+    .kdc .kdc-date{height:40px;padding:0 10px;border:1.5px solid var(--kdc-line);border-radius:10px;font-size:14px;color:var(--kdc-text);background:#fff}
+    .kdc .kdc-adj{margin-top:10px}
+    .kdc .kdc-nrow{display:flex;gap:8px;align-items:stretch}
+    .kdc .kdc-seg{display:flex;padding:4px;gap:4px;border-radius:12px;background:#f1f3f8;flex:none}
+    .kdc .kdc-seg button{width:56px;border:0;border-radius:9px;background:none;color:var(--kdc-sub);font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,color .2s}
+    .kdc .kdc-seg button.kdc-on{background:#fff;color:var(--kdc-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kdc .kdc-hint{margin-top:6px;font-size:12.5px;color:var(--kdc-sub);word-break:keep-all}
+    .kdc .kdc-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .kdc .kdc-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kdc .kdc-result.kdc-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kdc .kdc-result-inner{overflow:hidden}
+    .kdc .kdc-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--kdc-accent-soft);text-align:center}
+    .kdc .kdc-main-label{font-size:14px;color:var(--kdc-sub)}
+    .kdc .kdc-big{margin-top:2px;font-size:32px;font-weight:800;letter-spacing:-.03em;color:var(--kdc-accent);line-height:1.25;white-space:nowrap}
+    .kdc .kdc-big small{font-size:20px;font-weight:700;margin-left:4px}
+    .kdc .kdc-dday{display:inline-block;margin-top:8px;padding:4px 12px;border-radius:999px;background:#fff;color:var(--kdc-accent);font-size:15px;font-weight:800}
+    .kdc .kdc-bar-wrap{margin-top:16px;text-align:left}
+    .kdc .kdc-bar-top{display:flex;justify-content:space-between;font-size:13px;color:var(--kdc-sub)}
+    .kdc .kdc-bar-top b{color:var(--kdc-text);font-size:15px}
+    .kdc .kdc-bar{position:relative;height:12px;margin-top:6px;border-radius:999px;background:#dfe6f7;overflow:hidden}
+    .kdc .kdc-fill{position:absolute;left:0;top:0;bottom:0;width:0;border-radius:999px;background:var(--kdc-accent);transition:width .5s ease}
+    .kdc .kdc-bar-ends{display:flex;justify-content:space-between;margin-top:4px;font-size:12px;color:var(--kdc-sub);white-space:nowrap}
+    .kdc .kdc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kdc .kdc-card{padding:14px;border:1px solid var(--kdc-line);border-radius:14px;background:#fff;min-width:0}
+    .kdc .kdc-card-k{font-size:12px;color:var(--kdc-sub)}
+    .kdc .kdc-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kdc-text);word-break:keep-all}
+    .kdc .kdc-note{margin-top:12px;font-size:12.5px;color:var(--kdc-sub);word-break:keep-all}
+    .kdc .kdc-actions{display:flex;gap:8px;margin-top:14px}
+    .kdc .kdc-btn{flex:1;height:44px;border:1.5px solid var(--kdc-line);border-radius:12px;background:#fff;color:var(--kdc-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kdc .kdc-btn:hover{background:#f4f6fa}
+    .kdc .kdc-btn:active{transform:scale(.98)}
+    .kdc .kdc-btn.kdc-primary{border-color:var(--kdc-accent);background:var(--kdc-accent);color:#fff}
+    .kdc .kdc-btn.kdc-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kdc{padding:18px;border-radius:16px}.kdc .kdc-big{font-size:28px}.kdc .kdc-big small{font-size:18px}
+      .kdc .kdc-in{font-size:17px}.kdc .kdc-chip{padding:0 10px}}
+    @media (prefers-reduced-motion:reduce){.kdc .kdc-result,.kdc .kdc-in,.kdc .kdc-btn,.kdc .kdc-chip,.kdc .kdc-fill,.kdc .kdc-seg button{transition:none}}
+  </style>
+
+  <p class="kdc-title">전역일 계산기</p>
+  <p class="kdc-desc">입대일과 복무 형태만 고르면 전역일, D-day, 복무율이 바로 나와요.</p>
+
+  <p class="kdc-label"><span>입대일 (입영일·소집일·편입일)</span></p>
+  <div class="kdc-row">
+    <div class="kdc-field kdc-y"><input class="kdc-in" data-y inputmode="numeric" maxlength="4" placeholder="2026" aria-label="입대한 연도"><span class="kdc-unit">년</span></div>
+    <div class="kdc-field"><input class="kdc-in" data-m inputmode="numeric" maxlength="2" placeholder="3" aria-label="입대한 월"><span class="kdc-unit">월</span></div>
+    <div class="kdc-field"><input class="kdc-in" data-d inputmode="numeric" maxlength="2" placeholder="9" aria-label="입대한 일"><span class="kdc-unit">일</span></div>
+  </div>
+
+  <p class="kdc-label"><span>복무 형태</span><small data-months-text>복무기간 18개월</small></p>
+  <div data-types>
+    <p class="kdc-group">현역병 (숫자는 복무 개월)</p>
+    <div class="kdc-chips">
+      <button type="button" class="kdc-chip kdc-on" data-type="육군" data-mo="18" aria-pressed="true">육군<span>18</span></button>
+      <button type="button" class="kdc-chip" data-type="해병대" data-mo="18" aria-pressed="false">해병대<span>18</span></button>
+      <button type="button" class="kdc-chip" data-type="해군" data-mo="20" aria-pressed="false">해군<span>20</span></button>
+      <button type="button" class="kdc-chip" data-type="공군" data-mo="21" aria-pressed="false">공군<span>21</span></button>
+      <button type="button" class="kdc-chip" data-type="상근예비역" data-mo="18" aria-pressed="false">상근예비역<span>18</span></button>
+    </div>
+    <p class="kdc-group">보충역·대체복무</p>
+    <div class="kdc-chips">
+      <button type="button" class="kdc-chip" data-type="사회복무요원" data-mo="21" aria-pressed="false">사회복무요원<span>21</span></button>
+      <button type="button" class="kdc-chip" data-type="산업기능요원(현역 대상)" data-mo="34" aria-pressed="false">산업기능요원 현역<span>34</span></button>
+      <button type="button" class="kdc-chip" data-type="산업기능요원(보충역 대상)" data-mo="23" aria-pressed="false">산업기능요원 보충역<span>23</span></button>
+      <button type="button" class="kdc-chip" data-type="전문연구요원" data-mo="36" aria-pressed="false">전문연구요원<span>36</span></button>
+      <button type="button" class="kdc-chip" data-type="대체복무요원" data-mo="36" aria-pressed="false">대체복무요원<span>36</span></button>
+    </div>
+  </div>
+
+  <div class="kdc-base">
+    <span data-base-text>오늘 기준으로 계산해요</span>
+    <button type="button" class="kdc-link" data-base-toggle>기준일 바꾸기</button>
+    <input type="date" class="kdc-date" data-base hidden aria-label="기준일">
+  </div>
+
+  <div class="kdc-base">
+    <span data-adj-text>조기전역·전역 연기가 있나요?</span>
+    <button type="button" class="kdc-link" data-adj-toggle>일수 조정하기</button>
+  </div>
+  <div class="kdc-adj" data-adj hidden>
+    <div class="kdc-nrow">
+      <div class="kdc-seg" role="group" aria-label="당기기 또는 늦추기">
+        <button type="button" class="kdc-on" data-dir="-1" aria-pressed="true">당김</button>
+        <button type="button" data-dir="1" aria-pressed="false">늦춤</button>
+      </div>
+      <div class="kdc-field"><input class="kdc-in" data-adj-n inputmode="numeric" maxlength="3" placeholder="0" aria-label="조정할 일수"><span class="kdc-unit">일</span></div>
+    </div>
+    <p class="kdc-hint">조기전역은 ‘당김’, 징계·군기교육 등으로 전역이 미뤄지면 ‘늦춤’에 일수를 넣어요.</p>
+  </div>
+
+  <p class="kdc-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kdc-result" data-result aria-live="polite">
+    <div class="kdc-result-inner">
+      <div class="kdc-main">
+        <p class="kdc-main-label" data-main-label>전역일</p>
+        <p class="kdc-big"><span data-end></span><small data-wd></small></p>
+        <p class="kdc-dday" data-dday></p>
+        <div class="kdc-bar-wrap">
+          <div class="kdc-bar-top"><span>복무율</span><b data-pct></b></div>
+          <div class="kdc-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="복무율" data-bar><div class="kdc-fill" data-fill></div></div>
+          <div class="kdc-bar-ends"><span data-start-s></span><span data-end-s></span></div>
+        </div>
+      </div>
+      <div class="kdc-grid">
+        <div class="kdc-card"><p class="kdc-card-k">지난 일수</p><p class="kdc-card-v" data-served></p></div>
+        <div class="kdc-card"><p class="kdc-card-k">남은 일수</p><p class="kdc-card-v" data-left></p></div>
+        <div class="kdc-card"><p class="kdc-card-k">전체 복무일수</p><p class="kdc-card-v" data-total></p></div>
+        <div class="kdc-card"><p class="kdc-card-k">복무 기간</p><p class="kdc-card-v" data-period></p></div>
+      </div>
+      <p class="kdc-note" data-note></p>
+      <div class="kdc-actions">
+        <button type="button" class="kdc-btn" data-reset>다시 입력</button>
+        <button type="button" class="kdc-btn kdc-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kdc]');
+    if (!root || root.__kdc) return;
+    root.__kdc = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), mI = $('[data-m]'), dI = $('[data-d]');
+    var baseI = $('[data-base]'), baseText = $('[data-base-text]'), baseToggle = $('[data-base-toggle]');
+    var adjBox = $('[data-adj]'), adjToggle = $('[data-adj-toggle]'), adjText = $('[data-adj-text]'), adjI = $('[data-adj-n]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var type = '육군', months = 18, dir = -1, lastText = '';
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function dayNo(d) { return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / 864e5); }
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+
+    // 민법 제160조: 입대일(첫날 포함)부터 N개월 → 마지막 달의 같은 날 전날에 끝남.
+    // 마지막 달에 같은 날이 없으면(예: 8월 31일 입대 → 2월 31일 없음) 그 달 말일에 끝남.
+    function serviceEnd(start, mo) {
+      var y = start.getFullYear(), m = start.getMonth() + mo, d = start.getDate();
+      var last = new Date(y, m + 1, 0).getDate();
+      if (d > last) return new Date(y, m, last);
+      return new Date(y, m, d - 1);
+    }
+
+    function getBase() {
+      if (!baseI.hidden && baseI.value) { var p = baseI.value.split('-'); return new Date(+p[0], +p[1] - 1, +p[2]); }
+      return today();
+    }
+    function adjDays() { return adjBox.hidden ? 0 : dir * (+adjI.value || 0); }
+
+    function hide(text) { result.classList.remove('kdc-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      if (yI.value.length < 4 || !mI.value || !dI.value) return hide('');
+      var y = +yI.value, m = +mI.value, d = +dI.value;
+      var start = new Date(y, m - 1, d);
+      if (m < 1 || m > 12 || d < 1 || start.getMonth() !== m - 1 || start.getDate() !== d) return hide('입대일 날짜를 다시 확인해 주세요.');
+      if (y < 2000 || y > 2100) return hide('입대 연도는 2000~2100년 사이로 넣어 주세요.');
+      var base = getBase();
+      if (isNaN(base)) return hide('기준일을 다시 확인해 주세요.');
+
+      var plain = serviceEnd(start, months);
+      var adj = adjDays();
+      var end = addDays(plain, adj);
+      if (end < start) return hide('조정 일수가 복무기간보다 길어요.');
+
+      var total = dayNo(end) - dayNo(start) + 1;
+      var bn = dayNo(base), sn = dayNo(start), en = dayNo(end);
+      var served = bn < sn ? 0 : Math.min(bn - sn + 1, total);
+      var left = total - served;
+      var pct = total ? served / total * 100 : 0;
+      var pctText = (pct >= 100 ? 100 : Math.floor(pct * 10) / 10).toFixed(1) + '%';
+      var diff = en - bn, dday;
+      if (bn < sn) dday = '입대까지 D-' + comma(sn - bn);
+      else if (diff > 0) dday = '전역까지 D-' + comma(diff);
+      else if (diff === 0) dday = '오늘 전역해요 🎉';
+      else dday = '전역한 지 ' + comma(-diff) + '일 (D+' + comma(-diff) + ')';
+
+      msg.textContent = '';
+      $('[data-main-label]').textContent = type + ' 전역일' + (adj ? ' (조정 ' + (adj > 0 ? '+' : '−') + Math.abs(adj) + '일)' : '');
+      $('[data-end]').textContent = fmt(end);
+      $('[data-wd]').textContent = '(' + WD[end.getDay()] + ')';
+      $('[data-dday]').textContent = dday;
+      $('[data-pct]').textContent = pctText;
+      $('[data-fill]').style.width = Math.min(pct, 100) + '%';
+      $('[data-bar]').setAttribute('aria-valuenow', Math.floor(Math.min(pct, 100)));
+      $('[data-start-s]').textContent = '입대 ' + fmt(start);
+      $('[data-end-s]').textContent = '전역 ' + fmt(end);
+      $('[data-served]').textContent = comma(served) + '일';
+      $('[data-left]').textContent = comma(left) + '일';
+      $('[data-total]').textContent = comma(total) + '일';
+      $('[data-period]').textContent = months + '개월' + (adj ? ' ' + (adj > 0 ? '+' : '−') + Math.abs(adj) + '일' : '');
+
+      var notes = ['전역일 = 입대일 + ' + months + '개월 − 1일 (그 달에 같은 날이 없으면 말일), 입대일을 1일째로 세요. 실제 전역일은 소속 부대·병무청 안내를 따르세요.'];
+      if (y < 2021) notes.push('2021년 이전 입대는 복무기간이 단계적으로 줄던 시기라 실제와 다를 수 있어요.');
+      if (/산업|전문/.test(type)) notes.push('산업기능요원·전문연구요원은 편입일부터 세며, 복무 중 사정에 따라 만료일이 달라질 수 있어요.');
+      $('[data-note]').textContent = notes.join(' ');
+      result.classList.add('kdc-show');
+
+      lastText = '[전역일 계산 결과]\n복무 형태: ' + type + ' (' + months + '개월' + (adj ? ', 조정 ' + (adj > 0 ? '+' : '−') + Math.abs(adj) + '일' : '') + ')' +
+        '\n입대일: ' + fmt(start) + ' (' + WD[start.getDay()] + ')' +
+        '\n전역일: ' + fmt(end) + ' (' + WD[end.getDay()] + ')' +
+        '\n기준일: ' + fmt(base) + ' / ' + dday +
+        '\n복무율: ' + pctText + ' (' + comma(served) + '일 / ' + comma(total) + '일)' +
+        '\n남은 일수: ' + comma(left) + '일';
+    }
+
+    // 숫자만 + 다 채우면 다음 칸으로
+    function bind(input, next, len) {
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/\D/g, '').slice(0, len);
+        if (v !== input.value) input.value = v;
+        if (next && v.length === len) next.focus();
+        if (input === mI && v.length === 1 && +v > 1) dI.focus();
+        if (input === dI && v.length === 1 && +v > 3) dI.blur();
+        calc();
+      });
+    }
+    bind(yI, mI, 4); bind(mI, dI, 2); bind(dI, null, 2);
+    [mI, dI].forEach(function (inp, i) {
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !inp.value) { e.preventDefault(); (i === 0 ? yI : mI).focus(); }
+      });
+    });
+    // 20260309, 2026-03-09, 2026.3.9 등 한 번에 붙여넣기
+    yI.addEventListener('paste', function (e) {
+      var raw = (e.clipboardData || window.clipboardData).getData('text');
+      var p = raw.match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/), t = raw.replace(/\D/g, '');
+      if (p) { e.preventDefault(); yI.value = p[1]; mI.value = String(+p[2]); dI.value = String(+p[3]); calc(); }
+      else if (t.length === 8) { e.preventDefault(); yI.value = t.slice(0, 4); mI.value = String(+t.slice(4, 6)); dI.value = String(+t.slice(6, 8)); calc(); }
+    });
+
+    $$('[data-type]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        type = b.getAttribute('data-type'); months = +b.getAttribute('data-mo');
+        $$('[data-type]').forEach(function (x) { var on = x === b; x.classList.toggle('kdc-on', on); x.setAttribute('aria-pressed', on); });
+        $('[data-months-text]').textContent = '복무기간 ' + months + '개월';
+        calc();
+      });
+    });
+
+    baseToggle.addEventListener('click', function () {
+      var open = baseI.hidden;
+      baseI.hidden = !open; baseText.hidden = open;
+      baseToggle.textContent = open ? '오늘로 되돌리기' : '기준일 바꾸기';
+      if (open) {
+        var t = today();
+        baseI.value = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+        baseI.focus();
+      }
+      calc();
+    });
+    baseI.addEventListener('change', calc);
+    baseI.addEventListener('input', calc);
+
+    adjToggle.addEventListener('click', function () {
+      var open = adjBox.hidden;
+      adjBox.hidden = !open;
+      adjText.textContent = open ? '전역일을 며칠 조정할까요?' : '조기전역·전역 연기가 있나요?';
+      adjToggle.textContent = open ? '조정 없애기' : '일수 조정하기';
+      if (open) adjI.focus(); else adjI.value = '';
+      calc();
+    });
+    $$('[data-dir]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        dir = +b.getAttribute('data-dir');
+        $$('[data-dir]').forEach(function (x) { var on = x === b; x.classList.toggle('kdc-on', on); x.setAttribute('aria-pressed', on); });
+        calc();
+      });
+    });
+    adjI.addEventListener('input', function () {
+      var v = adjI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 3);
+      if (v !== adjI.value) adjI.value = v;
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = mI.value = dI.value = adjI.value = ''; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 전역일 계산기 위젯 끝 -->
+<h2>전역일 계산법</h2>
+<p>군 복무기간은 입대한 날을 첫날로 세서 달력으로 계산해요. 그래서 <strong>전역일 = 입대일 + 복무 개월 수 − 1일</strong>이에요. 기간을 월 단위로 정하면 마지막 달의 같은 날 전날에 끝난다는 민법 제160조의 계산 방식과 같아요.</p>
+<ul>
+  <li><strong>기본:</strong> 입대일에 복무 개월 수를 더한 날짜의 전날이 전역일</li>
+  <li><strong>월말 입대:</strong> 마지막 달에 같은 날짜가 없으면(예: 8월 31일 입대 → 2월 31일은 없음) 그 달 말일이 전역일</li>
+  <li><strong>복무율:</strong> 입대일부터 기준일까지 지난 일수 ÷ 전체 복무일수 × 100</li>
+</ul>
+<p>예를 들어 2026년 3월 9일(월)에 육군으로 입대하면, 18개월 뒤인 2027년 9월 9일의 전날인 <strong>2027년 9월 8일(수)</strong>이 전역일이에요. 입대일과 전역일을 모두 세면 전체 복무일수는 549일이에요.</p>
+
+<h2>복무 형태별 복무기간 (2026년 기준)</h2>
+<table>
+  <thead><tr><th>복무 형태</th><th>복무기간</th><th>기산일</th></tr></thead>
+  <tbody>
+    <tr><td>육군</td><td>18개월</td><td>입영일</td></tr>
+    <tr><td>해병대</td><td>18개월</td><td>입영일</td></tr>
+    <tr><td>해군</td><td>20개월</td><td>입영일</td></tr>
+    <tr><td>공군</td><td>21개월</td><td>입영일</td></tr>
+    <tr><td>상근예비역</td><td>18개월</td><td>입영일</td></tr>
+    <tr><td>사회복무요원</td><td>21개월</td><td>소집일</td></tr>
+    <tr><td>산업기능요원 (현역 입영 대상)</td><td>34개월</td><td>편입일</td></tr>
+    <tr><td>산업기능요원 (사회복무요원 소집 대상)</td><td>23개월</td><td>편입일</td></tr>
+    <tr><td>전문연구요원</td><td>36개월</td><td>편입일</td></tr>
+    <tr><td>대체복무요원</td><td>36개월</td><td>소집일</td></tr>
+  </tbody>
+</table>
+
+<h2>2026년 입대일별 전역일 예시</h2>
+<table>
+  <thead><tr><th>입대일</th><th>육군·해병대 (18개월)</th><th>해군 (20개월)</th><th>공군 (21개월)</th></tr></thead>
+  <tbody>
+    <tr><td>2026. 1. 5.</td><td>2027. 7. 4. (일)</td><td>2027. 9. 4. (토)</td><td>2027. 10. 4. (월)</td></tr>
+    <tr><td>2026. 3. 9.</td><td>2027. 9. 8. (수)</td><td>2027. 11. 8. (월)</td><td>2027. 12. 8. (수)</td></tr>
+    <tr><td>2026. 5. 11.</td><td>2027. 11. 10. (수)</td><td>2028. 1. 10. (월)</td><td>2028. 2. 10. (목)</td></tr>
+    <tr><td>2026. 7. 6.</td><td>2028. 1. 5. (수)</td><td>2028. 3. 5. (일)</td><td>2028. 4. 5. (수)</td></tr>
+    <tr><td>2026. 9. 7.</td><td>2028. 3. 6. (월)</td><td>2028. 5. 6. (토)</td><td>2028. 6. 6. (화)</td></tr>
+    <tr><td>2026. 11. 16.</td><td>2028. 5. 15. (월)</td><td>2028. 7. 15. (토)</td><td>2028. 8. 15. (화)</td></tr>
+  </tbody>
+</table>
+<p>계산기로 구한 날짜는 법에서 정한 복무기간으로 계산한 예정일이에요. 조기전역, 징계 등으로 복무기간이 달라지면 계산기의 ‘일수 조정하기’로 반영할 수 있고, 최종 전역일은 소속 부대나 병무청 안내를 따라야 해요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>전역일은 왜 입대일에서 하루를 빼나요?</h3>
+<p>입대한 날을 복무 첫날로 세기 때문이에요. 2026년 3월 9일에 입대해 18개월을 채우면 2027년 9월 8일까지가 18개월이라서, 그날이 전역일이 돼요. 입대일과 같은 날짜에 전역하면 하루를 더 복무하는 셈이에요.</p>
+<h3>31일이나 월말에 입대하면 전역일은 언제인가요?</h3>
+<p>마지막 달에 입대일과 같은 날짜가 없으면 그 달 말일이 전역일이에요. 예를 들어 2025년 8월 31일에 육군으로 입대하면 2027년 2월에는 31일이 없으므로 2027년 2월 28일에 전역해요. 8월 29일이나 30일에 입대한 경우도 2027년 2월 28일이 전역일이에요.</p>
+<h3>사회복무요원과 산업기능요원의 복무기간은 얼마인가요?</h3>
+<p>사회복무요원은 21개월이에요. 산업기능요원은 현역 입영 대상이면 34개월, 사회복무요원 소집 대상이면 23개월이고, 전문연구요원과 대체복무요원은 36개월이에요. 계산기에서 복무 형태를 고르면 해당 기간으로 계산돼요.</p>
+<h3>일병, 상병, 병장은 언제 진급하나요?</h3>
+<p>진급에 필요한 최저 복무기간은 이병 2개월, 일병 6개월, 상병 6개월이라 보통 입대 후 약 2개월에 일병, 약 8개월에 상병, 약 14개월에 병장이 돼요. 다만 2024년부터 병 진급 심사가 도입돼 심사에 따라 진급이 늦어질 수 있고, 정확한 진급일은 부대마다 다르니 소속 부대에 확인하는 것이 좋아요.</p>
+<h3>복무율은 어떻게 계산하나요?</h3>
+<p>입대일부터 기준일까지 지난 일수를 전체 복무일수로 나눈 비율이에요. 이 계산기는 입대일 당일을 1일째로 세고, 전역일 당일에 100%가 되도록 계산해요. 기준일을 바꾸면 특정 날짜의 복무율도 확인할 수 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:dday-calculator}}">디데이 계산기</a>: 휴가·면회 날짜까지 남은 날과 100일 기념일 계산</li>
+  <li><a href="{{LINK:age-table-2027}}">2027년 나이 조견표</a>: 출생연도별 만 나이·띠·학년 한눈에 보기</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "전역일은 왜 입대일에서 하루를 빼나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "입대한 날을 복무 첫날로 세기 때문이에요. 2026년 3월 9일에 입대해 18개월을 채우면 2027년 9월 8일까지가 18개월이라서, 그날이 전역일이 돼요. 입대일과 같은 날짜에 전역하면 하루를 더 복무하는 셈이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "31일이나 월말에 입대하면 전역일은 언제인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "마지막 달에 입대일과 같은 날짜가 없으면 그 달 말일이 전역일이에요. 예를 들어 2025년 8월 31일에 육군으로 입대하면 2027년 2월에는 31일이 없으므로 2027년 2월 28일에 전역해요. 8월 29일이나 30일에 입대한 경우도 2027년 2월 28일이 전역일이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "사회복무요원과 산업기능요원의 복무기간은 얼마인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "사회복무요원은 21개월이에요. 산업기능요원은 현역 입영 대상이면 34개월, 사회복무요원 소집 대상이면 23개월이고, 전문연구요원과 대체복무요원은 36개월이에요. 계산기에서 복무 형태를 고르면 해당 기간으로 계산돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "일병, 상병, 병장은 언제 진급하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "진급에 필요한 최저 복무기간은 이병 2개월, 일병 6개월, 상병 6개월이라 보통 입대 후 약 2개월에 일병, 약 8개월에 상병, 약 14개월에 병장이 돼요. 다만 2024년부터 병 진급 심사가 도입돼 심사에 따라 진급이 늦어질 수 있고, 정확한 진급일은 부대마다 다르니 소속 부대에 확인하는 것이 좋아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "복무율은 어떻게 계산하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "입대일부터 기준일까지 지난 일수를 전체 복무일수로 나눈 비율이에요. 이 계산기는 입대일 당일을 1일째로 세고, 전역일 당일에 100%가 되도록 계산해요. 기준일을 바꾸면 특정 날짜의 복무율도 확인할 수 있어요."
+   }
+  }
+ ]
+}
+</script>
