@@ -1,16 +1,29 @@
 # blog-tools 작업 규칙
 
-## 새 도구를 만들 때 반드시 함께 만들 것
-`tools/<도구 이름>/` 폴더에 아래 4개 파일을 모두 만든다.
+생활 계산기를 만들어 블로그(티스토리, 블로거, 워드프레스 등)에 올리는 저장소. 기준 도구는 `tools/age-calculator`이며, 새 도구는 이 구조·디자인·글 구성을 그대로 따른다.
 
-1. `widget.html`: 계산기만. 외부 라이브러리 없이 동작하고, CSS 클래스는 도구 고유 접두어를 쓴다.
-2. `post.html`: 도입부 + 위젯 + 설명 + FAQ + FAQPage JSON-LD.
-3. `README.md`: 제목·태그 추천, 계산 기준.
-4. `PUBLISH.md`: 발행용 프롬프트. Chrome이 연결된 세션(데스크톱 앱, Cowork)에 그대로 붙여 넣으면 예약발행까지 끝나게 쓴다. 형식은 `tools/age-calculator/PUBLISH.md`를 따른다.
-   - 본문은 raw 주소(`https://raw.githubusercontent.com/spgummo0905-alt/blog-tools/main/tools/<도구>/post.html`)로 지정한다.
-   - 제목과 태그는 README.md 추천값을 프롬프트 안에 그대로 적는다.
-   - 대상: 연결된 블로그 전부(스레드 제외).
-   - 카테고리 기본값: `생활 계산기`
-   - 예약 시간: 이전 도구 발행일에서 이틀 뒤 오전 9시를 기본값으로 제안한다(블로그끼리는 같은 날, 도구끼리는 간격을 둔다).
+## 작업 방식
+- 도구 하나 = 작업 브랜치 하나 = PR 하나. `main`에 직접 푸시하지 않는다.
+- 루트 `README.md`의 도구 목록에 한 줄 추가한다.
 
-루트 `README.md`의 도구 목록에도 추가한다.
+## 도구 폴더 `tools/<폴더>/`에 만들 파일
+1. `widget.html`: 계산기만.
+   - 외부 라이브러리 없이 HTML 파일 하나로 동작 (`<style>`과 `<script>`를 위젯 `<div>` 안에 넣는다)
+   - CSS 클래스와 루트 data 속성은 도구별 고유 접두어 (예: `kac-`, `data-kac`)
+   - 모바일 우선, 입력 즉시 계산(계산 버튼 없음), 잘못된 입력은 빨간 안내 문구, `결과 복사`와 `다시 입력` 버튼
+   - 디자인 토큰(색, 둥근 모서리, 그림자, 글꼴)은 `tools/age-calculator/widget.html`과 동일
+2. `post.html`: 블로그 글 본문 전체 (HTML 모드 붙여 넣기용). 순서:
+   1. 첫 문단에서 질문에 바로 답한다 (예: "1평은 3.3058㎡입니다"). `<p><strong>…</strong>…</p>`
+   2. 위젯
+   3. 계산법 설명 (공식 + 예시 1개)
+   4. 표 1개 이상
+   5. `<h2>자주 묻는 질문</h2>` 아래 FAQ 4~5개 (`<h3>질문</h3><p>답</p>`, 질문 앞에 "Q." 같은 접두어 없이)
+   6. `<h2>함께 쓰면 좋은 계산기</h2>` 내부 링크 자리: `<a href="{{LINK:폴더명}}">`
+   7. FAQPage JSON-LD: 손으로 쓰지 말고 `python3 scripts/sync_faq.py tools/<폴더>/post.html`로 생성 (화면 FAQ와 글자까지 동일)
+3. `README.md`: 제목·태그 추천, 계산 기준(공식, 출처, 매년 갱신할 값)
+4. `PUBLISH.md`: 발행 프롬프트. `tools/age-calculator/PUBLISH.md` 형식 그대로, 제목·태그만 바꾼다. 예약 일시는 적지 않는다(발행하는 세션이 정함).
+
+## 커밋 전 검사
+- `python3 scripts/sync_faq.py --check tools/*/post.html`이 모두 OK
+- 브라우저에서 위젯을 열어 정상 입력, 경계값, 잘못된 입력을 확인하고 콘솔 오류가 없을 것
+- 금액·세율·법령 수치는 공식 출처로 확인하고 README.md에 출처와 기준일을 적는다
