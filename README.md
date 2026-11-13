@@ -17,6 +17,7 @@ tools/
 | 도구 | 폴더 | 상태 |
 |---|---|---|
 | 만 나이 계산기 | `tools/age-calculator` | 완성 |
+| 주휴수당 계산기 | `tools/weekly-holiday-pay` | 완성 |
 
 ## 작업 규칙
 
