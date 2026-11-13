@@ -21,6 +21,7 @@ tools/
 | 주휴수당 계산기 | `tools/weekly-holiday-pay` | 완성 |
 | 평수 계산기 | `tools/pyeong-converter` | 완성 |
 | 퇴직금 계산기 | `tools/severance-calculator` | 완성 |
+| 디데이 계산기 | `tools/dday-calculator` | 완성 |
 
 ## 작업 규칙
 
