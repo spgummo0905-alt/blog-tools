@@ -21,7 +21,7 @@
    6. `<h2>함께 쓰면 좋은 계산기</h2>` 내부 링크 자리: `<a href="{{LINK:폴더명}}">`
    7. FAQPage JSON-LD: 손으로 쓰지 말고 `python3 scripts/sync_faq.py tools/<폴더>/post.html`로 생성 (화면 FAQ와 글자까지 동일)
 3. `README.md`: 제목·태그 추천, 계산 기준(공식, 출처, 매년 갱신할 값)
-4. `PUBLISH.md`: 발행 프롬프트. `tools/age-calculator/PUBLISH.md` 형식 그대로, 제목·태그만 바꾼다. 예약 일시는 적지 않는다(발행하는 세션이 정함).
+4. `PUBLISH.md`: 발행 프롬프트. `tools/age-calculator/PUBLISH.md` 형식 그대로 쓰고, 폴더명과 참고용 기본 제목·태그만 바꾼다. 본문은 고정하고, 제목·태그는 발행 세션이 SEO 스킬로 최적화하며, 카테고리·예약 일시 등은 발행 세션이 자율로 정하게 한다.
 
 ## 커밋 전 검사
 - `python3 scripts/sync_faq.py --check tools/*/post.html`이 모두 OK
