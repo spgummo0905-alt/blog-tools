@@ -1,0 +1,206 @@
+<!-- 평수 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kpy" data-kpy>
+  <style>
+    .kpy{--kpy-accent:#3b6ef5;--kpy-accent-soft:#eef3ff;--kpy-text:#1d2433;--kpy-sub:#6b7385;--kpy-line:#e3e7ef;--kpy-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kpy-line);border-radius:20px;background:var(--kpy-bg);
+      color:var(--kpy-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kpy [hidden]{display:none!important}
+    .kpy *,.kpy *::before,.kpy *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kpy .kpy-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kpy .kpy-desc{margin-top:4px;font-size:14px;color:var(--kpy-sub)}
+    .kpy .kpy-row{display:flex;align-items:flex-end;gap:8px;margin-top:20px}
+    .kpy .kpy-col{flex:1;min-width:0}
+    .kpy .kpy-label{display:block;margin-bottom:8px;font-size:14px;font-weight:600;color:var(--kpy-text)}
+    .kpy .kpy-field{position:relative}
+    .kpy .kpy-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kpy-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kpy-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kpy .kpy-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kpy .kpy-in:focus{border-color:var(--kpy-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kpy .kpy-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kpy-sub);pointer-events:none}
+    .kpy .kpy-swap{flex:0 0 auto;height:52px;display:flex;align-items:center;font-size:18px;color:var(--kpy-sub)}
+    .kpy .kpy-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:12px}
+    .kpy .kpy-chips-k{font-size:13px;color:var(--kpy-sub);margin-right:2px}
+    .kpy .kpy-chip{height:32px;padding:0 12px;border:1.5px solid var(--kpy-line);border-radius:999px;background:#fff;color:var(--kpy-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kpy .kpy-chip:hover{border-color:#c9d3ea;color:var(--kpy-text)}
+    .kpy .kpy-chip.kpy-on{border-color:var(--kpy-accent);background:var(--kpy-accent-soft);color:var(--kpy-accent)}
+    .kpy .kpy-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .kpy .kpy-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kpy .kpy-result.kpy-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kpy .kpy-result-inner{overflow:hidden}
+    .kpy .kpy-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--kpy-accent-soft);text-align:center}
+    .kpy .kpy-main-label{font-size:14px;color:var(--kpy-sub)}
+    .kpy .kpy-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kpy-accent);line-height:1.2;word-break:break-all}
+    .kpy .kpy-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kpy .kpy-sub{margin-top:6px;font-size:14px;color:var(--kpy-sub)}
+    .kpy .kpy-sub span{white-space:nowrap}
+    .kpy .kpy-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kpy .kpy-card{padding:14px;border:1px solid var(--kpy-line);border-radius:14px;background:#fff}
+    .kpy .kpy-card-k{font-size:12px;color:var(--kpy-sub)}
+    .kpy .kpy-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kpy-text)}
+    .kpy .kpy-card-s{margin-top:2px;font-size:12px;color:var(--kpy-sub)}
+    .kpy .kpy-note{margin-top:12px;font-size:12.5px;color:var(--kpy-sub)}
+    .kpy .kpy-desc,.kpy .kpy-sub,.kpy .kpy-note,.kpy .kpy-card-k,.kpy .kpy-card-s{word-break:keep-all}
+    .kpy .kpy-actions{display:flex;gap:8px;margin-top:14px}
+    .kpy .kpy-btn{flex:1;height:44px;border:1.5px solid var(--kpy-line);border-radius:12px;background:#fff;color:var(--kpy-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kpy .kpy-btn:hover{background:#f4f6fa}
+    .kpy .kpy-btn:active{transform:scale(.98)}
+    .kpy .kpy-btn.kpy-primary{border-color:var(--kpy-accent);background:var(--kpy-accent);color:#fff}
+    .kpy .kpy-btn.kpy-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kpy{padding:18px;border-radius:16px}.kpy .kpy-big{font-size:34px}.kpy .kpy-in{font-size:17px;padding:0 30px 0 12px}.kpy .kpy-row{gap:6px}}
+    @media (prefers-reduced-motion:reduce){.kpy .kpy-result,.kpy .kpy-in,.kpy .kpy-btn,.kpy .kpy-chip{transition:none}}
+  </style>
+
+  <p class="kpy-title">평수 계산기</p>
+  <p class="kpy-desc">평이나 ㎡ 중 아무 칸에 입력하면 반대쪽이 바로 채워져요.</p>
+
+  <div class="kpy-row">
+    <div class="kpy-col">
+      <label class="kpy-label" for="kpy-py">평</label>
+      <div class="kpy-field"><input class="kpy-in" id="kpy-py" data-py inputmode="decimal" placeholder="34" autocomplete="off"><span class="kpy-unit">평</span></div>
+    </div>
+    <span class="kpy-swap" aria-hidden="true">⇄</span>
+    <div class="kpy-col">
+      <label class="kpy-label" for="kpy-m2">제곱미터</label>
+      <div class="kpy-field"><input class="kpy-in" id="kpy-m2" data-m2 inputmode="decimal" placeholder="84" autocomplete="off"><span class="kpy-unit">㎡</span></div>
+    </div>
+  </div>
+  <div class="kpy-chips" data-chips><span class="kpy-chips-k">자주 찾는 전용면적</span></div>
+
+  <p class="kpy-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kpy-result" data-result aria-live="polite">
+    <div class="kpy-result-inner">
+      <div class="kpy-main">
+        <p class="kpy-main-label" data-main-label></p>
+        <p class="kpy-big" data-big></p>
+        <p class="kpy-sub"><span>1평 = 400/121㎡ ≈ 3.3058㎡</span> · <span>1㎡ ≈ 0.3025평</span></p>
+      </div>
+      <div class="kpy-grid" data-grid>
+        <div class="kpy-card"><p class="kpy-card-k">전용면적이라면 분양 평형은</p><p class="kpy-card-v" data-supply></p><p class="kpy-card-s">대략, 전용률 75% 가정</p></div>
+        <div class="kpy-card"><p class="kpy-card-k">분양 평형(공급면적)이라면 전용은</p><p class="kpy-card-v" data-excl></p><p class="kpy-card-s" data-excl-py></p></div>
+      </div>
+      <p class="kpy-note">아파트 분양 평형(예: 34평형)은 전용면적에 계단·복도 같은 주거공용면적을 더한 <b>공급면적</b> 기준이라, 전용면적으로 계산한 평수보다 커요. 위 ‘대략’ 값은 전용률 75%로 가정한 것이고 실제는 단지마다 달라요.</p>
+      <div class="kpy-actions">
+        <button type="button" class="kpy-btn" data-reset>다시 입력</button>
+        <button type="button" class="kpy-btn kpy-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kpy]');
+    if (!root || root.__kpy) return;
+    root.__kpy = true;
+
+    // 1평 = 6자 × 6자, 1자 = 10/33m → 1평 = 400/121㎡ (약 3.3058㎡)
+    var PY_NUM = 400, PY_DEN = 121;
+    var EXCL_RATIO = 0.75; // 전용률 가정(대략 환산용). 실제 아파트는 단지마다 다름
+    var CHIPS = [59, 84, 114];
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var pyI = $('[data-py]'), m2I = $('[data-m2]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var lastText = '';
+
+    // 소수 둘째 자리 반올림 (부동소수 오차 없이 34.485 → 34.49)
+    function round2(n) { return Number(Math.round(Number(n + 'e2')) + 'e-2'); }
+    function show(n, d) { return n.toLocaleString('ko-KR', { maximumFractionDigits: d === undefined ? 2 : d }); }
+    function toM2(py) { return py * PY_NUM / PY_DEN; }
+    function toPy(m2) { return m2 * PY_DEN / PY_NUM; }
+    function num(s) { return parseFloat(String(s).replace(/,/g, '')); }
+
+    // 숫자·소수점만 남기고 정수부에 천 단위 콤마. 커서 위치 유지
+    function clean(input) {
+      var raw = input.value, caret = input.selectionStart == null ? raw.length : input.selectionStart;
+      var before = raw.slice(0, caret).replace(/[^\d.]/g, '').length;
+      var v = raw.replace(/[^\d.]/g, '');
+      var dot = v.indexOf('.');
+      var ip = dot < 0 ? v : v.slice(0, dot), fp = dot < 0 ? '' : v.slice(dot + 1).replace(/\./g, '').slice(0, 4);
+      ip = ip.replace(/^0+(?=\d)/, '').slice(0, 9);
+      var out = ip.replace(/\B(?=(\d{3})+(?!\d))/g, ',') + (dot < 0 ? '' : '.' + fp);
+      if (out !== raw) {
+        input.value = out;
+        var pos = 0, seen = 0;
+        while (pos < out.length && seen < before) { if (out[pos] !== ',') seen++; pos++; }
+        try { input.setSelectionRange(pos, pos); } catch (e) {}
+      }
+    }
+
+    function hide(text) { result.classList.remove('kpy-show'); msg.textContent = text || ''; }
+
+    function syncChips() {
+      var v = m2I.value ? num(m2I.value) : NaN;
+      $$('.kpy-chip').forEach(function (c) { c.classList.toggle('kpy-on', +c.dataset.m2 === v); });
+    }
+
+    function calc(from) {
+      var src = from === 'py' ? pyI : m2I, dst = from === 'py' ? m2I : pyI;
+      var v = num(src.value);
+      if (!src.value || isNaN(v)) { dst.value = ''; syncChips(); return hide(''); }
+      if (v <= 0) { dst.value = ''; syncChips(); return hide('0보다 큰 면적을 입력해 주세요.'); }
+      if (v < 0.1) { dst.value = ''; syncChips(); return hide('0.1 이상으로 입력해 주세요.'); }
+
+      var py = from === 'py' ? v : round2(toPy(v));
+      var m2 = from === 'py' ? round2(toM2(v)) : v;
+      dst.value = show(from === 'py' ? m2 : py);
+      syncChips();
+      msg.textContent = '';
+
+      var exactPy = from === 'py' ? v : toPy(v), exactM2 = from === 'py' ? toM2(v) : v;
+      // 입력값을 전용면적으로 보면: 공급 ≈ 전용 ÷ 전용률
+      var supplyPy = Math.round(exactPy / EXCL_RATIO);
+      // 입력값을 공급면적(분양 평형)으로 보면: 전용 ≈ 공급 × 전용률
+      var exclM2 = Math.round(exactM2 * EXCL_RATIO), exclPy = Math.round(exactPy * EXCL_RATIO);
+
+      if (from === 'py') {
+        $('[data-main-label]').textContent = show(v, 4) + '평은';
+        $('[data-big]').innerHTML = show(m2) + '<small>㎡</small>';
+      } else {
+        $('[data-main-label]').textContent = show(v, 4) + '㎡는';
+        $('[data-big]').innerHTML = show(py) + '<small>평</small>';
+      }
+      // 아파트 한 채로 보기 어려운 크기(10㎡ 미만, 100평 초과)면 분양 평형 환산은 숨김
+      var apt = exactM2 >= 10 && exactPy <= 100;
+      $('[data-grid]').hidden = !apt;
+      $('[data-supply]').textContent = '약 ' + show(supplyPy) + '평형';
+      $('[data-excl]').textContent = '약 ' + show(exclM2) + '㎡';
+      $('[data-excl-py]').textContent = '대략, 전용 약 ' + show(exclPy) + '평';
+      result.classList.add('kpy-show');
+
+      lastText = '[평수 변환 결과]\n' + show(py) + '평 = ' + show(m2) + '㎡' + '\n(1평 = 400/121㎡ ≈ 3.3058㎡)' + (!apt ? '' :
+        '\n전용면적이라면 분양 평형: 약 ' + show(supplyPy) + '평형 (대략, 전용률 75% 가정)' +
+        '\n분양 평형이라면 전용면적: 약 ' + show(exclM2) + '㎡ (대략)');
+    }
+
+    pyI.addEventListener('input', function () { clean(pyI); calc('py'); });
+    m2I.addEventListener('input', function () { clean(m2I); calc('m2'); });
+
+    var chipBox = $('[data-chips]');
+    CHIPS.forEach(function (m) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kpy-chip'; b.dataset.m2 = m; b.textContent = m + '㎡';
+      b.addEventListener('click', function () { m2I.value = String(m); calc('m2'); });
+      chipBox.appendChild(b);
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      pyI.value = m2I.value = ''; syncChips(); hide(''); pyI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function legacy() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, legacy);
+      else legacy();
+    });
+  })();
+  </script>
+</div>
+<!-- 평수 계산기 위젯 끝 -->
