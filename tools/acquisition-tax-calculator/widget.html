@@ -1,0 +1,334 @@
+<!-- 주택 취득세 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kaq" data-kaq>
+  <style>
+    .kaq{--kaq-accent:#3b6ef5;--kaq-accent-soft:#eef3ff;--kaq-text:#1d2433;--kaq-sub:#6b7385;--kaq-line:#e3e7ef;--kaq-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kaq-line);border-radius:20px;background:var(--kaq-bg);
+      color:var(--kaq-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kaq [hidden]{display:none!important}
+    .kaq *,.kaq *::before,.kaq *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kaq .kaq-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kaq .kaq-desc{margin-top:4px;font-size:14px;color:var(--kaq-sub)}
+    .kaq .kaq-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kaq-text)}
+    .kaq .kaq-field{position:relative}
+    .kaq .kaq-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kaq-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kaq-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kaq .kaq-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kaq .kaq-in:focus{border-color:var(--kaq-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kaq .kaq-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kaq-sub);pointer-events:none}
+    .kaq .kaq-read{min-height:19px;margin-top:6px;font-size:13px;font-weight:600;color:var(--kaq-accent)}
+    .kaq .kaq-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+    .kaq .kaq-chip{height:32px;padding:0 12px;border:1.5px solid var(--kaq-line);border-radius:999px;background:#fff;color:var(--kaq-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kaq .kaq-chip:hover{border-color:#c9d3ea;color:var(--kaq-text)}
+    .kaq .kaq-chip.kaq-on{border-color:var(--kaq-accent);background:var(--kaq-accent-soft);color:var(--kaq-accent)}
+    .kaq .kaq-seg{display:grid;grid-auto-columns:1fr;grid-auto-flow:column;gap:4px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kaq .kaq-opt{min-height:40px;padding:4px 6px;border:0;border-radius:10px;background:none;color:var(--kaq-sub);font-size:14px;font-weight:600;
+      cursor:pointer;line-height:1.25;word-break:keep-all;transition:background .2s,color .2s,box-shadow .2s}
+    .kaq .kaq-opt:hover{color:var(--kaq-text)}
+    .kaq .kaq-opt.kaq-on{background:#fff;color:var(--kaq-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kaq .kaq-seg.kaq-grid2{grid-auto-flow:row;grid-template-columns:1fr 1fr}
+    .kaq .kaq-opt small{display:block;font-size:11.5px;font-weight:500;opacity:.85}
+    .kaq .kaq-hint{margin-top:6px;font-size:12.5px;color:var(--kaq-sub)}
+    .kaq .kaq-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kaq .kaq-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kaq .kaq-result.kaq-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kaq .kaq-result-inner{overflow:hidden}
+    .kaq .kaq-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kaq-accent-soft);text-align:center}
+    .kaq .kaq-main-label{font-size:14px;color:var(--kaq-sub)}
+    .kaq .kaq-big{margin-top:2px;font-size:38px;font-weight:800;letter-spacing:-.03em;color:var(--kaq-accent);line-height:1.2;word-break:keep-all}
+    .kaq .kaq-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kaq .kaq-sub{margin-top:6px;font-size:14px;color:var(--kaq-sub)}
+    .kaq .kaq-badge{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#fff;color:var(--kaq-accent);font-size:12.5px;font-weight:700}
+    .kaq .kaq-badge.kaq-heavy{color:#d9434a}
+    .kaq .kaq-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kaq .kaq-card{padding:14px;border:1px solid var(--kaq-line);border-radius:14px;background:#fff}
+    .kaq .kaq-card-k{font-size:12px;color:var(--kaq-sub)}
+    .kaq .kaq-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kaq-text)}
+    .kaq .kaq-card-r{font-size:12px;color:var(--kaq-sub)}
+    .kaq .kaq-formula{margin-top:8px;padding:14px;border:1px solid var(--kaq-line);border-radius:14px;background:#f8f9fc;font-size:13px}
+    .kaq .kaq-formula p+p{margin-top:4px}
+    .kaq .kaq-formula b{font-weight:700}
+    .kaq .kaq-warn{margin-top:8px;padding:10px 12px;border-radius:12px;background:#fff6f0;color:#b5541c;font-size:13px}
+    .kaq .kaq-note{margin-top:12px;font-size:12.5px;color:var(--kaq-sub)}
+    .kaq .kaq-note li{margin-left:16px}
+    .kaq .kaq-desc,.kaq .kaq-hint,.kaq .kaq-sub,.kaq .kaq-note,.kaq .kaq-warn,.kaq .kaq-formula,.kaq .kaq-msg{word-break:keep-all}
+    .kaq .kaq-nw{white-space:nowrap}
+    .kaq .kaq-actions{display:flex;gap:8px;margin-top:14px}
+    .kaq .kaq-btn{flex:1;height:44px;border:1.5px solid var(--kaq-line);border-radius:12px;background:#fff;color:var(--kaq-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kaq .kaq-btn:hover{background:#f4f6fa}
+    .kaq .kaq-btn:active{transform:scale(.98)}
+    .kaq .kaq-btn.kaq-primary{border-color:var(--kaq-accent);background:var(--kaq-accent);color:#fff}
+    .kaq .kaq-btn.kaq-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kaq{padding:18px;border-radius:16px}.kaq .kaq-big{font-size:32px}.kaq .kaq-in{font-size:17px}.kaq .kaq-opt{font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kaq .kaq-result,.kaq .kaq-in,.kaq .kaq-btn,.kaq .kaq-chip,.kaq .kaq-opt{transition:none}}
+  </style>
+
+  <p class="kaq-title">주택 취득세 계산기 (2026)</p>
+  <p class="kaq-desc">집값과 주택 수만 넣으면 취득세·지방교육세·농어촌특별세를 바로 계산해요. 매매(유상취득) 기준이에요.</p>
+
+  <label class="kaq-label" for="kaq-price">취득가액 (매매가)</label>
+  <div class="kaq-field"><input class="kaq-in" id="kaq-price" data-price inputmode="numeric" placeholder="700,000,000" autocomplete="off"><span class="kaq-unit">원</span></div>
+  <p class="kaq-read" data-read aria-hidden="true"></p>
+  <div class="kaq-chips" data-price-chips>
+    <button type="button" class="kaq-chip" data-v="300000000">3억</button>
+    <button type="button" class="kaq-chip" data-v="600000000">6억</button>
+    <button type="button" class="kaq-chip" data-v="900000000">9억</button>
+    <button type="button" class="kaq-chip" data-v="1200000000">12억</button>
+  </div>
+
+  <p class="kaq-label">누가 사나요?</p>
+  <div class="kaq-seg" role="group" aria-label="취득자" data-group="who">
+    <button type="button" class="kaq-opt kaq-on" data-v="person" aria-pressed="true">개인</button>
+    <button type="button" class="kaq-opt" data-v="corp" aria-pressed="false">법인</button>
+  </div>
+
+  <div data-person-only>
+    <p class="kaq-label">이 집을 사고 나면 몇 주택인가요?</p>
+    <div class="kaq-seg" role="group" aria-label="취득 후 주택 수" data-group="count">
+      <button type="button" class="kaq-opt kaq-on" data-v="1" aria-pressed="true">1주택</button>
+      <button type="button" class="kaq-opt" data-v="2" aria-pressed="false">2주택</button>
+      <button type="button" class="kaq-opt" data-v="3" aria-pressed="false">3주택</button>
+      <button type="button" class="kaq-opt" data-v="4" aria-pressed="false">4주택 이상</button>
+    </div>
+    <p class="kaq-hint">세대원(배우자, 함께 사는 미혼 자녀 등) 주택과 분양권·입주권·주거용 오피스텔도 주택 수에 들어갈 수 있어요.</p>
+
+    <div data-temp-box hidden>
+      <p class="kaq-label">기존 집을 기한 안에 팔 건가요? (일시적 2주택)</p>
+      <div class="kaq-seg" role="group" aria-label="일시적 2주택" data-group="temp">
+        <button type="button" class="kaq-opt kaq-on" data-v="0" aria-pressed="true">아니요</button>
+        <button type="button" class="kaq-opt" data-v="1" aria-pressed="false">네, 팔 거예요</button>
+      </div>
+    </div>
+
+    <div data-area-box hidden>
+      <p class="kaq-label">새로 사는 집이 조정대상지역인가요?</p>
+      <div class="kaq-seg" role="group" aria-label="조정대상지역" data-group="area">
+        <button type="button" class="kaq-opt kaq-on" data-v="0" aria-pressed="true">아니요</button>
+        <button type="button" class="kaq-opt" data-v="1" aria-pressed="false">네, 조정대상지역</button>
+      </div>
+      <p class="kaq-hint">2026년 기준 서울 25개 구 전체와 경기 일부(과천·광명·하남 등)가 조정대상지역이에요.</p>
+    </div>
+  </div>
+
+  <p class="kaq-label">전용면적이 85㎡를 넘나요?</p>
+  <div class="kaq-seg" role="group" aria-label="전용면적" data-group="big">
+    <button type="button" class="kaq-opt kaq-on" data-v="0" aria-pressed="true">85㎡ 이하<small>국민주택규모</small></button>
+    <button type="button" class="kaq-opt" data-v="1" aria-pressed="false">85㎡ 초과<small>농특세 붙음</small></button>
+  </div>
+
+  <div data-relief-box>
+    <p class="kaq-label">취득세 감면</p>
+    <div class="kaq-seg kaq-grid2" role="group" aria-label="취득세 감면" data-group="relief">
+      <button type="button" class="kaq-opt kaq-on" data-v="0" aria-pressed="true">해당 없음</button>
+      <button type="button" class="kaq-opt" data-v="200" aria-pressed="false">생애최초<small>최대 200만원</small></button>
+      <button type="button" class="kaq-opt" data-v="300" aria-pressed="false">생애최초 소형·인구감소지역<small>최대 300만원</small></button>
+      <button type="button" class="kaq-opt" data-v="500" aria-pressed="false">출산·양육<small>최대 500만원</small></button>
+    </div>
+    <p class="kaq-hint">12억 원 이하 주택을 사서 1주택이 될 때만 받을 수 있어요. 감면은 하나만 골라요.</p>
+  </div>
+
+  <p class="kaq-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kaq-result" data-result aria-live="polite">
+    <div class="kaq-result-inner">
+      <div class="kaq-main">
+        <p class="kaq-main-label">내야 할 세금 합계</p>
+        <p class="kaq-big" data-big></p>
+        <p class="kaq-sub" data-sub></p>
+        <p class="kaq-badge" data-badge></p>
+      </div>
+      <div class="kaq-grid">
+        <div class="kaq-card"><p class="kaq-card-k">취득세</p><p class="kaq-card-v" data-acq></p><p class="kaq-card-r" data-acq-r></p></div>
+        <div class="kaq-card"><p class="kaq-card-k">지방교육세</p><p class="kaq-card-v" data-edu></p><p class="kaq-card-r" data-edu-r></p></div>
+        <div class="kaq-card"><p class="kaq-card-k">농어촌특별세</p><p class="kaq-card-v" data-rural></p><p class="kaq-card-r" data-rural-r></p></div>
+        <div class="kaq-card"><p class="kaq-card-k">취득세 감면</p><p class="kaq-card-v" data-cut></p><p class="kaq-card-r" data-cut-r></p></div>
+      </div>
+      <div class="kaq-formula" data-formula></div>
+      <p class="kaq-warn" data-warn hidden></p>
+      <ul class="kaq-note">
+        <li data-temp-note hidden>일시적 2주택은 기존 집을 기한 안에 팔아야 해요. 두 집 모두 조정대상지역이면 2년(2026. 10. 1. 이후 취득분), 그 밖에는 3년이고, 못 팔면 중과세율로 차액을 다시 내요.</li>
+        <li data-relief-note hidden>감면을 받으면 지방교육세·농어촌특별세가 이 결과와 조금 다를 수 있어요. 3년 안에 팔거나 증여·임대하면 감면받은 세금을 다시 내요.</li>
+        <li>시가표준액 1억 원 이하 주택 등은 중과에서 빠질 수 있고, 증여·상속·신축·분양권·오피스텔은 세율이 달라요.</li>
+        <li>개별 사정에 따라 세액이 달라질 수 있으니 신고 전에 위택스나 시·군·구청 세무과에서 꼭 확인하세요.</li>
+      </ul>
+      <div class="kaq-actions">
+        <button type="button" class="kaq-btn" data-reset>다시 입력</button>
+        <button type="button" class="kaq-btn kaq-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kaq]');
+    if (!root || root.__kaq) return;
+    root.__kaq = true;
+
+    // 세율 (지방세법 제11조·제13조의2, 제151조, 농어촌특별세법 제5조). 단위: bp(0.01%). 2026-11-13 기준
+    var R = {
+      lowMax: 600000000,     // 6억 이하 1%
+      highMin: 900000000,    // 9억 초과 3%
+      heavy8: 800, heavy12: 1200,
+      eduHeavy: 40,          // 중과 시 지방교육세 0.4%
+      rural: { normal: 20, h8: 60, h12: 100 }, // 85㎡ 초과 농어촌특별세
+      reliefMaxPrice: 1200000000 // 생애최초·출산 감면 12억 이하
+    };
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var priceI = $('[data-price]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var S = { who: 'person', count: '1', temp: '0', area: '0', big: '0', relief: '0' };
+    var lastText = '';
+
+    function won(n) { return n.toLocaleString('ko-KR') + '원'; }
+    function pct(bp) { return (bp / 100).toFixed(3).replace(/\.?0+$/, '') + '%'; }
+    function f10(x) { return Math.floor(x / 10) * 10; } // 10원 미만 버림
+    function korean(n) {
+      var eok = Math.floor(n / 1e8), man = Math.floor((n % 1e8) / 1e4), rest = n % 1e4, out = [];
+      if (eok) out.push(eok.toLocaleString('ko-KR') + '억');
+      if (man) out.push(man.toLocaleString('ko-KR') + '만');
+      if (rest) out.push(rest.toLocaleString('ko-KR'));
+      return out.length ? out.join(' ') + ' 원' : '';
+    }
+
+    function hide(text) { result.classList.remove('kaq-show'); msg.textContent = text || ''; }
+
+    function setGroup(name, v) {
+      S[name] = v;
+      $$('[data-group="' + name + '"] .kaq-opt').forEach(function (b) {
+        var on = b.getAttribute('data-v') === v;
+        b.classList.toggle('kaq-on', on); b.setAttribute('aria-pressed', on);
+      });
+    }
+
+    function sync() {
+      var person = S.who === 'person', n = +S.count;
+      $('[data-person-only]').hidden = !person;
+      $('[data-temp-box]').hidden = !(person && n === 2);
+      $('[data-area-box]').hidden = !(person && (n === 3 || (n === 2 && S.temp === '0')));
+      $('[data-relief-box]').hidden = !(person && n === 1);
+      var p = +priceI.value.replace(/\D/g, '');
+      $$('[data-price-chips] .kaq-chip').forEach(function (c) { c.classList.toggle('kaq-on', +c.getAttribute('data-v') === p); });
+      $('[data-read]').textContent = p ? korean(p) : '';
+    }
+
+    function calc() {
+      sync();
+      var raw = priceI.value.replace(/\D/g, '');
+      if (!raw) return hide('');
+      var price = +raw;
+      if (price < 1000000) return hide(priceI === document.activeElement ? '' : '취득가액을 원 단위로 다시 확인해 주세요. (예: 7억 원 → 700,000,000)');
+
+      var person = S.who === 'person', n = +S.count;
+      var adj = S.area === '1', temp = n === 2 && S.temp === '1', big = S.big === '1';
+      var mode, label, acqBp, eduBp, ruralBp, formulaRate;
+
+      if (!person) { mode = 12; label = '법인 중과 12%'; }
+      else if (n >= 4) { mode = 12; label = '4주택 이상 중과 12%'; }
+      else if (n === 3) { mode = adj ? 12 : 8; label = (adj ? '조정대상지역' : '비조정대상지역') + ' 3주택 중과 ' + mode + '%'; }
+      else if (n === 2 && !temp && adj) { mode = 8; label = '조정대상지역 2주택 중과 8%'; }
+      else { mode = 0; label = n === 1 ? '1주택 일반세율' : (temp ? '일시적 2주택 일반세율' : '비조정대상지역 2주택 일반세율'); }
+
+      if (mode) {
+        acqBp = mode === 12 ? R.heavy12 : R.heavy8;
+        eduBp = R.eduHeavy;
+        ruralBp = big ? (mode === 12 ? R.rural.h12 : R.rural.h8) : 0;
+        formulaRate = '중과세율 ' + mode + '%';
+      } else {
+        if (price <= R.lowMax) { acqBp = 100; formulaRate = '6억 원 이하 1%'; }
+        else if (price > R.highMin) { acqBp = 300; formulaRate = '9억 원 초과 3%'; }
+        else {
+          // (취득가액 × 2/3억 − 3)%, 세율은 소수점 넷째 자리(=0.01%)까지 반올림
+          acqBp = Math.round(price / 1500000 - 300);
+          formulaRate = '(' + (price / 1e8).toLocaleString('ko-KR', { maximumFractionDigits: 4 }) + '억 × 2/3 − 3)% ≈ ' + pct(acqBp);
+        }
+        eduBp = acqBp / 10;
+        ruralBp = big ? R.rural.normal : 0;
+      }
+
+      var acqFull = f10(price * acqBp / 10000);
+      var edu = f10(price * eduBp / 10000);
+      var rural = f10(price * ruralBp / 10000);
+
+      // 감면 (개인 1주택, 12억 이하)
+      var limit = (person && n === 1) ? +S.relief * 10000 : 0, cut = 0, warn = '';
+      if (limit && price > R.reliefMaxPrice) { warn = '취득가액이 12억 원을 넘어서 생애최초·출산 감면을 받을 수 없어요. 감면 없이 계산했어요.'; limit = 0; }
+      if (limit) cut = Math.min(acqFull, limit);
+      var acq = acqFull - cut;
+      var total = acq + edu + rural;
+
+      msg.textContent = '';
+      $('[data-big]').innerHTML = total.toLocaleString('ko-KR') + '<small>원</small>';
+      $('[data-sub]').innerHTML = '<span class="kaq-nw">' + korean(price) + '</span>의 <span class="kaq-nw">' + (Math.round(total / price * 10000) / 100) + '%</span>';
+      var badge = $('[data-badge]');
+      badge.textContent = label; badge.classList.toggle('kaq-heavy', !!mode);
+      $('[data-acq]').textContent = won(acq);
+      $('[data-acq-r]').textContent = '세율 ' + pct(acqBp) + (cut ? ' · 감면 후' : '');
+      $('[data-edu]').textContent = won(edu);
+      $('[data-edu-r]').textContent = '세율 ' + pct(eduBp);
+      $('[data-rural]').textContent = won(rural);
+      $('[data-rural-r]').textContent = big ? '세율 ' + pct(ruralBp) : '85㎡ 이하 비과세';
+      $('[data-cut]').textContent = cut ? '−' + won(cut) : '없음';
+      $('[data-cut-r]').textContent = cut ? '한도 ' + (limit / 10000) + '만원' : (person && n === 1 ? '선택 안 함' : '1주택만 해당');
+
+      var lines = [
+        '<p><b>적용 세율</b>: ' + formulaRate + '</p>',
+        '<p><b>취득세</b>: ' + won(price) + ' × ' + pct(acqBp) + ' = ' + won(acqFull) + (cut ? ' − 감면 ' + won(cut) + ' = ' + won(acq) : '') + '</p>',
+        '<p><b>지방교육세</b>: ' + won(price) + ' × ' + pct(eduBp) + ' = ' + won(edu) + '</p>',
+        '<p><b>농어촌특별세</b>: ' + (big ? won(price) + ' × ' + pct(ruralBp) + ' = ' + won(rural) : '전용 85㎡ 이하라 0원') + '</p>'
+      ];
+      $('[data-formula]').innerHTML = lines.join('');
+      var warnEl = $('[data-warn]'); warnEl.hidden = !warn; warnEl.textContent = warn;
+      $('[data-temp-note]').hidden = !(person && n === 2);
+      $('[data-relief-note]').hidden = !cut;
+      result.classList.add('kaq-show');
+
+      lastText = '[주택 취득세 계산 결과]\n취득가액: ' + won(price) + ' (' + korean(price) + ')\n적용: ' + label +
+        (big ? ', 전용 85㎡ 초과' : ', 전용 85㎡ 이하') +
+        '\n취득세: ' + won(acq) + ' (세율 ' + pct(acqBp) + (cut ? ', 감면 ' + won(cut) : '') + ')' +
+        '\n지방교육세: ' + won(edu) + ' (' + pct(eduBp) + ')' +
+        '\n농어촌특별세: ' + won(rural) + (big ? ' (' + pct(ruralBp) + ')' : ' (85㎡ 이하 비과세)') +
+        '\n합계: ' + won(total) +
+        (warn ? '\n※ ' + warn : '') +
+        '\n※ 개별 사정에 따라 달라질 수 있어요. 위택스에서 확인하세요.';
+    }
+
+    priceI.addEventListener('input', function () {
+      var v = priceI.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 12);
+      priceI.value = v ? (+v).toLocaleString('ko-KR') : '';
+      calc();
+    });
+    priceI.addEventListener('blur', calc);
+    $$('[data-price-chips] .kaq-chip').forEach(function (c) {
+      c.addEventListener('click', function () { priceI.value = (+c.getAttribute('data-v')).toLocaleString('ko-KR'); calc(); });
+    });
+    $$('[data-group]').forEach(function (g) {
+      var name = g.getAttribute('data-group');
+      $$('[data-group="' + name + '"] .kaq-opt').forEach(function (b) {
+        b.addEventListener('click', function () { setGroup(name, b.getAttribute('data-v')); calc(); });
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      priceI.value = '';
+      setGroup('who', 'person'); setGroup('count', '1'); setGroup('temp', '0'); setGroup('area', '0'); setGroup('big', '0'); setGroup('relief', '0');
+      sync(); hide(''); priceI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    sync();
+  })();
+  </script>
+</div>
+<!-- 주택 취득세 계산기 위젯 끝 -->

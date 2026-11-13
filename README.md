@@ -33,6 +33,11 @@ tools/
 | 2027 연말정산 일정·공제 체크리스트 | `tools/year-end-tax-2027` | 완성 |
 | 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 | 랜덤 뽑기 모음 (사다리타기·돌림판·제비뽑기·팀 나누기) | `tools/random-picker` | 완성 |
+| 전역일 계산기 (복무율·D-day) | `tools/discharge-date-calculator` | 완성 |
+| 육아휴직 급여 계산기 (월별 지급액·6+6·한부모) | `tools/parental-leave-pay` | 완성 |
+| 부동산 중개수수료(복비) 계산기 | `tools/brokerage-fee-calculator` | 완성 |
+| 청약 가점 계산기 (84점 만점, 점수 오르는 날) | `tools/subscription-score-calculator` | 완성 |
+| 주택 취득세 계산기 (1주택·다주택 중과·생애최초 감면) | `tools/acquisition-tax-calculator` | 완성 |
 | 자동차세 계산기 (배기량·차령·연납 할인) | `tools/car-tax-calculator` | 완성 |
 
 ## 작업 규칙

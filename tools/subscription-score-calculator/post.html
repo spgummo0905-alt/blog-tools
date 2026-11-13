@@ -1,0 +1,545 @@
+<p><strong>청약 가점은 무주택기간(최대 32점) + 부양가족 수(최대 35점) + 청약통장 가입기간(최대 17점)을 더한 점수로, 84점이 만점</strong>이에요. 아래 계산기에 생년월일, 결혼 여부, 가족 수, 통장 가입일만 넣으면 항목별 점수와 총점, 다음에 점수가 오르는 날까지 바로 확인할 수 있어요.</p>
+<!-- 청약 가점 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kss" data-kss>
+  <style>
+    .kss{--kss-accent:#3b6ef5;--kss-accent-soft:#eef3ff;--kss-text:#1d2433;--kss-sub:#6b7385;--kss-line:#e3e7ef;--kss-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kss-line);border-radius:20px;background:var(--kss-bg);
+      color:var(--kss-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kss [hidden]{display:none!important}
+    .kss *,.kss *::before,.kss *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kss .kss-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kss .kss-desc{margin-top:4px;font-size:14px;color:var(--kss-sub)}
+    .kss .kss-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kss-text)}
+    .kss .kss-label small{font-weight:500;color:var(--kss-sub)}
+    .kss .kss-sublabel{margin:12px 0 6px;font-size:13px;font-weight:600;color:var(--kss-sub);word-break:keep-all}
+    .kss .kss-sublabel small{font-weight:500}
+    .kss .kss-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--kss-line);border-radius:12px;background:#f8f9fc;
+      font-size:17px;font-weight:600;color:var(--kss-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;min-width:0;display:block}
+    .kss .kss-in:focus{border-color:var(--kss-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kss .kss-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kss .kss-chip{height:36px;min-width:44px;padding:0 12px;border:1.5px solid var(--kss-line);border-radius:999px;background:#fff;color:var(--kss-sub);
+      font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kss .kss-chip:hover{border-color:#c9d3ea;color:var(--kss-text)}
+    .kss .kss-chip.kss-on{border-color:var(--kss-accent);background:var(--kss-accent-soft);color:var(--kss-accent)}
+    .kss .kss-hint{margin-top:6px;font-size:12.5px;color:var(--kss-sub)}
+    .kss .kss-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kss .kss-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kss .kss-result.kss-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kss .kss-result-inner{overflow:hidden}
+    .kss .kss-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kss-accent-soft);text-align:center}
+    .kss .kss-main-label{font-size:14px;color:var(--kss-sub)}
+    .kss .kss-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kss-accent);line-height:1.2}
+    .kss .kss-big small{font-size:20px;font-weight:700;margin-left:2px;color:var(--kss-sub)}
+    .kss .kss-sub{margin-top:6px;font-size:14px;color:var(--kss-sub)}
+    .kss .kss-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+    .kss .kss-card{padding:12px 10px;border:1px solid var(--kss-line);border-radius:14px;background:#fff;text-align:center}
+    .kss .kss-card-k{font-size:12px;color:var(--kss-sub)}
+    .kss .kss-card-v{margin-top:2px;font-size:20px;font-weight:800;color:var(--kss-text)}
+    .kss .kss-card-v small{font-size:12px;font-weight:600;color:var(--kss-sub)}
+    .kss .kss-card-s{margin-top:2px;font-size:11.5px;color:var(--kss-sub)}
+    .kss .kss-bar{height:6px;margin-top:6px;border-radius:99px;background:#eef0f5;overflow:hidden}
+    .kss .kss-bar i{display:block;height:100%;border-radius:99px;background:var(--kss-accent);transition:width .4s ease}
+    .kss .kss-box{margin-top:8px;padding:14px;border:1px solid var(--kss-line);border-radius:14px;background:#fff;font-size:13.5px}
+    .kss .kss-box-t{font-size:13px;font-weight:700;color:var(--kss-text);margin-bottom:6px}
+    .kss .kss-box li{margin-left:16px}
+    .kss .kss-box li+li{margin-top:4px}
+    .kss .kss-box b{color:var(--kss-accent)}
+    .kss .kss-formula{background:#f8f9fc;font-size:13px}
+    .kss .kss-formula p+p{margin-top:6px}
+    .kss .kss-nw{white-space:nowrap}
+    .kss .kss-note{margin-top:12px;font-size:12.5px;color:var(--kss-sub)}
+    .kss .kss-note li{margin-left:16px}
+    .kss .kss-desc,.kss .kss-hint,.kss .kss-sub,.kss .kss-box,.kss .kss-note,.kss .kss-msg{word-break:keep-all}
+    .kss .kss-actions{display:flex;gap:8px;margin-top:14px}
+    .kss .kss-btn{flex:1;height:44px;border:1.5px solid var(--kss-line);border-radius:12px;background:#fff;color:var(--kss-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kss .kss-btn:hover{background:#f4f6fa}
+    .kss .kss-btn:active{transform:scale(.98)}
+    .kss .kss-btn.kss-primary{border-color:var(--kss-accent);background:var(--kss-accent);color:#fff}
+    .kss .kss-btn.kss-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kss{padding:18px;border-radius:16px}.kss .kss-big{font-size:38px}.kss .kss-in{font-size:16px}
+      .kss .kss-grid{gap:6px}.kss .kss-card{padding:10px 6px}.kss .kss-card-v{font-size:18px}.kss .kss-chips{gap:5px}.kss .kss-chip{min-width:34px;padding:0 8px;font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kss .kss-result,.kss .kss-in,.kss .kss-btn,.kss .kss-chip,.kss .kss-bar i{transition:none}}
+  </style>
+
+  <p class="kss-title">청약 가점 계산기</p>
+  <p class="kss-desc">날짜와 가족 수만 고르면 84점 만점 기준으로 바로 계산돼요.</p>
+
+  <label class="kss-label" for="kss-base"><span>기준일 <small>(입주자모집공고일)</small></span></label>
+  <input class="kss-in" id="kss-base" type="date" data-base min="1950-01-01" max="2100-12-31">
+  <p class="kss-hint">모든 기간은 입주자모집공고일까지 세요. 공고 전이라면 오늘 날짜로 미리 볼 수 있어요.</p>
+
+  <label class="kss-label" for="kss-birth">생년월일</label>
+  <input class="kss-in" id="kss-birth" type="date" data-birth min="1900-01-01" max="2100-12-31">
+
+  <p class="kss-label">결혼 여부</p>
+  <div class="kss-chips" data-group="married" role="group" aria-label="결혼 여부">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">미혼</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">기혼 (혼인신고)</button>
+  </div>
+  <div data-married-only hidden>
+    <p class="kss-sublabel"><label for="kss-wed">혼인신고일 <small>(만 30세 전에 결혼했다면 꼭 입력)</small></label></p>
+    <input class="kss-in" id="kss-wed" type="date" data-wed min="1900-01-01" max="2100-12-31">
+  </div>
+
+  <p class="kss-label">세대원 모두의 주택 소유</p>
+  <div class="kss-chips" data-group="house" role="group" aria-label="주택 소유 여부">
+    <button type="button" class="kss-chip kss-on" data-v="never" aria-pressed="true">가진 적 없음</button>
+    <button type="button" class="kss-chip" data-v="sold" aria-pressed="false">팔고 무주택</button>
+    <button type="button" class="kss-chip" data-v="own" aria-pressed="false">지금 집 있음</button>
+  </div>
+  <div data-sold-only hidden>
+    <p class="kss-sublabel"><label for="kss-sold">무주택이 된 날 (마지막 집을 판 날)</label></p>
+    <input class="kss-in" id="kss-sold" type="date" data-sold min="1900-01-01" max="2100-12-31">
+  </div>
+  <p class="kss-hint">본인과 배우자, 같은 등본의 세대원 기준이에요. 60세 이상 부모님 집이나 소형·저가주택 1채는 무주택으로 보는 예외가 있어요.</p>
+
+  <p class="kss-label"><span>부양가족 <small>(본인 제외)</small></span></p>
+  <p class="kss-sublabel">미혼 자녀 (손자녀 포함)</p>
+  <div class="kss-chips" data-group="kids" role="group" aria-label="미혼 자녀 수">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">0명</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">1</button>
+    <button type="button" class="kss-chip" data-v="2" aria-pressed="false">2</button>
+    <button type="button" class="kss-chip" data-v="3" aria-pressed="false">3</button>
+    <button type="button" class="kss-chip" data-v="4" aria-pressed="false">4</button>
+    <button type="button" class="kss-chip" data-v="5" aria-pressed="false">5</button>
+    <button type="button" class="kss-chip" data-v="6" aria-pressed="false">6+</button>
+  </div>
+  <p class="kss-sublabel">함께 사는 부모·조부모 (배우자 쪽 포함)</p>
+  <div class="kss-chips" data-group="parents" role="group" aria-label="직계존속 수">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">0명</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">1</button>
+    <button type="button" class="kss-chip" data-v="2" aria-pressed="false">2</button>
+    <button type="button" class="kss-chip" data-v="3" aria-pressed="false">3</button>
+    <button type="button" class="kss-chip" data-v="4" aria-pressed="false">4</button>
+  </div>
+  <p class="kss-hint">배우자는 결혼 여부에서 자동으로 1명 더해요. 부모님은 같은 등본에 3년 이상, 만 30세 이상 미혼 자녀는 1년 이상 함께 올라 있어야 인정돼요.</p>
+
+  <label class="kss-label" for="kss-acc"><span>청약통장 가입일 <small>(최초 가입일)</small></span></label>
+  <input class="kss-in" id="kss-acc" type="date" data-acc min="1950-01-01" max="2100-12-31">
+  <div data-married-only hidden>
+    <p class="kss-sublabel"><label for="kss-sacc">배우자 청약통장 가입일 <small>(선택)</small></label></p>
+    <input class="kss-in" id="kss-sacc" type="date" data-sacc min="1950-01-01" max="2100-12-31">
+    <p class="kss-hint">배우자 가입기간의 50%를 점수로 바꿔 최대 3점까지 더해요(2024. 3. 25. 시행).</p>
+  </div>
+
+  <p class="kss-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kss-result" data-result aria-live="polite">
+    <div class="kss-result-inner">
+      <div class="kss-main">
+        <p class="kss-main-label">내 청약 가점</p>
+        <p class="kss-big"><span data-total>0</span><small>/ 84점</small></p>
+        <p class="kss-sub" data-sub></p>
+      </div>
+      <div class="kss-grid">
+        <div class="kss-card"><p class="kss-card-k">무주택기간</p><p class="kss-card-v"><span data-s1></span><small>/32</small></p><div class="kss-bar"><i data-b1></i></div><p class="kss-card-s" data-p1></p></div>
+        <div class="kss-card"><p class="kss-card-k">부양가족</p><p class="kss-card-v"><span data-s2></span><small>/35</small></p><div class="kss-bar"><i data-b2></i></div><p class="kss-card-s" data-p2></p></div>
+        <div class="kss-card"><p class="kss-card-k">통장 가입기간</p><p class="kss-card-v"><span data-s3></span><small>/17</small></p><div class="kss-bar"><i data-b3></i></div><p class="kss-card-s" data-p3></p></div>
+      </div>
+      <div class="kss-box">
+        <p class="kss-box-t">점수가 오르는 날</p>
+        <ul data-next></ul>
+      </div>
+      <div class="kss-box kss-formula" data-formula></div>
+      <ul class="kss-note">
+        <li>부양가족은 인정 요건(같은 등본 등재 기간, 무주택 등)을 채운 사람만 세요.</li>
+        <li>실제 점수는 청약홈 자격확인과 입주자모집공고문 기준으로 최종 확인하세요.</li>
+      </ul>
+      <div class="kss-actions">
+        <button type="button" class="kss-btn" data-reset>다시 입력</button>
+        <button type="button" class="kss-btn kss-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kss]');
+    if (!root || root.__kss) return;
+    root.__kss = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var baseI = $('[data-base]'), birthI = $('[data-birth]'), wedI = $('[data-wed]'), soldI = $('[data-sold]');
+    var accI = $('[data-acc]'), saccI = $('[data-sacc]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var state = { married: '0', house: 'never', kids: '0', parents: '0' };
+    var lastText = '';
+
+    // 날짜는 1970-01-01부터 센 '일 번호'로 다룬다 (시간대 영향 없음)
+    function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 864e5); }
+    function ymd(n) { var t = new Date(n * 864e5); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+    function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+    // k개월 뒤 같은 날짜. 그 달에 같은 날이 없으면(2월 29일 → 평년 등) 다음 달 1일
+    function addMonths(n, k) {
+      var a = ymd(n), t = a.y * 12 + (a.m - 1) + k, y = Math.floor(t / 12), m = t - y * 12 + 1;
+      return a.d > dim(y, m) ? dn(y, m, 1) + dim(y, m) : dn(y, m, a.d);
+    }
+    // start부터 end까지 꽉 채운 개월 수
+    function fullMonths(start, end) {
+      if (end < start) return -1;
+      var a = ymd(start), b = ymd(end), k = (b.y - a.y) * 12 + (b.m - a.m);
+      while (k > 0 && addMonths(start, k) > end) k--;
+      while (addMonths(start, k + 1) <= end) k++;
+      return k;
+    }
+    function fmt(n) { var a = ymd(n); return a.y + '. ' + a.m + '. ' + a.d + '.'; }
+    function ym(k) { var y = Math.floor(k / 12), m = k % 12; return y ? y + '년' + (m ? ' ' + m + '개월' : '') : m + '개월'; }
+    function parse(v, minY) {
+      var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!p || +p[1] < (minY || 1900) || +p[1] > 2100) return null;
+      var n = dn(+p[1], +p[2], +p[3]), a = ymd(n);
+      return a.m === +p[2] && a.d === +p[3] ? n : null;
+    }
+    function todayN() { var t = new Date(); return dn(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+    function iso(n) { var a = ymd(n); return a.y + '-' + ('0' + a.m).slice(-2) + '-' + ('0' + a.d).slice(-2); }
+
+    // ── 점수표 (주택공급에 관한 규칙 별표1) ──
+    // 무주택기간: 1년 미만 2점, 이후 1년마다 +2점, 15년 이상 32점
+    function homeScore(start, base) {
+      if (start === null) return 0;
+      if (start > base) return 0;
+      var y = Math.floor(fullMonths(start, base) / 12);
+      return 2 * (Math.min(y, 15) + 1);
+    }
+    // 부양가족: 0명 5점, 1명마다 +5점, 6명 이상 35점
+    function famScore(n) { return 5 + 5 * Math.min(n, 6); }
+    // 통장 가입기간: 6개월 미만 1점, 6개월~1년 2점, 1년 이상은 (년수 + 2)점, 15년 이상 17점
+    function accScore(join, base) {
+      var k = fullMonths(join, base);
+      if (k < 6) return 1;
+      if (k < 12) return 2;
+      return Math.min(Math.floor(k / 12) + 2, 17);
+    }
+    // 배우자: 가입기간의 50%로 같은 표 적용, 최대 3점 (50%가 6개월 = 실제 1년, 50%가 1년 = 실제 2년)
+    function spScore(join, base) {
+      if (join === null) return 0;
+      var k = fullMonths(join, base);
+      return k < 12 ? 1 : k < 24 ? 2 : 3;
+    }
+
+    function readInputs() {
+      var r = { base: parse(baseI.value, 1950), birth: parse(birthI.value), acc: parse(accI.value, 1950) };
+      r.married = state.married === '1';
+      r.wed = r.married ? parse(wedI.value) : null;
+      r.sold = state.house === 'sold' ? parse(soldI.value) : null;
+      r.sacc = r.married ? parse(saccI.value, 1950) : null;
+      return r;
+    }
+
+    // 무주택기간 산정 시작일: 만 30세 되는 날과 혼인신고일 중 빠른 날, 집을 판 적이 있으면 그보다 늦은 날
+    function homeStart(r) {
+      if (state.house === 'own') return null;
+      var s = addMonths(r.birth, 360), why = '만 30세가 된 날';
+      if (r.wed !== null && r.wed < s) { s = r.wed; why = '혼인신고일'; }
+      if (r.sold !== null && r.sold > s) { s = r.sold; why = '무주택이 된 날'; }
+      return { day: s, why: why };
+    }
+
+    function scoresAt(r, hs, day) {
+      var s1 = hs ? homeScore(hs.day, day) : 0;
+      var own = accScore(r.acc, day), sp = spScore(r.sacc, day);
+      return { s1: s1, own: own, sp: sp, s3: Math.min(own + sp, 17) };
+    }
+
+    function hide(text) { result.classList.remove('kss-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var r = readInputs();
+      if (baseI.value && r.base === null) return hide('기준일을 다시 확인해 주세요.');
+      if (birthI.value && r.birth === null) return hide('생년월일을 다시 확인해 주세요.');
+      if (r.married && wedI.value && r.wed === null) return hide('혼인신고일을 다시 확인해 주세요.');
+      if (state.house === 'sold' && soldI.value && r.sold === null) return hide('무주택이 된 날을 다시 확인해 주세요.');
+      if (accI.value && r.acc === null) return hide('청약통장 가입일을 다시 확인해 주세요.');
+      if (r.married && saccI.value && r.sacc === null) return hide('배우자 통장 가입일을 다시 확인해 주세요.');
+      if (r.base === null || r.birth === null || r.acc === null) return hide('');
+      if (state.house === 'sold' && r.sold === null) return hide('');
+      var base = r.base;
+      if (r.birth > base) return hide('생년월일이 기준일보다 뒤예요.');
+      if (r.wed !== null && (r.wed < r.birth || r.wed > base)) return hide('혼인신고일은 생년월일과 기준일 사이여야 해요.');
+      if (r.sold !== null && (r.sold < r.birth || r.sold > base)) return hide('무주택이 된 날은 생년월일과 기준일 사이여야 해요.');
+      if (r.acc > base) return hide('청약통장 가입일이 기준일보다 뒤예요.');
+      if (r.acc < r.birth) return hide('청약통장 가입일이 생년월일보다 앞이에요.');
+      if (r.sacc !== null && r.sacc > base) return hide('배우자 통장 가입일이 기준일보다 뒤예요.');
+
+      if (r.married && r.wed === null && addMonths(r.birth, 360) > base) return hide('만 30세 전에 결혼했다면 혼인신고일을 넣어 주세요.');
+      var hs = homeStart(r);
+      var kids = +state.kids, parents = +state.parents, fam = (r.married ? 1 : 0) + kids + parents;
+      var now = scoresAt(r, hs, base), s2 = famScore(fam);
+      var total = now.s1 + s2 + now.s3;
+      var homeMonths = hs && hs.day <= base ? fullMonths(hs.day, base) : -1;
+      var accMonths = fullMonths(r.acc, base), spMonths = r.sacc !== null ? fullMonths(r.sacc, base) : -1;
+
+      // 점수가 오르는 날: 각 항목의 다음 구간 경계를 모아 실제로 점수가 오르는지 확인
+      var events = [];
+      if (hs) {
+        if (hs.day > base) events.push({ day: hs.day, what: '무주택기간' });
+        else if (homeMonths < 180) events.push({ day: addMonths(hs.day, (Math.floor(homeMonths / 12) + 1) * 12), what: '무주택기간' });
+      }
+      var accNext = accMonths < 6 ? 6 : accMonths < 12 ? 12 : accMonths < 180 ? (Math.floor(accMonths / 12) + 1) * 12 : null;
+      if (accNext) events.push({ day: addMonths(r.acc, accNext), what: '통장 가입기간' });
+      if (r.sacc !== null && spMonths < 24) events.push({ day: addMonths(r.sacc, spMonths < 12 ? 12 : 24), what: '배우자 통장' });
+      var lines = [];
+      events.sort(function (a, b) { return a.day - b.day; });
+      var seen = {};
+      events.forEach(function (e) {
+        var after = scoresAt(r, hs, e.day);
+        var d1 = after.s1 - now.s1, d3 = after.s3 - now.s3;
+        if (e.what === '무주택기간' && d1 > 0) lines.push({ day: e.day, gain: d1, text: '무주택기간 ' + after.s1 + '점이 돼요' });
+        else if (e.what !== '무주택기간' && d3 > 0 && !seen.acc) { seen.acc = 1; lines.push({ day: e.day, gain: d3, text: '통장 가입기간 ' + after.s3 + '점이 돼요' + (e.what === '배우자 통장' ? ' (배우자 통장)' : '') }); }
+      });
+      var nextUl = $('[data-next]');
+      nextUl.innerHTML = '';
+      lines.forEach(function (l) {
+        var li = document.createElement('li');
+        li.innerHTML = '<span class="kss-nw">' + fmt(l.day) + '</span>이면 <b>+' + l.gain + '점</b>, ' + l.text;
+        nextUl.appendChild(li);
+      });
+      var famLi = document.createElement('li');
+      famLi.textContent = fam >= 6 ? '부양가족은 6명 이상으로 만점(35점)이에요.' : '부양가족이 1명 늘 때마다 +5점이에요.';
+      nextUl.appendChild(famLi);
+      if (state.house === 'own') {
+        var ownLi = document.createElement('li');
+        ownLi.textContent = '집을 가진 동안 무주택기간은 0점이에요. 처분하면 그날부터 다시 세요.';
+        nextUl.insertBefore(ownLi, nextUl.firstChild);
+      } else if (homeMonths >= 180 && accMonths >= 180 && fam >= 6) {
+        nextUl.innerHTML = '<li>모든 항목이 만점이에요.</li>';
+      }
+
+      // 화면 표시
+      $('[data-total]').textContent = total;
+      $('[data-sub]').textContent = lines.length ? '다음 상승: ' + fmt(lines[0].day) + ' (+' + lines[0].gain + '점)' : '기간 점수는 더 오르지 않아요';
+      $('[data-s1]').textContent = now.s1; $('[data-s2]').textContent = s2; $('[data-s3]').textContent = now.s3;
+      $('[data-b1]').style.width = (now.s1 / 32 * 100) + '%';
+      $('[data-b2]').style.width = (s2 / 35 * 100) + '%';
+      $('[data-b3]').style.width = (now.s3 / 17 * 100) + '%';
+      $('[data-p1]').textContent = state.house === 'own' ? '유주택' : homeMonths < 0 ? '산정 전' : ym(homeMonths);
+      $('[data-p2]').textContent = fam + '명';
+      $('[data-p3]').textContent = ym(accMonths);
+
+      var f1, f3;
+      if (state.house === 'own') f1 = '세대원이 주택을 가지고 있어 <b>0점</b>이에요.';
+      else if (homeMonths < 0) f1 = '산정 시작일(' + hs.why + ')이 <span class="kss-nw">' + fmt(hs.day) + '</span>이라 아직 <b>0점</b>이에요. 만 30세 미만 미혼이면 0점이에요.';
+      else f1 = '<span class="kss-nw">' + fmt(hs.day) + '</span>(' + hs.why + ')부터 ' + ym(homeMonths) + ' → ' +
+        (homeMonths >= 180 ? '15년 이상' : homeMonths < 12 ? '1년 미만' : Math.floor(homeMonths / 12) + '년 이상 ' + (Math.floor(homeMonths / 12) + 1) + '년 미만') + ' <b>' + now.s1 + '점</b>';
+      var famParts = [];
+      if (r.married) famParts.push('배우자 1');
+      if (kids) famParts.push('자녀 ' + kids);
+      if (parents) famParts.push('직계존속 ' + parents);
+      var f2 = (famParts.length ? famParts.join(' + ') + ' = ' : '') + fam + '명' + (fam >= 6 ? '(6명 이상)' : '') + ' → <b>' + s2 + '점</b>';
+      f3 = '본인 ' + ym(accMonths) + ' → ' + now.own + '점';
+      if (r.sacc !== null) f3 += ', 배우자 ' + ym(spMonths) + '의 50% → ' + now.sp + '점(최대 3점)';
+      f3 += ' → <b>' + now.s3 + '점</b>' + (now.own + now.sp > 17 ? ' (17점 상한)' : '');
+      $('[data-formula]').innerHTML = '<p class="kss-box-t">계산 근거 (기준일 <span class="kss-nw">' + fmt(base) + '</span>)</p>' +
+        '<p>무주택기간: ' + f1 + '</p><p>부양가족: ' + f2 + '</p><p>통장 가입기간: ' + f3 + '</p>' +
+        '<p>합계: ' + now.s1 + ' + ' + s2 + ' + ' + now.s3 + ' = <b>' + total + '점</b> / 84점</p>';
+
+      msg.textContent = '';
+      result.classList.add('kss-show');
+
+      lastText = '[청약 가점 계산 결과]\n기준일(입주자모집공고일): ' + fmt(base) +
+        '\n총점: ' + total + '점 / 84점' +
+        '\n무주택기간: ' + now.s1 + '점 / 32점' + (homeMonths >= 0 ? ' (' + ym(homeMonths) + ')' : '') +
+        '\n부양가족: ' + s2 + '점 / 35점 (' + fam + '명)' +
+        '\n청약통장 가입기간: ' + now.s3 + '점 / 17점 (본인 ' + ym(accMonths) + (r.sacc !== null ? ', 배우자 ' + now.sp + '점 합산' : '') + ')' +
+        (lines.length ? '\n다음 상승: ' + fmt(lines[0].day) + ' +' + lines[0].gain + '점' : '');
+      lastText = lastText.replace(/ /g, ' ');
+    }
+
+    // 칩 선택
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var b = e.target.closest('.kss-chip');
+        if (!b) return;
+        state[g.getAttribute('data-group')] = b.getAttribute('data-v');
+        Array.prototype.forEach.call(g.querySelectorAll('.kss-chip'), function (c) {
+          var on = c === b; c.classList.toggle('kss-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        sync();
+        calc();
+      });
+    });
+    function sync() {
+      $$('[data-married-only]').forEach(function (el) { el.hidden = state.married !== '1'; });
+      $('[data-sold-only]').hidden = state.house !== 'sold';
+    }
+
+    [baseI, birthI, wedI, soldI, accI, saccI].forEach(function (inp) {
+      inp.addEventListener('input', calc);
+      inp.addEventListener('change', calc);
+    });
+
+    function setChip(group, v) {
+      state[group] = v;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-group="' + group + '"] .kss-chip'), function (c) {
+        var on = c.getAttribute('data-v') === v; c.classList.toggle('kss-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    baseI.value = iso(todayN());
+
+    $('[data-reset]').addEventListener('click', function () {
+      birthI.value = wedI.value = soldI.value = accI.value = saccI.value = '';
+      baseI.value = iso(todayN());
+      setChip('married', '0'); setChip('house', 'never'); setChip('kids', '0'); setChip('parents', '0');
+      sync(); hide(''); birthI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 청약 가점 계산기 위젯 끝 -->
+
+<h2>청약 가점 계산법</h2>
+<p>청약 가점은 세 항목 점수를 더하기만 하면 돼요. 모든 기간은 <strong>입주자모집공고일</strong>을 기준으로 셉니다.</p>
+<p><strong>청약 가점 = 무주택기간 점수(최대 32점) + 부양가족 수 점수(최대 35점) + 청약통장 가입기간 점수(최대 17점)</strong></p>
+<ul>
+  <li><strong>무주택기간</strong>: 1년 미만 2점에서 시작해 1년마다 2점씩 올라 15년 이상이면 32점이에요. 만 30세 미만 미혼이거나 집이 있으면 0점이에요.</li>
+  <li><strong>부양가족</strong>: 0명이면 5점, 1명마다 5점씩 올라 6명 이상이면 35점이에요. 본인은 세지 않아요.</li>
+  <li><strong>청약통장 가입기간</strong>: 6개월 미만 1점, 6개월~1년 미만 2점, 그 뒤로 1년마다 1점씩 올라 15년 이상이면 17점이에요. 배우자 통장이 있으면 배우자 가입기간의 50%로 점수를 매겨 최대 3점까지 더해요(합계는 17점까지).</li>
+</ul>
+<p><strong>예시</strong>: 1990년 1월 15일생, 2017년 6월 1일 혼인신고, 미혼 자녀 2명, 본인 통장 2021년 11월 13일 가입, 배우자 통장 2022년 10월 1일 가입, 입주자모집공고일 2026년 11월 13일이라면</p>
+<ul>
+  <li>무주택기간: 만 30세 전에 결혼했으니 혼인신고일(2017. 6. 1.)부터 9년 5개월 → 9년 이상 10년 미만 <strong>20점</strong></li>
+  <li>부양가족: 배우자 1명 + 자녀 2명 = 3명 → <strong>20점</strong></li>
+  <li>통장 가입기간: 본인 5년 → 7점, 배우자 4년 1개월의 50%(2년 남짓) → 상한 3점, 합계 <strong>10점</strong></li>
+  <li>합계: 20 + 20 + 10 = <strong>50점</strong></li>
+</ul>
+
+<h2>청약 가점 점수표 (84점 만점)</h2>
+<table>
+  <thead><tr><th>구간</th><th>무주택기간</th><th>청약통장 가입기간</th></tr></thead>
+  <tbody>
+    <tr><td>만 30세 미만 미혼·유주택</td><td>0점</td><td>-</td></tr>
+    <tr><td>6개월 미만</td><td rowspan="2">2점 (1년 미만)</td><td>1점</td></tr>
+    <tr><td>6개월 이상 ~ 1년 미만</td><td>2점</td></tr>
+    <tr><td>1년 이상 ~ 2년 미만</td><td>4점</td><td>3점</td></tr>
+    <tr><td>2년 이상 ~ 3년 미만</td><td>6점</td><td>4점</td></tr>
+    <tr><td>3년 이상 ~ 4년 미만</td><td>8점</td><td>5점</td></tr>
+    <tr><td>4년 이상 ~ 5년 미만</td><td>10점</td><td>6점</td></tr>
+    <tr><td>5년 이상 ~ 6년 미만</td><td>12점</td><td>7점</td></tr>
+    <tr><td>6년 이상 ~ 7년 미만</td><td>14점</td><td>8점</td></tr>
+    <tr><td>7년 이상 ~ 8년 미만</td><td>16점</td><td>9점</td></tr>
+    <tr><td>8년 이상 ~ 9년 미만</td><td>18점</td><td>10점</td></tr>
+    <tr><td>9년 이상 ~ 10년 미만</td><td>20점</td><td>11점</td></tr>
+    <tr><td>10년 이상 ~ 11년 미만</td><td>22점</td><td>12점</td></tr>
+    <tr><td>11년 이상 ~ 12년 미만</td><td>24점</td><td>13점</td></tr>
+    <tr><td>12년 이상 ~ 13년 미만</td><td>26점</td><td>14점</td></tr>
+    <tr><td>13년 이상 ~ 14년 미만</td><td>28점</td><td>15점</td></tr>
+    <tr><td>14년 이상 ~ 15년 미만</td><td>30점</td><td>16점</td></tr>
+    <tr><td>15년 이상</td><td>32점</td><td>17점</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead><tr><th>부양가족 수</th><th>0명</th><th>1명</th><th>2명</th><th>3명</th><th>4명</th><th>5명</th><th>6명 이상</th></tr></thead>
+  <tbody>
+    <tr><td>점수</td><td>5점</td><td>10점</td><td>15점</td><td>20점</td><td>25점</td><td>30점</td><td>35점</td></tr>
+  </tbody>
+</table>
+
+<table>
+  <thead><tr><th>배우자 통장 가입기간</th><th>50%로 본 기간</th><th>더하는 점수</th></tr></thead>
+  <tbody>
+    <tr><td>1년 미만</td><td>6개월 미만</td><td>1점</td></tr>
+    <tr><td>1년 이상 ~ 2년 미만</td><td>6개월 이상 ~ 1년 미만</td><td>2점</td></tr>
+    <tr><td>2년 이상</td><td>1년 이상</td><td>3점 (최대)</td></tr>
+  </tbody>
+</table>
+
+<h2>무주택기간은 언제부터 세나요?</h2>
+<p>무주택기간은 신청자와 배우자를 포함한 <strong>세대원 모두가 집을 갖지 않은 기간</strong>이에요. 시작일은 <strong>만 30세가 된 날</strong>이고, 그 전에 결혼했다면 <strong>혼인신고일</strong>부터 세요. 집을 가졌다가 팔았다면 그보다 늦은 <strong>마지막으로 무주택이 된 날</strong>부터 다시 셉니다.</p>
+<p>예외로 60세 이상 직계존속이 가진 집, 전용 60㎡ 이하이면서 공시가격이 수도권 1억 6천만 원·비수도권 1억 원 이하인 소형·저가주택 1채 등은 무주택으로 보는 경우가 있어요. 조건이 세세하니 입주자모집공고문의 무주택 판정 기준을 꼭 확인하세요.</p>
+
+<h2>부양가족으로 인정되는 사람</h2>
+<ul>
+  <li><strong>배우자</strong>: 주민등록이 따로 있어도 부양가족으로 세요.</li>
+  <li><strong>직계존속</strong>(본인·배우자의 부모, 조부모): 입주자모집공고일 기준 <strong>3년 이상</strong> 같은 주민등록등본에 올라 있어야 해요. 부모님(과 그 배우자)이 집을 가지고 있으면 부양가족에서 빠져요.</li>
+  <li><strong>미혼 자녀</strong>: 만 30세 미만은 같은 등본에 있으면 되고, 만 30세 이상은 <strong>1년 이상</strong> 같은 등본에 올라 있어야 해요. 부모가 모두 사망한 미혼 손자녀도 세요.</li>
+</ul>
+<p>위장전입을 막기 위해 실제 함께 사는지 건강보험 자료 등으로 확인하는 절차가 강화되고 있어요. 2026년 4월에는 만 30세 이상 미혼 자녀의 등재 기간을 1년에서 3년으로 늘리는 개정안이 입법예고됐는데, 이 글을 쓰는 시점(2026년 11월)에 시행 여부를 확인하지 못했으니 신청 전 공고문을 확인하세요.</p>
+
+<h2>2024년 이후 달라진 점</h2>
+<ul>
+  <li><strong>배우자 통장 가입기간 합산</strong>(2024. 3. 25. 시행): 배우자 가입기간의 50%를 점수로 바꿔 최대 3점까지 더해요. 민영주택 일반공급 가점제에 적용돼요.</li>
+  <li><strong>동점자 처리</strong>(2024. 3. 25. 시행): 가점이 같으면 청약통장 가입기간이 긴 사람을 먼저 뽑아요.</li>
+  <li><strong>30세 이상 자녀 부양가족 요건 강화</strong>(2026. 4. 입법예고): 같은 등본 등재 기간을 1년에서 3년으로 늘리는 개정안이에요. 시행일은 공고문으로 확인하세요.</li>
+</ul>
+
+<h2>자주 묻는 질문</h2>
+<h3>청약 가점 만점은 몇 점인가요?</h3>
+<p>84점이에요. 무주택기간 32점, 부양가족 수 35점, 청약통장 가입기간 17점을 더한 점수예요. 만점을 받으려면 무주택기간 15년 이상, 부양가족 6명 이상, 통장 가입 15년 이상이어야 해요.</p>
+<h3>30세 미만 미혼이면 무주택기간 점수가 몇 점인가요?</h3>
+<p>0점이에요. 무주택기간은 만 30세가 된 날부터 세기 때문이에요. 다만 만 30세 전에 혼인신고를 했다면 혼인신고일부터 세고, 1년이 안 됐어도 2점을 받아요.</p>
+<h3>배우자 청약통장 기간도 점수에 들어가나요?</h3>
+<p>네. 2024년 3월 25일부터 민영주택 일반공급 가점제에서 배우자 통장 가입기간의 50%를 점수로 바꿔 최대 3점까지 더할 수 있어요. 배우자가 2년 이상 가입했다면 3점을 모두 받고, 본인 점수와 합해도 17점을 넘지 않아요.</p>
+<h3>부모님을 부양가족으로 넣으려면 몇 년을 같이 살아야 하나요?</h3>
+<p>입주자모집공고일 기준으로 3년 이상 계속 같은 주민등록등본에 올라 있어야 해요. 또 부모님(과 그 배우자)이 집을 가지고 있으면 부양가족으로 인정되지 않아요.</p>
+<h3>청약 가점이 같으면 누가 당첨되나요?</h3>
+<p>2024년 3월 25일부터는 가점이 같으면 청약통장 가입기간이 긴 사람을 먼저 선정해요. 가입기간까지 같으면 추첨으로 정해요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:acquisition-tax-calculator}}">취득세 계산기</a>: 당첨 뒤 내야 할 아파트 취득세 계산</li>
+  <li><a href="{{LINK:loan-calculator}}">대출 이자 계산기</a>: 중도금·잔금 대출 월 상환액 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "청약 가점 만점은 몇 점인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "84점이에요. 무주택기간 32점, 부양가족 수 35점, 청약통장 가입기간 17점을 더한 점수예요. 만점을 받으려면 무주택기간 15년 이상, 부양가족 6명 이상, 통장 가입 15년 이상이어야 해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "30세 미만 미혼이면 무주택기간 점수가 몇 점인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "0점이에요. 무주택기간은 만 30세가 된 날부터 세기 때문이에요. 다만 만 30세 전에 혼인신고를 했다면 혼인신고일부터 세고, 1년이 안 됐어도 2점을 받아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "배우자 청약통장 기간도 점수에 들어가나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네. 2024년 3월 25일부터 민영주택 일반공급 가점제에서 배우자 통장 가입기간의 50%를 점수로 바꿔 최대 3점까지 더할 수 있어요. 배우자가 2년 이상 가입했다면 3점을 모두 받고, 본인 점수와 합해도 17점을 넘지 않아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "부모님을 부양가족으로 넣으려면 몇 년을 같이 살아야 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "입주자모집공고일 기준으로 3년 이상 계속 같은 주민등록등본에 올라 있어야 해요. 또 부모님(과 그 배우자)이 집을 가지고 있으면 부양가족으로 인정되지 않아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "청약 가점이 같으면 누가 당첨되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2024년 3월 25일부터는 가점이 같으면 청약통장 가입기간이 긴 사람을 먼저 선정해요. 가입기간까지 같으면 추첨으로 정해요."
+   }
+  }
+ ]
+}
+</script>
