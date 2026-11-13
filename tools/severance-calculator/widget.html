@@ -1,0 +1,292 @@
+<!-- 퇴직금 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="ksv" data-ksv>
+  <style>
+    .ksv{--ksv-accent:#3b6ef5;--ksv-accent-soft:#eef3ff;--ksv-text:#1d2433;--ksv-sub:#6b7385;--ksv-line:#e3e7ef;--ksv-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--ksv-line);border-radius:20px;background:var(--ksv-bg);
+      color:var(--ksv-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .ksv [hidden]{display:none!important}
+    .ksv *,.ksv *::before,.ksv *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .ksv .ksv-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .ksv .ksv-desc{margin-top:4px;font-size:14px;color:var(--ksv-sub)}
+    .ksv .ksv-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--ksv-text)}
+    .ksv .ksv-label small{font-weight:500;color:var(--ksv-sub)}
+    .ksv .ksv-field{position:relative}
+    .ksv .ksv-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--ksv-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--ksv-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .ksv .ksv-in[type=date]{padding:0 14px;font-size:17px;min-width:0;display:block}
+    .ksv .ksv-in::placeholder{color:#b3b9c6;font-weight:500}
+    .ksv .ksv-in:focus{border-color:var(--ksv-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .ksv .ksv-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ksv-sub);pointer-events:none}
+    .ksv .ksv-link{flex:none;border:0;background:none;color:var(--ksv-accent);font-size:13px;font-weight:600;cursor:pointer;padding:2px}
+    .ksv .ksv-hint{margin-top:6px;font-size:12.5px;color:var(--ksv-sub)}
+    .ksv .ksv-months{display:grid;gap:8px}
+    .ksv .ksv-mk{margin-bottom:4px;font-size:12.5px;color:var(--ksv-sub)}
+    .ksv .ksv-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .ksv .ksv-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .ksv .ksv-result.ksv-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .ksv .ksv-result-inner{overflow:hidden}
+    .ksv .ksv-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--ksv-accent-soft);text-align:center;transition:background .3s}
+    .ksv .ksv-main.ksv-no{background:#f4f5f8}
+    .ksv .ksv-main-label{font-size:14px;color:var(--ksv-sub)}
+    .ksv .ksv-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--ksv-accent);line-height:1.2;word-break:keep-all}
+    .ksv .ksv-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .ksv .ksv-main.ksv-no .ksv-big{font-size:22px;color:var(--ksv-text)}
+    .ksv .ksv-sub{margin-top:6px;font-size:14px;color:var(--ksv-sub)}
+    .ksv .ksv-sub,.ksv .ksv-note,.ksv .ksv-desc,.ksv .ksv-hint,.ksv .ksv-formula{word-break:keep-all}
+    .ksv .ksv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .ksv .ksv-card{padding:14px;border:1px solid var(--ksv-line);border-radius:14px;background:#fff}
+    .ksv .ksv-card-k{font-size:12px;color:var(--ksv-sub)}
+    .ksv .ksv-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--ksv-text);word-break:keep-all}
+    .ksv .ksv-card-s{margin-top:2px;font-size:12px;color:var(--ksv-sub)}
+    .ksv .ksv-formula{margin-top:8px;padding:14px;border:1px solid var(--ksv-line);border-radius:14px;background:#f8f9fc;font-size:13px;color:var(--ksv-text)}
+    .ksv .ksv-formula p+p{margin-top:6px}
+    .ksv .ksv-formula b{font-weight:700}
+    .ksv .ksv-note{margin-top:12px;font-size:12.5px;color:var(--ksv-sub)}
+    .ksv .ksv-note li{margin-left:16px}
+    .ksv .ksv-actions{display:flex;gap:8px;margin-top:14px}
+    .ksv .ksv-btn{flex:1;height:44px;border:1.5px solid var(--ksv-line);border-radius:12px;background:#fff;color:var(--ksv-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .ksv .ksv-btn:hover{background:#f4f6fa}
+    .ksv .ksv-btn:active{transform:scale(.98)}
+    .ksv .ksv-btn.ksv-primary{border-color:var(--ksv-accent);background:var(--ksv-accent);color:#fff}
+    .ksv .ksv-btn.ksv-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.ksv{padding:18px;border-radius:16px}.ksv .ksv-big{font-size:34px}.ksv .ksv-in{font-size:17px}.ksv .ksv-in[type=date]{font-size:16px}}
+    @media (prefers-reduced-motion:reduce){.ksv .ksv-result,.ksv .ksv-in,.ksv .ksv-btn,.ksv .ksv-main{transition:none}}
+  </style>
+
+  <p class="ksv-title">퇴직금 계산기</p>
+  <p class="ksv-desc">입사일·퇴직일과 급여만 넣으면 바로 계산돼요.</p>
+
+  <label class="ksv-label" for="ksv-start">입사일</label>
+  <input class="ksv-in" id="ksv-start" type="date" data-start min="1950-01-01" max="2100-12-31" aria-label="입사일">
+
+  <label class="ksv-label" for="ksv-end"><span data-end-label>퇴직일 <small>(마지막 근무일 다음 날)</small></span><button type="button" class="ksv-link" data-end-toggle>마지막 근무일로 입력</button></label>
+  <input class="ksv-in" id="ksv-end" type="date" data-end min="1950-01-01" max="2100-12-31" aria-label="퇴직일">
+  <p class="ksv-hint" data-end-hint>고용노동부 계산기와 같은 기준이에요. 12월 31일까지 일했다면 다음 해 1월 1일을 넣으세요.</p>
+
+  <div data-mode-simple>
+    <label class="ksv-label" for="ksv-monthly"><span>월급 <small>(세전, 기본급+수당)</small></span><button type="button" class="ksv-link" data-mode-toggle>3개월 따로 입력</button></label>
+    <div class="ksv-field"><input class="ksv-in" id="ksv-monthly" data-monthly data-money inputmode="numeric" placeholder="3,000,000"><span class="ksv-unit">원</span></div>
+    <p class="ksv-hint">퇴직 전 3개월 급여 합계를 월급 × 3으로 계산해요. 달마다 다르면 ‘3개월 따로 입력’을 눌러 주세요.</p>
+  </div>
+
+  <div data-mode-detail hidden>
+    <p class="ksv-label"><span>퇴직 전 3개월 급여 <small>(세전, 기본급+수당)</small></span><button type="button" class="ksv-link" data-mode-toggle>월급으로 간단히</button></p>
+    <div class="ksv-months">
+      <div><p class="ksv-mk" data-mk>첫째 달</p><div class="ksv-field"><input class="ksv-in" data-m data-money inputmode="numeric" placeholder="3,000,000" aria-label="첫째 달 급여"><span class="ksv-unit">원</span></div></div>
+      <div><p class="ksv-mk" data-mk>둘째 달</p><div class="ksv-field"><input class="ksv-in" data-m data-money inputmode="numeric" placeholder="3,000,000" aria-label="둘째 달 급여"><span class="ksv-unit">원</span></div></div>
+      <div><p class="ksv-mk" data-mk>셋째 달</p><div class="ksv-field"><input class="ksv-in" data-m data-money inputmode="numeric" placeholder="3,000,000" aria-label="셋째 달 급여"><span class="ksv-unit">원</span></div></div>
+    </div>
+    <p class="ksv-hint">퇴직일 바로 전 3개월을 기간별로 나눈 거예요. 그 기간에 받은 급여를 넣으세요.</p>
+  </div>
+
+  <label class="ksv-label" for="ksv-bonus"><span>연간 상여금 총액 <small>(선택)</small></span></label>
+  <div class="ksv-field"><input class="ksv-in" id="ksv-bonus" data-bonus data-money inputmode="numeric" placeholder="0"><span class="ksv-unit">원</span></div>
+  <p class="ksv-hint">퇴직 전 1년 동안 받은 상여금 합계예요. 3/12만 평균임금에 들어가요.</p>
+
+  <label class="ksv-label" for="ksv-leave"><span>연차수당 <small>(선택)</small></span></label>
+  <div class="ksv-field"><input class="ksv-in" id="ksv-leave" data-leave data-money inputmode="numeric" placeholder="0"><span class="ksv-unit">원</span></div>
+  <p class="ksv-hint">전년도에 못 쓴 연차로 받은 수당이에요. 3/12만 들어가고, 퇴직하면서 받는 올해 연차수당은 넣지 않아요.</p>
+
+  <p class="ksv-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="ksv-result" data-result aria-live="polite">
+    <div class="ksv-result-inner">
+      <div class="ksv-main" data-main>
+        <p class="ksv-main-label" data-main-label>예상 퇴직금 (세전)</p>
+        <p class="ksv-big" data-big></p>
+        <p class="ksv-sub" data-sub></p>
+      </div>
+      <div data-detail>
+        <div class="ksv-grid">
+          <div class="ksv-card"><p class="ksv-card-k">재직일수</p><p class="ksv-card-v" data-days></p><p class="ksv-card-s" data-period></p></div>
+          <div class="ksv-card"><p class="ksv-card-k">1일 평균임금</p><p class="ksv-card-v" data-avg></p></div>
+          <div class="ksv-card"><p class="ksv-card-k">퇴직 전 3개월 일수</p><p class="ksv-card-v" data-three-days></p><p class="ksv-card-s" data-three-range></p></div>
+          <div class="ksv-card"><p class="ksv-card-k">3개월 임금총액</p><p class="ksv-card-v" data-total></p><p class="ksv-card-s">상여·연차 3/12 포함</p></div>
+        </div>
+        <div class="ksv-formula" data-formula></div>
+      </div>
+      <ul class="ksv-note">
+        <li data-tax-note>퇴직소득세를 빼기 전 금액이에요.</li>
+        <li>평균임금이 통상임금보다 적으면 통상임금으로 계산해요.</li>
+        <li>4주 평균 주 15시간 미만으로 일했다면 퇴직금 대상이 아니에요.</li>
+      </ul>
+      <div class="ksv-actions">
+        <button type="button" class="ksv-btn" data-reset>다시 입력</button>
+        <button type="button" class="ksv-btn ksv-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-ksv]');
+    if (!root || root.__ksv) return;
+    root.__ksv = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var startI = $('[data-start]'), endI = $('[data-end]'), monthlyI = $('[data-monthly]'), mIs = $$('[data-m]');
+    var bonusI = $('[data-bonus]'), leaveI = $('[data-leave]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var detailMode = false, lastDayMode = false, lastText = '';
+
+    // 날짜는 1970-01-01부터 센 '일 번호'로 다룬다 (시간대·서머타임 영향 없음)
+    function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 864e5); }
+    function ymd(n) { var t = new Date(n * 864e5); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+    function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+    // k개월 뒤(음수면 앞) 같은 날짜. 그 달에 같은 날이 없으면(예: 2월 30일) 다음 달 1일
+    function addMonths(n, k) {
+      var a = ymd(n), t = a.y * 12 + (a.m - 1) + k, y = Math.floor(t / 12), m = t - y * 12 + 1;
+      return a.d > dim(y, m) ? dn(y, m, 1) + dim(y, m) : dn(y, m, a.d);
+    }
+    function fmt(n) { var a = ymd(n); return a.y + '. ' + a.m + '. ' + a.d + '.'; }
+    function short(n) { var a = ymd(n); return a.m + '/' + a.d; }
+    function parse(v) {
+      var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!p || +p[1] < 1950 || +p[1] > 2100) return null;
+      return dn(+p[1], +p[2], +p[3]);
+    }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(Math.round(n)) + '원'; }
+    function won2(n) { return n.toLocaleString('ko-KR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + '원'; }
+    function num(inp) { return +String(inp.value).replace(/\D/g, '') || 0; }
+
+    // 퇴직 전 3개월(퇴직일 전날까지)을 세 구간으로 나눈다
+    function threeMonths(end) {
+      var b = [addMonths(end, -3), addMonths(end, -2), addMonths(end, -1), end];
+      return { start: b[0], days: end - b[0], parts: [0, 1, 2].map(function (i) { return [b[i], b[i + 1] - 1]; }) };
+    }
+
+    function tenure(start, end) {
+      var k = 0;
+      while (addMonths(start, k + 1) <= end) k++;
+      return { y: Math.floor(k / 12), m: k % 12, d: end - addMonths(start, k) };
+    }
+    function ymdText(t) { return (t.y ? t.y + '년 ' : '') + (t.y || t.m ? t.m + '개월 ' : '') + t.d + '일'; }
+
+    function hide(text) { result.classList.remove('ksv-show'); msg.textContent = text || ''; }
+
+    function updateMonthLabels(end) {
+      var labels = $$('[data-mk]'), names = ['첫째 달', '둘째 달', '셋째 달'];
+      var tm = end ? threeMonths(end) : null;
+      labels.forEach(function (l, i) {
+        l.textContent = tm ? names[i] + ' (' + fmt(tm.parts[i][0]) + ' ~ ' + fmt(tm.parts[i][1]) + ')' : names[i];
+      });
+    }
+
+    function calc() {
+      var s = parse(startI.value), e = parse(endI.value);
+      if (endI.value && e === null) { updateMonthLabels(null); return hide('날짜를 다시 확인해 주세요.'); }
+      if (e !== null && lastDayMode) e += 1;
+      updateMonthLabels(e);
+      if (!startI.value || !endI.value) return hide('');
+      if (s === null) return hide('날짜를 다시 확인해 주세요.');
+      if (e <= s) return hide(lastDayMode ? '마지막 근무일이 입사일보다 빠를 수 없어요.' : '퇴직일은 입사일보다 뒤여야 해요.');
+
+      var days = e - s, t = tenure(s, e), oneYear = addMonths(s, 12);
+      var main = $('[data-main]'), detail = $('[data-detail]');
+
+      if (e < oneYear) {
+        msg.textContent = '';
+        main.classList.add('ksv-no'); detail.hidden = true; $('[data-tax-note]').hidden = true;
+        $('[data-main-label]').textContent = '퇴직금 지급 대상이 아니에요';
+        $('[data-big]').textContent = '재직 1년 미만';
+        var more = oneYear - e;
+        $('[data-sub]').textContent = '지금 재직 ' + comma(days) + '일 · ' + comma(more) + '일 더 근무하면 받을 수 있어요 (' + fmt(oneYear - 1) + '까지 근무)';
+        lastText = '[퇴직금 계산 결과]\n입사일: ' + fmt(s) + '\n퇴직일: ' + fmt(e) + ' (마지막 근무일 ' + fmt(e - 1) + ')\n재직 ' + ymdText(t) +
+          '(' + comma(days) + '일)로 1년 미만이라 퇴직금 지급 대상이 아니에요.\n' + fmt(oneYear - 1) + '까지 근무하면 받을 수 있어요.';
+        result.classList.add('ksv-show');
+        return;
+      }
+
+      var pay = detailMode ? mIs.reduce(function (a, i) { return a + num(i); }, 0) : num(monthlyI) * 3;
+      var filled = detailMode ? mIs.every(function (i) { return i.value; }) : !!monthlyI.value;
+      if (!filled) return hide('');
+      if (!pay) return hide('급여를 입력해 주세요.');
+
+      var bonus = num(bonusI), leave = num(leaveI);
+      var tm = threeMonths(e);
+      var total = pay + bonus * 3 / 12 + leave * 3 / 12;
+      var avg = Math.round(total / tm.days * 100) / 100;           // 1일 평균임금: 소수 둘째 자리
+      var sev = Math.floor(avg * 30 * days / 365 + 1e-6);          // 퇴직금: 원 미만 버림
+      msg.textContent = '';
+
+      main.classList.remove('ksv-no'); detail.hidden = false; $('[data-tax-note]').hidden = false;
+      $('[data-main-label]').textContent = '예상 퇴직금 (세전)';
+      $('[data-big]').innerHTML = comma(sev) + '<small>원</small>';
+      $('[data-sub]').textContent = '재직 ' + ymdText(t) + ' · 마지막 근무일 ' + fmt(e - 1);
+      $('[data-days]').textContent = comma(days) + '일';
+      $('[data-period]').textContent = ymdText(t);
+      $('[data-avg]').textContent = won2(avg);
+      $('[data-three-days]').textContent = tm.days + '일';
+      $('[data-three-range]').textContent = short(tm.start) + ' ~ ' + short(e - 1);
+      $('[data-total]').textContent = won(total);
+
+      var parts = [won(pay)];
+      if (bonus) parts.push('상여 ' + won(bonus) + ' × 3/12');
+      if (leave) parts.push('연차수당 ' + won(leave) + ' × 3/12');
+      var f1 = '평균임금 = (' + parts.join(' + ') + ') ÷ ' + tm.days + '일 = ' + won2(avg);
+      var f2 = '퇴직금 = ' + won2(avg) + ' × 30일 × (' + comma(days) + '일 ÷ 365) = ' + won(sev);
+      var box = $('[data-formula]');
+      box.innerHTML = '';
+      [f1, f2].forEach(function (txt) { var p = document.createElement('p'); p.textContent = txt; box.appendChild(p); });
+
+      lastText = '[퇴직금 계산 결과]\n입사일: ' + fmt(s) + '\n퇴직일: ' + fmt(e) + ' (마지막 근무일 ' + fmt(e - 1) + ')' +
+        '\n재직일수: ' + comma(days) + '일 (' + ymdText(t) + ')' +
+        '\n퇴직 전 3개월: ' + fmt(tm.start) + ' ~ ' + fmt(e - 1) + ' (' + tm.days + '일)' +
+        '\n3개월 임금총액: ' + won(total) + '\n1일 평균임금: ' + won2(avg) + '\n예상 퇴직금(세전): ' + won(sev);
+      result.classList.add('ksv-show');
+    }
+
+    $$('[data-money]').forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 11);
+        inp.value = v ? comma(v) : '';
+        calc();
+      });
+    });
+    [startI, endI].forEach(function (inp) { inp.addEventListener('input', calc); inp.addEventListener('change', calc); });
+
+    $$('[data-mode-toggle]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        detailMode = !detailMode;
+        $('[data-mode-simple]').hidden = detailMode;
+        $('[data-mode-detail]').hidden = !detailMode;
+        if (detailMode && monthlyI.value && mIs.every(function (i) { return !i.value; })) mIs.forEach(function (i) { i.value = monthlyI.value; });
+        (detailMode ? mIs[0] : monthlyI).focus();
+        calc();
+      });
+    });
+
+    // 퇴직일 ↔ 마지막 근무일 입력 전환 (입력된 날짜는 하루 옮겨서 같은 퇴직을 유지)
+    $('[data-end-toggle]').addEventListener('click', function () {
+      var cur = parse(endI.value);
+      lastDayMode = !lastDayMode;
+      if (cur !== null) { var a = ymd(cur + (lastDayMode ? -1 : 1)); endI.value = a.y + '-' + ('0' + a.m).slice(-2) + '-' + ('0' + a.d).slice(-2); }
+      $('[data-end-label]').innerHTML = lastDayMode ? '마지막 근무일' : '퇴직일 <small>(마지막 근무일 다음 날)</small>';
+      endI.setAttribute('aria-label', lastDayMode ? '마지막 근무일' : '퇴직일');
+      this.textContent = lastDayMode ? '퇴직일로 입력' : '마지막 근무일로 입력';
+      $('[data-end-hint]').textContent = lastDayMode ? '실제로 마지막 출근한 날을 넣으세요. 퇴직일은 그다음 날로 계산해요.'
+        : '고용노동부 계산기와 같은 기준이에요. 12월 31일까지 일했다면 다음 해 1월 1일을 넣으세요.';
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      startI.value = endI.value = monthlyI.value = bonusI.value = leaveI.value = '';
+      mIs.forEach(function (i) { i.value = ''; });
+      updateMonthLabels(null); hide(''); startI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done);
+      else { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+    });
+  })();
+  </script>
+</div>
+<!-- 퇴직금 계산기 위젯 끝 -->

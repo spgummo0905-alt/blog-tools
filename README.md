@@ -17,6 +17,7 @@ tools/
 | 도구 | 폴더 | 상태 |
 |---|---|---|
 | 만 나이 계산기 | `tools/age-calculator` | 완성 |
+| 퇴직금 계산기 | `tools/severance-calculator` | 완성 |
 
 ## 작업 규칙
 
