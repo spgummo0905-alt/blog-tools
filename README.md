@@ -19,6 +19,7 @@ tools/
 |---|---|---|
 | 만 나이 계산기 | `tools/age-calculator` | 완성 |
 | 주휴수당 계산기 | `tools/weekly-holiday-pay` | 완성 |
+| 평수 계산기 | `tools/pyeong-converter` | 완성 |
 | 퇴직금 계산기 | `tools/severance-calculator` | 완성 |
 
 ## 작업 규칙
