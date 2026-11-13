@@ -1,0 +1,472 @@
+<p><strong>2027년 공휴일은 대체공휴일 7일을 포함해 모두 24일이고, 이 중 주말과 겹치지 않는 평일 공휴일은 15일이에요.</strong> 토·일까지 더하면 주 5일 근무자는 1년에 119일을 쉬어요. 아래 달력에서 월별 공휴일을 확인하고, 쓸 수 있는 연차 일수를 고르면 가장 오래 쉬는 연차 꿀조합을 바로 찾아 드려요.</p>
+<!-- 2027 공휴일 달력·연차 꿀조합 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="khd" data-khd>
+  <style>
+    .khd{--khd-accent:#3b6ef5;--khd-accent-soft:#eef3ff;--khd-text:#1d2433;--khd-sub:#6b7385;--khd-line:#e3e7ef;--khd-bg:#fff;--khd-red:#e0565b;--khd-blue:#3b6ef5;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--khd-line);border-radius:20px;background:var(--khd-bg);
+      color:var(--khd-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .khd [hidden]{display:none!important}
+    .khd *,.khd *::before,.khd *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .khd .khd-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .khd .khd-desc{margin-top:4px;font-size:14px;color:var(--khd-sub)}
+    .khd .khd-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--khd-text)}
+    .khd .khd-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px}
+    .khd .khd-arrow{width:44px;height:44px;border:1.5px solid var(--khd-line);border-radius:12px;background:#fff;color:var(--khd-text);font-size:18px;font-weight:700;
+      cursor:pointer;transition:background .2s,transform .1s}
+    .khd .khd-arrow:hover{background:#f4f6fa}
+    .khd .khd-arrow:active{transform:scale(.96)}
+    .khd .khd-arrow:disabled{opacity:.35;cursor:default;transform:none;background:#fff}
+    .khd .khd-month{font-size:18px;font-weight:800;letter-spacing:-.02em}
+    .khd .khd-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .khd .khd-tab{position:relative;height:34px;border:0;border-radius:10px;background:none;color:var(--khd-sub);font-size:13px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s}
+    .khd .khd-tab:hover{color:var(--khd-text)}
+    .khd .khd-tab.khd-on{background:#fff;color:var(--khd-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .khd .khd-tab.khd-has::after{content:"";position:absolute;top:5px;right:6px;width:5px;height:5px;border-radius:50%;background:var(--khd-red)}
+    .khd .khd-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:12px}
+    .khd .khd-wd{padding:4px 0;font-size:12px;font-weight:700;text-align:center;color:var(--khd-sub)}
+    .khd .khd-wd.khd-sun{color:var(--khd-red)}
+    .khd .khd-wd.khd-sat{color:var(--khd-blue)}
+    .khd .khd-day{min-height:54px;padding:5px 2px 4px;border:1px solid transparent;border-radius:10px;background:#f8f9fc;text-align:center;overflow:hidden}
+    .khd .khd-day.khd-empty{background:none}
+    .khd .khd-num{display:block;font-size:15px;font-weight:700;line-height:1.3}
+    .khd .khd-day.khd-sun .khd-num,.khd .khd-day.khd-hol .khd-num{color:var(--khd-red)}
+    .khd .khd-day.khd-sat .khd-num{color:var(--khd-blue)}
+    .khd .khd-day.khd-sat.khd-hol .khd-num{color:var(--khd-red)}
+    .khd .khd-day.khd-hol{background:#fff1f1}
+    .khd .khd-hn{display:block;margin-top:1px;font-size:9.5px;line-height:1.2;color:var(--khd-red);font-weight:600}
+    .khd .khd-day.khd-rest{border-color:#c9d6fb;background:var(--khd-accent-soft)}
+    .khd .khd-day.khd-leave{border:1.5px solid var(--khd-accent);background:#fff}
+    .khd .khd-day.khd-leave .khd-hn{color:var(--khd-accent)}
+    .khd .khd-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:12px;color:var(--khd-sub)}
+    .khd .khd-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;border-radius:3px;vertical-align:-1px}
+    .khd .khd-hlist{margin-top:10px;padding:12px 14px;border:1px solid var(--khd-line);border-radius:14px;font-size:13.5px;list-style:none}
+    .khd .khd-hlist li{display:flex;gap:8px;padding:3px 0}
+    .khd .khd-hlist b{flex:0 0 auto;min-width:78px;font-weight:700;white-space:nowrap;color:var(--khd-red)}
+    .khd .khd-hlist .khd-none{color:var(--khd-sub)}
+    .khd .khd-sep{height:1px;margin:24px 0 0;background:var(--khd-line);border:0}
+    .khd .khd-row{display:flex;gap:8px;align-items:center}
+    .khd .khd-field{position:relative;flex:0 0 120px}
+    .khd .khd-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--khd-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--khd-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .khd .khd-in::placeholder{color:#b3b9c6;font-weight:500}
+    .khd .khd-in:focus{border-color:var(--khd-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .khd .khd-in.khd-bad{border-color:var(--khd-red)}
+    .khd .khd-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--khd-sub);pointer-events:none}
+    .khd .khd-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .khd .khd-chip{height:32px;padding:0 12px;border:1.5px solid var(--khd-line);border-radius:999px;background:#fff;color:var(--khd-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+    .khd .khd-chip:hover{border-color:#c9d3ea;color:var(--khd-text)}
+    .khd .khd-chip.khd-on{border-color:var(--khd-accent);background:var(--khd-accent-soft);color:var(--khd-accent)}
+    .khd .khd-base{margin-top:10px;font-size:12.5px;color:var(--khd-sub)}
+    .khd .khd-msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--khd-red)}
+    .khd .khd-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .khd .khd-result.khd-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .khd .khd-result-inner{overflow:hidden}
+    .khd .khd-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--khd-accent-soft);text-align:center}
+    .khd .khd-main-label{font-size:14px;color:var(--khd-sub)}
+    .khd .khd-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--khd-accent);line-height:1.2}
+    .khd .khd-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .khd .khd-main-sub{margin-top:6px;font-size:14px;color:var(--khd-sub)}
+    .khd .khd-combos{margin-top:10px;list-style:none}
+    .khd .khd-combo{display:block;width:100%;margin-top:8px;padding:12px 14px;border:1px solid var(--khd-line);border-radius:14px;background:#fff;
+      text-align:left;color:var(--khd-text);cursor:pointer;transition:border-color .2s,background .2s}
+    .khd .khd-combo:hover{border-color:#c9d3ea;background:#fafbfe}
+    .khd .khd-combo.khd-on{border-color:var(--khd-accent);background:#fafcff}
+    .khd .khd-ctop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+    .khd .khd-cname{font-size:15px;font-weight:700}
+    .khd .khd-crank{margin-right:6px;color:var(--khd-accent)}
+    .khd .khd-ceff{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--khd-accent);white-space:nowrap}
+    .khd .khd-cdesc{display:block;margin-top:3px;font-size:13px;color:var(--khd-sub)}
+    .khd .khd-nw{white-space:nowrap}
+    .khd .khd-note{margin-top:12px;font-size:12.5px;color:var(--khd-sub)}
+    .khd .khd-actions{display:flex;gap:8px;margin-top:14px}
+    .khd .khd-btn{flex:1;height:44px;border:1.5px solid var(--khd-line);border-radius:12px;background:#fff;color:var(--khd-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .khd .khd-btn:hover{background:#f4f6fa}
+    .khd .khd-btn:active{transform:scale(.98)}
+    .khd .khd-btn.khd-primary{border-color:var(--khd-accent);background:var(--khd-accent);color:#fff}
+    .khd .khd-btn.khd-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.khd{padding:18px;border-radius:16px}.khd .khd-big{font-size:38px}.khd .khd-in{font-size:17px}
+      .khd .khd-cal{gap:2px}.khd .khd-day{min-height:50px;border-radius:8px}.khd .khd-num{font-size:14px}.khd .khd-hn{font-size:9px}
+      .khd .khd-tab{font-size:12.5px}.khd .khd-field{flex-basis:96px}}
+    @media (prefers-reduced-motion:reduce){.khd .khd-result,.khd .khd-in,.khd .khd-btn,.khd .khd-chip,.khd .khd-tab,.khd .khd-arrow,.khd .khd-combo{transition:none}}
+  </style>
+
+  <p class="khd-title">2027년 공휴일 달력 · 연차 꿀조합</p>
+  <p class="khd-desc">월을 넘겨 공휴일을 보고, 연차 일수를 고르면 가장 오래 쉬는 조합을 찾아 드려요.</p>
+
+  <div class="khd-nav">
+    <button type="button" class="khd-arrow" data-prev aria-label="이전 달">‹</button>
+    <p class="khd-month" data-month-label aria-live="polite">2027년 1월</p>
+    <button type="button" class="khd-arrow" data-next aria-label="다음 달">›</button>
+  </div>
+  <div class="khd-tabs" role="tablist" aria-label="월 선택" data-tabs></div>
+  <div class="khd-cal" data-cal></div>
+  <p class="khd-legend"><span><i style="background:#fff1f1;border:1px solid #f3c4c6"></i>공휴일</span><span><i style="background:#eef3ff;border:1px solid #c9d6fb"></i>쉬는 기간</span><span><i style="background:#fff;border:1.5px solid #3b6ef5"></i>연차 쓰는 날</span></p>
+  <ul class="khd-hlist" data-hlist></ul>
+
+  <hr class="khd-sep">
+  <label class="khd-label" for="khd-n">쓸 수 있는 연차 (주 5일, 토·일 휴무 기준)</label>
+  <div class="khd-row">
+    <div class="khd-field"><input class="khd-in" id="khd-n" data-n inputmode="numeric" maxlength="2" placeholder="2" aria-describedby="khd-msg"><span class="khd-unit">일</span></div>
+    <div class="khd-chips" data-chips></div>
+  </div>
+  <p class="khd-base">연차는 1~10일까지 입력할 수 있어요. 입력한 일수 이하로 쓰는 조합을 모두 찾아요.</p>
+
+  <p class="khd-msg" id="khd-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="khd-result" data-result aria-live="polite">
+    <div class="khd-result-inner">
+      <div class="khd-main">
+        <p class="khd-main-label" data-main-label>연차 2일로 최대</p>
+        <p class="khd-big"><span data-big>0</span><small>일 연속</small></p>
+        <p class="khd-main-sub" data-main-sub></p>
+      </div>
+      <ul class="khd-combos" data-combos></ul>
+      <p class="khd-note">연휴마다 가장 길게 쉬는 조합을 골라 효율(연차 1일당 쉬는 날) 순서로 보여 줘요. 항목을 누르면 달력에 연차 쓰는 날이 표시돼요. 2026년 6월 발표된 2027년 월력요항 기준이며, 임시공휴일이 지정되면 바뀔 수 있어요. 회사 휴무일이 다르면 결과도 달라져요.</p>
+      <div class="khd-actions">
+        <button type="button" class="khd-btn" data-reset>다시 입력</button>
+        <button type="button" class="khd-btn khd-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-khd]');
+    if (!root || root.__khd) return;
+    root.__khd = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var YEAR = 2027, WD = ['일', '월', '화', '수', '목', '금', '토'];
+    // 2027년 관공서 공휴일 (우주항공청 2027년 월력요항, 2026. 6. 발표). [월, 일, 이름, 달력 약칭]
+    var HOLI = [
+      [1, 1, '신정', '신정'],
+      [2, 6, '설날 연휴', '설 연휴'], [2, 7, '설날', '설날'], [2, 8, '설날 연휴', '설 연휴'], [2, 9, '대체공휴일(설날)', '대체'],
+      [3, 1, '삼일절', '삼일절'],
+      [5, 1, '노동절', '노동절'], [5, 3, '대체공휴일(노동절)', '대체'], [5, 5, '어린이날', '어린이날'], [5, 13, '부처님오신날', '부처님 오신날'],
+      [6, 6, '현충일', '현충일'],
+      [7, 17, '제헌절', '제헌절'], [7, 19, '대체공휴일(제헌절)', '대체'],
+      [8, 15, '광복절', '광복절'], [8, 16, '대체공휴일(광복절)', '대체'],
+      [9, 14, '추석 연휴', '추석 연휴'], [9, 15, '추석', '추석'], [9, 16, '추석 연휴', '추석 연휴'],
+      [10, 3, '개천절', '개천절'], [10, 4, '대체공휴일(개천절)', '대체'], [10, 9, '한글날', '한글날'], [10, 11, '대체공휴일(한글날)', '대체'],
+      [12, 25, '성탄절', '성탄절'], [12, 27, '대체공휴일(성탄절)', '대체']
+    ];
+    // 앞뒤 해의 경계 공휴일 (연휴가 해를 넘어갈 때만 씀)
+    var EDGE = { '2026-12-25': '성탄절', '2028-1-1': '신정' };
+    var hmap = {};
+    HOLI.forEach(function (h) { hmap[YEAR + '-' + h[0] + '-' + h[1]] = h; });
+
+    function key(d) { return d.getFullYear() + '-' + (d.getMonth() + 1) + '-' + d.getDate(); }
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    function isHoliday(d) { return !!hmap[key(d)] || !!EDGE[key(d)]; }
+    function isRest(d) { var w = d.getDay(); return w === 0 || w === 6 || isHoliday(d); }
+    function md(d) { return (d.getFullYear() !== YEAR ? d.getFullYear() + '. ' : '') + (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function holName(d) { var h = hmap[key(d)]; return h ? h[2] : (EDGE[key(d)] || ''); }
+
+    // ---------- 연차 꿀조합 계산 ----------
+    // 연차는 2027년 평일(공휴일 아님)에만 쓴다. 이어진 평일 k일을 연차로 쓰면, 앞뒤로 붙은 주말·공휴일까지 한 덩어리로 쉰다.
+    var START = new Date(YEAR - 1, 11, 1), END = new Date(YEAR + 1, 0, 31);
+    var days = [];
+    for (var d = START; d <= END; d = addDays(d, 1)) days.push(d);
+    var work = []; // days 배열에서 근무일의 위치
+    days.forEach(function (x, i) { if (!isRest(x)) work.push(i); });
+
+    function combos(maxLeave) {
+      var out = [];
+      for (var k = 1; k <= maxLeave; k++) {
+        for (var i = 1; i + k < work.length; i++) {
+          var first = work[i], last = work[i + k - 1];
+          if (days[first].getFullYear() !== YEAR || days[last].getFullYear() !== YEAR) continue;
+          var s = work[i - 1] + 1, e = work[i + k] - 1, hol = [], seen = {};
+          for (var j = s; j <= e; j++) {
+            var w = days[j].getDay();
+            if (isHoliday(days[j]) && days[j].getFullYear() === YEAR) {
+              var nm = holName(days[j]).replace(/^대체공휴일\((.*)\)$/, '$1').replace(/ 연휴$/, '');
+              if (!seen[nm]) { seen[nm] = 1; hol.push(nm); }
+              if (w !== 0 && w !== 6) hol.weekday = true;
+            }
+          }
+          if (!hol.weekday) continue; // 평일 공휴일이 끼어야 꿀조합
+          var leave = [];
+          for (var t = i; t < i + k; t++) leave.push(days[work[t]]);
+          out.push({ start: days[s], end: days[e], len: e - s + 1, k: k, leave: leave, names: hol });
+        }
+      }
+      // 기간별로 연차 maxLeave일 안에서 가장 길게 쉬는 조합 하나씩 (긴 것부터 고르고 날짜가 겹치면 버림)
+      out.sort(function (a, b) { return (b.len - a.len) || (a.k - b.k) || (a.start - b.start); });
+      var pick = [];
+      out.forEach(function (c) {
+        if (!pick.some(function (p) { return c.start <= p.end && c.end >= p.start; })) pick.push(c);
+      });
+      // 효율(연차 1일당 쉬는 날) 순, 같으면 길게, 같으면 날짜 순
+      pick.sort(function (a, b) { return (b.len / b.k - a.len / a.k) || (b.len - a.len) || (a.start - b.start); });
+      return pick;
+    }
+
+    // ---------- 달력 ----------
+    var cur = 0, picked = null;
+    var now = new Date();
+    if (now.getFullYear() === YEAR) cur = now.getMonth();
+    var tabs = $('[data-tabs]'), cal = $('[data-cal]'), hlist = $('[data-hlist]');
+    for (var m = 0; m < 12; m++) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'khd-tab'; b.setAttribute('role', 'tab'); b.setAttribute('data-m', m);
+      b.textContent = (m + 1) + '월';
+      if (HOLI.some(function (h) { return h[0] === m + 1; })) b.classList.add('khd-has');
+      tabs.appendChild(b);
+    }
+    tabs.addEventListener('click', function (e) { var t = e.target.closest('[data-m]'); if (t) { cur = +t.getAttribute('data-m'); draw(); } });
+    $('[data-prev]').addEventListener('click', function () { if (cur > 0) { cur--; draw(); } });
+    $('[data-next]').addEventListener('click', function () { if (cur < 11) { cur++; draw(); } });
+
+    // 좌우로 밀어서 넘기기
+    var sx = null, sy = null;
+    cal.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    cal.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0 && cur < 11) { cur++; draw(); } else if (dx > 0 && cur > 0) { cur--; draw(); }
+      }
+    });
+
+    function draw() {
+      $('[data-month-label]').textContent = YEAR + '년 ' + (cur + 1) + '월';
+      $('[data-prev]').disabled = cur === 0; $('[data-next]').disabled = cur === 11;
+      $$('[data-m]').forEach(function (t) { var on = +t.getAttribute('data-m') === cur; t.classList.toggle('khd-on', on); t.setAttribute('aria-selected', on); });
+      var rest = {}, leave = {};
+      if (picked) {
+        for (var x = picked.start; x <= picked.end; x = addDays(x, 1)) rest[key(x)] = 1;
+        picked.leave.forEach(function (l) { leave[key(l)] = 1; });
+      }
+      var html = '';
+      WD.forEach(function (w, i) { html += '<div class="khd-wd' + (i === 0 ? ' khd-sun' : i === 6 ? ' khd-sat' : '') + '">' + w + '</div>'; });
+      var first = new Date(YEAR, cur, 1), last = new Date(YEAR, cur + 1, 0).getDate();
+      for (var i = 0; i < first.getDay(); i++) html += '<div class="khd-day khd-empty" aria-hidden="true"></div>';
+      for (var dd = 1; dd <= last; dd++) {
+        var dt = new Date(YEAR, cur, dd), w = dt.getDay(), h = hmap[key(dt)], c = 'khd-day';
+        if (w === 0) c += ' khd-sun'; if (w === 6) c += ' khd-sat'; if (h) c += ' khd-hol';
+        if (leave[key(dt)]) c += ' khd-leave'; else if (rest[key(dt)]) c += ' khd-rest';
+        var lab = h ? h[3] : (leave[key(dt)] ? '연차' : '');
+        html += '<div class="' + c + '" title="' + (h ? h[2] : '') + '"><span class="khd-num">' + dd + '</span>' + (lab ? '<span class="khd-hn">' + lab + '</span>' : '') + '</div>';
+      }
+      cal.innerHTML = html;
+      var items = HOLI.filter(function (h) { return h[0] === cur + 1; });
+      hlist.innerHTML = items.length ? items.map(function (h) {
+        var dt = new Date(YEAR, h[0] - 1, h[1]);
+        return '<li><b>' + md(dt) + '</b><span>' + h[2] + '</span></li>';
+      }).join('') : '<li class="khd-none">이달에는 공휴일이 없어요.</li>';
+    }
+
+    // ---------- 연차 입력 ----------
+    var nI = $('[data-n]'), msg = $('[data-msg]'), result = $('[data-result]'), big = $('[data-big]');
+    var chipBox = $('[data-chips]'), lastText = '', list = [];
+    [1, 2, 3, 4, 5].forEach(function (n) {
+      var c = document.createElement('button');
+      c.type = 'button'; c.className = 'khd-chip'; c.setAttribute('data-chip', n); c.textContent = n + '일';
+      chipBox.appendChild(c);
+    });
+    chipBox.addEventListener('click', function (e) { var c = e.target.closest('[data-chip]'); if (c) { nI.value = c.getAttribute('data-chip'); calc(); } });
+    nI.addEventListener('input', function () { var v = nI.value.replace(/[^\d]/g, ''); if (v !== nI.value) nI.value = v; calc(); });
+
+    function hide(text) {
+      result.classList.remove('khd-show');
+      msg.textContent = text || '';
+      nI.classList.toggle('khd-bad', !!text);
+      if (picked) { picked = null; draw(); }
+    }
+
+    function desc(c) {
+      return '<span class="khd-nw">' + md(c.start) + '</span> ~ <span class="khd-nw">' + md(c.end) + '</span> · 연차 ' +
+        c.leave.map(function (l) { return '<span class="khd-nw">' + md(l) + '</span>'; }).join(', ');
+    }
+
+    function calc() {
+      var raw = nI.value;
+      $$('[data-chip]').forEach(function (c) { c.classList.toggle('khd-on', c.getAttribute('data-chip') === raw); });
+      if (!raw) return hide('');
+      var n = +raw;
+      if (!(n >= 1 && n <= 10)) return hide('연차는 1~10일 사이로 입력해 주세요.');
+      msg.textContent = ''; nI.classList.remove('khd-bad');
+      var all = combos(n);
+      var best = all.reduce(function (a, c) { return !a || c.len > a.len || (c.len === a.len && (c.k < a.k || (c.k === a.k && c.start < a.start))) ? c : a; }, null);
+      list = all.slice(0, 10);
+      $('[data-main-label]').textContent = '연차 ' + n + '일로 최대';
+      big.textContent = best.len;
+      $('[data-main-sub]').innerHTML = best.names.join('·') + ' · ' + desc(best).replace(/ · 연차.*/, '') + ' (연차 ' + best.k + '일)';
+      $('[data-combos]').innerHTML = list.map(function (c, i) {
+        return '<li><button type="button" class="khd-combo" data-ci="' + i + '"><span class="khd-ctop"><span class="khd-cname"><span class="khd-crank">' + (i + 1) + '</span>' +
+          c.names.join('·') + ' ' + c.len + '일</span><span class="khd-ceff">연차 ' + c.k + '일 → ' + c.len + '일</span></span>' +
+          '<span class="khd-cdesc">' + desc(c) + '</span></button></li>';
+      }).join('');
+      if (picked) { picked = null; draw(); }
+      result.classList.add('khd-show');
+      lastText = '[2027년 연차 꿀조합 · 연차 ' + n + '일]\n최대 ' + best.len + '일 연속: ' + md(best.start) + ' ~ ' + md(best.end) + ' (연차 ' + best.k + '일)\n\n' +
+        list.map(function (c, i) {
+          return (i + 1) + '. ' + c.names.join('·') + ' ' + c.len + '일 (연차 ' + c.k + '일)\n   ' + md(c.start) + ' ~ ' + md(c.end) + '\n   연차: ' + c.leave.map(md).join(', ');
+        }).join('\n') + '\n\n※ 2027년 월력요항 기준, 임시공휴일 지정 시 바뀔 수 있어요.';
+    }
+
+    $('[data-combos]').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-ci]'); if (!b) return;
+      var c = list[+b.getAttribute('data-ci')];
+      $$('[data-ci]').forEach(function (x) { x.classList.toggle('khd-on', x === b); });
+      picked = c; cur = c.leave[0].getMonth(); draw();
+      if (cal.getBoundingClientRect().top < 0 && cal.scrollIntoView) cal.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    });
+
+    $('[data-reset]').addEventListener('click', function () { nI.value = ''; calc(); nI.focus(); });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (er) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    draw();
+    nI.value = '2';
+    calc();
+  })();
+  </script>
+</div>
+<!-- 2027 공휴일 달력·연차 꿀조합 위젯 끝 -->
+<h2>2027년 공휴일 전체 일정</h2>
+<p>2027년 공휴일은 우주항공청이 2026년 6월 발표한 <strong>2027년 월력요항</strong>을 기준으로 정리했어요. 2026년부터 <strong>노동절(5월 1일)과 제헌절(7월 17일)</strong>이 공휴일이 되면서, 2027년에는 두 날 모두 토요일과 겹쳐 대체공휴일이 생겨요.</p>
+<table>
+  <thead><tr><th>날짜</th><th>공휴일</th><th>비고</th></tr></thead>
+  <tbody>
+    <tr><td>1월 1일(금)</td><td>신정</td><td>금·토·일 3일 연휴</td></tr>
+    <tr><td>2월 6일(토) ~ 8일(월)</td><td>설날 연휴 (설날 2월 7일)</td><td>설날이 일요일과 겹침</td></tr>
+    <tr><td>2월 9일(화)</td><td>대체공휴일(설날)</td><td>토~화 4일 연휴</td></tr>
+    <tr><td>3월 1일(월)</td><td>삼일절</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>5월 1일(토)</td><td>노동절</td><td>토요일과 겹침</td></tr>
+    <tr><td>5월 3일(월)</td><td>대체공휴일(노동절)</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>5월 5일(수)</td><td>어린이날</td><td>대체공휴일 없음</td></tr>
+    <tr><td>5월 13일(목)</td><td>부처님오신날</td><td>음력 4월 8일</td></tr>
+    <tr><td>6월 6일(일)</td><td>현충일</td><td>일요일과 겹치지만 대체공휴일 대상 아님</td></tr>
+    <tr><td>7월 17일(토)</td><td>제헌절</td><td>토요일과 겹침</td></tr>
+    <tr><td>7월 19일(월)</td><td>대체공휴일(제헌절)</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>8월 15일(일)</td><td>광복절</td><td>일요일과 겹침</td></tr>
+    <tr><td>8월 16일(월)</td><td>대체공휴일(광복절)</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>9월 14일(화) ~ 16일(목)</td><td>추석 연휴 (추석 9월 15일)</td><td>화~목 3일, 대체공휴일 없음</td></tr>
+    <tr><td>10월 3일(일)</td><td>개천절</td><td>일요일과 겹침</td></tr>
+    <tr><td>10월 4일(월)</td><td>대체공휴일(개천절)</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>10월 9일(토)</td><td>한글날</td><td>토요일과 겹침</td></tr>
+    <tr><td>10월 11일(월)</td><td>대체공휴일(한글날)</td><td>토·일·월 3일 연휴</td></tr>
+    <tr><td>12월 25일(토)</td><td>성탄절(기독탄신일)</td><td>토요일과 겹침</td></tr>
+    <tr><td>12월 27일(월)</td><td>대체공휴일(성탄절)</td><td>토·일·월 3일 연휴</td></tr>
+  </tbody>
+</table>
+<p>날짜로 세면 공휴일은 모두 <strong>24일</strong>이에요. 이 중 토요일과 겹치는 날이 5일(2월 6일, 5월 1일, 7월 17일, 10월 9일, 12월 25일), 일요일과 겹치는 날이 4일(2월 7일, 6월 6일, 8월 15일, 10월 3일)이라 <strong>평일에 쉬는 공휴일은 15일</strong>이에요. 2027년 토요일 52일과 일요일 52일을 더하면 주 5일 근무자가 쉬는 날은 <strong>모두 119일</strong>이에요. 일요일 52일에 공휴일을 더하고 겹치는 날을 빼서 세는 관공서 공휴일 수로는 72일이에요.</p>
+<p>임시공휴일은 아직 정해지지 않았어요. 정부가 임시공휴일을 지정하면 위 일정과 연차 꿀조합이 바뀔 수 있어요.</p>
+
+<h2>연차 꿀조합 계산법</h2>
+<p>연차 꿀조합은 공휴일과 주말 사이에 낀 평일에 연차를 써서 쉬는 날을 길게 이어 붙이는 방법이에요. 계산은 이렇게 해요.</p>
+<ul>
+  <li><strong>연속으로 쉬는 날</strong> = 앞쪽 주말·공휴일 + 연차 쓰는 평일 + 뒤쪽 주말·공휴일</li>
+  <li><strong>효율</strong> = 연속으로 쉬는 날 ÷ 쓴 연차 일수 (연차 1일로 며칠을 쉬는지)</li>
+</ul>
+<p>예를 들어 2027년 추석 연휴는 9월 14일(화)~16일(목)이에요. 앞뒤 평일인 <strong>9월 13일(월)과 17일(금)</strong>에 연차 2일을 쓰면 9월 11일(토)부터 19일(일)까지 <strong>9일</strong>을 이어서 쉬어요. 효율은 9 ÷ 2 = 4.5로, 연차 1일로 4.5일을 쉬는 셈이에요. 위 계산기는 2027년의 모든 평일 조합을 이렇게 계산해서, 연휴마다 가장 길게 쉬는 조합을 효율 순서로 보여 줘요.</p>
+
+<h2>2027년 황금연휴 Top 5</h2>
+<table>
+  <thead><tr><th>연휴</th><th>연차 쓰는 날</th><th>쉬는 기간</th></tr></thead>
+  <tbody>
+    <tr><td>추석</td><td>9월 13일(월), 17일(금) — 2일</td><td>9월 11일(토) ~ 19일(일), <strong>9일</strong></td></tr>
+    <tr><td>설날</td><td>2월 10일(수) ~ 12일(금) — 3일</td><td>2월 6일(토) ~ 14일(일), <strong>9일</strong></td></tr>
+    <tr><td>5월 노동절·어린이날</td><td>5월 4일(화), 6일(목), 7일(금) — 3일</td><td>5월 1일(토) ~ 9일(일), <strong>9일</strong></td></tr>
+    <tr><td>10월 개천절·한글날</td><td>10월 5일(화) ~ 8일(금) — 4일</td><td>10월 2일(토) ~ 11일(월), <strong>10일</strong></td></tr>
+    <tr><td>연말연시</td><td>12월 28일(화) ~ 31일(금) — 4일</td><td>12월 25일(토) ~ 2028년 1월 2일(일), <strong>9일</strong></td></tr>
+  </tbody>
+</table>
+<p>연차를 하루만 쓸 수 있다면 <strong>5월 4일(화)</strong>이 좋아요. 노동절 대체공휴일(5월 3일)과 어린이날(5월 5일) 사이라서 5월 1일(토)부터 5일(수)까지 5일을 쉬어요. 부처님오신날 다음 날인 <strong>5월 14일(금)</strong>에 연차를 쓰면 5월 13일(목)부터 16일(일)까지 4일 연휴가 돼요.</p>
+<p>연차 없이 3일 이상 쉬는 연휴는 모두 <strong>10번</strong>이에요. 신정(1월 1~3일), 설날(2월 6~9일, 4일), 삼일절(2월 27일~3월 1일), 노동절(5월 1~3일), 제헌절(7월 17~19일), 광복절(8월 14~16일), 추석(9월 14~16일), 개천절(10월 2~4일), 한글날(10월 9~11일), 성탄절(12월 25~27일)이에요.</p>
+
+<h2>대체공휴일 규칙</h2>
+<p>대체공휴일은 「공휴일에 관한 법률」과 「관공서의 공휴일에 관한 규정」에 따라, 공휴일이 주말이나 다른 공휴일과 겹칠 때 그다음 첫 번째 평일(공휴일이 아닌 날)을 하루 더 쉬게 하는 제도예요. 공휴일마다 적용 기준이 달라요.</p>
+<table>
+  <thead><tr><th>공휴일</th><th>대체공휴일이 생기는 경우</th><th>2027년</th></tr></thead>
+  <tbody>
+    <tr><td>설날·추석 연휴</td><td>연휴가 <strong>일요일</strong>이나 다른 공휴일과 겹칠 때 (토요일은 해당 없음)</td><td>설날 2월 7일(일) → 2월 9일(화)</td></tr>
+    <tr><td>삼일절·광복절·개천절·한글날·제헌절</td><td><strong>토요일·일요일</strong>이나 다른 공휴일과 겹칠 때</td><td>제헌절·광복절·개천절·한글날 4일</td></tr>
+    <tr><td>어린이날·부처님오신날·성탄절·노동절</td><td><strong>토요일·일요일</strong>이나 다른 공휴일과 겹칠 때</td><td>노동절 5월 3일, 성탄절 12월 27일</td></tr>
+    <tr><td>신정·현충일</td><td>대체공휴일 없음</td><td>현충일 6월 6일(일) 대체 없음</td></tr>
+  </tbody>
+</table>
+<p>그래서 설날 연휴 첫날인 2월 6일은 토요일이지만 대체공휴일이 생기지 않고, 일요일과 겹친 설날(2월 7일) 하루만 2월 9일(화)로 대체돼요. 2027년 대체공휴일은 모두 <strong>7일</strong>이에요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>2027년 대체공휴일은 며칠이고 언제인가요?</h3>
+<p>모두 7일이에요. 2월 9일(화, 설날), 5월 3일(월, 노동절), 7월 19일(월, 제헌절), 8월 16일(월, 광복절), 10월 4일(월, 개천절), 10월 11일(월, 한글날), 12월 27일(월, 성탄절)이에요. 설날 대체공휴일을 빼면 모두 월요일이라 토·일·월 3일 연휴가 돼요.</p>
+<h3>노동절(근로자의 날)도 공휴일인가요?</h3>
+<p>네. 2026년부터 근로자의 날이 노동절로 이름이 바뀌고 관공서 공휴일로 지정돼, 공무원과 교사도 쉬어요. 2027년 노동절은 토요일이라 5월 3일(월)이 대체공휴일이에요. 노동절 당일은 「노동절 제정에 관한 법률」에 따라 사업장 규모와 관계없이 유급휴일이에요. 다만 대체공휴일인 5월 3일은 다른 공휴일과 같아서, 민간 회사는 상시 근로자 5명 이상이면 유급휴일로 줘야 하고 5명 미만이면 회사 규정을 따라요.</p>
+<h3>2027년에 선거일이나 임시공휴일이 있나요?</h3>
+<p>2027년에는 공휴일이 되는 전국 단위 선거가 없어요. 대통령선거는 2030년, 국회의원선거는 2028년, 지방선거는 2026년에 치러져요. 임시공휴일은 아직 지정되지 않았고, 정부가 지정하면 공휴일 수와 연휴가 바뀔 수 있어요.</p>
+<h3>5인 미만 사업장도 공휴일에 쉬나요?</h3>
+<p>근로기준법은 상시 근로자 5명 이상 사업장에만 관공서 공휴일을 유급휴일로 주도록 하고 있어요. 5명 미만 사업장은 공휴일에 쉬는지와 수당이 회사 규정에 따라 달라서, 근로계약서나 취업규칙을 확인해 보세요. 노동절(5월 1일)만은 규모와 관계없이 유급휴일이에요.</p>
+<h3>연차 꿀조합 계산기는 어떤 기준으로 계산하나요?</h3>
+<p>토·일요일에 쉬고 관공서 공휴일과 대체공휴일에 모두 쉬는 주 5일 근무를 기준으로 해요. 연차는 2027년 평일에만 쓰고, 연말 연휴는 2028년 1월 1일(토) 신정까지 이어서 계산해요. 교대 근무나 회사 창립기념일처럼 휴무일이 다르면 결과가 달라질 수 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:annual-leave-calculator}}">연차 계산기</a>: 입사일로 내 연차 개수 계산</li>
+  <li><a href="{{LINK:dday-calculator}}">디데이 계산기</a>: 다음 연휴까지 남은 날 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "2027년 대체공휴일은 며칠이고 언제인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "모두 7일이에요. 2월 9일(화, 설날), 5월 3일(월, 노동절), 7월 19일(월, 제헌절), 8월 16일(월, 광복절), 10월 4일(월, 개천절), 10월 11일(월, 한글날), 12월 27일(월, 성탄절)이에요. 설날 대체공휴일을 빼면 모두 월요일이라 토·일·월 3일 연휴가 돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "노동절(근로자의 날)도 공휴일인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네. 2026년부터 근로자의 날이 노동절로 이름이 바뀌고 관공서 공휴일로 지정돼, 공무원과 교사도 쉬어요. 2027년 노동절은 토요일이라 5월 3일(월)이 대체공휴일이에요. 노동절 당일은 「노동절 제정에 관한 법률」에 따라 사업장 규모와 관계없이 유급휴일이에요. 다만 대체공휴일인 5월 3일은 다른 공휴일과 같아서, 민간 회사는 상시 근로자 5명 이상이면 유급휴일로 줘야 하고 5명 미만이면 회사 규정을 따라요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 선거일이나 임시공휴일이 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년에는 공휴일이 되는 전국 단위 선거가 없어요. 대통령선거는 2030년, 국회의원선거는 2028년, 지방선거는 2026년에 치러져요. 임시공휴일은 아직 지정되지 않았고, 정부가 지정하면 공휴일 수와 연휴가 바뀔 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "5인 미만 사업장도 공휴일에 쉬나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "근로기준법은 상시 근로자 5명 이상 사업장에만 관공서 공휴일을 유급휴일로 주도록 하고 있어요. 5명 미만 사업장은 공휴일에 쉬는지와 수당이 회사 규정에 따라 달라서, 근로계약서나 취업규칙을 확인해 보세요. 노동절(5월 1일)만은 규모와 관계없이 유급휴일이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "연차 꿀조합 계산기는 어떤 기준으로 계산하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "토·일요일에 쉬고 관공서 공휴일과 대체공휴일에 모두 쉬는 주 5일 근무를 기준으로 해요. 연차는 2027년 평일에만 쓰고, 연말 연휴는 2028년 1월 1일(토) 신정까지 이어서 계산해요. 교대 근무나 회사 창립기념일처럼 휴무일이 다르면 결과가 달라질 수 있어요."
+   }
+  }
+ ]
+}
+</script>
