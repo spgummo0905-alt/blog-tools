@@ -27,6 +27,11 @@ tools/
 | 글자수 세기 | `tools/character-counter` | 완성 |
 | 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
 | 실업급여 계산기 | `tools/unemployment-benefit-calculator` | 완성 |
+| 2027년 나이 조견표 (띠·학년) | `tools/age-table-2027` | 완성 |
+| 2027 공휴일·연휴 달력 (연차 꿀조합) | `tools/holidays-2027` | 완성 |
+| 2027 정부 지원금 신청 일정·지원금 찾기 | `tools/support-calendar-2027` | 완성 |
+| 2027 연말정산 일정·공제 체크리스트 | `tools/year-end-tax-2027` | 완성 |
+| 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 | 랜덤 뽑기 모음 (사다리타기·돌림판·제비뽑기·팀 나누기) | `tools/random-picker` | 완성 |
 
 ## 작업 규칙
