@@ -34,6 +34,7 @@ tools/
 | 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 | 랜덤 뽑기 모음 (사다리타기·돌림판·제비뽑기·팀 나누기) | `tools/random-picker` | 완성 |
 | 전역일 계산기 (복무율·D-day) | `tools/discharge-date-calculator` | 완성 |
+| 육아휴직 급여 계산기 (월별 지급액·6+6·한부모) | `tools/parental-leave-pay` | 완성 |
 
 ## 작업 규칙
 
