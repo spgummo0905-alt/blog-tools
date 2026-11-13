@@ -27,6 +27,7 @@ tools/
 | 글자수 세기 | `tools/character-counter` | 완성 |
 | 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
 | 실업급여 계산기 | `tools/unemployment-benefit-calculator` | 완성 |
+| 랜덤 뽑기 모음 (사다리타기·돌림판·제비뽑기·팀 나누기) | `tools/random-picker` | 완성 |
 
 ## 작업 규칙
 
