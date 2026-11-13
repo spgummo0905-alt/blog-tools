@@ -1,0 +1,348 @@
+<!-- 대출 이자 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kln" data-kln>
+  <style>
+    .kln{--kln-accent:#3b6ef5;--kln-accent-soft:#eef3ff;--kln-text:#1d2433;--kln-sub:#6b7385;--kln-line:#e3e7ef;--kln-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kln-line);border-radius:20px;background:var(--kln-bg);
+      color:var(--kln-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kln [hidden]{display:none!important}
+    .kln *,.kln *::before,.kln *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kln .kln-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kln .kln-desc{margin-top:4px;font-size:14px;color:var(--kln-sub)}
+    .kln .kln-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kln .kln-tab{height:40px;border:0;border-radius:10px;background:none;color:var(--kln-sub);font-size:14px;font-weight:600;cursor:pointer;
+      white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+    .kln .kln-tab:hover{color:var(--kln-text)}
+    .kln .kln-tab.kln-on{background:#fff;color:var(--kln-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kln .kln-seg{display:inline-grid;grid-template-columns:1fr 1fr;gap:2px;padding:3px;border-radius:10px;background:#f1f3f8}
+    .kln .kln-seg .kln-tab{height:28px;padding:0 12px;font-size:13px;border-radius:8px}
+    .kln .kln-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kln-text)}
+    .kln .kln-label small{font-size:12.5px;font-weight:500;color:var(--kln-sub)}
+    .kln .kln-field{position:relative}
+    .kln .kln-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kln-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kln-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kln .kln-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kln .kln-in:focus{border-color:var(--kln-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kln .kln-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kln-sub);pointer-events:none}
+    .kln .kln-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kln .kln-chip{height:32px;padding:0 12px;border:1.5px solid var(--kln-line);border-radius:999px;background:#fff;color:var(--kln-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kln .kln-chip:hover{border-color:#c9d3ea;color:var(--kln-text)}
+    .kln .kln-chip.kln-on{border-color:var(--kln-accent);background:var(--kln-accent-soft);color:var(--kln-accent)}
+    .kln .kln-hint{margin-top:6px;font-size:12.5px;color:var(--kln-sub);word-break:keep-all}
+    .kln .kln-read{margin-top:6px;font-size:13px;font-weight:600;color:var(--kln-accent);min-height:19px}
+    .kln .kln-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .kln .kln-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kln .kln-result.kln-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kln .kln-result-inner{overflow:hidden}
+    .kln .kln-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kln-accent-soft);text-align:center}
+    .kln .kln-main-label{font-size:14px;color:var(--kln-sub)}
+    .kln .kln-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kln-accent);line-height:1.2;word-break:keep-all}
+    .kln .kln-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kln .kln-sub{margin-top:6px;font-size:14px;color:var(--kln-sub);word-break:keep-all}
+    .kln .kln-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kln .kln-card{min-width:0;padding:14px;border:1px solid var(--kln-line);border-radius:14px;background:#fff}
+    .kln .kln-card-k{font-size:12px;color:var(--kln-sub)}
+    .kln .kln-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kln-text);word-break:keep-all}
+    .kln .kln-h{margin:18px 0 8px;font-size:14px;font-weight:700;color:var(--kln-text)}
+    .kln .kln-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--kln-line);border-radius:14px}
+    .kln .kln-table{width:100%;border:0;border-collapse:collapse;font-size:13px;margin:0}
+    .kln .kln-table th,.kln .kln-table td{padding:9px 10px;border:0;border-bottom:1px solid var(--kln-line);background:#fff;text-align:right;white-space:nowrap;color:var(--kln-text)}
+    .kln .kln-table thead th{background:#f8f9fc;font-size:12px;font-weight:600;color:var(--kln-sub)}
+    .kln .kln-table th:first-child,.kln .kln-table td:first-child{text-align:left}
+    .kln .kln-table tbody tr:last-child th,.kln .kln-table tbody tr:last-child td{border-bottom:0}
+    .kln .kln-table tbody th{font-weight:600}
+    .kln .kln-cmp tbody tr{cursor:pointer}
+    .kln .kln-cmp tbody tr.kln-cur th,.kln .kln-cmp tbody tr.kln-cur td{background:var(--kln-accent-soft);color:var(--kln-accent);font-weight:700}
+    .kln .kln-sch{font-size:12.5px}
+    .kln .kln-sch th,.kln .kln-sch td{padding:8px 8px}
+    .kln .kln-sch td:first-child{color:var(--kln-sub)}
+    .kln .kln-more{display:block;width:100%;height:40px;margin-top:8px;border:1.5px dashed var(--kln-line);border-radius:12px;background:#fff;
+      color:var(--kln-accent);font-size:13.5px;font-weight:600;cursor:pointer}
+    .kln .kln-note{margin-top:12px;font-size:12.5px;color:var(--kln-sub);word-break:keep-all}
+    .kln .kln-note li{margin-left:16px}
+    .kln .kln-actions{display:flex;gap:8px;margin-top:14px}
+    .kln .kln-btn{flex:1;height:44px;border:1.5px solid var(--kln-line);border-radius:12px;background:#fff;color:var(--kln-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kln .kln-btn:hover{background:#f4f6fa}
+    .kln .kln-btn:active{transform:scale(.98)}
+    .kln .kln-btn.kln-primary{border-color:var(--kln-accent);background:var(--kln-accent);color:#fff}
+    .kln .kln-btn.kln-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kln{padding:18px;border-radius:16px}.kln .kln-big{font-size:34px}.kln .kln-in{font-size:17px}
+      .kln .kln-tabs .kln-tab{font-size:13px}.kln .kln-card{padding:12px}.kln .kln-card-v{font-size:15.5px}.kln .kln-sch th,.kln .kln-sch td{padding:8px 6px}}
+    @media (prefers-reduced-motion:reduce){.kln .kln-result,.kln .kln-in,.kln .kln-btn,.kln .kln-chip,.kln .kln-tab{transition:none}}
+  </style>
+
+  <p class="kln-title">대출 이자 계산기</p>
+  <p class="kln-desc">대출금·금리·기간을 넣으면 월 상환액과 총 이자가 바로 나와요.</p>
+
+  <div class="kln-tabs" role="tablist" aria-label="상환 방식">
+    <button type="button" class="kln-tab kln-on" role="tab" aria-selected="true" data-tab="ann">원리금균등</button>
+    <button type="button" class="kln-tab" role="tab" aria-selected="false" data-tab="eq">원금균등</button>
+    <button type="button" class="kln-tab" role="tab" aria-selected="false" data-tab="bul">만기일시</button>
+  </div>
+
+  <label class="kln-label" for="kln-amt">대출금</label>
+  <div class="kln-field"><input class="kln-in" id="kln-amt" data-amt inputmode="numeric" placeholder="10,000" autocomplete="off"><span class="kln-unit">만원</span></div>
+  <p class="kln-read" data-read></p>
+  <div class="kln-chips" data-amt-chips></div>
+
+  <p class="kln-label"><label for="kln-term">대출 기간</label>
+    <span class="kln-seg" role="group" aria-label="기간 단위">
+      <button type="button" class="kln-tab kln-on" data-unit="y" aria-pressed="true">년</button>
+      <button type="button" class="kln-tab" data-unit="m" aria-pressed="false">개월</button>
+    </span></p>
+  <div class="kln-field"><input class="kln-in" id="kln-term" data-term inputmode="numeric" placeholder="30" autocomplete="off"><span class="kln-unit" data-term-unit>년</span></div>
+
+  <label class="kln-label" for="kln-rate">연 이자율</label>
+  <div class="kln-field"><input class="kln-in" id="kln-rate" data-rate inputmode="decimal" placeholder="4.0" autocomplete="off"><span class="kln-unit">%</span></div>
+
+  <div data-grace-box>
+    <label class="kln-label" for="kln-grace"><span>거치기간 <small>(선택)</small></span></label>
+    <div class="kln-field"><input class="kln-in" id="kln-grace" data-grace inputmode="numeric" placeholder="0" autocomplete="off"><span class="kln-unit">개월</span></div>
+    <p class="kln-hint">거치기간은 대출 기간에 포함되고, 그동안은 이자만 내요.</p>
+  </div>
+
+  <p class="kln-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kln-result" data-result aria-live="polite">
+    <div class="kln-result-inner">
+      <div class="kln-main">
+        <p class="kln-main-label" data-main-label></p>
+        <p class="kln-big" data-big></p>
+        <p class="kln-sub" data-sub></p>
+      </div>
+      <div class="kln-grid">
+        <div class="kln-card"><p class="kln-card-k">총 이자</p><p class="kln-card-v" data-total-int></p></div>
+        <div class="kln-card"><p class="kln-card-k">총 상환액 (원금+이자)</p><p class="kln-card-v" data-total-pay></p></div>
+      </div>
+
+      <p class="kln-h">상환 방식별 비교</p>
+      <div class="kln-scroll">
+        <table class="kln-table kln-cmp">
+          <thead><tr><th scope="col">방식</th><th scope="col">첫 달 상환액</th><th scope="col">총 이자</th></tr></thead>
+          <tbody data-cmp></tbody>
+        </table>
+      </div>
+
+      <p class="kln-h">월별 상환 스케줄</p>
+      <div class="kln-scroll">
+        <table class="kln-table kln-sch">
+          <thead><tr><th scope="col">회차</th><th scope="col">상환액</th><th scope="col">원금</th><th scope="col">이자</th><th scope="col">잔액</th></tr></thead>
+          <tbody data-sch></tbody>
+        </table>
+      </div>
+      <button type="button" class="kln-more" data-more hidden></button>
+
+      <ul class="kln-note">
+        <li>매달 이자는 남은 원금 × 연 이자율 ÷ 12로 계산하고 원 단위로 반올림했어요. 끝전은 마지막 회차에서 맞춰 잔액이 0원이 돼요.</li>
+        <li>은행마다 일할 계산(실제 날짜 수로 이자 계산)과 끝전 처리 방식이 달라 실제 금액과 몇 원~몇백 원 차이 날 수 있어요.</li>
+        <li>변동금리는 금리가 바뀌면 상환액도 달라져요. 중도상환수수료, 보증료, 인지세 같은 부대비용은 포함하지 않았어요.</li>
+      </ul>
+      <div class="kln-actions">
+        <button type="button" class="kln-btn" data-reset>다시 입력</button>
+        <button type="button" class="kln-btn kln-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kln]');
+    if (!root || root.__kln) return;
+    root.__kln = true;
+
+    var NAMES = { ann: '원리금균등', eq: '원금균등', bul: '만기일시' };
+    var CHIPS = [3000, 5000, 10000, 20000, 30000, 50000]; // 만원
+    var MAX_MONTHS = 600, MAX_RATE = 30, PREVIEW = 12;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var amtI = $('[data-amt]'), rateI = $('[data-rate]'), termI = $('[data-term]'), graceI = $('[data-grace]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), moreB = $('[data-more]');
+    var method = 'ann', unit = 'y', expanded = false, rows = [], lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(n) + '원'; }
+    function num(s) { return parseFloat(String(s).replace(/,/g, '')); }
+    // 만원 단위 → "1억 2,000만원"
+    function korMan(man) {
+      var eok = Math.floor(man / 10000), rest = man % 10000;
+      if (!eok) return comma(rest) + '만원';
+      return comma(eok) + '억' + (rest ? ' ' + comma(rest) + '만원' : '원');
+    }
+    function period(m) {
+      var y = Math.floor(m / 12), r = m % 12;
+      return (y ? y + '년' : '') + (y && r ? ' ' : '') + (r ? r + '개월' : '');
+    }
+
+    // 상환 스케줄: [상환액, 원금, 이자, 잔액] 배열. 회차별 원 단위 반올림, 마지막 회차에서 잔액 0으로 맞춤
+    function schedule(P, annual, n, grace, how) {
+      var r = annual / 100 / 12, bal = P, out = [], i, k, pr;
+      if (how === 'bul') grace = 0;
+      for (k = 0; k < grace; k++) { i = Math.round(bal * r); out.push([i, 0, i, bal]); }
+      var m = n - grace, pay = 0, pp = 0;
+      if (how === 'ann') pay = r === 0 ? Math.round(P / m) : Math.round(P * r * Math.pow(1 + r, m) / (Math.pow(1 + r, m) - 1));
+      if (how === 'eq') pp = Math.round(P / m);
+      for (k = 1; k <= m; k++) {
+        i = Math.round(bal * r);
+        if (k === m) pr = bal;
+        else pr = how === 'ann' ? Math.min(pay - i, bal) : how === 'eq' ? Math.min(pp, bal) : 0;
+        bal -= pr;
+        out.push([pr + i, pr, i, bal]);
+      }
+      return out;
+    }
+    function totalInt(s) { var t = 0; for (var k = 0; k < s.length; k++) t += s[k][2]; return t; }
+
+    // 대출금 칩
+    var chipBox = $('[data-amt-chips]');
+    CHIPS.forEach(function (v) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kln-chip'; b.setAttribute('data-v', v);
+      b.textContent = korMan(v).replace(/원$/, '').replace(/,000만$/, '천만');
+      b.addEventListener('click', function () { amtI.value = comma(v); syncAmt(); calc(); });
+      chipBox.appendChild(b);
+    });
+    function syncAmt() {
+      var v = num(amtI.value);
+      $('[data-read]').textContent = v > 0 ? korMan(v) : '';
+      $$('.kln-chip').forEach(function (c) { c.classList.toggle('kln-on', +c.getAttribute('data-v') === v); });
+    }
+
+    function hide(text) { result.classList.remove('kln-show'); msg.textContent = text || ''; }
+
+    function renderSchedule() {
+      var lim = expanded ? rows.length : Math.min(PREVIEW, rows.length), h = '';
+      for (var k = 0; k < lim; k++) {
+        var x = rows[k];
+        h += '<tr><td>' + (k + 1) + '</td><td>' + comma(x[0]) + '</td><td>' + comma(x[1]) + '</td><td>' + comma(x[2]) + '</td><td>' + comma(x[3]) + '</td></tr>';
+      }
+      $('[data-sch]').innerHTML = h;
+      moreB.hidden = rows.length <= PREVIEW;
+      moreB.textContent = expanded ? '처음 ' + PREVIEW + '회만 보기' : '전체 ' + rows.length + '회 보기';
+    }
+
+    function calc() {
+      $('[data-grace-box]').hidden = method === 'bul';
+      if (!amtI.value || rateI.value === '' || !termI.value) return hide('');
+      var man = num(amtI.value), rate = num(rateI.value), t = num(termI.value);
+      var gv = graceI.value === '' ? 0 : num(graceI.value);
+      if (!(man > 0)) return hide('대출금을 1만원 이상으로 입력해 주세요.');
+      if (isNaN(rate) || rate < 0 || rate > MAX_RATE) return hide('연 이자율은 0~' + MAX_RATE + '% 사이로 입력해 주세요.');
+      var n = unit === 'y' ? t * 12 : t;
+      if (!(n >= 1) || n !== Math.floor(n)) return hide('대출 기간을 다시 확인해 주세요.');
+      if (n > MAX_MONTHS) return hide('대출 기간은 50년(600개월)까지 계산할 수 있어요.');
+      var grace = method === 'bul' ? 0 : gv;
+      if (grace !== Math.floor(grace) || grace < 0) return hide('거치기간을 다시 확인해 주세요.');
+      if (grace >= n) return hide('거치기간은 대출 기간보다 짧아야 해요.');
+      msg.textContent = '';
+
+      var P = man * 10000, all = {}, ints = {};
+      ['ann', 'eq', 'bul'].forEach(function (h) { all[h] = schedule(P, rate, n, gv < n ? gv : 0, h); ints[h] = totalInt(all[h]); });
+      rows = all[method];
+      var ti = ints[method], first = rows[grace], last = rows[rows.length - 1];
+      var big = $('[data-big]'), sub = $('[data-sub]'), label = $('[data-main-label]');
+      var graceTxt = grace ? '거치 ' + period(grace) + ' 동안은 이자만 월 ' + won(rows[0][0]) + ' · ' : '';
+
+      if (method === 'ann') {
+        label.textContent = (grace ? '거치 후 ' : '') + '월 상환액 (원리금균등)';
+        big.innerHTML = comma(first[0]) + '<small>원</small>';
+        sub.textContent = graceTxt + period(n - grace) + ' 동안 매달 같은 금액을 내요';
+      } else if (method === 'eq') {
+        label.textContent = (grace ? '거치 후 ' : '') + '첫 달 상환액 (원금균등)';
+        big.innerHTML = comma(first[0]) + '<small>원</small>';
+        sub.textContent = graceTxt + '마지막 달 ' + won(last[0]) + ' · 매달 원금 ' + won(first[1]) + '씩 갚아요';
+      } else {
+        label.textContent = '매달 내는 이자 (만기일시)';
+        big.innerHTML = comma(first[0]) + '<small>원</small>';
+        sub.textContent = '만기(' + n + '회차)에 원금과 이자 ' + won(last[0]) + '을 한 번에 갚아요';
+      }
+      $('[data-total-int]').textContent = won(ti);
+      $('[data-total-pay]').textContent = won(P + ti);
+
+      var ch = '';
+      ['ann', 'eq', 'bul'].forEach(function (h) {
+        var s = all[h], f = s[h === 'bul' ? 0 : (gv < n ? gv : 0)];
+        ch += '<tr data-pick="' + h + '"' + (h === method ? ' class="kln-cur"' : '') + '><th scope="row">' + NAMES[h] + '</th><td>' + won(f[0]) + '</td><td>' + won(ints[h]) + '</td></tr>';
+      });
+      $('[data-cmp]').innerHTML = ch;
+      renderSchedule();
+      result.classList.add('kln-show');
+
+      lastText = '[대출 이자 계산 결과]\n대출금: ' + korMan(man) + '\n연 이자율: ' + rate + '%\n대출 기간: ' + period(n) + ' (' + n + '회)' +
+        (grace ? '\n거치기간: ' + period(grace) + ' (이자만 월 ' + won(rows[0][0]) + ')' : '') +
+        '\n상환 방식: ' + NAMES[method] +
+        '\n' + (method === 'bul' ? '매달 이자: ' : (method === 'eq' ? '첫 달' : '월') + ' 상환액: ') + won(first[0]) +
+        (method === 'eq' ? '\n마지막 달 상환액: ' + won(last[0]) : '') +
+        '\n총 이자: ' + won(ti) + '\n총 상환액: ' + won(P + ti) +
+        '\n(비교) 원리금균등 총 이자 ' + won(ints.ann) + ' / 원금균등 ' + won(ints.eq) + ' / 만기일시 ' + won(ints.bul);
+    }
+
+    function setMethod(h) {
+      method = h;
+      $$('[data-tab]').forEach(function (x) { var on = x.getAttribute('data-tab') === h; x.classList.toggle('kln-on', on); x.setAttribute('aria-selected', on); });
+      calc();
+    }
+    $$('[data-tab]').forEach(function (t) { t.addEventListener('click', function () { setMethod(t.getAttribute('data-tab')); }); });
+    $('[data-cmp]').addEventListener('click', function (e) {
+      var tr = e.target.closest('[data-pick]');
+      if (tr) setMethod(tr.getAttribute('data-pick'));
+    });
+
+    $$('[data-unit]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var u = b.getAttribute('data-unit');
+        if (u === unit) return;
+        var v = num(termI.value);
+        if (v > 0) {
+          if (u === 'm') termI.value = String(v * 12);
+          else if (v % 12 === 0) termI.value = String(v / 12);
+          else termI.value = '';
+        }
+        unit = u;
+        $$('[data-unit]').forEach(function (x) { var on = x === b; x.classList.toggle('kln-on', on); x.setAttribute('aria-pressed', on); });
+        $('[data-term-unit]').textContent = u === 'y' ? '년' : '개월';
+        termI.placeholder = u === 'y' ? '30' : '360';
+        calc();
+      });
+    });
+
+    amtI.addEventListener('input', function () {
+      var v = amtI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 7);
+      amtI.value = v ? comma(v) : '';
+      syncAmt(); calc();
+    });
+    rateI.addEventListener('input', function () {
+      var v = rateI.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').replace(/^(\d*\.\d{0,3}).*$/, '$1').slice(0, 6);
+      if (v !== rateI.value) rateI.value = v;
+      calc();
+    });
+    [termI, graceI].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').slice(0, 3);
+        if (v !== inp.value) inp.value = v;
+        calc();
+      });
+    });
+
+    moreB.addEventListener('click', function () { expanded = !expanded; renderSchedule(); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      amtI.value = rateI.value = termI.value = graceI.value = ''; expanded = false;
+      syncAmt(); hide(''); amtI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 대출 이자 계산기 위젯 끝 -->
