@@ -37,6 +37,7 @@ tools/
 | 육아휴직 급여 계산기 (월별 지급액·6+6·한부모) | `tools/parental-leave-pay` | 완성 |
 | 부동산 중개수수료(복비) 계산기 | `tools/brokerage-fee-calculator` | 완성 |
 | 청약 가점 계산기 (84점 만점, 점수 오르는 날) | `tools/subscription-score-calculator` | 완성 |
+| 주택 취득세 계산기 (1주택·다주택 중과·생애최초 감면) | `tools/acquisition-tax-calculator` | 완성 |
 
 ## 작업 규칙
 
