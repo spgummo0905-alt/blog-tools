@@ -1,0 +1,266 @@
+<!-- 2027년 나이 조견표 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kat" data-kat>
+  <style>
+    .kat{--kat-accent:#3b6ef5;--kat-accent-soft:#eef3ff;--kat-text:#1d2433;--kat-sub:#6b7385;--kat-line:#e3e7ef;--kat-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kat-line);border-radius:20px;background:var(--kat-bg);
+      color:var(--kat-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kat [hidden]{display:none!important}
+    .kat *,.kat *::before,.kat *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kat .kat-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kat .kat-desc{margin-top:4px;font-size:14px;color:var(--kat-sub)}
+    .kat .kat-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kat-text)}
+    .kat .kat-field{position:relative}
+    .kat .kat-in{width:100%;height:52px;padding:0 58px 0 14px;border:1.5px solid var(--kat-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kat-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kat .kat-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kat .kat-in:focus{border-color:var(--kat-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kat .kat-in.kat-err{border-color:#e0565b}
+    .kat .kat-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kat-sub);pointer-events:none}
+    .kat .kat-opts{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:14px}
+    .kat .kat-opt-k{font-size:13px;color:var(--kat-sub);min-width:52px}
+    .kat .kat-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kat .kat-chip{height:32px;padding:0 12px;border:1.5px solid var(--kat-line);border-radius:999px;background:#fff;color:var(--kat-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kat .kat-chip:hover{border-color:#c9d3ea;color:var(--kat-text)}
+    .kat .kat-chip.kat-on{border-color:var(--kat-accent);background:var(--kat-accent-soft);color:var(--kat-accent)}
+    .kat .kat-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .kat .kat-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kat .kat-result.kat-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kat .kat-result-inner{overflow:hidden}
+    .kat .kat-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--kat-accent-soft);text-align:center}
+    .kat .kat-main-label{font-size:14px;color:var(--kat-sub)}
+    .kat .kat-age{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kat-accent);line-height:1.2;white-space:nowrap}
+    .kat .kat-age small{font-size:22px;font-weight:700;margin:0 2px}
+    .kat .kat-others{margin-top:6px;font-size:14px;color:var(--kat-sub)}
+    .kat .kat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kat .kat-card{padding:14px;border:1px solid var(--kat-line);border-radius:14px;background:#fff}
+    .kat .kat-card-k{font-size:12px;color:var(--kat-sub)}
+    .kat .kat-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kat-text);word-break:keep-all}
+    .kat .kat-card-s{margin-top:2px;font-size:12px;color:var(--kat-sub);word-break:keep-all}
+    .kat .kat-ms{margin-top:8px;padding:14px;border:1px solid var(--kat-line);border-radius:14px;background:#fff}
+    .kat .kat-ms-t{font-size:12px;color:var(--kat-sub)}
+    .kat .kat-ms-list{list-style:none;margin-top:6px}
+    .kat .kat-ms-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0f2f6;font-size:14px}
+    .kat .kat-ms-list li:first-child{border-top:0}
+    .kat .kat-ms-name{word-break:keep-all}
+    .kat .kat-ms-when{flex:none;font-size:13px;font-weight:700;color:var(--kat-text);white-space:nowrap}
+    .kat .kat-ms-when.kat-now{color:var(--kat-accent)}
+    .kat .kat-ms-empty{margin-top:6px;font-size:13.5px;color:var(--kat-sub);word-break:keep-all}
+    .kat .kat-note{margin-top:12px;font-size:12.5px;color:var(--kat-sub)}
+    .kat .kat-note li{margin-left:16px}
+    .kat .kat-desc,.kat .kat-others,.kat .kat-note,.kat .kat-msg{word-break:keep-all}
+    .kat .kat-actions{display:flex;gap:8px;margin-top:14px}
+    .kat .kat-btn{flex:1;height:44px;border:1.5px solid var(--kat-line);border-radius:12px;background:#fff;color:var(--kat-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kat .kat-btn:hover{background:#f4f6fa}
+    .kat .kat-btn:active{transform:scale(.98)}
+    .kat .kat-btn.kat-primary{border-color:var(--kat-accent);background:var(--kat-accent);color:#fff}
+    .kat .kat-btn.kat-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kat{padding:18px;border-radius:16px}.kat .kat-age{font-size:38px}.kat .kat-in{font-size:17px}.kat .kat-card-v{font-size:16px}}
+    @media (prefers-reduced-motion:reduce){.kat .kat-result,.kat .kat-in,.kat .kat-btn,.kat .kat-chip{transition:none}}
+  </style>
+
+  <p class="kat-title">2027년 나이 조견표</p>
+  <p class="kat-desc">태어난 연도만 넣으면 나이·띠·학년을 바로 알려 줘요.</p>
+
+  <label class="kat-label" for="kat-y">출생연도</label>
+  <div class="kat-field"><input class="kat-in" id="kat-y" data-y inputmode="numeric" maxlength="4" placeholder="1995" autocomplete="bday-year"><span class="kat-unit">년생</span></div>
+
+  <div class="kat-opts">
+    <span class="kat-opt-k">기준 연도</span>
+    <div class="kat-chips" data-years role="group" aria-label="기준 연도">
+      <button type="button" class="kat-chip" data-year="2026" aria-pressed="false">2026년</button>
+      <button type="button" class="kat-chip kat-on" data-year="2027" aria-pressed="true">2027년</button>
+      <button type="button" class="kat-chip" data-year="2028" aria-pressed="false">2028년</button>
+    </div>
+  </div>
+  <div class="kat-opts">
+    <span class="kat-opt-k">생일</span>
+    <div class="kat-chips" data-bds role="group" aria-label="그해 생일이 지났는지">
+      <button type="button" class="kat-chip kat-on" data-bd="after" aria-pressed="true">지난 뒤</button>
+      <button type="button" class="kat-chip" data-bd="before" aria-pressed="false">지나기 전</button>
+    </div>
+  </div>
+
+  <p class="kat-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kat-result" data-result aria-live="polite">
+    <div class="kat-result-inner">
+      <div class="kat-main">
+        <p class="kat-main-label" data-main-label></p>
+        <p class="kat-age" data-age></p>
+        <p class="kat-others" data-others></p>
+      </div>
+      <div class="kat-grid">
+        <div class="kat-card"><p class="kat-card-k">띠 (양력 기준)</p><p class="kat-card-v" data-zodiac></p><p class="kat-card-s" data-color></p></div>
+        <div class="kat-card"><p class="kat-card-k">태어난 해 간지</p><p class="kat-card-v" data-ganji></p><p class="kat-card-s" data-hanja></p></div>
+        <div class="kat-card"><p class="kat-card-k" data-grade-k></p><p class="kat-card-v" data-grade></p><p class="kat-card-s" data-grade-s></p></div>
+        <div class="kat-card"><p class="kat-card-k">연 나이</p><p class="kat-card-v" data-yearage></p><p class="kat-card-s">기준 연도 − 출생연도</p></div>
+      </div>
+      <div class="kat-ms">
+        <p class="kat-ms-t" data-ms-t>나이 이정표</p>
+        <ul class="kat-ms-list" data-ms></ul>
+        <p class="kat-ms-empty" data-ms-empty hidden>성년, 선거권, 술·담배 구매, 병역판정검사 같은 주요 나이 기준은 모두 지났어요.</p>
+      </div>
+      <ul class="kat-note">
+        <li>띠는 양력 1월 1일 기준이에요. 음력 설(또는 입춘)을 기준으로 보면 1~2월생은 앞 해 띠일 수 있어요.</li>
+        <li>학년은 2009학년도 이후 기준(1~12월생이 같은 학년)이에요. 2002년 1~2월생까지의 빠른년생이나 조기·유예 입학, 재수·휴학은 다를 수 있어요.</li>
+      </ul>
+      <div class="kat-actions">
+        <button type="button" class="kat-btn" data-reset>다시 입력</button>
+        <button type="button" class="kat-btn kat-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kat]');
+    if (!root || root.__kat) return;
+    root.__kat = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var MIN = 1930, MAX = 2027;
+    var STEM = '갑을병정무기경신임계', STEM_H = '甲乙丙丁戊己庚辛壬癸';
+    var BRANCH = '자축인묘진사오미신유술해', BRANCH_H = '子丑寅卯辰巳午未申酉戌亥';
+    var ANIMAL = ['쥐', '소', '호랑이', '토끼', '용', '뱀', '말', '양', '원숭이', '닭', '개', '돼지'];
+    var COLOR = ['푸른', '붉은', '황금', '흰', '검은'];
+    var base = 2027, bd = 'after', lastText = '';
+
+    function mod(a, n) { return ((a % n) + n) % n; }
+    // 60갑자: 1984년이 갑자년. 천간 = (연도-4) mod 10, 지지 = (연도-4) mod 12
+    function ganji(y) {
+      var s = mod(y - 4, 10), b = mod(y - 4, 12);
+      return { name: STEM[s] + BRANCH[b], hanja: STEM_H[s] + BRANCH_H[b], animal: ANIMAL[b], color: COLOR[Math.floor(s / 2)] };
+    }
+
+    // 2027학년도처럼 기준 연도(B) 3월 기준 학년. 만 6세가 된 해의 다음 해 3월 입학 = B-Y가 7이면 초1
+    function grade(y, b) {
+      var g = b - y - 6;
+      if (g <= 0) {
+        var entry = y + 7;
+        return { k: b + '년 학년', v: '미취학', s: entry + '년 3월 초등학교 입학' };
+      }
+      if (g <= 6) return { k: b + '년 학년', v: '초등학교 ' + g + '학년', s: (y + 7) + '년 입학' };
+      if (g <= 9) return { k: b + '년 학년', v: '중학교 ' + (g - 6) + '학년', s: (y + 13) + '년 중학교 입학' };
+      if (g <= 12) return { k: b + '년 학년', v: '고등학교 ' + (g - 9) + '학년', s: (y + 16) + '년 고등학교 입학' };
+      var hb = ('0' + mod(y + 19, 100)).slice(-2) + '학번';
+      if (g === 13) return { k: b + '년 학년', v: '대학 1학년 나이', s: '재수 없이 진학하면 ' + hb };
+      return { k: '학번 (재수·휴학 없이)', v: hb + ' 나이', s: (y + 19) + '년 대학 입학 기준' };
+    }
+
+    // 나이 이정표: 기준 연도 이후에 오는 것만 보여 준다
+    function milestones(y, b) {
+      var list = [
+        { name: '초등학교 입학', year: y + 7, when: '3월' },
+        { name: '운전면허(보통) 응시 · 만 18세', year: y + 18, when: '생일부터' },
+        { name: '선거권 · 선거일 현재 만 18세', year: y + 18, when: '생일부터' },
+        { name: '병역판정검사(남성) · 19세 되는 해', year: y + 19, when: '' },
+        { name: '술·담배 구매 가능 · 청소년보호법', year: y + 19, when: '1월 1일부터' },
+        { name: '성년(민법) · 만 19세', year: y + 19, when: '생일부터' }
+      ];
+      return list.filter(function (m) { return m.year >= b; });
+    }
+
+    function hide(text, err) {
+      result.classList.remove('kat-show');
+      msg.textContent = text || '';
+      yI.classList.toggle('kat-err', !!err);
+    }
+
+    function calc() {
+      var v = yI.value;
+      if (!v) return hide('');
+      if (v.length < 4) return hide('');
+      var y = +v;
+      if (y < MIN || y > MAX) return hide(MIN + '~' + MAX + '년 사이로 입력해 주세요.', true);
+      if (y > base) return hide(y + '년생은 ' + base + '년에 아직 태어나기 전이에요. 기준 연도를 바꿔 보세요.', true);
+
+      var yearAge = base - y;
+      var after = yearAge, before = yearAge - 1;
+      var gz = ganji(y), gr = grade(y, base);
+      var shown = bd === 'after' ? after : before;
+
+      msg.textContent = '';
+      yI.classList.remove('kat-err');
+      $('[data-main-label]').textContent = base + '년 · ' + y + '년생 · ' + (bd === 'after' ? '생일 지난 뒤' : '생일 전');
+      if (shown < 0) {
+        $('[data-age]').innerHTML = '<small>출생 전</small>';
+      } else {
+        $('[data-age]').innerHTML = '<small>만</small>' + shown + '<small>세</small>';
+      }
+      var other = bd === 'after'
+        ? (before < 0 ? '생일 전에는 아직 태어나기 전' : '생일 전에는 만 ' + before + '세')
+        : '생일 지난 뒤에는 만 ' + after + '세';
+      $('[data-others]').textContent = other + ' · 연 나이 ' + yearAge + '세';
+      $('[data-zodiac]').textContent = gz.animal + '띠';
+      $('[data-color]').textContent = gz.color + ' ' + gz.animal + '의 해';
+      $('[data-ganji]').textContent = gz.name + '년';
+      $('[data-hanja]').textContent = gz.hanja + '年 · 60갑자';
+      $('[data-grade-k]').textContent = gr.k;
+      $('[data-grade]').textContent = gr.v;
+      $('[data-grade-s]').textContent = gr.s;
+      $('[data-yearage]').textContent = yearAge + '세';
+
+      var ms = milestones(y, base), ul = $('[data-ms]');
+      ul.innerHTML = '';
+      ms.forEach(function (m) {
+        var li = document.createElement('li');
+        var n = document.createElement('span'); n.className = 'kat-ms-name'; n.textContent = m.name;
+        var w = document.createElement('span'); w.className = 'kat-ms-when' + (m.year === base ? ' kat-now' : '');
+        w.textContent = ((m.year === base ? '올해 ' : m.year + '년 ') + m.when).trim();
+        li.appendChild(n); li.appendChild(w); ul.appendChild(li);
+      });
+      $('[data-ms-t]').textContent = base + '년부터 다가오는 나이 이정표';
+      ul.hidden = !ms.length;
+      $('[data-ms-empty]').hidden = !!ms.length;
+      result.classList.add('kat-show');
+
+      lastText = '[' + base + '년 나이 조견표]\n출생연도: ' + y + '년생\n만 나이: ' +
+        (before < 0 ? '생일 전 출생 전' : '생일 전 ' + before + '세') + ', 생일 후 ' + after + '세\n연 나이: ' + yearAge + '세' +
+        '\n띠: ' + gz.animal + '띠 (' + gz.name + '년, 양력 기준)\n' + gr.k + ': ' + gr.v + ' (' + gr.s + ')' +
+        (ms.length ? '\n이정표: ' + ms.map(function (m) { return m.name.split(' · ')[0] + ' ' + m.year + '년'; }).join(', ') : '');
+    }
+
+    yI.addEventListener('input', function () {
+      var v = yI.value.replace(/\D/g, '').slice(0, 4);
+      if (v !== yI.value) yI.value = v;
+      calc();
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length >= 4) { e.preventDefault(); yI.value = t.slice(0, 4); calc(); }
+    });
+
+    function chipGroup(sel, attr, set) {
+      $$(sel).forEach(function (c) {
+        c.addEventListener('click', function () {
+          $$(sel).forEach(function (o) { var on = o === c; o.classList.toggle('kat-on', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+          set(c.getAttribute(attr));
+          calc();
+        });
+      });
+    }
+    chipGroup('[data-year]', 'data-year', function (v) { base = +v; });
+    chipGroup('[data-bd]', 'data-bd', function (v) { bd = v; });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = ''; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 2027년 나이 조견표 위젯 끝 -->

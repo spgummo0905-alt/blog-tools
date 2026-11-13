@@ -27,6 +27,7 @@ tools/
 | 글자수 세기 | `tools/character-counter` | 완성 |
 | 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
 | 실업급여 계산기 | `tools/unemployment-benefit-calculator` | 완성 |
+| 2027년 나이 조견표 (띠·학년) | `tools/age-table-2027` | 완성 |
 
 ## 작업 규칙
 
