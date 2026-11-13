@@ -10,6 +10,7 @@ tools/
     widget.html   계산기만 (다른 글에 끼워 넣을 때)
     post.html     블로그 글 본문 전체 (HTML 모드에 통째로 붙여 넣기)
     README.md     제목·태그 추천, 붙여 넣는 방법
+    PUBLISH.md    예약발행 프롬프트 (Chrome 연결 세션에 붙여 넣기)
 ```
 
 ## 도구 목록
