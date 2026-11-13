@@ -33,6 +33,7 @@ tools/
 | 2027 연말정산 일정·공제 체크리스트 | `tools/year-end-tax-2027` | 완성 |
 | 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 | 랜덤 뽑기 모음 (사다리타기·돌림판·제비뽑기·팀 나누기) | `tools/random-picker` | 완성 |
+| 전역일 계산기 (복무율·D-day) | `tools/discharge-date-calculator` | 완성 |
 
 ## 작업 규칙
 
