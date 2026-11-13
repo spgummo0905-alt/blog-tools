@@ -22,6 +22,7 @@ tools/
 | 평수 계산기 | `tools/pyeong-converter` | 완성 |
 | 퇴직금 계산기 | `tools/severance-calculator` | 완성 |
 | 디데이 계산기 | `tools/dday-calculator` | 완성 |
+| 연봉 실수령액 계산기 | `tools/salary-calculator` | 완성 |
 
 ## 작업 규칙
 
