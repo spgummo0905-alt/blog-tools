@@ -1,0 +1,322 @@
+<!-- 연차 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kal" data-kal>
+  <style>
+    .kal{--kal-accent:#3b6ef5;--kal-accent-soft:#eef3ff;--kal-text:#1d2433;--kal-sub:#6b7385;--kal-line:#e3e7ef;--kal-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kal-line);border-radius:20px;background:var(--kal-bg);
+      color:var(--kal-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kal [hidden]{display:none!important}
+    .kal *,.kal *::before,.kal *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kal .kal-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kal .kal-desc{margin-top:4px;font-size:14px;color:var(--kal-sub)}
+    .kal .kal-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kal .kal-tab{height:40px;border:0;border-radius:10px;background:none;color:var(--kal-sub);font-size:14px;font-weight:600;cursor:pointer;
+      white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
+    .kal .kal-tab:hover{color:var(--kal-text)}
+    .kal .kal-tab.kal-on{background:#fff;color:var(--kal-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kal .kal-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kal-text)}
+    .kal .kal-label small{font-weight:500;color:var(--kal-sub)}
+    .kal .kal-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--kal-line);border-radius:12px;background:#f8f9fc;
+      font-size:17px;font-weight:600;color:var(--kal-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;
+      -webkit-appearance:none;appearance:none;min-width:0;display:block}
+    .kal .kal-in:focus{border-color:var(--kal-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kal .kal-link{flex:none;border:0;background:none;color:var(--kal-accent);font-size:13px;font-weight:600;cursor:pointer;padding:2px}
+    .kal .kal-today{display:flex;align-items:center;height:52px;padding:0 14px;border:1.5px dashed var(--kal-line);border-radius:12px;font-size:15px;color:var(--kal-sub)}
+    .kal .kal-hint{margin-top:6px;font-size:12.5px;color:var(--kal-sub)}
+    .kal .kal-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kal .kal-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kal .kal-result.kal-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kal .kal-result-inner{overflow:hidden}
+    .kal .kal-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kal-accent-soft);text-align:center}
+    .kal .kal-main-label{font-size:14px;color:var(--kal-sub)}
+    .kal .kal-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kal-accent);line-height:1.2}
+    .kal .kal-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kal .kal-sub{margin-top:6px;font-size:14px;color:var(--kal-sub)}
+    .kal .kal-sub,.kal .kal-note,.kal .kal-desc,.kal .kal-hint,.kal .kal-box,.kal .kal-card-s{word-break:keep-all}
+    .kal .kal-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kal .kal-card{padding:14px;border:1px solid var(--kal-line);border-radius:14px;background:#fff}
+    .kal .kal-card-k{font-size:12px;color:var(--kal-sub)}
+    .kal .kal-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kal-text);word-break:keep-all}
+    .kal .kal-card-s{margin-top:2px;font-size:12px;color:var(--kal-sub)}
+    .kal .kal-box{margin-top:8px;padding:14px;border:1px solid var(--kal-line);border-radius:14px;background:#f8f9fc;font-size:13px;color:var(--kal-text)}
+    .kal .kal-box b{font-weight:700}
+    .kal .kal-box.kal-warn{border-color:#f3c9cb;background:#fff6f6}
+    .kal .kal-th{margin-top:16px;font-size:14px;font-weight:600}
+    .kal .kal-table{width:100%;margin-top:8px;border:1px solid var(--kal-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13.5px}
+    .kal .kal-table th,.kal .kal-table td{padding:9px 12px;border:0;border-bottom:1px solid var(--kal-line);background:#fff;text-align:left;font-weight:500;color:var(--kal-text);white-space:nowrap}
+    .kal .kal-table thead th{background:#f8f9fc;font-size:12px;color:var(--kal-sub);font-weight:600}
+    .kal .kal-table td:last-child,.kal .kal-table th:last-child{text-align:right}
+    .kal .kal-table td:last-child{font-weight:700}
+    .kal .kal-table td small{display:block;font-size:11.5px;color:var(--kal-sub);font-weight:400;white-space:normal;word-break:keep-all}
+    .kal .kal-table tr:last-child td{border-bottom:0}
+    .kal .kal-table .kal-next td{background:#f8f9fc;color:var(--kal-sub)}
+    .kal .kal-table .kal-next td:last-child{color:var(--kal-accent)}
+    .kal .kal-note{margin-top:12px;font-size:12.5px;color:var(--kal-sub)}
+    .kal .kal-note li{margin-left:16px}
+    .kal .kal-note li+li{margin-top:2px}
+    .kal .kal-actions{display:flex;gap:8px;margin-top:14px}
+    .kal .kal-btn{flex:1;height:44px;border:1.5px solid var(--kal-line);border-radius:12px;background:#fff;color:var(--kal-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kal .kal-btn:hover{background:#f4f6fa}
+    .kal .kal-btn:active{transform:scale(.98)}
+    .kal .kal-btn.kal-primary{border-color:var(--kal-accent);background:var(--kal-accent);color:#fff}
+    .kal .kal-btn.kal-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kal{padding:18px;border-radius:16px}.kal .kal-big{font-size:38px}.kal .kal-in{font-size:16px}.kal .kal-tab{font-size:13px}
+      .kal .kal-table th,.kal .kal-table td{padding:8px 10px}}
+    @media (prefers-reduced-motion:reduce){.kal .kal-result,.kal .kal-in,.kal .kal-btn,.kal .kal-tab{transition:none}}
+  </style>
+
+  <p class="kal-title">연차 계산기</p>
+  <p class="kal-desc">입사일만 넣으면 지금까지 생긴 연차와 다음 연차 날짜를 바로 알려 줘요.</p>
+
+  <div class="kal-tabs" role="tablist" aria-label="계산 기준">
+    <button type="button" class="kal-tab kal-on" role="tab" aria-selected="true" data-tab="hire">입사일 기준</button>
+    <button type="button" class="kal-tab" role="tab" aria-selected="false" data-tab="fiscal">회계연도 기준 (1월 1일)</button>
+  </div>
+
+  <label class="kal-label" for="kal-start">입사일</label>
+  <input class="kal-in" id="kal-start" type="date" data-start min="1950-01-01" max="2100-12-31" aria-label="입사일">
+
+  <p class="kal-label"><span>기준일 <small>(퇴사하면 마지막 근무일)</small></span><button type="button" class="kal-link" data-base-toggle>기준일 바꾸기</button></p>
+  <p class="kal-today" data-base-text>오늘 기준</p>
+  <input class="kal-in" type="date" data-base min="1950-01-01" max="2100-12-31" aria-label="기준일" hidden>
+  <p class="kal-hint" data-mode-hint>입사한 날을 기준으로 1년마다 연차가 생겨요.</p>
+
+  <p class="kal-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kal-result" data-result aria-live="polite">
+    <div class="kal-result-inner">
+      <div class="kal-main">
+        <p class="kal-main-label">입사 후 지금까지 생긴 연차</p>
+        <p class="kal-big"><span data-total>0</span><small>일</small></p>
+        <p class="kal-sub" data-sub></p>
+      </div>
+      <div class="kal-grid">
+        <div class="kal-card"><p class="kal-card-k">근속기간</p><p class="kal-card-v" data-tenure></p><p class="kal-card-s" data-tenure-s></p></div>
+        <div class="kal-card"><p class="kal-card-k">가장 최근 생긴 연차</p><p class="kal-card-v" data-last></p><p class="kal-card-s" data-last-s></p></div>
+        <div class="kal-card"><p class="kal-card-k">다음 연차</p><p class="kal-card-v" data-next></p><p class="kal-card-s" data-next-s></p></div>
+        <div class="kal-card"><p class="kal-card-k" data-c4-k></p><p class="kal-card-v" data-c4></p><p class="kal-card-s" data-c4-s></p></div>
+      </div>
+      <p class="kal-box" data-compare hidden></p>
+      <p class="kal-box kal-warn" data-warn hidden></p>
+      <p class="kal-th">언제 몇 일 생겼나요</p>
+      <table class="kal-table">
+        <thead><tr><th>생기는 날</th><th>구분</th><th>일수</th></tr></thead>
+        <tbody data-rows></tbody>
+      </table>
+      <ul class="kal-note">
+        <li>1년 동안 출근율이 80% 미만이면 그해에는 15일 대신 개근한 달 수만큼(1달 1일)만 생겨요.</li>
+        <li>입사 첫해 월차는 한 달을 빠짐없이 출근해야 생겨요. 결근한 달은 빼고 보세요.</li>
+        <li>상시 근로자 5명 미만 사업장과 주 15시간 미만 근로자는 연차 규정이 적용되지 않아요.</li>
+        <li>사용한 연차와 기한이 지나 사라진 연차는 빼지 않은, 생긴 일수의 합계예요.</li>
+      </ul>
+      <div class="kal-actions">
+        <button type="button" class="kal-btn" data-reset>다시 입력</button>
+        <button type="button" class="kal-btn kal-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kal]');
+    if (!root || root.__kal) return;
+    root.__kal = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var startI = $('[data-start]'), baseI = $('[data-base]'), baseText = $('[data-base-text]'), baseToggle = $('[data-base-toggle]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var mode = 'hire', lastText = '';
+
+    // 날짜는 1970-01-01부터 센 '일 번호'로 다룬다 (시간대·서머타임 영향 없음)
+    function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 864e5); }
+    function ymd(n) { var t = new Date(n * 864e5); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+    function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+    function today() { var t = new Date(); return dn(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+    // k개월 뒤 같은 날짜. 그 달에 같은 날이 없으면(예: 2월 30일) 다음 달 1일 (민법: 그 달 말일에 기간 만료 → 다음 날 발생)
+    function addMonths(n, k) {
+      var a = ymd(n), t = a.y * 12 + (a.m - 1) + k, y = Math.floor(t / 12), m = t - y * 12 + 1;
+      return a.d > dim(y, m) ? dn(y, m, 1) + dim(y, m) : dn(y, m, a.d);
+    }
+    function fmt(n) { var a = ymd(n); return a.y + '. ' + a.m + '. ' + a.d + '.'; }
+    function iso(n) { var a = ymd(n); return a.y + '-' + ('0' + a.m).slice(-2) + '-' + ('0' + a.d).slice(-2); }
+    function parse(v) {
+      var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!p || +p[1] < 1950 || +p[1] > 2100) return null;
+      return dn(+p[1], +p[2], +p[3]);
+    }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function r2(x) { return Math.round(x * 100) / 100; }
+    function days(x) { x = r2(x); return (x % 1 ? x.toFixed(2).replace(/0$/, '') : String(x)); }
+    function annual(n) { return Math.min(25, 15 + Math.floor((n - 1) / 2)); }   // 근속 n년을 채우면 생기는 연차
+    function tenure(s, e) {
+      var k = 0;
+      while (addMonths(s, k + 1) <= e) k++;
+      return { y: Math.floor(k / 12), m: k % 12, d: e - addMonths(s, k) };
+    }
+    function ymdText(t) { return (t.y ? t.y + '년 ' : '') + (t.y || t.m ? t.m + '개월 ' : '') + t.d + '일'; }
+
+    // 입사일 기준: 첫해 매월(1~11개월) 1일씩, 매 근속 1년마다 15일 + 가산
+    function hireEvents(s, until) {
+      var ev = [], k, n;
+      for (k = 1; k <= 11; k++) ev.push({ d: addMonths(s, k), v: 1, kind: '월차', label: k + '개월 개근' });
+      for (n = 1; ; n++) {
+        var d = addMonths(s, 12 * n);
+        ev.push({ d: d, v: annual(n), kind: '연차', label: '근속 ' + n + '년' });
+        if (d > until) break;
+      }
+      return ev;
+    }
+
+    // 회계연도 기준(1월 1일): 첫해 월차는 입사일 기준 그대로, 다음 해 1월 1일에 입사 연도 재직일수 비례분,
+    // 그다음 1월 1일부터 15일(입사 연도를 1년차로 보고 3년차부터 2년마다 +1일)
+    function fiscalEvents(s, until) {
+      var a = ymd(s);
+      if (a.m === 1 && a.d === 1) return hireEvents(s, until);
+      var ev = [], k;
+      for (k = 1; k <= 11; k++) ev.push({ d: addMonths(s, k), v: 1, kind: '월차', label: k + '개월 개근' });
+      var worked = dn(a.y, 12, 31) - s + 1;
+      ev.push({ d: dn(a.y + 1, 1, 1), v: r2(Math.min(15, 15 * worked / 365)), kind: '비례 연차', label: a.y + '년 재직 ' + worked + '일 ÷ 365 × 15' });
+      for (k = 2; ; k++) {
+        var d = dn(a.y + k, 1, 1);
+        ev.push({ d: d, v: annual(k - 1), kind: '연차', label: (a.y + k - 1) + '년분' });
+        if (d > until) break;
+      }
+      ev.sort(function (x, y) { return x.d - y.d; });
+      return ev;
+    }
+
+    function sum(ev, until) { return r2(ev.reduce(function (t, e) { return t + (e.d <= until ? e.v : 0); }, 0)); }
+
+    function hide(text) { result.classList.remove('kal-show'); msg.textContent = text || ''; }
+
+    function getBase() { return baseI.hidden ? today() : parse(baseI.value); }
+
+    function calc() {
+      var s = parse(startI.value), b = getBase();
+      if (!startI.value) return hide('');
+      if (s === null) return hide('입사일을 다시 확인해 주세요.');
+      if (!baseI.hidden && !baseI.value) return hide('');
+      if (b === null) return hide('기준일을 다시 확인해 주세요.');
+      if (s > b) return hide('입사일이 기준일보다 뒤예요.');
+      msg.textContent = '';
+
+      var fiscal = mode === 'fiscal';
+      var ev = fiscal ? fiscalEvents(s, b) : hireEvents(s, b);
+      var got = ev.filter(function (e) { return e.d <= b; });
+      var next = ev.filter(function (e) { return e.d > b; })[0];
+      var total = sum(ev, b);
+      var t = tenure(s, b), nth = b - s + 1;
+
+      $('[data-total]').textContent = days(total);
+      $('[data-sub]').textContent = fmt(b) + ' 기준 · ' + (fiscal ? '회계연도 기준' : '입사일 기준');
+      $('[data-tenure]').textContent = ymdText(t);
+      $('[data-tenure-s]').textContent = '재직 ' + comma(nth) + '일째';
+      var last = got[got.length - 1];
+      $('[data-last]').textContent = last ? '+' + days(last.v) + '일' : '아직 없어요';
+      $('[data-last-s]').textContent = last ? fmt(last.d) + ' · ' + last.kind : '한 달 개근하면 1일이 생겨요';
+      var left = next.d - b;
+      $('[data-next]').textContent = fmt(next.d);
+      $('[data-next-s]').textContent = '+' + days(next.v) + '일 · ' + left + '일 뒤';
+
+      var monthly = got.filter(function (e) { return e.kind === '월차'; }).length;
+      var cmp = $('[data-compare]');
+      if (fiscal) {
+        var hireTotal = sum(hireEvents(s, b), b), diff = r2(hireTotal - total);
+        $('[data-c4-k]').textContent = '입사일 기준이면';
+        $('[data-c4]').textContent = days(hireTotal) + '일';
+        $('[data-c4-s]').textContent = diff > 0 ? '입사일 기준이 ' + days(diff) + '일 많아요' : diff < 0 ? '회계연도 기준이 ' + days(-diff) + '일 많아요' : '두 기준이 같아요';
+        cmp.hidden = false;
+        cmp.innerHTML = '';
+        cmp.appendChild(document.createTextNode('퇴사할 때는 입사일 기준으로 다시 계산해 비교하고, 입사일 기준이 더 많으면 '));
+        var bb = document.createElement('b'); bb.textContent = '모자란 만큼 연차수당으로 정산'; cmp.appendChild(bb);
+        cmp.appendChild(document.createTextNode('해요.' + (diff > 0 ? ' 이 기준일에 퇴사하면 ' + days(diff) + '일분을 더 받아요.' : '')));
+        var a = ymd(s);
+        if (a.m === 1 && a.d === 1) cmp.lastChild.textContent += ' 1월 1일 입사라 두 기준이 같아요.';
+      } else {
+        $('[data-c4-k]').textContent = '입사 첫해 월차';
+        $('[data-c4]').textContent = monthly + '일 / 11일';
+        $('[data-c4-s]').textContent = monthly < 11 ? '1년 될 때까지 매달 1일' : '1년차 15일과 별도예요';
+        cmp.hidden = true;
+      }
+
+      // 1년 근무 후 바로 퇴사하는 경우 (대법원 2021다227100)
+      var warn = $('[data-warn]'), oneYear = addMonths(s, 12), w = '';
+      if (b === oneYear - 1) w = '기준일까지 딱 1년(' + comma(nth) + '일) 근무하고 퇴사하면 15일은 생기지 않아요. 하루 더, 그러니까 ' + fmt(oneYear) + '까지 재직해야 15일이 생겨요.';
+      else if (s <= dn(2017, 5, 29)) w = '2017. 5. 29. 이전에 입사했다면 첫해에 쓴 휴가를 2년차 15일에서 빼던 옛 규정이 적용돼, 실제 합계는 이보다 적을 수 있어요.';
+      warn.hidden = !w; warn.textContent = w;
+
+      // 발생 표: 길면 최근 위주로 (월차는 한 줄로 묶음)
+      var rows = [], mon = got.filter(function (e) { return e.kind === '월차'; });
+      if (mon.length) rows.push({ d: mon[0].d, d2: mon[mon.length - 1].d, kind: '월차', label: '입사 첫해 개근한 달마다 1일', v: mon.length });
+      got.forEach(function (e) { if (e.kind !== '월차') rows.push(e); });
+      var tb = $('[data-rows]');
+      tb.innerHTML = '';
+      rows.concat([next]).forEach(function (e, i, arr) {
+        var tr = document.createElement('tr');
+        if (i === arr.length - 1) tr.className = 'kal-next';
+        var c1 = document.createElement('td');
+        c1.textContent = e.d2 && e.d2 !== e.d ? fmt(e.d) + ' ~' : fmt(e.d);
+        if (e.d2 && e.d2 !== e.d) { var sm0 = document.createElement('small'); sm0.textContent = fmt(e.d2); c1.appendChild(sm0); }
+        var c2 = document.createElement('td');
+        c2.textContent = i === arr.length - 1 ? e.kind + ' (예정)' : e.kind;
+        var sm = document.createElement('small'); sm.textContent = e.label; c2.appendChild(sm);
+        var c3 = document.createElement('td');
+        c3.textContent = days(e.v) + '일';
+        tr.appendChild(c1); tr.appendChild(c2); tr.appendChild(c3);
+        tb.appendChild(tr);
+      });
+
+      lastText = '[연차 계산 결과 · ' + (fiscal ? '회계연도 기준' : '입사일 기준') + ']\n입사일: ' + fmt(s) + '\n기준일: ' + fmt(b) +
+        '\n근속기간: ' + ymdText(t) + ' (재직 ' + comma(nth) + '일째)' +
+        '\n지금까지 생긴 연차: ' + days(total) + '일' +
+        (fiscal ? '\n(입사일 기준이면 ' + days(sum(hireEvents(s, b), b)) + '일)' : '') +
+        '\n다음 연차: ' + fmt(next.d) + ' +' + days(next.v) + '일' +
+        '\n\n' + rows.map(function (e) { return (e.d2 && e.d2 !== e.d ? fmt(e.d) + ' ~ ' + fmt(e.d2) : fmt(e.d)) + ' ' + e.kind + ' ' + days(e.v) + '일'; }).join('\n');
+      result.classList.add('kal-show');
+    }
+
+    $$('[data-tab]').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        mode = tab.getAttribute('data-tab');
+        $$('[data-tab]').forEach(function (x) { var on = x === tab; x.classList.toggle('kal-on', on); x.setAttribute('aria-selected', on); });
+        $('[data-mode-hint]').textContent = mode === 'fiscal'
+          ? '모든 직원이 매년 1월 1일에 연차를 받는 회사라면 이 기준이에요. 입사 첫해 월차는 입사일 기준 그대로 생겨요.'
+          : '입사한 날을 기준으로 1년마다 연차가 생겨요.';
+        calc();
+      });
+    });
+
+    [startI, baseI].forEach(function (inp) { inp.addEventListener('input', calc); inp.addEventListener('change', calc); });
+
+    function setBaseOpen(open) {
+      baseI.hidden = !open;
+      baseText.hidden = open;
+      baseToggle.textContent = open ? '오늘로 되돌리기' : '기준일 바꾸기';
+      if (open) baseI.value = iso(today());
+    }
+    baseText.textContent = '오늘(' + fmt(today()) + ') 기준';
+    baseToggle.addEventListener('click', function () {
+      setBaseOpen(baseI.hidden);
+      if (!baseI.hidden) baseI.focus();
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      startI.value = ''; setBaseOpen(false); hide(''); startI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+    });
+  })();
+  </script>
+</div>
+<!-- 연차 계산기 위젯 끝 -->
