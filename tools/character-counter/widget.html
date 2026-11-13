@@ -1,0 +1,294 @@
+<!-- 글자수 세기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kcc" data-kcc>
+  <style>
+    .kcc{--kcc-accent:#3b6ef5;--kcc-accent-soft:#eef3ff;--kcc-text:#1d2433;--kcc-sub:#6b7385;--kcc-line:#e3e7ef;--kcc-bg:#fff;--kcc-red:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kcc-line);border-radius:20px;background:var(--kcc-bg);
+      color:var(--kcc-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kcc [hidden]{display:none!important}
+    .kcc *,.kcc *::before,.kcc *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kcc .kcc-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kcc .kcc-desc{margin-top:4px;font-size:14px;color:var(--kcc-sub)}
+    .kcc .kcc-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kcc-text)}
+    .kcc .kcc-label small{font-weight:500;color:var(--kcc-sub)}
+    .kcc .kcc-ta{display:block;width:100%;min-height:168px;max-height:440px;padding:14px;border:1.5px solid var(--kcc-line);border-radius:12px;background:#f8f9fc;
+      font-size:16px;line-height:1.65;color:var(--kcc-text);outline:none;resize:vertical;overflow-y:auto;word-break:break-all;
+      transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcc .kcc-ta::placeholder{color:#b3b9c6}
+    .kcc .kcc-ta:focus{border-color:var(--kcc-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcc .kcc-bar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:8px;font-size:12.5px;color:var(--kcc-sub)}
+    .kcc .kcc-link{flex:none;border:0;background:none;color:var(--kcc-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .kcc .kcc-main{display:grid;grid-template-columns:1fr 1fr;margin-top:14px;padding:18px 8px;border-radius:16px;background:var(--kcc-accent-soft);text-align:center}
+    .kcc .kcc-main>div+div{border-left:1px solid #d6e0fb}
+    .kcc .kcc-main-label{font-size:14px;color:var(--kcc-sub)}
+    .kcc .kcc-big{margin-top:2px;font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--kcc-accent);line-height:1.2;white-space:nowrap}
+    .kcc .kcc-big small{font-size:18px;font-weight:700;margin-left:2px}
+    .kcc .kcc-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kcc .kcc-card{padding:14px;border:1px solid var(--kcc-line);border-radius:14px;background:#fff}
+    .kcc .kcc-card-k{font-size:12px;color:var(--kcc-sub)}
+    .kcc .kcc-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kcc-text);white-space:nowrap}
+    .kcc .kcc-row{display:flex;gap:8px}
+    .kcc .kcc-field{position:relative;flex:1;min-width:0}
+    .kcc .kcc-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kcc-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kcc-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcc .kcc-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kcc .kcc-in:focus{border-color:var(--kcc-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcc .kcc-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kcc-sub);pointer-events:none}
+    .kcc .kcc-tabs{flex:none;display:grid;grid-template-columns:1fr 1fr;gap:4px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kcc .kcc-tab{height:44px;padding:0 10px;border:0;border-radius:10px;background:none;color:var(--kcc-sub);font-size:13px;font-weight:600;cursor:pointer;
+      white-space:nowrap;transition:background .2s,color .2s}
+    .kcc .kcc-tab:hover{color:var(--kcc-text)}
+    .kcc .kcc-tab.kcc-on{background:#fff;color:var(--kcc-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kcc .kcc-chips{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:8px}
+    .kcc .kcc-chip{height:32px;padding:0 4px;white-space:nowrap;border:1.5px solid var(--kcc-line);border-radius:999px;background:#fff;color:var(--kcc-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kcc .kcc-chip:hover{border-color:#c9d3ea;color:var(--kcc-text)}
+    .kcc .kcc-chip.kcc-on{border-color:var(--kcc-accent);background:var(--kcc-accent-soft);color:var(--kcc-accent)}
+    .kcc .kcc-msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--kcc-red)}
+    .kcc .kcc-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kcc .kcc-result.kcc-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kcc .kcc-result-inner{overflow:hidden}
+    .kcc .kcc-goal{padding:14px 16px;border:1px solid var(--kcc-line);border-radius:14px;background:#fff}
+    .kcc .kcc-goal-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:14px}
+    .kcc .kcc-goal-state{font-weight:700;color:var(--kcc-accent);white-space:nowrap}
+    .kcc .kcc-goal.kcc-over .kcc-goal-state{color:var(--kcc-red)}
+    .kcc .kcc-goal-num{font-size:13px;color:var(--kcc-sub);white-space:nowrap}
+    .kcc .kcc-track{height:10px;margin-top:10px;border-radius:999px;background:#eef0f5;overflow:hidden}
+    .kcc .kcc-fill{height:100%;width:0;border-radius:999px;background:var(--kcc-accent);transition:width .25s ease,background .2s}
+    .kcc .kcc-goal.kcc-over .kcc-fill{background:var(--kcc-red)}
+    .kcc .kcc-note{margin-top:12px;font-size:12.5px;color:var(--kcc-sub)}
+    .kcc .kcc-actions{display:flex;gap:8px;margin-top:14px}
+    .kcc .kcc-btn{flex:1;height:44px;padding:0 8px;border:1.5px solid var(--kcc-line);border-radius:12px;background:#fff;color:var(--kcc-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s,border-color .2s,color .2s}
+    .kcc .kcc-btn:hover{background:#f4f6fa}
+    .kcc .kcc-btn:active{transform:scale(.98)}
+    .kcc .kcc-btn.kcc-primary{border-color:var(--kcc-accent);background:var(--kcc-accent);color:#fff}
+    .kcc .kcc-btn.kcc-primary:hover{background:#2f5fe0}
+    .kcc .kcc-btn.kcc-warn{border-color:var(--kcc-red);color:var(--kcc-red);background:#fff5f5}
+    @media (max-width:420px){.kcc{padding:18px;border-radius:16px}.kcc .kcc-big{font-size:30px}.kcc .kcc-in{font-size:17px}.kcc .kcc-tab{padding:0 8px;font-size:12.5px}}
+    @media (prefers-reduced-motion:reduce){.kcc .kcc-result,.kcc .kcc-in,.kcc .kcc-ta,.kcc .kcc-btn,.kcc .kcc-chip,.kcc .kcc-tab,.kcc .kcc-fill{transition:none}}
+  </style>
+
+  <p class="kcc-title">글자수 세기</p>
+  <p class="kcc-desc">글을 입력하거나 붙여 넣으면 바로 세어 줘요.</p>
+
+  <label class="kcc-label" for="kcc-text">글 입력</label>
+  <textarea class="kcc-ta" id="kcc-text" data-text rows="6" placeholder="여기에 자기소개서나 글을 붙여 넣으세요." spellcheck="false"></textarea>
+  <div class="kcc-bar">
+    <span>입력한 글은 저장·전송하지 않고 이 브라우저 안에서만 세요.</span>
+    <button type="button" class="kcc-link" data-tidy>공백 정리</button>
+  </div>
+
+  <div class="kcc-main" aria-live="polite">
+    <div><p class="kcc-main-label">공백 포함</p><p class="kcc-big"><span data-all>0</span><small>자</small></p></div>
+    <div><p class="kcc-main-label">공백 제외</p><p class="kcc-big"><span data-nosp>0</span><small>자</small></p></div>
+  </div>
+  <div class="kcc-grid">
+    <div class="kcc-card"><p class="kcc-card-k">UTF-8 바이트</p><p class="kcc-card-v" data-utf8>0바이트</p></div>
+    <div class="kcc-card"><p class="kcc-card-k">EUC-KR 바이트</p><p class="kcc-card-v" data-euckr>0바이트</p></div>
+    <div class="kcc-card"><p class="kcc-card-k">단어 (띄어쓰기 기준)</p><p class="kcc-card-v" data-words>0개</p></div>
+    <div class="kcc-card"><p class="kcc-card-k">줄</p><p class="kcc-card-v" data-lines>0줄</p></div>
+    <div class="kcc-card"><p class="kcc-card-k">원고지 (200자)</p><p class="kcc-card-v" data-paper>0매</p></div>
+    <div class="kcc-card"><p class="kcc-card-k">줄바꿈</p><p class="kcc-card-v" data-breaks>0개</p></div>
+  </div>
+
+  <label class="kcc-label" for="kcc-goal">목표 글자수 <small>(선택)</small></label>
+  <div class="kcc-row">
+    <div class="kcc-field"><input class="kcc-in" id="kcc-goal" data-goal inputmode="numeric" maxlength="7" placeholder="1,000" autocomplete="off"><span class="kcc-unit">자</span></div>
+    <div class="kcc-tabs" role="radiogroup" aria-label="목표 기준">
+      <button type="button" class="kcc-tab kcc-on" role="radio" aria-checked="true" data-mode="all">공백 포함</button>
+      <button type="button" class="kcc-tab" role="radio" aria-checked="false" data-mode="nosp">공백 제외</button>
+    </div>
+  </div>
+  <div class="kcc-chips" data-chips></div>
+
+  <p class="kcc-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kcc-result" data-result>
+    <div class="kcc-result-inner">
+      <div class="kcc-goal" data-goal-box>
+        <div class="kcc-goal-top"><span class="kcc-goal-state" data-goal-state></span><span class="kcc-goal-num" data-goal-num></span></div>
+        <div class="kcc-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" data-track><div class="kcc-fill" data-fill></div></div>
+      </div>
+    </div>
+  </div>
+
+  <p class="kcc-note">글자수는 눈에 보이는 글자 단위로 세요(이모지·결합 문자도 1자). 바이트는 한글 1자를 UTF-8은 3바이트, EUC-KR은 2바이트로 셈해요. 줄바꿈은 공백 포함 글자수에 1자로 들어가요. 제출처마다 줄바꿈이나 특수문자를 세는 방식이 다를 수 있어요. 원고지 매수는 공백 포함 글자수 ÷ 200을 올림한 간단 계산이라, 실제 원고지 작성법(문단 첫 칸 비우기 등)으로 쓰면 더 늘어날 수 있어요.</p>
+
+  <div class="kcc-actions">
+    <button type="button" class="kcc-btn" data-reset>다시 입력</button>
+    <button type="button" class="kcc-btn kcc-primary" data-copy>결과 복사</button>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kcc]');
+    if (!root || root.__kcc) return;
+    root.__kcc = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var ta = $('[data-text]'), goalI = $('[data-goal]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var tidyBtn = $('[data-tidy]'), resetBtn = $('[data-reset]');
+    var GOALS = [500, 1000, 1500, 2000], GOAL_MAX = 100000;
+    var mode = 'all', last = null, tidyPrev = null, resetTimer = null, tidyTimer = null, raf = 0;
+    var seg = null;
+    try { if (window.Intl && Intl.Segmenter) seg = new Intl.Segmenter('ko', { granularity: 'grapheme' }); } catch (e) { seg = null; }
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+
+    // 사용자가 보는 글자 단위(grapheme)로 나눔. 미지원 브라우저는 코드 포인트 단위
+    function chars(t) {
+      if (seg) { var out = [], it = seg.segment(t)[Symbol.iterator](), s; while (!(s = it.next()).done) out.push(s.value.segment); return out; }
+      return Array.from(t);
+    }
+    function utf8(t) {
+      var b = 0;
+      for (var i = 0; i < t.length; i++) {
+        var c = t.charCodeAt(i);
+        if (c < 0x80) b += 1;
+        else if (c < 0x800) b += 2;
+        else if (c >= 0xd800 && c <= 0xdbff && i + 1 < t.length && (t.charCodeAt(i + 1) & 0xfc00) === 0xdc00) { b += 4; i++; }
+        else b += 3;
+      }
+      return b;
+    }
+    // EUC-KR(완성형·CP949) 방식: 영문·숫자·기호(ASCII) 1바이트, 그 밖의 글자는 2바이트
+    function euckr(t) {
+      var b = 0;
+      for (var i = 0; i < t.length; i++) {
+        var c = t.charCodeAt(i);
+        b += c < 0x80 ? 1 : 2;
+        if (c >= 0xd800 && c <= 0xdbff && i + 1 < t.length && (t.charCodeAt(i + 1) & 0xfc00) === 0xdc00) i++;
+      }
+      return b;
+    }
+
+    function count(t) {
+      var g = chars(t), nosp = 0;
+      for (var i = 0; i < g.length; i++) if (!/^\s+$/.test(g[i])) nosp++;
+      var words = t.trim() ? t.trim().split(/\s+/).length : 0;
+      var breaks = (t.match(/\n/g) || []).length;
+      return { all: g.length, nosp: nosp, utf8: utf8(t), euckr: euckr(t), words: words,
+        lines: t ? breaks + 1 : 0, breaks: breaks, paper: Math.ceil(g.length / 200) };
+    }
+
+    function autoSize() {
+      ta.style.height = 'auto';
+      ta.style.height = Math.min(Math.max(ta.scrollHeight + 3, 168), 440) + 'px';
+    }
+
+    function readGoal() {
+      var v = goalI.value.replace(/\D/g, '');
+      if (!v) return { ok: true, n: 0 };
+      var n = +v;
+      if (n < 1) return { ok: false, text: '목표 글자수는 1자 이상으로 입력해 주세요.' };
+      if (n > GOAL_MAX) return { ok: false, text: '목표 글자수는 ' + comma(GOAL_MAX) + '자까지 입력할 수 있어요.' };
+      return { ok: true, n: n };
+    }
+
+    function render() {
+      raf = 0;
+      var c = count(ta.value);
+      last = c;
+      $('[data-all]').textContent = comma(c.all);
+      $('[data-nosp]').textContent = comma(c.nosp);
+      $('[data-utf8]').textContent = comma(c.utf8) + '바이트';
+      $('[data-euckr]').textContent = comma(c.euckr) + '바이트';
+      $('[data-words]').textContent = comma(c.words) + '개';
+      $('[data-lines]').textContent = comma(c.lines) + '줄';
+      $('[data-paper]').textContent = comma(c.paper) + '매';
+      $('[data-breaks]').textContent = comma(c.breaks) + '개';
+
+      var g = readGoal();
+      $$('.kcc-chip').forEach(function (b) { b.classList.toggle('kcc-on', g.ok && +b.dataset.goal === g.n); });
+      msg.textContent = g.ok ? '' : g.text;
+      if (!g.ok || !g.n) { result.classList.remove('kcc-show'); c.goal = null; return; }
+
+      var cur = mode === 'all' ? c.all : c.nosp, diff = g.n - cur, pct = Math.min(cur / g.n * 100, 100);
+      var box = $('[data-goal-box]');
+      box.classList.toggle('kcc-over', diff < 0);
+      $('[data-goal-state]').textContent = diff > 0 ? comma(diff) + '자 남음' : diff === 0 ? '목표 글자수와 같아요' : comma(-diff) + '자 초과';
+      $('[data-goal-num]').textContent = (mode === 'all' ? '공백 포함 ' : '공백 제외 ') + comma(cur) + ' / ' + comma(g.n) + '자 (' + Math.floor(cur / g.n * 100) + '%)';
+      $('[data-fill]').style.width = pct + '%';
+      $('[data-track]').setAttribute('aria-valuenow', Math.round(pct));
+      c.goal = { n: g.n, cur: cur, diff: diff };
+      result.classList.add('kcc-show');
+    }
+    function schedule() { if (!raf) raf = (window.requestAnimationFrame || setTimeout)(render); }
+
+    function setTidyLabel(t) { tidyBtn.textContent = t; }
+    function clearTidy() { tidyPrev = null; clearTimeout(tidyTimer); setTidyLabel('공백 정리'); }
+
+    ta.addEventListener('input', function () { clearTidy(); autoSize(); schedule(); });
+
+    goalI.addEventListener('input', function () {
+      var raw = goalI.value, v = raw.replace(/\D/g, '').replace(/^0+(?=\d)/, '');
+      var f = v ? comma(v) : '';
+      if (f !== raw) goalI.value = f;
+      render();
+    });
+
+    GOALS.forEach(function (n) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kcc-chip'; b.dataset.goal = n; b.textContent = comma(n) + '자';
+      b.addEventListener('click', function () { goalI.value = comma(n); render(); });
+      $('[data-chips]').appendChild(b);
+    });
+
+    $$('.kcc-tab').forEach(function (b) {
+      b.addEventListener('click', function () {
+        mode = b.dataset.mode;
+        $$('.kcc-tab').forEach(function (x) { var on = x === b; x.classList.toggle('kcc-on', on); x.setAttribute('aria-checked', on ? 'true' : 'false'); });
+        render();
+      });
+    });
+
+    // 공백 정리: 줄마다 앞뒤 공백을 지우고 연속 공백을 하나로, 빈 줄은 최대 1줄. 한 번 더 누르면 되돌리기
+    tidyBtn.addEventListener('click', function () {
+      if (tidyPrev !== null) { ta.value = tidyPrev; clearTidy(); autoSize(); render(); return; }
+      var before = ta.value;
+      var after = before.replace(/\r\n?/g, '\n').split('\n').map(function (l) {
+        return l.replace(/[ \t 　 -   ]+/g, ' ').trim();
+      }).join('\n').replace(/\n{3,}/g, '\n\n').replace(/^\n+|\n+$/g, '');
+      clearTimeout(tidyTimer);
+      if (after === before) { setTidyLabel('정리할 공백이 없어요'); tidyTimer = setTimeout(function () { setTidyLabel('공백 정리'); }, 1500); return; }
+      ta.value = after; tidyPrev = before; setTidyLabel('정리 되돌리기');
+      autoSize(); render();
+    });
+
+    // 다시 입력: 글이 있으면 한 번 더 눌러야 지워짐(실수 방지)
+    function resetLabel() { resetBtn.textContent = '다시 입력'; resetBtn.classList.remove('kcc-warn'); resetTimer = null; }
+    resetBtn.addEventListener('click', function () {
+      if (ta.value && !resetTimer) {
+        resetBtn.textContent = '한 번 더 누르면 지워져요';
+        resetBtn.classList.add('kcc-warn');
+        resetTimer = setTimeout(resetLabel, 3000);
+        return;
+      }
+      clearTimeout(resetTimer); resetLabel(); clearTidy();
+      ta.value = ''; autoSize(); render(); ta.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      if (raf) render();
+      var c = last;
+      var text = '[글자수 세기 결과]\n공백 포함: ' + comma(c.all) + '자\n공백 제외: ' + comma(c.nosp) + '자' +
+        '\nUTF-8: ' + comma(c.utf8) + '바이트\nEUC-KR(한글 2바이트): ' + comma(c.euckr) + '바이트' +
+        '\n단어: ' + comma(c.words) + '개\n줄: ' + comma(c.lines) + '줄\n원고지(200자): ' + comma(c.paper) + '매';
+      if (c.goal) text += '\n목표(' + (mode === 'all' ? '공백 포함' : '공백 제외') + ' ' + comma(c.goal.n) + '자): ' +
+        (c.goal.diff > 0 ? comma(c.goal.diff) + '자 남음' : c.goal.diff === 0 ? '딱 맞음' : comma(-c.goal.diff) + '자 초과');
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var t = document.createElement('textarea'); t.value = text; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.opacity = '0'; document.body.appendChild(t); t.select(); try { document.execCommand('copy'); } catch (e) {} t.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    });
+
+    autoSize(); render();
+  })();
+  </script>
+</div>
+<!-- 글자수 세기 위젯 끝 -->
