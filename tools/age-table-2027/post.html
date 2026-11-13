@@ -1,0 +1,489 @@
+<p><strong>2027년에 2000년생은 만 27세(생일 전 26세), 연 나이 27세예요.</strong> 2027년 나이는 "2027 − 태어난 해"가 생일이 지난 뒤의 만 나이이고, 생일 전이면 여기서 1을 빼면 돼요. 2027년은 정미년(丁未年) 양띠 해예요. 아래 조견표 도구에 출생연도만 넣으면 만 나이, 띠, 2027년 학년까지 한 번에 확인할 수 있고, 글 아래에는 1940~2027년생 전체 조견표를 정리해 두었어요.</p>
+<!-- 2027년 나이 조견표 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kat" data-kat>
+  <style>
+    .kat{--kat-accent:#3b6ef5;--kat-accent-soft:#eef3ff;--kat-text:#1d2433;--kat-sub:#6b7385;--kat-line:#e3e7ef;--kat-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kat-line);border-radius:20px;background:var(--kat-bg);
+      color:var(--kat-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kat [hidden]{display:none!important}
+    .kat *,.kat *::before,.kat *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kat .kat-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kat .kat-desc{margin-top:4px;font-size:14px;color:var(--kat-sub)}
+    .kat .kat-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kat-text)}
+    .kat .kat-field{position:relative}
+    .kat .kat-in{width:100%;height:52px;padding:0 58px 0 14px;border:1.5px solid var(--kat-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kat-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kat .kat-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kat .kat-in:focus{border-color:var(--kat-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kat .kat-in.kat-err{border-color:#e0565b}
+    .kat .kat-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kat-sub);pointer-events:none}
+    .kat .kat-opts{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:14px}
+    .kat .kat-opt-k{font-size:13px;color:var(--kat-sub);min-width:52px}
+    .kat .kat-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kat .kat-chip{height:32px;padding:0 12px;border:1.5px solid var(--kat-line);border-radius:999px;background:#fff;color:var(--kat-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kat .kat-chip:hover{border-color:#c9d3ea;color:var(--kat-text)}
+    .kat .kat-chip.kat-on{border-color:var(--kat-accent);background:var(--kat-accent-soft);color:var(--kat-accent)}
+    .kat .kat-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .kat .kat-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kat .kat-result.kat-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kat .kat-result-inner{overflow:hidden}
+    .kat .kat-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--kat-accent-soft);text-align:center}
+    .kat .kat-main-label{font-size:14px;color:var(--kat-sub)}
+    .kat .kat-age{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kat-accent);line-height:1.2;white-space:nowrap}
+    .kat .kat-age small{font-size:22px;font-weight:700;margin:0 2px}
+    .kat .kat-others{margin-top:6px;font-size:14px;color:var(--kat-sub)}
+    .kat .kat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kat .kat-card{padding:14px;border:1px solid var(--kat-line);border-radius:14px;background:#fff}
+    .kat .kat-card-k{font-size:12px;color:var(--kat-sub)}
+    .kat .kat-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kat-text);word-break:keep-all}
+    .kat .kat-card-s{margin-top:2px;font-size:12px;color:var(--kat-sub);word-break:keep-all}
+    .kat .kat-ms{margin-top:8px;padding:14px;border:1px solid var(--kat-line);border-radius:14px;background:#fff}
+    .kat .kat-ms-t{font-size:12px;color:var(--kat-sub)}
+    .kat .kat-ms-list{list-style:none;margin-top:6px}
+    .kat .kat-ms-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0f2f6;font-size:14px}
+    .kat .kat-ms-list li:first-child{border-top:0}
+    .kat .kat-ms-name{word-break:keep-all}
+    .kat .kat-ms-when{flex:none;font-size:13px;font-weight:700;color:var(--kat-text);white-space:nowrap}
+    .kat .kat-ms-when.kat-now{color:var(--kat-accent)}
+    .kat .kat-ms-empty{margin-top:6px;font-size:13.5px;color:var(--kat-sub);word-break:keep-all}
+    .kat .kat-note{margin-top:12px;font-size:12.5px;color:var(--kat-sub)}
+    .kat .kat-note li{margin-left:16px}
+    .kat .kat-desc,.kat .kat-others,.kat .kat-note,.kat .kat-msg{word-break:keep-all}
+    .kat .kat-actions{display:flex;gap:8px;margin-top:14px}
+    .kat .kat-btn{flex:1;height:44px;border:1.5px solid var(--kat-line);border-radius:12px;background:#fff;color:var(--kat-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kat .kat-btn:hover{background:#f4f6fa}
+    .kat .kat-btn:active{transform:scale(.98)}
+    .kat .kat-btn.kat-primary{border-color:var(--kat-accent);background:var(--kat-accent);color:#fff}
+    .kat .kat-btn.kat-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kat{padding:18px;border-radius:16px}.kat .kat-age{font-size:38px}.kat .kat-in{font-size:17px}.kat .kat-card-v{font-size:16px}}
+    @media (prefers-reduced-motion:reduce){.kat .kat-result,.kat .kat-in,.kat .kat-btn,.kat .kat-chip{transition:none}}
+  </style>
+
+  <p class="kat-title">2027년 나이 조견표</p>
+  <p class="kat-desc">태어난 연도만 넣으면 나이·띠·학년을 바로 알려 줘요.</p>
+
+  <label class="kat-label" for="kat-y">출생연도</label>
+  <div class="kat-field"><input class="kat-in" id="kat-y" data-y inputmode="numeric" maxlength="4" placeholder="1995" autocomplete="bday-year"><span class="kat-unit">년생</span></div>
+
+  <div class="kat-opts">
+    <span class="kat-opt-k">기준 연도</span>
+    <div class="kat-chips" data-years role="group" aria-label="기준 연도">
+      <button type="button" class="kat-chip" data-year="2026" aria-pressed="false">2026년</button>
+      <button type="button" class="kat-chip kat-on" data-year="2027" aria-pressed="true">2027년</button>
+      <button type="button" class="kat-chip" data-year="2028" aria-pressed="false">2028년</button>
+    </div>
+  </div>
+  <div class="kat-opts">
+    <span class="kat-opt-k">생일</span>
+    <div class="kat-chips" data-bds role="group" aria-label="그해 생일이 지났는지">
+      <button type="button" class="kat-chip kat-on" data-bd="after" aria-pressed="true">지난 뒤</button>
+      <button type="button" class="kat-chip" data-bd="before" aria-pressed="false">지나기 전</button>
+    </div>
+  </div>
+
+  <p class="kat-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kat-result" data-result aria-live="polite">
+    <div class="kat-result-inner">
+      <div class="kat-main">
+        <p class="kat-main-label" data-main-label></p>
+        <p class="kat-age" data-age></p>
+        <p class="kat-others" data-others></p>
+      </div>
+      <div class="kat-grid">
+        <div class="kat-card"><p class="kat-card-k">띠 (양력 기준)</p><p class="kat-card-v" data-zodiac></p><p class="kat-card-s" data-color></p></div>
+        <div class="kat-card"><p class="kat-card-k">태어난 해 간지</p><p class="kat-card-v" data-ganji></p><p class="kat-card-s" data-hanja></p></div>
+        <div class="kat-card"><p class="kat-card-k" data-grade-k></p><p class="kat-card-v" data-grade></p><p class="kat-card-s" data-grade-s></p></div>
+        <div class="kat-card"><p class="kat-card-k">연 나이</p><p class="kat-card-v" data-yearage></p><p class="kat-card-s">기준 연도 − 출생연도</p></div>
+      </div>
+      <div class="kat-ms">
+        <p class="kat-ms-t" data-ms-t>나이 이정표</p>
+        <ul class="kat-ms-list" data-ms></ul>
+        <p class="kat-ms-empty" data-ms-empty hidden>성년, 선거권, 술·담배 구매, 병역판정검사 같은 주요 나이 기준은 모두 지났어요.</p>
+      </div>
+      <ul class="kat-note">
+        <li>띠는 양력 1월 1일 기준이에요. 음력 설(또는 입춘)을 기준으로 보면 1~2월생은 앞 해 띠일 수 있어요.</li>
+        <li>학년은 2009학년도 이후 기준(1~12월생이 같은 학년)이에요. 2002년 1~2월생까지의 빠른년생이나 조기·유예 입학, 재수·휴학은 다를 수 있어요.</li>
+      </ul>
+      <div class="kat-actions">
+        <button type="button" class="kat-btn" data-reset>다시 입력</button>
+        <button type="button" class="kat-btn kat-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kat]');
+    if (!root || root.__kat) return;
+    root.__kat = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var MIN = 1930, MAX = 2027;
+    var STEM = '갑을병정무기경신임계', STEM_H = '甲乙丙丁戊己庚辛壬癸';
+    var BRANCH = '자축인묘진사오미신유술해', BRANCH_H = '子丑寅卯辰巳午未申酉戌亥';
+    var ANIMAL = ['쥐', '소', '호랑이', '토끼', '용', '뱀', '말', '양', '원숭이', '닭', '개', '돼지'];
+    var COLOR = ['푸른', '붉은', '황금', '흰', '검은'];
+    var base = 2027, bd = 'after', lastText = '';
+
+    function mod(a, n) { return ((a % n) + n) % n; }
+    // 60갑자: 1984년이 갑자년. 천간 = (연도-4) mod 10, 지지 = (연도-4) mod 12
+    function ganji(y) {
+      var s = mod(y - 4, 10), b = mod(y - 4, 12);
+      return { name: STEM[s] + BRANCH[b], hanja: STEM_H[s] + BRANCH_H[b], animal: ANIMAL[b], color: COLOR[Math.floor(s / 2)] };
+    }
+
+    // 2027학년도처럼 기준 연도(B) 3월 기준 학년. 만 6세가 된 해의 다음 해 3월 입학 = B-Y가 7이면 초1
+    function grade(y, b) {
+      var g = b - y - 6;
+      if (g <= 0) {
+        var entry = y + 7;
+        return { k: b + '년 학년', v: '미취학', s: entry + '년 3월 초등학교 입학' };
+      }
+      if (g <= 6) return { k: b + '년 학년', v: '초등학교 ' + g + '학년', s: (y + 7) + '년 입학' };
+      if (g <= 9) return { k: b + '년 학년', v: '중학교 ' + (g - 6) + '학년', s: (y + 13) + '년 중학교 입학' };
+      if (g <= 12) return { k: b + '년 학년', v: '고등학교 ' + (g - 9) + '학년', s: (y + 16) + '년 고등학교 입학' };
+      var hb = ('0' + mod(y + 19, 100)).slice(-2) + '학번';
+      if (g === 13) return { k: b + '년 학년', v: '대학 1학년 나이', s: '재수 없이 진학하면 ' + hb };
+      return { k: '학번 (재수·휴학 없이)', v: hb + ' 나이', s: (y + 19) + '년 대학 입학 기준' };
+    }
+
+    // 나이 이정표: 기준 연도 이후에 오는 것만 보여 준다
+    function milestones(y, b) {
+      var list = [
+        { name: '초등학교 입학', year: y + 7, when: '3월' },
+        { name: '운전면허(보통) 응시 · 만 18세', year: y + 18, when: '생일부터' },
+        { name: '선거권 · 선거일 현재 만 18세', year: y + 18, when: '생일부터' },
+        { name: '병역판정검사(남성) · 19세 되는 해', year: y + 19, when: '' },
+        { name: '술·담배 구매 가능 · 청소년보호법', year: y + 19, when: '1월 1일부터' },
+        { name: '성년(민법) · 만 19세', year: y + 19, when: '생일부터' }
+      ];
+      return list.filter(function (m) { return m.year >= b; });
+    }
+
+    function hide(text, err) {
+      result.classList.remove('kat-show');
+      msg.textContent = text || '';
+      yI.classList.toggle('kat-err', !!err);
+    }
+
+    function calc() {
+      var v = yI.value;
+      if (!v) return hide('');
+      if (v.length < 4) return hide('');
+      var y = +v;
+      if (y < MIN || y > MAX) return hide(MIN + '~' + MAX + '년 사이로 입력해 주세요.', true);
+      if (y > base) return hide(y + '년생은 ' + base + '년에 아직 태어나기 전이에요. 기준 연도를 바꿔 보세요.', true);
+
+      var yearAge = base - y;
+      var after = yearAge, before = yearAge - 1;
+      var gz = ganji(y), gr = grade(y, base);
+      var shown = bd === 'after' ? after : before;
+
+      msg.textContent = '';
+      yI.classList.remove('kat-err');
+      $('[data-main-label]').textContent = base + '년 · ' + y + '년생 · ' + (bd === 'after' ? '생일 지난 뒤' : '생일 전');
+      if (shown < 0) {
+        $('[data-age]').innerHTML = '<small>출생 전</small>';
+      } else {
+        $('[data-age]').innerHTML = '<small>만</small>' + shown + '<small>세</small>';
+      }
+      var other = bd === 'after'
+        ? (before < 0 ? '생일 전에는 아직 태어나기 전' : '생일 전에는 만 ' + before + '세')
+        : '생일 지난 뒤에는 만 ' + after + '세';
+      $('[data-others]').textContent = other + ' · 연 나이 ' + yearAge + '세';
+      $('[data-zodiac]').textContent = gz.animal + '띠';
+      $('[data-color]').textContent = gz.color + ' ' + gz.animal + '의 해';
+      $('[data-ganji]').textContent = gz.name + '년';
+      $('[data-hanja]').textContent = gz.hanja + '年 · 60갑자';
+      $('[data-grade-k]').textContent = gr.k;
+      $('[data-grade]').textContent = gr.v;
+      $('[data-grade-s]').textContent = gr.s;
+      $('[data-yearage]').textContent = yearAge + '세';
+
+      var ms = milestones(y, base), ul = $('[data-ms]');
+      ul.innerHTML = '';
+      ms.forEach(function (m) {
+        var li = document.createElement('li');
+        var n = document.createElement('span'); n.className = 'kat-ms-name'; n.textContent = m.name;
+        var w = document.createElement('span'); w.className = 'kat-ms-when' + (m.year === base ? ' kat-now' : '');
+        w.textContent = ((m.year === base ? '올해 ' : m.year + '년 ') + m.when).trim();
+        li.appendChild(n); li.appendChild(w); ul.appendChild(li);
+      });
+      $('[data-ms-t]').textContent = base + '년부터 다가오는 나이 이정표';
+      ul.hidden = !ms.length;
+      $('[data-ms-empty]').hidden = !!ms.length;
+      result.classList.add('kat-show');
+
+      lastText = '[' + base + '년 나이 조견표]\n출생연도: ' + y + '년생\n만 나이: ' +
+        (before < 0 ? '생일 전 출생 전' : '생일 전 ' + before + '세') + ', 생일 후 ' + after + '세\n연 나이: ' + yearAge + '세' +
+        '\n띠: ' + gz.animal + '띠 (' + gz.name + '년, 양력 기준)\n' + gr.k + ': ' + gr.v + ' (' + gr.s + ')' +
+        (ms.length ? '\n이정표: ' + ms.map(function (m) { return m.name.split(' · ')[0] + ' ' + m.year + '년'; }).join(', ') : '');
+    }
+
+    yI.addEventListener('input', function () {
+      var v = yI.value.replace(/\D/g, '').slice(0, 4);
+      if (v !== yI.value) yI.value = v;
+      calc();
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length >= 4) { e.preventDefault(); yI.value = t.slice(0, 4); calc(); }
+    });
+
+    function chipGroup(sel, attr, set) {
+      $$(sel).forEach(function (c) {
+        c.addEventListener('click', function () {
+          $$(sel).forEach(function (o) { var on = o === c; o.classList.toggle('kat-on', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+          set(c.getAttribute(attr));
+          calc();
+        });
+      });
+    }
+    chipGroup('[data-year]', 'data-year', function (v) { base = +v; });
+    chipGroup('[data-bd]', 'data-bd', function (v) { bd = v; });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = ''; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 2027년 나이 조견표 위젯 끝 -->
+
+<h2>2027년 나이 계산법</h2>
+<p>생년월일을 하나하나 넣지 않아도, <strong>태어난 연도와 올해 생일이 지났는지</strong>만 알면 나이를 바로 구할 수 있어요.</p>
+<ul>
+  <li><strong>만 나이 (생일 지난 뒤):</strong> 2027 − 태어난 연도</li>
+  <li><strong>만 나이 (생일 전):</strong> 2027 − 태어난 연도 − 1</li>
+  <li><strong>연 나이:</strong> 2027 − 태어난 연도 (생일과 관계없이 1월 1일에 한 살씩 늘어요)</li>
+</ul>
+<p>예를 들어 1995년 8월생이라면 2027 − 1995 = 32이므로, 2027년 8월 생일 전까지는 <strong>만 31세</strong>, 생일이 지나면 <strong>만 32세</strong>예요. 연 나이는 1년 내내 32세예요. 생일까지 정확히 따져야 한다면 생년월일을 모두 넣는 <a href="{{LINK:age-calculator}}">만 나이 계산기</a>를 쓰면 편해요.</p>
+
+<h2>2027년, 몇 년생부터 해당될까? (나이 기준 정리)</h2>
+<p>2023년 6월 28일부터 법령·계약의 나이는 특별한 규정이 없으면 만 나이로 계산해요. 다만 초등학교 입학, 청소년보호법, 병역법처럼 <strong>연도 단위로 따지는 기준</strong>은 지금도 따로 정해져 있어요. 2027년에 해당하는 출생연도는 다음과 같아요.</p>
+<table>
+  <thead><tr><th>기준</th><th>나이 계산 방식</th><th>2027년 해당</th></tr></thead>
+  <tbody>
+    <tr><td>초등학교 입학<br>(초·중등교육법 제13조)</td><td>만 6세가 된 해의 다음 해 3월 1일</td><td>2020년생 (2027년 3월 입학)</td></tr>
+    <tr><td>선거권<br>(공직선거법 제15조·제17조)</td><td>선거일 현재 만 18세 이상</td><td>2009년생은 선거일 전에 생일이 지나야 함</td></tr>
+    <tr><td>운전면허(1·2종 보통)<br>(도로교통법 제82조)</td><td>만 18세 이상</td><td>2009년생은 생일부터</td></tr>
+    <tr><td>성년<br>(민법 제4조)</td><td>만 19세</td><td>2008년생은 생일부터</td></tr>
+    <tr><td>술·담배 구매<br>(청소년보호법 제2조)</td><td>만 19세가 되는 해의 1월 1일부터</td><td>2008년생 (2027년 1월 1일부터)</td></tr>
+    <tr><td>병역판정검사<br>(병역법 제11조)</td><td>19세가 되는 해</td><td>2008년생 남성 (일부는 20세가 되는 해)</td></tr>
+  </tbody>
+</table>
+<p>2027년에 고등학교 3학년은 2009년생, 재수 없이 대학에 들어가는 신입생(27학번)은 2008년생이에요.</p>
+
+<h2>2027년은 무슨 띠? 정미년 붉은 양의 해</h2>
+<p>60갑자로 2027년은 <strong>정미년(丁未年)</strong>이에요. 천간 "정(丁)"은 오행에서 불(붉은색), 지지 "미(未)"는 양이라 흔히 <strong>붉은 양의 해</strong>라고 불러요. 60갑자는 1984년 갑자년을 기준으로 천간 10개, 지지 12개가 한 칸씩 돌아가며 60년마다 같은 간지가 돌아와요. 위 조견표의 띠는 양력 1월 1일을 기준으로 했어요. 음력 설이나 입춘을 기준으로 보는 경우에는 1~2월생의 띠가 앞 해 띠일 수 있어요.</p>
+<table>
+  <thead><tr><th>띠</th><th>출생연도 (1930~2027년)</th></tr></thead>
+  <tbody>
+    <tr><td>쥐띠</td><td>2020, 2008, 1996, 1984, 1972, 1960, 1948, 1936</td></tr>
+    <tr><td>소띠</td><td>2021, 2009, 1997, 1985, 1973, 1961, 1949, 1937</td></tr>
+    <tr><td>호랑이띠</td><td>2022, 2010, 1998, 1986, 1974, 1962, 1950, 1938</td></tr>
+    <tr><td>토끼띠</td><td>2023, 2011, 1999, 1987, 1975, 1963, 1951, 1939</td></tr>
+    <tr><td>용띠</td><td>2024, 2012, 2000, 1988, 1976, 1964, 1952, 1940</td></tr>
+    <tr><td>뱀띠</td><td>2025, 2013, 2001, 1989, 1977, 1965, 1953, 1941</td></tr>
+    <tr><td>말띠</td><td>2026, 2014, 2002, 1990, 1978, 1966, 1954, 1942, 1930</td></tr>
+    <tr><td>양띠</td><td>2027, 2015, 2003, 1991, 1979, 1967, 1955, 1943, 1931</td></tr>
+    <tr><td>원숭이띠</td><td>2016, 2004, 1992, 1980, 1968, 1956, 1944, 1932</td></tr>
+    <tr><td>닭띠</td><td>2017, 2005, 1993, 1981, 1969, 1957, 1945, 1933</td></tr>
+    <tr><td>개띠</td><td>2018, 2006, 1994, 1982, 1970, 1958, 1946, 1934</td></tr>
+    <tr><td>돼지띠</td><td>2019, 2007, 1995, 1983, 1971, 1959, 1947, 1935</td></tr>
+  </tbody>
+</table>
+
+<h2>2027년 나이 조견표 (1940~2027년생)</h2>
+<p>연 나이는 2027년 1년 동안 그대로이고, 만 나이는 생일 전후로 1살 차이가 나요. 학번은 재수·휴학 없이 19세가 되는 해에 대학에 입학했다고 가정한 값이에요.</p>
+<h3>2010~2027년생 (영유아·학생)</h3>
+<table>
+  <thead><tr><th>출생연도</th><th>띠 (간지)</th><th>연 나이</th><th>만 나이<br>(생일 후 / 전)</th><th>2027년 학년·학번</th></tr></thead>
+  <tbody>
+    <tr><td>2027년생</td><td>양띠 (정미)</td><td>0세</td><td>0세 / 출생 전</td><td>미취학 (2034년 입학)</td></tr>
+    <tr><td>2026년생</td><td>말띠 (병오)</td><td>1세</td><td>1세 / 0세</td><td>미취학 (2033년 입학)</td></tr>
+    <tr><td>2025년생</td><td>뱀띠 (을사)</td><td>2세</td><td>2세 / 1세</td><td>미취학 (2032년 입학)</td></tr>
+    <tr><td>2024년생</td><td>용띠 (갑진)</td><td>3세</td><td>3세 / 2세</td><td>미취학 (2031년 입학)</td></tr>
+    <tr><td>2023년생</td><td>토끼띠 (계묘)</td><td>4세</td><td>4세 / 3세</td><td>미취학 (2030년 입학)</td></tr>
+    <tr><td>2022년생</td><td>호랑이띠 (임인)</td><td>5세</td><td>5세 / 4세</td><td>미취학 (2029년 입학)</td></tr>
+    <tr><td>2021년생</td><td>소띠 (신축)</td><td>6세</td><td>6세 / 5세</td><td>미취학 (2028년 입학)</td></tr>
+    <tr><td>2020년생</td><td>쥐띠 (경자)</td><td>7세</td><td>7세 / 6세</td><td>초등 1학년</td></tr>
+    <tr><td>2019년생</td><td>돼지띠 (기해)</td><td>8세</td><td>8세 / 7세</td><td>초등 2학년</td></tr>
+    <tr><td>2018년생</td><td>개띠 (무술)</td><td>9세</td><td>9세 / 8세</td><td>초등 3학년</td></tr>
+    <tr><td>2017년생</td><td>닭띠 (정유)</td><td>10세</td><td>10세 / 9세</td><td>초등 4학년</td></tr>
+    <tr><td>2016년생</td><td>원숭이띠 (병신)</td><td>11세</td><td>11세 / 10세</td><td>초등 5학년</td></tr>
+    <tr><td>2015년생</td><td>양띠 (을미)</td><td>12세</td><td>12세 / 11세</td><td>초등 6학년</td></tr>
+    <tr><td>2014년생</td><td>말띠 (갑오)</td><td>13세</td><td>13세 / 12세</td><td>중학 1학년</td></tr>
+    <tr><td>2013년생</td><td>뱀띠 (계사)</td><td>14세</td><td>14세 / 13세</td><td>중학 2학년</td></tr>
+    <tr><td>2012년생</td><td>용띠 (임진)</td><td>15세</td><td>15세 / 14세</td><td>중학 3학년</td></tr>
+    <tr><td>2011년생</td><td>토끼띠 (신묘)</td><td>16세</td><td>16세 / 15세</td><td>고등 1학년</td></tr>
+    <tr><td>2010년생</td><td>호랑이띠 (경인)</td><td>17세</td><td>17세 / 16세</td><td>고등 2학년</td></tr>
+  </tbody>
+</table>
+<h3>1980~2009년생</h3>
+<table>
+  <thead><tr><th>출생연도</th><th>띠 (간지)</th><th>연 나이</th><th>만 나이<br>(생일 후 / 전)</th><th>2027년 학년·학번</th></tr></thead>
+  <tbody>
+    <tr><td>2009년생</td><td>소띠 (기축)</td><td>18세</td><td>18세 / 17세</td><td>고등 3학년</td></tr>
+    <tr><td>2008년생</td><td>쥐띠 (무자)</td><td>19세</td><td>19세 / 18세</td><td>대학 1학년 (27학번)</td></tr>
+    <tr><td>2007년생</td><td>돼지띠 (정해)</td><td>20세</td><td>20세 / 19세</td><td>26학번 나이</td></tr>
+    <tr><td>2006년생</td><td>개띠 (병술)</td><td>21세</td><td>21세 / 20세</td><td>25학번 나이</td></tr>
+    <tr><td>2005년생</td><td>닭띠 (을유)</td><td>22세</td><td>22세 / 21세</td><td>24학번 나이</td></tr>
+    <tr><td>2004년생</td><td>원숭이띠 (갑신)</td><td>23세</td><td>23세 / 22세</td><td>23학번 나이</td></tr>
+    <tr><td>2003년생</td><td>양띠 (계미)</td><td>24세</td><td>24세 / 23세</td><td>22학번 나이</td></tr>
+    <tr><td>2002년생</td><td>말띠 (임오)</td><td>25세</td><td>25세 / 24세</td><td>21학번 나이</td></tr>
+    <tr><td>2001년생</td><td>뱀띠 (신사)</td><td>26세</td><td>26세 / 25세</td><td>20학번 나이</td></tr>
+    <tr><td>2000년생</td><td>용띠 (경진)</td><td>27세</td><td>27세 / 26세</td><td>19학번 나이</td></tr>
+    <tr><td>1999년생</td><td>토끼띠 (기묘)</td><td>28세</td><td>28세 / 27세</td><td>18학번 나이</td></tr>
+    <tr><td>1998년생</td><td>호랑이띠 (무인)</td><td>29세</td><td>29세 / 28세</td><td>17학번 나이</td></tr>
+    <tr><td>1997년생</td><td>소띠 (정축)</td><td>30세</td><td>30세 / 29세</td><td>16학번 나이</td></tr>
+    <tr><td>1996년생</td><td>쥐띠 (병자)</td><td>31세</td><td>31세 / 30세</td><td>15학번 나이</td></tr>
+    <tr><td>1995년생</td><td>돼지띠 (을해)</td><td>32세</td><td>32세 / 31세</td><td>14학번 나이</td></tr>
+    <tr><td>1994년생</td><td>개띠 (갑술)</td><td>33세</td><td>33세 / 32세</td><td>13학번 나이</td></tr>
+    <tr><td>1993년생</td><td>닭띠 (계유)</td><td>34세</td><td>34세 / 33세</td><td>12학번 나이</td></tr>
+    <tr><td>1992년생</td><td>원숭이띠 (임신)</td><td>35세</td><td>35세 / 34세</td><td>11학번 나이</td></tr>
+    <tr><td>1991년생</td><td>양띠 (신미)</td><td>36세</td><td>36세 / 35세</td><td>10학번 나이</td></tr>
+    <tr><td>1990년생</td><td>말띠 (경오)</td><td>37세</td><td>37세 / 36세</td><td>09학번 나이</td></tr>
+    <tr><td>1989년생</td><td>뱀띠 (기사)</td><td>38세</td><td>38세 / 37세</td><td>08학번 나이</td></tr>
+    <tr><td>1988년생</td><td>용띠 (무진)</td><td>39세</td><td>39세 / 38세</td><td>07학번 나이</td></tr>
+    <tr><td>1987년생</td><td>토끼띠 (정묘)</td><td>40세</td><td>40세 / 39세</td><td>06학번 나이</td></tr>
+    <tr><td>1986년생</td><td>호랑이띠 (병인)</td><td>41세</td><td>41세 / 40세</td><td>05학번 나이</td></tr>
+    <tr><td>1985년생</td><td>소띠 (을축)</td><td>42세</td><td>42세 / 41세</td><td>04학번 나이</td></tr>
+    <tr><td>1984년생</td><td>쥐띠 (갑자)</td><td>43세</td><td>43세 / 42세</td><td>03학번 나이</td></tr>
+    <tr><td>1983년생</td><td>돼지띠 (계해)</td><td>44세</td><td>44세 / 43세</td><td>02학번 나이</td></tr>
+    <tr><td>1982년생</td><td>개띠 (임술)</td><td>45세</td><td>45세 / 44세</td><td>01학번 나이</td></tr>
+    <tr><td>1981년생</td><td>닭띠 (신유)</td><td>46세</td><td>46세 / 45세</td><td>00학번 나이</td></tr>
+    <tr><td>1980년생</td><td>원숭이띠 (경신)</td><td>47세</td><td>47세 / 46세</td><td>99학번 나이</td></tr>
+  </tbody>
+</table>
+<h3>1940~1979년생</h3>
+<table>
+  <thead><tr><th>출생연도</th><th>띠 (간지)</th><th>연 나이</th><th>만 나이<br>(생일 후 / 전)</th><th>2027년 학년·학번</th></tr></thead>
+  <tbody>
+    <tr><td>1979년생</td><td>양띠 (기미)</td><td>48세</td><td>48세 / 47세</td><td>98학번 나이</td></tr>
+    <tr><td>1978년생</td><td>말띠 (무오)</td><td>49세</td><td>49세 / 48세</td><td>97학번 나이</td></tr>
+    <tr><td>1977년생</td><td>뱀띠 (정사)</td><td>50세</td><td>50세 / 49세</td><td>96학번 나이</td></tr>
+    <tr><td>1976년생</td><td>용띠 (병진)</td><td>51세</td><td>51세 / 50세</td><td>95학번 나이</td></tr>
+    <tr><td>1975년생</td><td>토끼띠 (을묘)</td><td>52세</td><td>52세 / 51세</td><td>94학번 나이</td></tr>
+    <tr><td>1974년생</td><td>호랑이띠 (갑인)</td><td>53세</td><td>53세 / 52세</td><td>93학번 나이</td></tr>
+    <tr><td>1973년생</td><td>소띠 (계축)</td><td>54세</td><td>54세 / 53세</td><td>92학번 나이</td></tr>
+    <tr><td>1972년생</td><td>쥐띠 (임자)</td><td>55세</td><td>55세 / 54세</td><td>91학번 나이</td></tr>
+    <tr><td>1971년생</td><td>돼지띠 (신해)</td><td>56세</td><td>56세 / 55세</td><td>90학번 나이</td></tr>
+    <tr><td>1970년생</td><td>개띠 (경술)</td><td>57세</td><td>57세 / 56세</td><td>89학번 나이</td></tr>
+    <tr><td>1969년생</td><td>닭띠 (기유)</td><td>58세</td><td>58세 / 57세</td><td>88학번 나이</td></tr>
+    <tr><td>1968년생</td><td>원숭이띠 (무신)</td><td>59세</td><td>59세 / 58세</td><td>87학번 나이</td></tr>
+    <tr><td>1967년생</td><td>양띠 (정미)</td><td>60세</td><td>60세 / 59세</td><td>86학번 나이</td></tr>
+    <tr><td>1966년생</td><td>말띠 (병오)</td><td>61세</td><td>61세 / 60세</td><td>85학번 나이</td></tr>
+    <tr><td>1965년생</td><td>뱀띠 (을사)</td><td>62세</td><td>62세 / 61세</td><td>84학번 나이</td></tr>
+    <tr><td>1964년생</td><td>용띠 (갑진)</td><td>63세</td><td>63세 / 62세</td><td>83학번 나이</td></tr>
+    <tr><td>1963년생</td><td>토끼띠 (계묘)</td><td>64세</td><td>64세 / 63세</td><td>82학번 나이</td></tr>
+    <tr><td>1962년생</td><td>호랑이띠 (임인)</td><td>65세</td><td>65세 / 64세</td><td>81학번 나이</td></tr>
+    <tr><td>1961년생</td><td>소띠 (신축)</td><td>66세</td><td>66세 / 65세</td><td>80학번 나이</td></tr>
+    <tr><td>1960년생</td><td>쥐띠 (경자)</td><td>67세</td><td>67세 / 66세</td><td>79학번 나이</td></tr>
+    <tr><td>1959년생</td><td>돼지띠 (기해)</td><td>68세</td><td>68세 / 67세</td><td>78학번 나이</td></tr>
+    <tr><td>1958년생</td><td>개띠 (무술)</td><td>69세</td><td>69세 / 68세</td><td>77학번 나이</td></tr>
+    <tr><td>1957년생</td><td>닭띠 (정유)</td><td>70세</td><td>70세 / 69세</td><td>76학번 나이</td></tr>
+    <tr><td>1956년생</td><td>원숭이띠 (병신)</td><td>71세</td><td>71세 / 70세</td><td>75학번 나이</td></tr>
+    <tr><td>1955년생</td><td>양띠 (을미)</td><td>72세</td><td>72세 / 71세</td><td>74학번 나이</td></tr>
+    <tr><td>1954년생</td><td>말띠 (갑오)</td><td>73세</td><td>73세 / 72세</td><td>73학번 나이</td></tr>
+    <tr><td>1953년생</td><td>뱀띠 (계사)</td><td>74세</td><td>74세 / 73세</td><td>72학번 나이</td></tr>
+    <tr><td>1952년생</td><td>용띠 (임진)</td><td>75세</td><td>75세 / 74세</td><td>71학번 나이</td></tr>
+    <tr><td>1951년생</td><td>토끼띠 (신묘)</td><td>76세</td><td>76세 / 75세</td><td>70학번 나이</td></tr>
+    <tr><td>1950년생</td><td>호랑이띠 (경인)</td><td>77세</td><td>77세 / 76세</td><td>69학번 나이</td></tr>
+    <tr><td>1949년생</td><td>소띠 (기축)</td><td>78세</td><td>78세 / 77세</td><td>68학번 나이</td></tr>
+    <tr><td>1948년생</td><td>쥐띠 (무자)</td><td>79세</td><td>79세 / 78세</td><td>67학번 나이</td></tr>
+    <tr><td>1947년생</td><td>돼지띠 (정해)</td><td>80세</td><td>80세 / 79세</td><td>66학번 나이</td></tr>
+    <tr><td>1946년생</td><td>개띠 (병술)</td><td>81세</td><td>81세 / 80세</td><td>65학번 나이</td></tr>
+    <tr><td>1945년생</td><td>닭띠 (을유)</td><td>82세</td><td>82세 / 81세</td><td>64학번 나이</td></tr>
+    <tr><td>1944년생</td><td>원숭이띠 (갑신)</td><td>83세</td><td>83세 / 82세</td><td>63학번 나이</td></tr>
+    <tr><td>1943년생</td><td>양띠 (계미)</td><td>84세</td><td>84세 / 83세</td><td>62학번 나이</td></tr>
+    <tr><td>1942년생</td><td>말띠 (임오)</td><td>85세</td><td>85세 / 84세</td><td>61학번 나이</td></tr>
+    <tr><td>1941년생</td><td>뱀띠 (신사)</td><td>86세</td><td>86세 / 85세</td><td>60학번 나이</td></tr>
+    <tr><td>1940년생</td><td>용띠 (경진)</td><td>87세</td><td>87세 / 86세</td><td>59학번 나이</td></tr>
+  </tbody>
+</table>
+<p>학년은 1~12월생이 같은 학년이 되는 현재 기준이에요. 예전에는 3월 1일을 기준으로 입학해서 1~2월생이 한 해 위 학년과 함께 다녔는데(이른바 "빠른년생"), 2009학년도 입학부터 1월 1일 기준으로 바뀌어 <strong>2002년 1~2월생이 마지막 빠른년생</strong>이에요. 빠른년생이라면 표의 학번보다 한 학번 위일 수 있어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>2027년은 무슨 띠인가요?</h3>
+<p>2027년은 60갑자로 정미년이라 양띠 해예요. 천간 정(丁)이 붉은색을 뜻해서 붉은 양의 해라고도 불러요. 양력 기준으로는 2027년 1월 1일 이후 태어난 아이가 양띠이고, 음력 설을 기준으로 따지면 설 이전 출생아는 2026년 말띠로 보기도 해요.</p>
+<h3>2027년에 초등학교에 입학하는 아이는 몇 년생인가요?</h3>
+<p>2020년생이에요. 초·중등교육법은 만 6세가 된 해의 다음 해 3월 1일에 입학하도록 정하고 있어서, 2026년에 만 6세가 된 2020년생이 2027년 3월에 입학해요. 같은 법에 따라 보호자가 원하면 한 해 일찍(2021년생) 또는 한 해 늦게(2019년생) 입학시킬 수도 있어요.</p>
+<h3>2027년에 술·담배를 살 수 있는 사람은 몇 년생부터인가요?</h3>
+<p>2008년생부터예요. 청소년보호법은 만 19세가 되는 해의 1월 1일을 맞이한 사람을 청소년에서 제외하기 때문에, 2008년생은 생일과 관계없이 2027년 1월 1일부터 술·담배를 살 수 있어요. 2009년생은 2028년 1월 1일부터예요.</p>
+<h3>2027년 대학 신입생은 몇 년생이고 몇 학번인가요?</h3>
+<p>재수 없이 진학한다면 2008년생이 2027년에 대학에 입학하는 27학번이에요. 2027년에 고등학교 3학년인 2009년생은 그해 말 수능을 보고 2028년에 28학번으로 입학해요.</p>
+<h3>빠른년생은 나이를 어떻게 계산하나요?</h3>
+<p>법적 나이는 빠른년생도 다른 사람과 똑같이 실제 생년월일로 계산한 만 나이예요. 다만 학교는 2002년 1~2월생까지 한 해 위 학년과 함께 입학했기 때문에, 학년과 학번만 같은 해 다른 출생자보다 하나 위일 수 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:age-calculator}}">만 나이 계산기</a>: 생년월일로 오늘 기준 만 나이와 다음 생일까지 계산</li>
+  <li><a href="{{LINK:dday-calculator}}">디데이 계산기</a>: 입학일·생일·기념일까지 남은 날 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "2027년은 무슨 띠인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년은 60갑자로 정미년이라 양띠 해예요. 천간 정(丁)이 붉은색을 뜻해서 붉은 양의 해라고도 불러요. 양력 기준으로는 2027년 1월 1일 이후 태어난 아이가 양띠이고, 음력 설을 기준으로 따지면 설 이전 출생아는 2026년 말띠로 보기도 해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 초등학교에 입학하는 아이는 몇 년생인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2020년생이에요. 초·중등교육법은 만 6세가 된 해의 다음 해 3월 1일에 입학하도록 정하고 있어서, 2026년에 만 6세가 된 2020년생이 2027년 3월에 입학해요. 같은 법에 따라 보호자가 원하면 한 해 일찍(2021년생) 또는 한 해 늦게(2019년생) 입학시킬 수도 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 술·담배를 살 수 있는 사람은 몇 년생부터인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2008년생부터예요. 청소년보호법은 만 19세가 되는 해의 1월 1일을 맞이한 사람을 청소년에서 제외하기 때문에, 2008년생은 생일과 관계없이 2027년 1월 1일부터 술·담배를 살 수 있어요. 2009년생은 2028년 1월 1일부터예요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년 대학 신입생은 몇 년생이고 몇 학번인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "재수 없이 진학한다면 2008년생이 2027년에 대학에 입학하는 27학번이에요. 2027년에 고등학교 3학년인 2009년생은 그해 말 수능을 보고 2028년에 28학번으로 입학해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "빠른년생은 나이를 어떻게 계산하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "법적 나이는 빠른년생도 다른 사람과 똑같이 실제 생년월일로 계산한 만 나이예요. 다만 학교는 2002년 1~2월생까지 한 해 위 학년과 함께 입학했기 때문에, 학년과 학번만 같은 해 다른 출생자보다 하나 위일 수 있어요."
+   }
+  }
+ ]
+}
+</script>
