@@ -25,6 +25,7 @@ tools/
 | 연봉 실수령액 계산기 | `tools/salary-calculator` | 완성 |
 | 대출 이자 계산기 | `tools/loan-calculator` | 완성 |
 | 글자수 세기 | `tools/character-counter` | 완성 |
+| 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
 
 ## 작업 규칙
 
