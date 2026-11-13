@@ -1,0 +1,346 @@
+<!-- 자동차세 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kct" data-kct>
+  <style>
+    .kct{--kct-accent:#3b6ef5;--kct-accent-soft:#eef3ff;--kct-text:#1d2433;--kct-sub:#6b7385;--kct-line:#e3e7ef;--kct-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kct-line);border-radius:20px;background:var(--kct-bg);
+      color:var(--kct-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kct [hidden]{display:none!important}
+    .kct *,.kct *::before,.kct *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kct .kct-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kct .kct-desc{margin-top:4px;font-size:14px;color:var(--kct-sub)}
+    .kct .kct-label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kct-text)}
+    .kct .kct-aside{font-size:12.5px;font-weight:500;color:var(--kct-sub)}
+    .kct .kct-row{display:flex;gap:8px}
+    .kct .kct-field{position:relative;flex:1}
+    .kct .kct-field.kct-y{flex:1.4}
+    .kct .kct-in{width:100%;height:52px;padding:0 40px 0 14px;border:1.5px solid var(--kct-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kct-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kct .kct-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kct .kct-in:focus{border-color:var(--kct-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kct .kct-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kct-sub);pointer-events:none}
+    .kct .kct-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kct .kct-chip{height:32px;padding:0 12px;border:1.5px solid var(--kct-line);border-radius:999px;background:#fff;color:var(--kct-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kct .kct-chip:hover{border-color:#c9d3ea;color:var(--kct-text)}
+    .kct .kct-chip.kct-on{border-color:var(--kct-accent);background:var(--kct-accent-soft);color:var(--kct-accent)}
+    .kct .kct-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kct .kct-seg.kct-5{grid-template-columns:repeat(5,1fr)}
+    .kct .kct-seg-btn{height:44px;padding:0 4px;border:1.5px solid var(--kct-line);border-radius:12px;background:#f8f9fc;color:var(--kct-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .kct .kct-seg-btn:hover{border-color:#c9d3ea}
+    .kct .kct-seg-btn.kct-on{border-color:var(--kct-accent);background:var(--kct-accent);color:#fff}
+    .kct .kct-hint{margin-top:6px;font-size:12.5px;color:var(--kct-sub)}
+    .kct .kct-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kct .kct-sub,.kct .kct-note,.kct .kct-desc,.kct .kct-hint,.kct .kct-msg{word-break:keep-all}
+    .kct .kct-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kct .kct-result.kct-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kct .kct-result-inner{overflow:hidden}
+    .kct .kct-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kct-accent-soft);text-align:center}
+    .kct .kct-main-label{font-size:14px;color:var(--kct-sub)}
+    .kct .kct-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kct-accent);line-height:1.2;word-break:keep-all}
+    .kct .kct-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kct .kct-sub{margin-top:6px;font-size:14px;color:var(--kct-sub)}
+    .kct .kct-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kct .kct-card{padding:14px;border:1px solid var(--kct-line);border-radius:14px;background:#fff}
+    .kct .kct-card-k{font-size:12px;color:var(--kct-sub);word-break:keep-all}
+    .kct .kct-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kct-text);word-break:keep-all}
+    .kct .kct-table{width:100%;margin-top:8px;border:1px solid var(--kct-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .kct .kct-table th,.kct .kct-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--kct-line);background:#fff;text-align:left;font-weight:500;color:var(--kct-text)}
+    .kct .kct-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .kct .kct-table th small{display:block;font-size:11.5px;color:var(--kct-sub);font-weight:400;word-break:keep-all}
+    .kct .kct-table tr:last-child th,.kct .kct-table tr:last-child td{border-bottom:0}
+    .kct .kct-table .kct-total th,.kct .kct-table .kct-total td{background:#f8f9fc;font-weight:700}
+    .kct .kct-table .kct-minus td{color:#e0565b}
+    .kct .kct-table .kct-pay th,.kct .kct-table .kct-pay td{background:#f8f9fc;font-weight:700}
+    .kct .kct-table .kct-pay td{color:var(--kct-accent)}
+    .kct .kct-note{margin-top:12px;font-size:12.5px;color:var(--kct-sub)}
+    .kct .kct-note li{margin-left:16px}
+    .kct .kct-nowrap{white-space:nowrap}
+    .kct .kct-actions{display:flex;gap:8px;margin-top:14px}
+    .kct .kct-btn{flex:1;height:44px;border:1.5px solid var(--kct-line);border-radius:12px;background:#fff;color:var(--kct-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kct .kct-btn:hover{background:#f4f6fa}
+    .kct .kct-btn:active{transform:scale(.98)}
+    .kct .kct-btn.kct-primary{border-color:var(--kct-accent);background:var(--kct-accent);color:#fff}
+    .kct .kct-btn.kct-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kct{padding:18px;border-radius:16px}.kct .kct-big{font-size:34px}.kct .kct-in{font-size:17px}
+      .kct .kct-seg-btn{font-size:13px}.kct .kct-table th,.kct .kct-table td{padding:9px 11px}}
+    @media (prefers-reduced-motion:reduce){.kct .kct-result,.kct .kct-in,.kct .kct-btn,.kct .kct-chip,.kct .kct-seg-btn{transition:none}}
+  </style>
+
+  <p class="kct-title">자동차세 계산기</p>
+  <p class="kct-desc">배기량과 최초 등록 연월을 넣으면 연 자동차세와 연납 할인액을 바로 계산해요. (비영업용 승용차 기준)</p>
+
+  <p class="kct-label">기준 연도</p>
+  <div class="kct-seg" role="group" aria-label="기준 연도" data-years></div>
+
+  <p class="kct-label">차종</p>
+  <div class="kct-seg" role="group" aria-label="차종">
+    <button type="button" class="kct-seg-btn kct-on" data-kind="cc" aria-pressed="true">일반 승용차</button>
+    <button type="button" class="kct-seg-btn" data-kind="ev" aria-pressed="false">전기·수소차</button>
+  </div>
+
+  <div data-cc-box>
+    <label class="kct-label" for="kct-cc">배기량</label>
+    <div class="kct-field"><input class="kct-in" id="kct-cc" data-cc inputmode="numeric" placeholder="1,998" autocomplete="off"><span class="kct-unit">cc</span></div>
+    <div class="kct-chips" data-chips></div>
+  </div>
+
+  <p class="kct-label"><span>최초 등록 연월</span><span class="kct-aside" data-reg-aside>자동차등록증의 최초등록일</span></p>
+  <div class="kct-row">
+    <div class="kct-field kct-y"><input class="kct-in" data-ry inputmode="numeric" maxlength="4" placeholder="2022" autocomplete="off" aria-label="최초 등록 연도"><span class="kct-unit">년</span></div>
+    <div class="kct-field"><input class="kct-in" data-rm inputmode="numeric" maxlength="2" placeholder="3" autocomplete="off" aria-label="최초 등록 월"><span class="kct-unit">월</span></div>
+  </div>
+
+  <p class="kct-label">납부 방법</p>
+  <div class="kct-seg kct-5" role="group" aria-label="납부 방법">
+    <button type="button" class="kct-seg-btn kct-on" data-pay="0" aria-pressed="true">6·12월</button>
+    <button type="button" class="kct-seg-btn" data-pay="1" aria-pressed="false">1월 연납</button>
+    <button type="button" class="kct-seg-btn" data-pay="3" aria-pressed="false">3월</button>
+    <button type="button" class="kct-seg-btn" data-pay="6" aria-pressed="false">6월</button>
+    <button type="button" class="kct-seg-btn" data-pay="9" aria-pressed="false">9월</button>
+  </div>
+  <p class="kct-hint">6·12월은 나눠 내는 정기 납부, 나머지는 그달에 1년치를 미리 내는 연납이에요.</p>
+
+  <p class="kct-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kct-result" data-result aria-live="polite">
+    <div class="kct-result-inner">
+      <div class="kct-main">
+        <p class="kct-main-label" data-main-label></p>
+        <p class="kct-big" data-big></p>
+        <p class="kct-sub" data-sub></p>
+      </div>
+      <div class="kct-grid">
+        <div class="kct-card"><p class="kct-card-k" data-age-k>차령</p><p class="kct-card-v" data-age-v></p></div>
+        <div class="kct-card"><p class="kct-card-k" data-save-k></p><p class="kct-card-v" data-save-v></p></div>
+      </div>
+      <table class="kct-table">
+        <tbody data-rows></tbody>
+      </table>
+      <ul class="kct-note" data-notes></ul>
+      <div class="kct-actions">
+        <button type="button" class="kct-btn" data-reset>다시 입력</button>
+        <button type="button" class="kct-btn kct-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kct]');
+    if (!root || root.__kct) return;
+    root.__kct = true;
+
+    // ===== 법령·연도별 값: 바뀌면 여기만 고치세요 (README.md "매년 할 일" 참고) =====
+    var R = {
+      // 지방세법 제127조 비영업용 승용차 cc당 세액
+      ccRates: [{ max: 1000, won: 80 }, { max: 1600, won: 140 }, { max: Infinity, won: 200 }],
+      evTax: 100000,     // 그 밖의 승용자동차(전기·수소차 등) 연 10만원
+      edu: 0.3,          // 지방교육세 = 자동차세 × 30%
+      smallMax: 100000,  // 연세액 10만원 이하는 6월(1기분)에 한꺼번에 부과 (지방세법 제128조 제4항)
+      // 연납 공제율. known: false 면 아직 발표 전이라 직전 연도 값을 가정한 것
+      prepay: { 2026: { rate: 0.05, known: true }, 2027: { rate: 0.05, known: false } },
+      // 연납 시 공제 일수 (납부기한 다음 날 ~ 12월 31일). 윤년(2028 등)이면 1·3월 값과 분모가 바뀌니 확인하세요.
+      days: { 1: 334, 3: 275, 6: 184, 9: 92 }, yearDays: 365
+    };
+    var YEARS = [2026, 2027];
+    var CHIPS = [['경차', 998], ['소형', 1598], ['중형', 1999], ['대형', 2497]];
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var ccI = $('[data-cc]'), ryI = $('[data-ry]'), rmI = $('[data-rm]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var year = YEARS[0], kind = 'cc', pay = 0, lastText = '';
+
+    function f10(n) { return Math.floor(n / 10 + 1e-9) * 10; }
+    function c(n) { return Math.round(n).toLocaleString('ko-KR'); }
+    function won(n) { return c(n) + '원'; }
+    function pct(n) { return (Math.round(n * 100) / 100) + '%'; }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
+    function ccRate(cc) { for (var i = 0; i < R.ccRates.length; i++) if (cc <= R.ccRates[i].max) return R.ccRates[i].won; }
+    function cut(age) { return age >= 3 ? Math.min((age - 2) * 5, 50) : 0; } // 차령 경감률(%)
+
+    // 버튼 만들기
+    var yBox = $('[data-years]');
+    YEARS.forEach(function (y, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kct-seg-btn' + (i === 0 ? ' kct-on' : ''); b.textContent = y + '년';
+      b.setAttribute('data-year', y); b.setAttribute('aria-pressed', i === 0);
+      yBox.appendChild(b);
+    });
+    var chipBox = $('[data-chips]');
+    CHIPS.forEach(function (ch) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kct-chip'; b.setAttribute('data-cc-chip', ch[1]);
+      b.textContent = ch[0] + ' ' + c(ch[1]) + 'cc';
+      chipBox.appendChild(b);
+    });
+
+    function seg(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) { var on = b.getAttribute(attr) === String(val); b.classList.toggle('kct-on', on); b.setAttribute('aria-pressed', on); });
+    }
+    function syncChips() { var v = +ccI.value.replace(/\D/g, ''); $$('[data-cc-chip]').forEach(function (b) { b.classList.toggle('kct-on', +b.getAttribute('data-cc-chip') === v); }); }
+    function hide(text) { result.classList.remove('kct-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var cc = +ccI.value.replace(/\D/g, ''), ry = +ryI.value, rm = +rmI.value;
+      var ev = kind === 'ev', hasReg = ryI.value.length === 4 && rmI.value !== '';
+      if (!ev && !ccI.value) return hide('');
+      if (!ev && (cc < 50 || cc > 20000)) return hide('배기량을 다시 확인해 주세요. (50~20,000cc)');
+      if (!ev && !hasReg) return hide(''); // 등록 연월을 다 넣을 때까지 기다림
+      if (ev && ryI.value && !hasReg) return hide(''); // 전기차: 등록 연월은 선택이지만 쓰다 만 상태면 기다림
+      if (hasReg) {
+        if (rm < 1 || rm > 12) return hide('등록 월은 1~12 사이로 넣어 주세요.');
+        if (ry < 1950) return hide('등록 연도를 다시 확인해 주세요.');
+        if (ry > year) return hide('최초 등록이 ' + year + '년보다 뒤예요. 기준 연도를 확인해 주세요.');
+        if (ry === year) return hide(year + '년에 새로 등록한 차는 등록일부터 날짜 수만큼 나눠 매겨요(일할 계산). ' + year + '년 이전에 등록한 차를 넣거나 기준 연도를 ' + (year + 1) + '년으로 바꿔 보세요.');
+      }
+      msg.textContent = '';
+
+      // 1기분(1~6월)·2기분(7~12월) 차령: 7~12월에 등록한 차는 1기분 차령이 1년 적어요
+      var a2 = hasReg ? year - ry + 1 : 0, a1 = hasReg ? (rm <= 6 ? a2 : a2 - 1) : 0;
+      var rate = ev ? 0 : ccRate(cc), base = ev ? R.evTax : cc * rate;
+      var c1 = ev ? 0 : cut(a1), c2 = ev ? 0 : cut(a2);
+      var h1 = f10(base * (100 - c1) / 100 / 2), h2 = f10(base * (100 - c2) / 100 / 2);
+      var e1 = f10(h1 * R.edu), e2 = f10(h2 * R.edu);
+      var A = h1 + h2, E = e1 + e2, T = A + E;
+      var P = R.prepay[year], small = A <= R.smallMax;
+
+      // 정기 납부(6·12월)
+      var june, dec, juneCar = h1, juneEdu = e1;
+      if (small) {
+        juneCar = f10(A - h2 * P.rate); juneEdu = f10(juneCar * R.edu);
+        june = juneCar + juneEdu; dec = 0;
+      } else { june = h1 + e1; dec = h2 + e2; }
+      var regular = june + dec;
+
+      // 연납
+      function prepayIn(m) {
+        if (small && m >= 6) return null; // 이미 6월에 1년치가 한꺼번에 고지됨
+        var d = A * P.rate * R.days[m] / R.yearDays, car, edu, before = 0;
+        if (m === 9) { car = f10(h2 - d); before = h1 + e1; } else car = f10(A - d);
+        edu = f10(car * R.edu);
+        return { car: car, edu: edu, now: car + edu, total: before + car + edu, before: before, save: regular - (before + car + edu) };
+      }
+      var jan = prepayIn(1), sel = pay ? prepayIn(pay) : null;
+      var effPay = pay && !sel ? 0 : pay; // 10만원 이하 차의 6·9월 연납 → 정기 납부와 같음
+
+      // 화면
+      var label, big, sub;
+      if (!effPay) {
+        label = year + '년 자동차세 (지방교육세 포함)';
+        big = regular;
+        sub = small ? '6월에 1년치를 한꺼번에 내요' : '6월 ' + won(june) + ' + 12월 ' + won(dec);
+      } else {
+        label = year + '년 ' + effPay + '월 연납 시 납부액';
+        big = sel.total;
+        sub = '정기 납부(' + won(regular) + ')보다 ' + won(sel.save) + ' 덜 내요';
+      }
+      $('[data-main-label]').textContent = label;
+      $('[data-big]').innerHTML = c(big) + '<small>원</small>';
+      $('[data-sub]').textContent = sub;
+
+      if (ev) { $('[data-age-k]').textContent = '차령 경감'; $('[data-age-v]').textContent = '해당 없음'; }
+      else if (!hasReg) { $('[data-age-k]').textContent = '차령 경감'; $('[data-age-v]').textContent = '-'; }
+      else if (a1 === a2) { $('[data-age-k]').textContent = '차령 ' + a2 + '년차'; $('[data-age-v]').textContent = c2 ? c2 + '% 경감' : '경감 없음'; }
+      else { $('[data-age-k]').textContent = '차령 ' + a1 + '·' + a2 + '년차 (6월분·12월분)'; $('[data-age-v]').textContent = (c1 === c2 ? (c2 ? c2 + '% 경감' : '경감 없음') : (c1 + '%·' + c2 + '% 경감')); }
+
+      if (effPay) { $('[data-save-k]').textContent = effPay + '월 연납 실질 할인율'; $('[data-save-v]').textContent = pct((T - sel.total) / T * 100); }
+      else { $('[data-save-k]').textContent = '1월에 연납하면'; $('[data-save-v]').textContent = won(jan.save) + ' 절약'; }
+
+      var rows = [];
+      function row(k, s, v, cls) { rows.push('<tr' + (cls ? ' class="' + cls + '"' : '') + '><th>' + k + (s ? '<small>' + s + '</small>' : '') + '</th><td>' + v + '</td></tr>'); }
+      var basis = ev ? '전기·수소차 정액 10만원' : c(cc) + 'cc × ' + rate + '원' + (c1 || c2 ? ' − 차령 경감' : '');
+      row('자동차세 (연)', basis, won(A));
+      row('지방교육세 (연)', '자동차세의 30%', won(E));
+      row('연 세액 합계', '', won(T), 'kct-total');
+      if (!effPay) {
+        if (small) {
+          row('6월 (1년치 한꺼번에)', '하반기분 ' + (P.rate * 100) + '% 공제', won(june));
+          row('12월', '', '없음');
+        } else {
+          row('6월 (1기분)', '자동차세 ' + c(h1) + ' + 교육세 ' + c(e1), won(june));
+          row('12월 (2기분)', '자동차세 ' + c(h2) + ' + 교육세 ' + c(e2), won(dec));
+        }
+      } else {
+        row(effPay + '월 연납 할인', '공제율 ' + (P.rate * 100) + '% × ' + R.days[effPay] + '/' + R.yearDays + '일', '−' + won(T - sel.total), 'kct-minus');
+        if (effPay === 9) {
+          row('6월 (1기분 정기)', '자동차세 ' + c(h1) + ' + 교육세 ' + c(e1), won(sel.before));
+          row('9월 (2기분 연납)', '자동차세 ' + c(sel.car) + ' + 교육세 ' + c(sel.edu), won(sel.now));
+          row('연납 납부액 합계', '', won(sel.total), 'kct-pay');
+        } else {
+          row(effPay + '월 연납 납부액', '자동차세 ' + c(sel.car) + ' + 교육세 ' + c(sel.edu), won(sel.total), 'kct-pay');
+        }
+      }
+      $('[data-rows]').innerHTML = rows.join('');
+
+      var notes = ['비영업용(자가용) 승용차 기준 표준세율이에요. 장애인·국가유공자·다자녀 등 감면은 반영하지 않았고, 원 단위는 10원 미만을 버렸어요.'];
+      if (!P.known) notes.push(year + '년 연납 공제율은 아직 발표 전이라 2026년과 같은 ' + (P.rate * 100) + '%로 계산했어요. 바뀌면 할인액이 달라져요.');
+      if (small) notes.push('연세액이 10만원 이하라 보통 6월에 1년치가 한꺼번에 고지돼요. 이때 하반기분 세액의 ' + (P.rate * 100) + '%를 빼 줘요. 지자체마다 고지 방식이 다를 수 있어요.');
+      if (small && pay >= 6) notes.push('이 차는 6월에 1년치를 이미 내기 때문에 ' + pay + '월 연납을 따로 할 필요가 없어요.');
+      if (!ev && hasReg && a1 !== a2) notes.push('7~12월에 처음 등록한 차라 6월분(1기분) 차령이 12월분(2기분)보다 1년 적게 계산돼요.');
+      if (ev) notes.push('전기·수소차는 정액 과세라 차령 경감이 없어요.');
+      $('[data-notes]').innerHTML = notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('');
+      result.classList.add('kct-show');
+
+      var t = ['[' + year + '년 자동차세 계산 결과]',
+        '차종: ' + (ev ? '전기·수소차' : '일반 승용차 ' + c(cc) + 'cc'),
+        hasReg ? '최초 등록: ' + ry + '년 ' + rm + '월' + (ev ? '' : ' (차령 ' + (a1 === a2 ? a2 + '년차, 경감 ' + c2 + '%' : '6월분 ' + a1 + '년차 ' + c1 + '% · 12월분 ' + a2 + '년차 ' + c2 + '%') + ')') : '',
+        '자동차세(연): ' + won(A), '지방교육세(연): ' + won(E), '연 세액 합계: ' + won(T)];
+      if (!effPay) t.push(small ? '6월 한꺼번에: ' + won(june) : '6월: ' + won(june) + ' / 12월: ' + won(dec));
+      else t.push(effPay + '월 연납 납부액: ' + won(sel.total) + ' (정기 납부 ' + won(regular) + '보다 ' + won(sel.save) + ' 적음)');
+      if (!effPay && jan) t.push('1월 연납 시: ' + won(jan.total) + ' (' + won(jan.save) + ' 적음)');
+      lastText = t.filter(Boolean).join('\n');
+    }
+
+    ccI.addEventListener('input', function () {
+      var v = ccI.value.replace(/\D/g, '').slice(0, 5);
+      ccI.value = v ? (+v).toLocaleString('ko-KR') : '';
+      syncChips(); calc();
+    });
+    $$('[data-cc-chip]').forEach(function (b) {
+      b.addEventListener('click', function () { ccI.value = c(+b.getAttribute('data-cc-chip')); syncChips(); if (!ryI.value) ryI.focus(); calc(); });
+    });
+    ryI.addEventListener('input', function () {
+      var v = ryI.value.replace(/\D/g, '').slice(0, 4);
+      if (v !== ryI.value) ryI.value = v;
+      if (v.length === 4) rmI.focus();
+      calc();
+    });
+    rmI.addEventListener('input', function () {
+      var v = rmI.value.replace(/\D/g, '').slice(0, 2);
+      if (v !== rmI.value) rmI.value = v;
+      calc();
+    });
+    rmI.addEventListener('keydown', function (e) { if (e.key === 'Backspace' && !rmI.value) { e.preventDefault(); ryI.focus(); } });
+
+    $$('[data-year]').forEach(function (b) { b.addEventListener('click', function () { year = +b.getAttribute('data-year'); seg('data-year', year); calc(); }); });
+    $$('[data-kind]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        kind = b.getAttribute('data-kind'); seg('data-kind', kind);
+        $('[data-cc-box]').hidden = kind === 'ev';
+        $('[data-reg-aside]').textContent = kind === 'ev' ? '선택 · 차령 경감 없음' : '자동차등록증의 최초등록일';
+        calc();
+      });
+    });
+    $$('[data-pay]').forEach(function (b) { b.addEventListener('click', function () { pay = +b.getAttribute('data-pay'); seg('data-pay', pay); calc(); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      ccI.value = ryI.value = rmI.value = ''; syncChips(); hide('');
+      (kind === 'ev' ? ryI : ccI).focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done);
+      else { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+    });
+  })();
+  </script>
+</div>
+<!-- 자동차세 계산기 위젯 끝 -->
