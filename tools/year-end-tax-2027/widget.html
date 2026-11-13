@@ -1,0 +1,318 @@
+<!-- 연말정산 공제 체크리스트 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kye" data-kye>
+  <style>
+    .kye{--kye-accent:#3b6ef5;--kye-accent-soft:#eef3ff;--kye-text:#1d2433;--kye-sub:#6b7385;--kye-line:#e3e7ef;--kye-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kye-line);border-radius:20px;background:var(--kye-bg);
+      color:var(--kye-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kye [hidden]{display:none!important}
+    .kye *,.kye *::before,.kye *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kye .kye-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kye .kye-desc{margin-top:4px;font-size:14px;color:var(--kye-sub)}
+    .kye .kye-label{display:flex;justify-content:space-between;align-items:center;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kye-text)}
+    .kye .kye-label small{font-size:12.5px;font-weight:500;color:var(--kye-sub)}
+    .kye .kye-field{position:relative}
+    .kye .kye-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kye-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kye-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kye .kye-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kye .kye-in:focus{border-color:var(--kye-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kye .kye-in.kye-bad{border-color:#e0565b}
+    .kye .kye-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kye-sub);pointer-events:none}
+    .kye .kye-hint{margin-top:6px;font-size:12.5px;color:var(--kye-sub)}
+    .kye .kye-msg{min-height:20px;margin-top:6px;font-size:13px;color:#e0565b}
+    .kye .kye-qs{margin-top:4px;border:1px solid var(--kye-line);border-radius:16px;overflow:hidden}
+    .kye .kye-q{display:flex;align-items:center;gap:10px;padding:12px 12px 12px 14px;border-top:1px solid var(--kye-line);background:#fff;transition:background .2s}
+    .kye .kye-q:first-child{border-top:0}
+    .kye .kye-q.kye-yes{background:#f7f9ff}
+    .kye .kye-q-body{flex:1;min-width:0}
+    .kye .kye-q-t{font-size:14.5px;font-weight:600;color:var(--kye-text)}
+    .kye .kye-q-h{margin-top:1px;font-size:12px;color:var(--kye-sub)}
+    .kye .kye-yn{display:flex;flex:none;gap:4px}
+    .kye .kye-ynb{width:52px;height:36px;border:1.5px solid var(--kye-line);border-radius:10px;background:#fff;color:var(--kye-sub);
+      font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kye .kye-ynb:hover{border-color:#c9d3ea;color:var(--kye-text)}
+    .kye .kye-ynb.kye-on[data-v="1"]{border-color:var(--kye-accent);background:var(--kye-accent);color:#fff}
+    .kye .kye-ynb.kye-on[data-v="0"]{border-color:#c9cfdb;background:#f1f3f7;color:var(--kye-text)}
+    .kye .kye-progress{margin-top:10px;font-size:12.5px;color:var(--kye-sub)}
+    .kye .kye-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kye .kye-result.kye-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kye .kye-result-inner{overflow:hidden}
+    .kye .kye-main{margin-top:12px;padding:22px 20px;border-radius:16px;background:var(--kye-accent-soft);text-align:center}
+    .kye .kye-main-label{font-size:14px;color:var(--kye-sub)}
+    .kye .kye-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kye-accent);line-height:1.2}
+    .kye .kye-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kye .kye-sub{margin-top:6px;font-size:14px;color:var(--kye-sub)}
+    .kye .kye-grp{margin-top:14px}
+    .kye .kye-grp-t{display:flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--kye-text)}
+    .kye .kye-grp-t span{font-size:12px;font-weight:600;color:var(--kye-sub)}
+    .kye .kye-list{list-style:none;margin-top:6px}
+    .kye .kye-item{position:relative;padding:10px 12px 10px 34px;margin-top:6px;border:1px solid var(--kye-line);border-radius:12px;background:#fff}
+    .kye .kye-item::before{content:"";position:absolute;left:12px;top:13px;width:14px;height:14px;border:1.5px solid #b7c0d3;border-radius:4px}
+    .kye .kye-grp-doc .kye-item::before{border-color:var(--kye-accent)}
+    .kye .kye-grp-no .kye-item{background:#f8f9fb}
+    .kye .kye-grp-no .kye-item::before{content:"–";border:0;top:9px;color:var(--kye-sub);font-weight:700}
+    .kye .kye-item-t{font-size:14px;font-weight:600;color:var(--kye-text)}
+    .kye .kye-item-d{margin-top:2px;font-size:12.5px;color:var(--kye-sub)}
+    .kye .kye-new{display:inline-block;margin-left:4px;padding:0 6px;border-radius:6px;background:var(--kye-accent-soft);color:var(--kye-accent);font-size:11px;font-weight:700;vertical-align:1px}
+    .kye .kye-note{margin-top:14px;font-size:12.5px;color:var(--kye-sub)}
+    .kye .kye-note li{margin-left:16px}
+    .kye .kye-desc,.kye .kye-hint,.kye .kye-q-t,.kye .kye-q-h,.kye .kye-sub,.kye .kye-item-t,.kye .kye-item-d,.kye .kye-note,.kye .kye-msg{word-break:keep-all}
+    .kye .kye-nowrap{white-space:nowrap}
+    .kye .kye-actions{display:flex;gap:8px;margin-top:14px}
+    .kye .kye-btn{flex:1;height:44px;border:1.5px solid var(--kye-line);border-radius:12px;background:#fff;color:var(--kye-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kye .kye-btn:hover{background:#f4f6fa}
+    .kye .kye-btn:active{transform:scale(.98)}
+    .kye .kye-btn.kye-primary{border-color:var(--kye-accent);background:var(--kye-accent);color:#fff}
+    .kye .kye-btn.kye-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kye{padding:18px;border-radius:16px}.kye .kye-big{font-size:38px}.kye .kye-in{font-size:17px}
+      .kye .kye-q{padding:11px 10px 11px 12px;gap:8px}.kye .kye-ynb{width:50px;font-size:13px}.kye .kye-q-t{font-size:14px}}
+    @media (prefers-reduced-motion:reduce){.kye .kye-result,.kye .kye-in,.kye .kye-btn,.kye .kye-ynb,.kye .kye-q{transition:none}}
+  </style>
+
+  <p class="kye-title">2027 연말정산 공제 체크리스트</p>
+  <p class="kye-desc">2026년 귀속분이에요. 해당하는 질문에 ‘예’를 누르면 챙길 서류와 확인할 조건이 바로 정리돼요.</p>
+
+  <label class="kye-label" for="kye-pay"><span>올해 예상 총급여</span><small>선택 · 비워 둬도 돼요</small></label>
+  <div class="kye-field"><input class="kye-in" id="kye-pay" data-pay inputmode="numeric" placeholder="4,500" autocomplete="off"><span class="kye-unit">만원</span></div>
+  <p class="kye-hint">세전 연봉에서 식대 같은 비과세를 뺀 금액이에요. 넣으면 월세·청약처럼 소득 기준이 있는 공제를 걸러 줘요.</p>
+  <p class="kye-msg" data-msg role="status" aria-live="polite"></p>
+
+  <p class="kye-label">나에게 해당하나요?</p>
+  <div class="kye-qs" data-qs></div>
+  <p class="kye-progress" data-progress></p>
+
+  <div class="kye-result" data-result aria-live="polite">
+    <div class="kye-result-inner">
+      <div class="kye-main">
+        <p class="kye-main-label">챙길 일</p>
+        <p class="kye-big"><span data-count>0</span><small>개</small></p>
+        <p class="kye-sub" data-sub></p>
+      </div>
+      <div data-groups></div>
+      <ul class="kye-note">
+        <li>2027년 간소화 서비스 개통일은 아직 발표 전이에요. 작년에는 <span class="kye-nowrap">2026. 1. 15.</span>에 열렸어요.</li>
+        <li>공제 요건만 정리했어요. 환급액은 회사 연말정산이나 홈택스 미리보기로 확인하세요.</li>
+      </ul>
+      <div class="kye-actions">
+        <button type="button" class="kye-btn" data-reset>다시 입력</button>
+        <button type="button" class="kye-btn kye-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kye]');
+    if (!root || root.__kye) return;
+    root.__kye = true;
+
+    // 기준: 2026년 귀속(2027년 1~2월 연말정산). 해마다 README.md 의 "매년 할 일"을 보고 고친다.
+    // 항목 종류: doc = 직접 챙길 서류(간소화에 안 나오거나 빠지기 쉬움), auto = 간소화에서 나옴(확인만), check = 확인할 조건, no = 대상 아님
+    var BASE = [
+      { k: 'auto', t: '홈택스 간소화 자료(PDF) 내려받기', d: '2027년 1월 중순 개통 예정(작년 1. 15.). 개통 며칠 뒤 나오는 확정 자료로 받으면 수정분까지 반영돼요.' },
+      { k: 'doc', t: '회사에 소득·세액공제신고서와 증빙 제출', d: '제출 기한은 회사가 정해요. 보통 1월 말~2월 초예요.' }
+    ];
+    var QS = [
+      { id: 'job', q: '올해 회사를 옮겼나요?', h: '중간에 입사했거나 두 곳 이상에서 일했어요',
+        items: function () { return [
+          { k: 'doc', t: '이전 회사 근로소득 원천징수영수증', d: '이전 회사에 요청해 지금 회사에 내요. 빠뜨리면 이전 회사 소득이 합쳐지지 않아 5월에 따로 신고해야 해요.' }
+        ]; } },
+      { id: 'family', q: '배우자·부모님 등 부양가족을 공제받나요?', h: '자녀는 다음 질문에서 따로 물어봐요',
+        items: function () { return [
+          { k: 'check', t: '부양가족 소득·나이 요건 확인', d: '연간 소득금액 100만원 이하(근로소득만 있으면 총급여 500만원 이하). 부모님은 60세 이상(1966. 12. 31. 이전 출생)이어야 해요.' },
+          { k: 'doc', t: '가족관계증명서', d: '주민등록등본에 함께 나오지 않는 가족(따로 사는 부모님 등)을 공제받을 때 필요해요.' },
+          { k: 'doc', t: '가족의 간소화 자료 제공 동의', d: '성인 가족은 본인이 홈택스에서 동의해야 그 가족의 의료비·카드 자료가 내 화면에 보여요.' },
+          { k: 'check', t: '맞벌이·형제와 중복 공제 금지', d: '같은 가족을 두 사람이 동시에 공제받으면 나중에 가산세와 함께 추징돼요.' }
+        ]; } },
+      { id: 'child', q: '20세 이하 자녀가 있나요?', h: '2006년 1월 1일 이후 출생',
+        items: function (p) { return [
+          { k: 'check', t: '자녀세액공제 대상 나이 확인', n: 1, d: '2026년 귀속부터 9세 이상만 대상이고 아동수당을 받는 2017년생은 빠져요. 사실상 2006~2016년생 자녀예요. 첫째 25만원, 둘째 30만원, 셋째부터 1명당 40만원.' },
+          { k: 'check', t: '신용카드 공제 한도가 자녀 수만큼 늘어나요', n: 1,
+            d: p === null ? '자녀 1명당 50만원, 최대 100만원 늘어나요. 총급여 7천만원 초과면 1명당 25만원, 최대 50만원이에요.'
+              : p <= 7000 ? '총급여 7천만원 이하라 자녀 1명당 50만원, 최대 100만원 늘어나요.'
+              : '총급여 7천만원 초과라 자녀 1명당 25만원, 최대 50만원 늘어나요.' },
+          { k: 'check', t: '올해 태어나거나 입양한 자녀가 있다면 출산·입양 공제', d: '첫째 30만원, 둘째 50만원, 셋째 이상 70만원 세액공제. 출생신고가 돼 있으면 따로 낼 서류는 거의 없어요.' }
+        ]; } },
+      { id: 'edu', q: '교육비를 냈나요?', h: '본인·자녀의 학교, 유치원, 어린이집, 학원 등',
+        items: function () { return [
+          { k: 'auto', t: '학교·유치원·어린이집 교육비', d: '대부분 간소화에 나와요. 빠진 곳은 교육비납입증명서를 받아요.' },
+          { k: 'doc', t: '초등 1·2학년 예체능 학원비 영수증', n: 1, d: '2026년 지출분부터 새로 공제돼요(음악·미술·체육 등). 간소화에 없으면 학원에서 교육비납입증명서를 받아요.' },
+          { k: 'doc', t: '취학 전 아이 학원·체육시설 납입증명서', d: '간소화에 빠지는 경우가 많아요. 학원에 직접 요청해요.' },
+          { k: 'doc', t: '교복·체육복 구입 영수증', d: '중·고등학생 1명당 연 50만원까지. 간소화에 없으면 판매처에서 받아요.' }
+        ]; } },
+      { id: 'med', q: '병원비·약값·안경 등 의료비를 썼나요?', h: '본인과 부양가족 모두 포함(나이·소득 상관없음)',
+        items: function () { return [
+          { k: 'auto', t: '병원·약국 의료비', d: '간소화에 나와요. 총급여의 3%를 넘게 쓴 부분부터 공제돼요.' },
+          { k: 'doc', t: '안경·콘택트렌즈 구입 영수증', d: '시력 교정용, 1명당 연 50만원까지. 간소화에 없으면 안경점에서 받아요.' },
+          { k: 'doc', t: '보청기·장애인보장구·의료기기 영수증', d: '간소화에 안 나오는 경우가 많아요. 의료기기는 의사 처방전도 필요해요.' },
+          { k: 'check', t: '실손보험으로 돌려받은 금액은 빼기', d: '보험사 자료가 간소화에 함께 나와요. 빼지 않으면 과다 공제로 추징될 수 있어요.' }
+        ]; } },
+      { id: 'card', q: '신용카드·체크카드·현금영수증을 썼나요?', h: '대부분 해당돼요',
+        items: function (p) { return [
+          { k: 'auto', t: '카드·현금영수증 사용액', d: '간소화에 나와요. 총급여의 25%를 넘게 쓴 부분부터 공제돼요.' },
+          { k: 'check', t: '공제율 높은 사용처 확인', d: '전통시장·대중교통은 공제율이 높아요.' + (p !== null && p > 7000 ? '' : ' 총급여 7천만원 이하면 도서·공연·박물관·영화, 수영장·헬스장 이용료(2025. 7.부터)도 높은 공제율이에요.') }
+        ]; } },
+      { id: 'rent', q: '월세를 내는 무주택 세대인가요?', h: '세대주 또는 세대원, 12월 31일 기준 무주택',
+        items: function (p) {
+          if (p !== null && p > 8000) return [{ k: 'no', t: '월세 세액공제', d: '총급여 8천만원 이하만 받을 수 있어요.' }];
+          return [
+            { k: 'doc', t: '임대차계약서 사본', d: '계약서 주소와 주민등록 주소가 같아야 해요. 국민주택규모(85㎡) 이하 또는 기준시가 4억원 이하 주택.' },
+            { k: 'doc', t: '월세 이체 내역(계좌이체 확인증)', d: '간소화에 안 나와요. 은행 앱에서 1년치를 내려받아요.' },
+            { k: 'check', t: '공제율과 한도', d: '연 1,000만원까지, 총급여 5,500만원 이하는 17%, 8,000만원 이하는 15%' + (p !== null ? '(내 기준 ' + (p <= 5500 ? '17%' : '15%') + ')' : '') + '예요.' },
+            { k: 'check', t: '따로 사는 부부는 각자 공제 가능', n: 1, d: '2026년 지급분부터 배우자가 다른 시·군·구에 살면 부부가 각각 받을 수 있어요(부부 합산 1,000만원).' }
+          ];
+        } },
+      { id: 'pension', q: '연금저축이나 IRP에 돈을 넣었나요?', h: '퇴직연금 개인 추가 납입 포함',
+        items: function () { return [
+          { k: 'auto', t: '연금저축·IRP 납입액', d: '간소화에 나와요.' },
+          { k: 'check', t: '세액공제 한도', d: '연금저축 600만원, IRP와 합쳐 900만원까지예요. 12월에 넣은 금액도 포함돼요.' }
+        ]; } },
+      { id: 'donate', q: '기부금을 냈나요?', h: '종교단체, 공익단체, 고향사랑기부 등',
+        items: function () { return [
+          { k: 'doc', t: '기부금 영수증', d: '종교단체 등 간소화에 자료를 안 내는 곳이 많아요. 기부처에서 직접 받아요.' },
+          { k: 'check', t: '고향사랑기부금 공제율 상향', n: 1, d: '10만원까지는 사실상 전액, 10만원 초과~20만원 이하 부분은 2026년 기부분부터 40% 세액공제예요.' }
+        ]; } },
+      { id: 'house', q: '주택청약종합저축에 돈을 넣었나요?', h: '무주택 세대주 또는 그 배우자',
+        items: function (p) {
+          if (p !== null && p > 7000) return [{ k: 'no', t: '주택청약 소득공제', d: '총급여 7천만원 이하만 받을 수 있어요.' }];
+          return [
+            { k: 'doc', t: '가입 은행에 무주택 확인서 제출', d: '내지 않았으면 간소화에 납입액이 나와도 공제가 안 될 수 있어요. 은행 앱이나 창구에서 확인해요.' },
+            { k: 'check', t: '공제 한도', d: '연 300만원 납입분까지, 납입액의 40% 소득공제예요.' }
+          ];
+        } },
+      { id: 'youth', q: '중소기업에 다니는 청년인가요?', h: '취업할 때 15~34세(군 복무 기간은 빼고 계산)',
+        items: function () { return [
+          { k: 'doc', t: '중소기업 취업자 소득세 감면 신청서', d: '회사에 한 번 내면 취업일부터 5년간 소득세 90%(연 200만원까지) 감면돼요. 아직 안 냈다면 지금이라도 내요.' }
+        ]; } },
+      { id: 'marry', q: '2024~2026년에 혼인신고를 했나요?', h: '생애 한 번만 받을 수 있어요',
+        items: function () { return [
+          { k: 'check', t: '결혼세액공제 50만원', d: '부부 각각 50만원. 2026년 혼인신고분까지만 적용돼요. 2024·2025년 신고 때 이미 받았다면 또 받을 수 없어요.' }
+        ]; } },
+      { id: 'disabled', q: '본인이나 가족 중 장애인이 있나요?', h: '장애인복지법상 장애인, 국가유공자, 중증환자 등',
+        items: function () { return [
+          { k: 'doc', t: '장애인증명서 또는 장애인등록증 사본', d: '중증환자는 병원에서 장애인증명서를 받아요. 장애인 가족은 나이 제한 없이 부양가족 공제가 돼요.' },
+          { k: 'auto', t: '장애인 전용 보장성 보험료', d: '간소화에 나와요. 일반 보장성 보험과 따로 연 100만원까지 공제돼요.' }
+        ]; } }
+    ];
+    var GROUPS = [
+      { k: 'doc', t: '직접 챙길 서류', s: '간소화에 없거나 빠지기 쉬워요' },
+      { k: 'check', t: '꼭 확인할 조건', s: '' },
+      { k: 'auto', t: '간소화에서 나와요', s: '내려받아 확인만' },
+      { k: 'no', t: '대상이 아니에요', s: '총급여 기준' }
+    ];
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var payI = $('[data-pay]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var answers = {}, lastText = '';
+
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+    // 질문 목록 그리기
+    var qBox = $('[data-qs]');
+    QS.forEach(function (q) {
+      var row = el('div', 'kye-q'); row.dataset.q = q.id;
+      var body = el('div', 'kye-q-body');
+      body.appendChild(el('p', 'kye-q-t', q.q));
+      body.appendChild(el('p', 'kye-q-h', q.h));
+      var yn = el('div', 'kye-yn'); yn.setAttribute('role', 'group'); yn.setAttribute('aria-label', q.q);
+      [['1', '예'], ['0', '아니오']].forEach(function (o) {
+        var b = el('button', 'kye-ynb', o[1]); b.type = 'button'; b.dataset.v = o[0]; b.setAttribute('aria-pressed', 'false');
+        b.addEventListener('click', function () {
+          var v = o[0] === '1';
+          if (answers[q.id] === v) delete answers[q.id]; else answers[q.id] = v; // 같은 버튼을 다시 누르면 선택 취소
+          paintRow(row, q.id); calc();
+        });
+        yn.appendChild(b);
+      });
+      row.appendChild(body); row.appendChild(yn);
+      qBox.appendChild(row);
+    });
+
+    function paintRow(row, id) {
+      var a = answers[id];
+      row.classList.toggle('kye-yes', a === true);
+      Array.prototype.forEach.call(row.querySelectorAll('.kye-ynb'), function (b) {
+        var on = a !== undefined && (b.dataset.v === '1') === a;
+        b.classList.toggle('kye-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    // 총급여(만원). 비어 있으면 null, 잘못되면 false
+    function readPay() {
+      var raw = payI.value.replace(/,/g, '');
+      if (!raw) { payI.classList.remove('kye-bad'); msg.textContent = ''; return null; }
+      var p = +raw;
+      var bad = p < 1 ? '총급여는 1만원 이상으로 넣어 주세요.' : p > 100000 ? '만원 단위로 넣어 주세요(예: 4,500). 10억원을 넘을 수 없어요.' : '';
+      payI.classList.toggle('kye-bad', !!bad);
+      msg.textContent = bad;
+      return bad ? false : p;
+    }
+
+    function calc() {
+      var p = readPay();
+      var answered = Object.keys(answers).length;
+      $('[data-progress]').textContent = answered ? QS.length + '개 질문 중 ' + answered + '개 답했어요' + (answered < QS.length ? ' · 나머지는 아니오로 봐요' : '') : '';
+      if (p === false || !answered) { result.classList.remove('kye-show'); return; }
+
+      var items = BASE.slice(), yes = [];
+      QS.forEach(function (q) { if (answers[q.id]) { yes.push(q.q); items = items.concat(q.items(p)); } });
+
+      var box = $('[data-groups]'); box.innerHTML = '';
+      var lines = ['[2027 연말정산(2026년 귀속) 할 일]'];
+      if (p !== null) lines.push('총급여(예상): ' + p.toLocaleString('ko-KR') + '만원');
+      var count = 0;
+      GROUPS.forEach(function (g) {
+        var list = items.filter(function (it) { return it.k === g.k; });
+        if (!list.length) return;
+        if (g.k !== 'no') count += list.length;
+        var sec = el('div', 'kye-grp kye-grp-' + g.k);
+        var head = el('p', 'kye-grp-t', g.t); if (g.s) head.appendChild(el('span', '', g.s));
+        sec.appendChild(head);
+        var ul = el('ul', 'kye-list');
+        lines.push('', '■ ' + g.t + (g.s ? ' (' + g.s + ')' : ''));
+        list.forEach(function (it) {
+          var li = el('li', 'kye-item');
+          var t = el('p', 'kye-item-t', it.t);
+          if (it.n) t.appendChild(el('span', 'kye-new', '2026 변경'));
+          li.appendChild(t); li.appendChild(el('p', 'kye-item-d', it.d));
+          ul.appendChild(li);
+          lines.push((g.k === 'no' ? '- ' : '□ ') + it.t + (it.n ? ' [2026 변경]' : '') + ': ' + it.d);
+        });
+        sec.appendChild(ul); box.appendChild(sec);
+      });
+      $('[data-count]').textContent = count;
+      var docs = items.filter(function (it) { return it.k === 'doc'; }).length;
+      $('[data-sub]').textContent = '직접 챙길 서류 ' + docs + '개 · 해당 항목 ' + yes.length + '개';
+      lines.push('', '※ 간소화 서비스 개통일(2027년 1월)은 국세청 발표 후 확인하세요. 작년은 2026. 1. 15.이었어요.');
+      lastText = lines.join('\n');
+      result.classList.add('kye-show');
+    }
+
+    payI.addEventListener('input', function () {
+      var v = payI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 9);
+      payI.value = v ? (+v).toLocaleString('ko-KR') : '';
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      answers = {}; payI.value = '';
+      $$('.kye-q').forEach(function (r) { paintRow(r, r.dataset.q); });
+      calc();
+      var first = root.querySelector('.kye-ynb'); if (first) first.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 연말정산 공제 체크리스트 위젯 끝 -->
