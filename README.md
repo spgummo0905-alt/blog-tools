@@ -27,6 +27,7 @@ tools/
 | 글자수 세기 | `tools/character-counter` | 완성 |
 | 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
 | 실업급여 계산기 | `tools/unemployment-benefit-calculator` | 완성 |
+| 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 
 ## 작업 규칙
 
