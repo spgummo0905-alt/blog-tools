@@ -3,7 +3,6 @@
 아래 내용을 Chrome이 연결된 세션(데스크톱 앱, Cowork)에 그대로 붙여 넣으세요.
 제목·태그·카테고리·예약 일시는 발행하는 세션이 SEO 스킬과 블로그 현황을 보고 알아서 정합니다.
 
-> PR이 `main`에 머지된 뒤에 사용하세요. 머지 전에는 raw 주소에 파일이 없습니다.
 
 ```
 github.com/spgummo0905-alt/blog-tools 의 tools/severance-calculator/post.html 글을
