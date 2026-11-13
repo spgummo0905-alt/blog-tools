@@ -1,0 +1,400 @@
+<!-- 청약 가점 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kss" data-kss>
+  <style>
+    .kss{--kss-accent:#3b6ef5;--kss-accent-soft:#eef3ff;--kss-text:#1d2433;--kss-sub:#6b7385;--kss-line:#e3e7ef;--kss-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kss-line);border-radius:20px;background:var(--kss-bg);
+      color:var(--kss-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kss [hidden]{display:none!important}
+    .kss *,.kss *::before,.kss *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kss .kss-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kss .kss-desc{margin-top:4px;font-size:14px;color:var(--kss-sub)}
+    .kss .kss-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kss-text)}
+    .kss .kss-label small{font-weight:500;color:var(--kss-sub)}
+    .kss .kss-sublabel{margin:12px 0 6px;font-size:13px;font-weight:600;color:var(--kss-sub);word-break:keep-all}
+    .kss .kss-sublabel small{font-weight:500}
+    .kss .kss-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--kss-line);border-radius:12px;background:#f8f9fc;
+      font-size:17px;font-weight:600;color:var(--kss-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;min-width:0;display:block}
+    .kss .kss-in:focus{border-color:var(--kss-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kss .kss-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kss .kss-chip{height:36px;min-width:44px;padding:0 12px;border:1.5px solid var(--kss-line);border-radius:999px;background:#fff;color:var(--kss-sub);
+      font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kss .kss-chip:hover{border-color:#c9d3ea;color:var(--kss-text)}
+    .kss .kss-chip.kss-on{border-color:var(--kss-accent);background:var(--kss-accent-soft);color:var(--kss-accent)}
+    .kss .kss-hint{margin-top:6px;font-size:12.5px;color:var(--kss-sub)}
+    .kss .kss-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kss .kss-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kss .kss-result.kss-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kss .kss-result-inner{overflow:hidden}
+    .kss .kss-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kss-accent-soft);text-align:center}
+    .kss .kss-main-label{font-size:14px;color:var(--kss-sub)}
+    .kss .kss-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kss-accent);line-height:1.2}
+    .kss .kss-big small{font-size:20px;font-weight:700;margin-left:2px;color:var(--kss-sub)}
+    .kss .kss-sub{margin-top:6px;font-size:14px;color:var(--kss-sub)}
+    .kss .kss-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:8px}
+    .kss .kss-card{padding:12px 10px;border:1px solid var(--kss-line);border-radius:14px;background:#fff;text-align:center}
+    .kss .kss-card-k{font-size:12px;color:var(--kss-sub)}
+    .kss .kss-card-v{margin-top:2px;font-size:20px;font-weight:800;color:var(--kss-text)}
+    .kss .kss-card-v small{font-size:12px;font-weight:600;color:var(--kss-sub)}
+    .kss .kss-card-s{margin-top:2px;font-size:11.5px;color:var(--kss-sub)}
+    .kss .kss-bar{height:6px;margin-top:6px;border-radius:99px;background:#eef0f5;overflow:hidden}
+    .kss .kss-bar i{display:block;height:100%;border-radius:99px;background:var(--kss-accent);transition:width .4s ease}
+    .kss .kss-box{margin-top:8px;padding:14px;border:1px solid var(--kss-line);border-radius:14px;background:#fff;font-size:13.5px}
+    .kss .kss-box-t{font-size:13px;font-weight:700;color:var(--kss-text);margin-bottom:6px}
+    .kss .kss-box li{margin-left:16px}
+    .kss .kss-box li+li{margin-top:4px}
+    .kss .kss-box b{color:var(--kss-accent)}
+    .kss .kss-formula{background:#f8f9fc;font-size:13px}
+    .kss .kss-formula p+p{margin-top:6px}
+    .kss .kss-nw{white-space:nowrap}
+    .kss .kss-note{margin-top:12px;font-size:12.5px;color:var(--kss-sub)}
+    .kss .kss-note li{margin-left:16px}
+    .kss .kss-desc,.kss .kss-hint,.kss .kss-sub,.kss .kss-box,.kss .kss-note,.kss .kss-msg{word-break:keep-all}
+    .kss .kss-actions{display:flex;gap:8px;margin-top:14px}
+    .kss .kss-btn{flex:1;height:44px;border:1.5px solid var(--kss-line);border-radius:12px;background:#fff;color:var(--kss-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kss .kss-btn:hover{background:#f4f6fa}
+    .kss .kss-btn:active{transform:scale(.98)}
+    .kss .kss-btn.kss-primary{border-color:var(--kss-accent);background:var(--kss-accent);color:#fff}
+    .kss .kss-btn.kss-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kss{padding:18px;border-radius:16px}.kss .kss-big{font-size:38px}.kss .kss-in{font-size:16px}
+      .kss .kss-grid{gap:6px}.kss .kss-card{padding:10px 6px}.kss .kss-card-v{font-size:18px}.kss .kss-chips{gap:5px}.kss .kss-chip{min-width:34px;padding:0 8px;font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kss .kss-result,.kss .kss-in,.kss .kss-btn,.kss .kss-chip,.kss .kss-bar i{transition:none}}
+  </style>
+
+  <p class="kss-title">청약 가점 계산기</p>
+  <p class="kss-desc">날짜와 가족 수만 고르면 84점 만점 기준으로 바로 계산돼요.</p>
+
+  <label class="kss-label" for="kss-base"><span>기준일 <small>(입주자모집공고일)</small></span></label>
+  <input class="kss-in" id="kss-base" type="date" data-base min="1950-01-01" max="2100-12-31">
+  <p class="kss-hint">모든 기간은 입주자모집공고일까지 세요. 공고 전이라면 오늘 날짜로 미리 볼 수 있어요.</p>
+
+  <label class="kss-label" for="kss-birth">생년월일</label>
+  <input class="kss-in" id="kss-birth" type="date" data-birth min="1900-01-01" max="2100-12-31">
+
+  <p class="kss-label">결혼 여부</p>
+  <div class="kss-chips" data-group="married" role="group" aria-label="결혼 여부">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">미혼</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">기혼 (혼인신고)</button>
+  </div>
+  <div data-married-only hidden>
+    <p class="kss-sublabel"><label for="kss-wed">혼인신고일 <small>(만 30세 전에 결혼했다면 꼭 입력)</small></label></p>
+    <input class="kss-in" id="kss-wed" type="date" data-wed min="1900-01-01" max="2100-12-31">
+  </div>
+
+  <p class="kss-label">세대원 모두의 주택 소유</p>
+  <div class="kss-chips" data-group="house" role="group" aria-label="주택 소유 여부">
+    <button type="button" class="kss-chip kss-on" data-v="never" aria-pressed="true">가진 적 없음</button>
+    <button type="button" class="kss-chip" data-v="sold" aria-pressed="false">팔고 무주택</button>
+    <button type="button" class="kss-chip" data-v="own" aria-pressed="false">지금 집 있음</button>
+  </div>
+  <div data-sold-only hidden>
+    <p class="kss-sublabel"><label for="kss-sold">무주택이 된 날 (마지막 집을 판 날)</label></p>
+    <input class="kss-in" id="kss-sold" type="date" data-sold min="1900-01-01" max="2100-12-31">
+  </div>
+  <p class="kss-hint">본인과 배우자, 같은 등본의 세대원 기준이에요. 60세 이상 부모님 집이나 소형·저가주택 1채는 무주택으로 보는 예외가 있어요.</p>
+
+  <p class="kss-label"><span>부양가족 <small>(본인 제외)</small></span></p>
+  <p class="kss-sublabel">미혼 자녀 (손자녀 포함)</p>
+  <div class="kss-chips" data-group="kids" role="group" aria-label="미혼 자녀 수">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">0명</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">1</button>
+    <button type="button" class="kss-chip" data-v="2" aria-pressed="false">2</button>
+    <button type="button" class="kss-chip" data-v="3" aria-pressed="false">3</button>
+    <button type="button" class="kss-chip" data-v="4" aria-pressed="false">4</button>
+    <button type="button" class="kss-chip" data-v="5" aria-pressed="false">5</button>
+    <button type="button" class="kss-chip" data-v="6" aria-pressed="false">6+</button>
+  </div>
+  <p class="kss-sublabel">함께 사는 부모·조부모 (배우자 쪽 포함)</p>
+  <div class="kss-chips" data-group="parents" role="group" aria-label="직계존속 수">
+    <button type="button" class="kss-chip kss-on" data-v="0" aria-pressed="true">0명</button>
+    <button type="button" class="kss-chip" data-v="1" aria-pressed="false">1</button>
+    <button type="button" class="kss-chip" data-v="2" aria-pressed="false">2</button>
+    <button type="button" class="kss-chip" data-v="3" aria-pressed="false">3</button>
+    <button type="button" class="kss-chip" data-v="4" aria-pressed="false">4</button>
+  </div>
+  <p class="kss-hint">배우자는 결혼 여부에서 자동으로 1명 더해요. 부모님은 같은 등본에 3년 이상, 만 30세 이상 미혼 자녀는 1년 이상 함께 올라 있어야 인정돼요.</p>
+
+  <label class="kss-label" for="kss-acc"><span>청약통장 가입일 <small>(최초 가입일)</small></span></label>
+  <input class="kss-in" id="kss-acc" type="date" data-acc min="1950-01-01" max="2100-12-31">
+  <div data-married-only hidden>
+    <p class="kss-sublabel"><label for="kss-sacc">배우자 청약통장 가입일 <small>(선택)</small></label></p>
+    <input class="kss-in" id="kss-sacc" type="date" data-sacc min="1950-01-01" max="2100-12-31">
+    <p class="kss-hint">배우자 가입기간의 50%를 점수로 바꿔 최대 3점까지 더해요(2024. 3. 25. 시행).</p>
+  </div>
+
+  <p class="kss-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kss-result" data-result aria-live="polite">
+    <div class="kss-result-inner">
+      <div class="kss-main">
+        <p class="kss-main-label">내 청약 가점</p>
+        <p class="kss-big"><span data-total>0</span><small>/ 84점</small></p>
+        <p class="kss-sub" data-sub></p>
+      </div>
+      <div class="kss-grid">
+        <div class="kss-card"><p class="kss-card-k">무주택기간</p><p class="kss-card-v"><span data-s1></span><small>/32</small></p><div class="kss-bar"><i data-b1></i></div><p class="kss-card-s" data-p1></p></div>
+        <div class="kss-card"><p class="kss-card-k">부양가족</p><p class="kss-card-v"><span data-s2></span><small>/35</small></p><div class="kss-bar"><i data-b2></i></div><p class="kss-card-s" data-p2></p></div>
+        <div class="kss-card"><p class="kss-card-k">통장 가입기간</p><p class="kss-card-v"><span data-s3></span><small>/17</small></p><div class="kss-bar"><i data-b3></i></div><p class="kss-card-s" data-p3></p></div>
+      </div>
+      <div class="kss-box">
+        <p class="kss-box-t">점수가 오르는 날</p>
+        <ul data-next></ul>
+      </div>
+      <div class="kss-box kss-formula" data-formula></div>
+      <ul class="kss-note">
+        <li>부양가족은 인정 요건(같은 등본 등재 기간, 무주택 등)을 채운 사람만 세요.</li>
+        <li>실제 점수는 청약홈 자격확인과 입주자모집공고문 기준으로 최종 확인하세요.</li>
+      </ul>
+      <div class="kss-actions">
+        <button type="button" class="kss-btn" data-reset>다시 입력</button>
+        <button type="button" class="kss-btn kss-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kss]');
+    if (!root || root.__kss) return;
+    root.__kss = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var baseI = $('[data-base]'), birthI = $('[data-birth]'), wedI = $('[data-wed]'), soldI = $('[data-sold]');
+    var accI = $('[data-acc]'), saccI = $('[data-sacc]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var state = { married: '0', house: 'never', kids: '0', parents: '0' };
+    var lastText = '';
+
+    // 날짜는 1970-01-01부터 센 '일 번호'로 다룬다 (시간대 영향 없음)
+    function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 864e5); }
+    function ymd(n) { var t = new Date(n * 864e5); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+    function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+    // k개월 뒤 같은 날짜. 그 달에 같은 날이 없으면(2월 29일 → 평년 등) 다음 달 1일
+    function addMonths(n, k) {
+      var a = ymd(n), t = a.y * 12 + (a.m - 1) + k, y = Math.floor(t / 12), m = t - y * 12 + 1;
+      return a.d > dim(y, m) ? dn(y, m, 1) + dim(y, m) : dn(y, m, a.d);
+    }
+    // start부터 end까지 꽉 채운 개월 수
+    function fullMonths(start, end) {
+      if (end < start) return -1;
+      var a = ymd(start), b = ymd(end), k = (b.y - a.y) * 12 + (b.m - a.m);
+      while (k > 0 && addMonths(start, k) > end) k--;
+      while (addMonths(start, k + 1) <= end) k++;
+      return k;
+    }
+    function fmt(n) { var a = ymd(n); return a.y + '. ' + a.m + '. ' + a.d + '.'; }
+    function ym(k) { var y = Math.floor(k / 12), m = k % 12; return y ? y + '년' + (m ? ' ' + m + '개월' : '') : m + '개월'; }
+    function parse(v, minY) {
+      var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!p || +p[1] < (minY || 1900) || +p[1] > 2100) return null;
+      var n = dn(+p[1], +p[2], +p[3]), a = ymd(n);
+      return a.m === +p[2] && a.d === +p[3] ? n : null;
+    }
+    function todayN() { var t = new Date(); return dn(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+    function iso(n) { var a = ymd(n); return a.y + '-' + ('0' + a.m).slice(-2) + '-' + ('0' + a.d).slice(-2); }
+
+    // ── 점수표 (주택공급에 관한 규칙 별표1) ──
+    // 무주택기간: 1년 미만 2점, 이후 1년마다 +2점, 15년 이상 32점
+    function homeScore(start, base) {
+      if (start === null) return 0;
+      if (start > base) return 0;
+      var y = Math.floor(fullMonths(start, base) / 12);
+      return 2 * (Math.min(y, 15) + 1);
+    }
+    // 부양가족: 0명 5점, 1명마다 +5점, 6명 이상 35점
+    function famScore(n) { return 5 + 5 * Math.min(n, 6); }
+    // 통장 가입기간: 6개월 미만 1점, 6개월~1년 2점, 1년 이상은 (년수 + 2)점, 15년 이상 17점
+    function accScore(join, base) {
+      var k = fullMonths(join, base);
+      if (k < 6) return 1;
+      if (k < 12) return 2;
+      return Math.min(Math.floor(k / 12) + 2, 17);
+    }
+    // 배우자: 가입기간의 50%로 같은 표 적용, 최대 3점 (50%가 6개월 = 실제 1년, 50%가 1년 = 실제 2년)
+    function spScore(join, base) {
+      if (join === null) return 0;
+      var k = fullMonths(join, base);
+      return k < 12 ? 1 : k < 24 ? 2 : 3;
+    }
+
+    function readInputs() {
+      var r = { base: parse(baseI.value, 1950), birth: parse(birthI.value), acc: parse(accI.value, 1950) };
+      r.married = state.married === '1';
+      r.wed = r.married ? parse(wedI.value) : null;
+      r.sold = state.house === 'sold' ? parse(soldI.value) : null;
+      r.sacc = r.married ? parse(saccI.value, 1950) : null;
+      return r;
+    }
+
+    // 무주택기간 산정 시작일: 만 30세 되는 날과 혼인신고일 중 빠른 날, 집을 판 적이 있으면 그보다 늦은 날
+    function homeStart(r) {
+      if (state.house === 'own') return null;
+      var s = addMonths(r.birth, 360), why = '만 30세가 된 날';
+      if (r.wed !== null && r.wed < s) { s = r.wed; why = '혼인신고일'; }
+      if (r.sold !== null && r.sold > s) { s = r.sold; why = '무주택이 된 날'; }
+      return { day: s, why: why };
+    }
+
+    function scoresAt(r, hs, day) {
+      var s1 = hs ? homeScore(hs.day, day) : 0;
+      var own = accScore(r.acc, day), sp = spScore(r.sacc, day);
+      return { s1: s1, own: own, sp: sp, s3: Math.min(own + sp, 17) };
+    }
+
+    function hide(text) { result.classList.remove('kss-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var r = readInputs();
+      if (baseI.value && r.base === null) return hide('기준일을 다시 확인해 주세요.');
+      if (birthI.value && r.birth === null) return hide('생년월일을 다시 확인해 주세요.');
+      if (r.married && wedI.value && r.wed === null) return hide('혼인신고일을 다시 확인해 주세요.');
+      if (state.house === 'sold' && soldI.value && r.sold === null) return hide('무주택이 된 날을 다시 확인해 주세요.');
+      if (accI.value && r.acc === null) return hide('청약통장 가입일을 다시 확인해 주세요.');
+      if (r.married && saccI.value && r.sacc === null) return hide('배우자 통장 가입일을 다시 확인해 주세요.');
+      if (r.base === null || r.birth === null || r.acc === null) return hide('');
+      if (state.house === 'sold' && r.sold === null) return hide('');
+      var base = r.base;
+      if (r.birth > base) return hide('생년월일이 기준일보다 뒤예요.');
+      if (r.wed !== null && (r.wed < r.birth || r.wed > base)) return hide('혼인신고일은 생년월일과 기준일 사이여야 해요.');
+      if (r.sold !== null && (r.sold < r.birth || r.sold > base)) return hide('무주택이 된 날은 생년월일과 기준일 사이여야 해요.');
+      if (r.acc > base) return hide('청약통장 가입일이 기준일보다 뒤예요.');
+      if (r.acc < r.birth) return hide('청약통장 가입일이 생년월일보다 앞이에요.');
+      if (r.sacc !== null && r.sacc > base) return hide('배우자 통장 가입일이 기준일보다 뒤예요.');
+
+      if (r.married && r.wed === null && addMonths(r.birth, 360) > base) return hide('만 30세 전에 결혼했다면 혼인신고일을 넣어 주세요.');
+      var hs = homeStart(r);
+      var kids = +state.kids, parents = +state.parents, fam = (r.married ? 1 : 0) + kids + parents;
+      var now = scoresAt(r, hs, base), s2 = famScore(fam);
+      var total = now.s1 + s2 + now.s3;
+      var homeMonths = hs && hs.day <= base ? fullMonths(hs.day, base) : -1;
+      var accMonths = fullMonths(r.acc, base), spMonths = r.sacc !== null ? fullMonths(r.sacc, base) : -1;
+
+      // 점수가 오르는 날: 각 항목의 다음 구간 경계를 모아 실제로 점수가 오르는지 확인
+      var events = [];
+      if (hs) {
+        if (hs.day > base) events.push({ day: hs.day, what: '무주택기간' });
+        else if (homeMonths < 180) events.push({ day: addMonths(hs.day, (Math.floor(homeMonths / 12) + 1) * 12), what: '무주택기간' });
+      }
+      var accNext = accMonths < 6 ? 6 : accMonths < 12 ? 12 : accMonths < 180 ? (Math.floor(accMonths / 12) + 1) * 12 : null;
+      if (accNext) events.push({ day: addMonths(r.acc, accNext), what: '통장 가입기간' });
+      if (r.sacc !== null && spMonths < 24) events.push({ day: addMonths(r.sacc, spMonths < 12 ? 12 : 24), what: '배우자 통장' });
+      var lines = [];
+      events.sort(function (a, b) { return a.day - b.day; });
+      var seen = {};
+      events.forEach(function (e) {
+        var after = scoresAt(r, hs, e.day);
+        var d1 = after.s1 - now.s1, d3 = after.s3 - now.s3;
+        if (e.what === '무주택기간' && d1 > 0) lines.push({ day: e.day, gain: d1, text: '무주택기간 ' + after.s1 + '점이 돼요' });
+        else if (e.what !== '무주택기간' && d3 > 0 && !seen.acc) { seen.acc = 1; lines.push({ day: e.day, gain: d3, text: '통장 가입기간 ' + after.s3 + '점이 돼요' + (e.what === '배우자 통장' ? ' (배우자 통장)' : '') }); }
+      });
+      var nextUl = $('[data-next]');
+      nextUl.innerHTML = '';
+      lines.forEach(function (l) {
+        var li = document.createElement('li');
+        li.innerHTML = '<span class="kss-nw">' + fmt(l.day) + '</span>이면 <b>+' + l.gain + '점</b>, ' + l.text;
+        nextUl.appendChild(li);
+      });
+      var famLi = document.createElement('li');
+      famLi.textContent = fam >= 6 ? '부양가족은 6명 이상으로 만점(35점)이에요.' : '부양가족이 1명 늘 때마다 +5점이에요.';
+      nextUl.appendChild(famLi);
+      if (state.house === 'own') {
+        var ownLi = document.createElement('li');
+        ownLi.textContent = '집을 가진 동안 무주택기간은 0점이에요. 처분하면 그날부터 다시 세요.';
+        nextUl.insertBefore(ownLi, nextUl.firstChild);
+      } else if (homeMonths >= 180 && accMonths >= 180 && fam >= 6) {
+        nextUl.innerHTML = '<li>모든 항목이 만점이에요.</li>';
+      }
+
+      // 화면 표시
+      $('[data-total]').textContent = total;
+      $('[data-sub]').textContent = lines.length ? '다음 상승: ' + fmt(lines[0].day) + ' (+' + lines[0].gain + '점)' : '기간 점수는 더 오르지 않아요';
+      $('[data-s1]').textContent = now.s1; $('[data-s2]').textContent = s2; $('[data-s3]').textContent = now.s3;
+      $('[data-b1]').style.width = (now.s1 / 32 * 100) + '%';
+      $('[data-b2]').style.width = (s2 / 35 * 100) + '%';
+      $('[data-b3]').style.width = (now.s3 / 17 * 100) + '%';
+      $('[data-p1]').textContent = state.house === 'own' ? '유주택' : homeMonths < 0 ? '산정 전' : ym(homeMonths);
+      $('[data-p2]').textContent = fam + '명';
+      $('[data-p3]').textContent = ym(accMonths);
+
+      var f1, f3;
+      if (state.house === 'own') f1 = '세대원이 주택을 가지고 있어 <b>0점</b>이에요.';
+      else if (homeMonths < 0) f1 = '산정 시작일(' + hs.why + ')이 <span class="kss-nw">' + fmt(hs.day) + '</span>이라 아직 <b>0점</b>이에요. 만 30세 미만 미혼이면 0점이에요.';
+      else f1 = '<span class="kss-nw">' + fmt(hs.day) + '</span>(' + hs.why + ')부터 ' + ym(homeMonths) + ' → ' +
+        (homeMonths >= 180 ? '15년 이상' : homeMonths < 12 ? '1년 미만' : Math.floor(homeMonths / 12) + '년 이상 ' + (Math.floor(homeMonths / 12) + 1) + '년 미만') + ' <b>' + now.s1 + '점</b>';
+      var famParts = [];
+      if (r.married) famParts.push('배우자 1');
+      if (kids) famParts.push('자녀 ' + kids);
+      if (parents) famParts.push('직계존속 ' + parents);
+      var f2 = (famParts.length ? famParts.join(' + ') + ' = ' : '') + fam + '명' + (fam >= 6 ? '(6명 이상)' : '') + ' → <b>' + s2 + '점</b>';
+      f3 = '본인 ' + ym(accMonths) + ' → ' + now.own + '점';
+      if (r.sacc !== null) f3 += ', 배우자 ' + ym(spMonths) + '의 50% → ' + now.sp + '점(최대 3점)';
+      f3 += ' → <b>' + now.s3 + '점</b>' + (now.own + now.sp > 17 ? ' (17점 상한)' : '');
+      $('[data-formula]').innerHTML = '<p class="kss-box-t">계산 근거 (기준일 <span class="kss-nw">' + fmt(base) + '</span>)</p>' +
+        '<p>무주택기간: ' + f1 + '</p><p>부양가족: ' + f2 + '</p><p>통장 가입기간: ' + f3 + '</p>' +
+        '<p>합계: ' + now.s1 + ' + ' + s2 + ' + ' + now.s3 + ' = <b>' + total + '점</b> / 84점</p>';
+
+      msg.textContent = '';
+      result.classList.add('kss-show');
+
+      lastText = '[청약 가점 계산 결과]\n기준일(입주자모집공고일): ' + fmt(base) +
+        '\n총점: ' + total + '점 / 84점' +
+        '\n무주택기간: ' + now.s1 + '점 / 32점' + (homeMonths >= 0 ? ' (' + ym(homeMonths) + ')' : '') +
+        '\n부양가족: ' + s2 + '점 / 35점 (' + fam + '명)' +
+        '\n청약통장 가입기간: ' + now.s3 + '점 / 17점 (본인 ' + ym(accMonths) + (r.sacc !== null ? ', 배우자 ' + now.sp + '점 합산' : '') + ')' +
+        (lines.length ? '\n다음 상승: ' + fmt(lines[0].day) + ' +' + lines[0].gain + '점' : '');
+      lastText = lastText.replace(/ /g, ' ');
+    }
+
+    // 칩 선택
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var b = e.target.closest('.kss-chip');
+        if (!b) return;
+        state[g.getAttribute('data-group')] = b.getAttribute('data-v');
+        Array.prototype.forEach.call(g.querySelectorAll('.kss-chip'), function (c) {
+          var on = c === b; c.classList.toggle('kss-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        sync();
+        calc();
+      });
+    });
+    function sync() {
+      $$('[data-married-only]').forEach(function (el) { el.hidden = state.married !== '1'; });
+      $('[data-sold-only]').hidden = state.house !== 'sold';
+    }
+
+    [baseI, birthI, wedI, soldI, accI, saccI].forEach(function (inp) {
+      inp.addEventListener('input', calc);
+      inp.addEventListener('change', calc);
+    });
+
+    function setChip(group, v) {
+      state[group] = v;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-group="' + group + '"] .kss-chip'), function (c) {
+        var on = c.getAttribute('data-v') === v; c.classList.toggle('kss-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    baseI.value = iso(todayN());
+
+    $('[data-reset]').addEventListener('click', function () {
+      birthI.value = wedI.value = soldI.value = accI.value = saccI.value = '';
+      baseI.value = iso(todayN());
+      setChip('married', '0'); setChip('house', 'never'); setChip('kids', '0'); setChip('parents', '0');
+      sync(); hide(''); birthI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 청약 가점 계산기 위젯 끝 -->
