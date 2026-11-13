@@ -17,6 +17,7 @@ tools/
 | 도구 | 폴더 | 상태 |
 |---|---|---|
 | 만 나이 계산기 | `tools/age-calculator` | 완성 |
+| 연봉 실수령액 계산기 | `tools/salary-calculator` | 완성 |
 
 ## 작업 규칙
 
