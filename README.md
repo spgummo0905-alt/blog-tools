@@ -31,6 +31,7 @@ tools/
 | 2027 공휴일·연휴 달력 (연차 꿀조합) | `tools/holidays-2027` | 완성 |
 | 2027 정부 지원금 신청 일정·지원금 찾기 | `tools/support-calendar-2027` | 완성 |
 | 2027 연말정산 일정·공제 체크리스트 | `tools/year-end-tax-2027` | 완성 |
+| 헷갈리는 맞춤법 모음 + 퀴즈 | `tools/spelling-quiz` | 완성 |
 
 ## 작업 규칙
 
