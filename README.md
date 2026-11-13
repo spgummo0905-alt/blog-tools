@@ -26,6 +26,7 @@ tools/
 | 대출 이자 계산기 | `tools/loan-calculator` | 완성 |
 | 글자수 세기 | `tools/character-counter` | 완성 |
 | 연차 계산기 | `tools/annual-leave-calculator` | 완성 |
+| 실업급여 계산기 | `tools/unemployment-benefit-calculator` | 완성 |
 
 ## 작업 규칙
 
