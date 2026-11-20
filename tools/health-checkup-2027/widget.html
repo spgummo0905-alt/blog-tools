@@ -1,0 +1,307 @@
+<!-- 2027 국가건강검진 대상 확인 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="khc" data-khc>
+  <style>
+    .khc{--khc-accent:#3b6ef5;--khc-accent-soft:#eef3ff;--khc-text:#1d2433;--khc-sub:#6b7385;--khc-line:#e3e7ef;--khc-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--khc-line);border-radius:20px;background:var(--khc-bg);
+      color:var(--khc-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .khc [hidden]{display:none!important}
+    .khc *,.khc *::before,.khc *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .khc .khc-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .khc .khc-desc{margin-top:4px;font-size:14px;color:var(--khc-sub)}
+    .khc .khc-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--khc-text)}
+    .khc .khc-field{position:relative}
+    .khc .khc-in{width:100%;height:52px;padding:0 58px 0 14px;border:1.5px solid var(--khc-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--khc-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .khc .khc-in::placeholder{color:#b3b9c6;font-weight:500}
+    .khc .khc-in:focus{border-color:var(--khc-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .khc .khc-in.khc-err{border-color:#e0565b}
+    .khc .khc-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--khc-sub);pointer-events:none}
+    .khc .khc-opts{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:14px}
+    .khc .khc-opt-k{font-size:13px;color:var(--khc-sub);min-width:52px}
+    .khc .khc-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .khc .khc-chip{height:32px;padding:0 12px;border:1.5px solid var(--khc-line);border-radius:999px;background:#fff;color:var(--khc-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .khc .khc-chip:hover{border-color:#c9d3ea;color:var(--khc-text)}
+    .khc .khc-chip.khc-on{border-color:var(--khc-accent);background:var(--khc-accent-soft);color:var(--khc-accent)}
+    .khc .khc-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .khc .khc-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .khc .khc-result.khc-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .khc .khc-result-inner{overflow:hidden}
+    .khc .khc-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--khc-accent-soft);text-align:center;transition:background .3s}
+    .khc .khc-main.khc-no{background:#f4f5f8}
+    .khc .khc-main-label{font-size:14px;color:var(--khc-sub)}
+    .khc .khc-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--khc-accent);line-height:1.25;word-break:keep-all}
+    .khc .khc-main.khc-no .khc-big{font-size:24px;color:var(--khc-text)}
+    .khc .khc-why{margin-top:6px;font-size:14px;color:var(--khc-sub)}
+    .khc .khc-box{margin-top:8px;padding:14px;border:1px solid var(--khc-line);border-radius:14px;background:#fff}
+    .khc .khc-box-t{font-size:12px;color:var(--khc-sub)}
+    .khc .khc-box-p{margin-top:6px;font-size:13.5px;color:var(--khc-text)}
+    .khc .khc-list{list-style:none;margin-top:6px}
+    .khc .khc-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0f2f6;font-size:14px}
+    .khc .khc-list li:first-child{border-top:0}
+    .khc .khc-name{word-break:keep-all}
+    .khc .khc-name small{display:block;font-size:12px;color:var(--khc-sub)}
+    .khc .khc-tag{flex:none;padding:2px 8px;border-radius:999px;background:var(--khc-accent-soft);color:var(--khc-accent);font-size:12px;font-weight:700;white-space:nowrap}
+    .khc .khc-tag.khc-pay{background:#f4f5f8;color:var(--khc-text)}
+    .khc .khc-empty{margin-top:6px;font-size:13.5px;color:var(--khc-sub)}
+    .khc .khc-tip{margin-top:8px;padding:12px 14px;border-radius:14px;background:#fff8e8;font-size:13.5px;color:#6a4b00}
+    .khc .khc-note{margin-top:12px;font-size:12.5px;color:var(--khc-sub)}
+    .khc .khc-note li{margin-left:16px}
+    .khc .khc-desc,.khc .khc-main-label,.khc .khc-why,.khc .khc-note,.khc .khc-msg,.khc .khc-box-p,.khc .khc-empty,.khc .khc-tip{word-break:keep-all}
+    .khc .khc-actions{display:flex;gap:8px;margin-top:14px}
+    .khc .khc-btn{flex:1;height:44px;border:1.5px solid var(--khc-line);border-radius:12px;background:#fff;color:var(--khc-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .khc .khc-btn:hover{background:#f4f6fa}
+    .khc .khc-btn:active{transform:scale(.98)}
+    .khc .khc-btn.khc-primary{border-color:var(--khc-accent);background:var(--khc-accent);color:#fff}
+    .khc .khc-btn.khc-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.khc{padding:18px;border-radius:16px}.khc .khc-big{font-size:30px}.khc .khc-in{font-size:17px}.khc .khc-opt-k{min-width:0;width:100%}}
+    @media (prefers-reduced-motion:reduce){.khc .khc-result,.khc .khc-in,.khc .khc-btn,.khc .khc-chip,.khc .khc-main{transition:none}}
+  </style>
+
+  <p class="khc-title">2027 국가건강검진 대상 확인</p>
+  <p class="khc-desc">출생연도·성별·가입 유형을 고르면 2027년에 받을 수 있는 검진을 바로 알려 줘요.</p>
+
+  <label class="khc-label" for="khc-y">출생연도</label>
+  <div class="khc-field"><input class="khc-in" id="khc-y" data-y inputmode="numeric" maxlength="4" placeholder="1987" autocomplete="bday-year"><span class="khc-unit">년생</span></div>
+
+  <div class="khc-opts">
+    <span class="khc-opt-k">성별</span>
+    <div class="khc-chips" data-sexes role="group" aria-label="성별">
+      <button type="button" class="khc-chip khc-on" data-sex="m" aria-pressed="true">남성</button>
+      <button type="button" class="khc-chip" data-sex="f" aria-pressed="false">여성</button>
+    </div>
+  </div>
+  <div class="khc-opts">
+    <span class="khc-opt-k">가입 유형</span>
+    <div class="khc-chips" data-types role="group" aria-label="건강보험 가입 유형">
+      <button type="button" class="khc-chip khc-on" data-type="office" aria-pressed="true">직장 사무직</button>
+      <button type="button" class="khc-chip" data-type="field" aria-pressed="false">직장 비사무직</button>
+      <button type="button" class="khc-chip" data-type="local" aria-pressed="false">지역가입자·피부양자</button>
+      <button type="button" class="khc-chip" data-type="aid" aria-pressed="false">의료급여</button>
+    </div>
+  </div>
+
+  <p class="khc-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="khc-result" data-result aria-live="polite">
+    <div class="khc-result-inner">
+      <div class="khc-main" data-main>
+        <p class="khc-main-label" data-main-label></p>
+        <p class="khc-big" data-big></p>
+        <p class="khc-why" data-why></p>
+      </div>
+      <div class="khc-box" data-basic-box>
+        <p class="khc-box-t">일반건강검진 기본 항목 (무료)</p>
+        <p class="khc-box-p" data-basic></p>
+      </div>
+      <div class="khc-box" data-extra-box>
+        <p class="khc-box-t" data-extra-t>나이에 따라 추가되는 항목</p>
+        <ul class="khc-list" data-extra></ul>
+        <p class="khc-empty" data-extra-empty hidden></p>
+      </div>
+      <div class="khc-box">
+        <p class="khc-box-t">2027년에 받을 수 있는 국가 암검진</p>
+        <ul class="khc-list" data-cancer></ul>
+        <p class="khc-empty" data-cancer-empty hidden></p>
+      </div>
+      <p class="khc-tip" data-tip></p>
+      <ul class="khc-note">
+        <li>나이는 "2027 − 출생연도"로 따져요(생일과 관계없음). 본인부담은 건강보험료 상위 50%가 위·유방·간·폐암 검진비의 10%이고, 보험료 하위 50%와 의료급여는 무료예요.</li>
+        <li>2026. 11. 20. 기준 현행 고시를 2027년에 적용한 결과예요. 실제 대상 여부는 공단 '건강보험25시' 앱이나 누리집 대상 조회로 꼭 확인하세요.</li>
+      </ul>
+      <div class="khc-actions">
+        <button type="button" class="khc-btn" data-reset>다시 입력</button>
+        <button type="button" class="khc-btn khc-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-khc]');
+    if (!root || root.__khc) return;
+    root.__khc = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var YEAR = 2027, MIN = 1920, MAX = 2010;
+    var TYPE_NAME = { office: '직장가입자(사무직)', field: '직장가입자(비사무직)', local: '지역가입자·피부양자', aid: '의료급여 수급권자' };
+    var sex = 'm', type = 'office', lastText = '';
+
+    // 2027년 일반건강검진 대상 판정. 나이 a = 2027 - 출생연도, odd = 홀수년생(2027년 짝)
+    function general(y, a, odd) {
+      if (type === 'field') return { ok: true, why: '비사무직 직장가입자는 출생연도와 관계없이 매년 대상이에요.' };
+      if (type === 'office') {
+        return odd ? { ok: true, why: '사무직은 2년에 한 번, 2027년은 홀수년생 차례예요.' }
+          : { ok: false, why: '사무직은 2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+      }
+      if (type === 'local') {
+        if (a < 20) return { ok: false, why: '지역가입자 세대원·피부양자는 20세 이상부터 대상이에요(지역 세대주는 나이 무관).' };
+        return odd ? { ok: true, why: '2년에 한 번, 2027년은 홀수년생 차례예요.' }
+          : { ok: false, why: '2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+      }
+      // 의료급여
+      if (a === 66) return { ok: true, why: '66세 의료급여 수급권자는 의료급여 생애전환기검진 대상이에요.', life: true };
+      if (a < 20) return { ok: false, why: '의료급여 일반건강검진은 20~64세가 대상이에요.' };
+      if (a > 64) return { ok: false, why: '의료급여 일반건강검진은 20~64세, 생애전환기검진은 66세가 대상이에요. 그 밖의 나이는 보건소에 문의하세요.' };
+      return odd ? { ok: true, why: '20~64세 의료급여 수급권자는 2년에 한 번, 2027년은 홀수년생 차례예요.' }
+        : { ok: false, why: '2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+    }
+
+    // 연령별 추가 항목: 정해진 나이(모두 짝수)는 2027년엔 홀수년생에게만 해당
+    function extras(a, odd) {
+      var L = [];
+      if (!odd) return L;
+      if (sex === 'm' ? (a >= 24 && (a - 24) % 4 === 0) : (a >= 40 && (a - 40) % 4 === 0))
+        L.push(['이상지질혈증', '콜레스테롤·중성지방 (' + (sex === 'm' ? '남 24세' : '여 40세') + '부터 4년마다)']);
+      if (a === 40) L.push(['B형간염 검사', '40세 1회 (보유자·면역자 제외)']);
+      if (a === 56) L.push(['C형간염 항체검사', '56세 생애 1회']);
+      if (a === 56 || a === 66) L.push(['폐기능검사', '56·66세 (만성폐쇄성폐질환)']);
+      if (sex === 'f' && (a === 54 || a === 60 || a === 66)) L.push(['골밀도검사', '여성 54·60·66세']);
+      if (a === 40) L.push(['치면세균막검사', '구강검진 · 40세']);
+      if (a === 40 || a === 50 || a === 60 || a === 70) L.push(['생활습관평가', '40·50·60·70세']);
+      if (a >= 66) L.push(['인지기능장애 검사', '66세 이상 2년마다']);
+      if (a === 66 || a === 70 || a === 80) L.push(['노인신체기능검사', '66·70·80세']);
+      if (a >= 20 && a <= 34) {
+        L.push(['정신건강검사 (우울증)', '20~34세 2년마다']);
+        L.push(['조기정신증 검사', '20~34세 2년마다']);
+      } else if (a >= 35 && a <= 79) {
+        var lo = a < 40 ? 35 : Math.floor(a / 10) * 10, hi = a < 40 ? 39 : lo + 9;
+        L.push(['정신건강검사 (우울증)', lo + '~' + hi + '세 중 1회 (이미 받았으면 제외)']);
+      }
+      return L;
+    }
+
+    function cancers(a, odd) {
+      var aid = type === 'aid';
+      var pay10 = aid ? '무료' : '무료 또는 10%';
+      var on = [], later = [];
+      function c2(cond, name, sub, pay) { if (!cond) return; if (odd) on.push([name, sub, pay]); else later.push(name.replace(' (고위험군만)', '')); }
+      c2(a >= 40, '위암', '위내시경 · 40세 이상 2년마다', pay10);
+      if (a >= 50) on.push(['대장암', '분변잠혈검사 · 50세 이상 매년 (양성이면 대장내시경)', '무료']);
+      if (a >= 40) on.push(['간암 (고위험군만)', '간초음파+혈액검사 · 40세 이상 B·C형간염, 간경변 등 · 상·하반기 1회씩', pay10]);
+      c2(sex === 'f' && a >= 40, '유방암', '유방촬영 · 여성 40세 이상 2년마다', pay10);
+      c2(sex === 'f' && a >= 20, '자궁경부암', '자궁경부세포검사 · 여성 20세 이상 2년마다', '무료');
+      c2(a >= 54 && a <= 74, '폐암 (고위험군만)', '저선량 흉부CT · 54~74세 30갑년 이상 흡연자 등 2년마다', pay10);
+      return { on: on, later: later };
+    }
+
+    function basicText(a, g) {
+      if (!g.ok) return '';
+      var s = '문진·진찰, 키·몸무게·허리둘레, 혈압, 시력·청력, 혈액검사(빈혈·공복혈당·간기능·신장기능), 소변검사, 구강검진';
+      s += a >= 50 ? ', 흉부방사선(X-ray)' : '. 흉부방사선은 2027년부터 50세 이상만 받아요(20~49세는 고위험 직업군만)';
+      return s + '.';
+    }
+
+    function hide(text, err) {
+      result.classList.remove('khc-show');
+      msg.textContent = text || '';
+      yI.classList.toggle('khc-err', !!err);
+    }
+
+    function fill(ul, empty, rows, emptyText, tagFn) {
+      ul.innerHTML = '';
+      rows.forEach(function (r) {
+        var li = document.createElement('li');
+        var n = document.createElement('span'); n.className = 'khc-name'; n.textContent = r[0];
+        var sm = document.createElement('small'); sm.textContent = r[1]; n.appendChild(sm);
+        li.appendChild(n);
+        var t = tagFn(r);
+        if (t) { var tg = document.createElement('span'); tg.className = 'khc-tag' + (t === '무료' ? '' : ' khc-pay'); tg.textContent = t; li.appendChild(tg); }
+        ul.appendChild(li);
+      });
+      ul.hidden = !rows.length;
+      empty.hidden = !!rows.length;
+      empty.textContent = emptyText;
+    }
+
+    function calc() {
+      var v = yI.value;
+      if (!v || v.length < 4) return hide('');
+      var y = +v;
+      if (y > YEAR) return hide(y + '년생은 아직 태어나기 전이에요. 출생연도를 확인해 주세요.', true);
+      if (y < MIN || y > MAX) return hide(MIN + '~' + MAX + '년생 사이로 입력해 주세요. 영유아·학생 검진은 따로 안내돼요.', true);
+
+      var a = YEAR - y, odd = y % 2 === 1;
+      var g = general(y, a, odd);
+      msg.textContent = '';
+      yI.classList.remove('khc-err');
+
+      $('[data-main]').classList.toggle('khc-no', !g.ok);
+      $('[data-main-label]').textContent = y + '년생 · 2027년 ' + a + '세 · ' + TYPE_NAME[type];
+      $('[data-big]').textContent = g.ok ? (g.life ? '생애전환기검진 대상' : '2027년 검진 대상이에요') : '2027년엔 대상이 아니에요';
+      $('[data-why]').textContent = g.why;
+
+      $('[data-basic-box]').hidden = !g.ok;
+      $('[data-basic]').textContent = basicText(a, g);
+
+      var ex = g.ok ? extras(a, odd) : [];
+      $('[data-extra-box]').hidden = !g.ok;
+      fill($('[data-extra]'), $('[data-extra-empty]'), ex,
+        odd ? '이 나이에 추가되는 항목은 없어요. 기본 항목만 받아요.' : '연령별 추가 항목은 정해진 나이(짝수 나이)에 받는 거라 짝수년생은 2026·2028년에 받아요.',
+        function () { return ''; });
+
+      var ca = cancers(a, odd);
+      var laterText = ca.later.length ? ca.later.join('·') + ' 검진은 짝수년생이라 2028년 차례예요.' : '';
+      fill($('[data-cancer]'), $('[data-cancer-empty]'), ca.on,
+        a < 20 ? '국가 암검진은 20세 이상부터예요.' : (laterText || '나이·성별 기준으로 2027년에 해당하는 암검진이 없어요.'),
+        function (r) { return r[2]; });
+      if (ca.on.length && laterText) { $('[data-cancer-empty]').hidden = false; }
+
+      var tip;
+      if (g.ok) tip = '2027. 12. 31.까지 받아야 해요. 놓치면 2028년 1월부터 공단에 "전년도 미수검 추가 등록"을 신청해 받을 수 있어요(직장인은 회사 담당자, 지역·피부양자는 앱·고객센터 1577-1000).';
+      else if (!odd && (type === 'office' || (type === 'local' && a >= 21) || (type === 'aid' && a >= 21 && (a <= 65 || a === 67)))) tip = '2026년 검진을 아직 안 받았다면 2027년 1월부터 "전년도 미수검 추가 등록"을 신청해 2027년에 받을 수 있어요(고객센터 1577-1000, 직장인은 회사 담당자).';
+      else tip = '대상이 아니어도 암검진은 나이 기준에 맞으면 따로 받을 수 있어요. 공단 대상 조회로 확인해 보세요.';
+      $('[data-tip]').textContent = tip;
+
+      result.classList.add('khc-show');
+
+      lastText = '[2027 국가건강검진 대상 확인]\n' + y + '년생(2027년 ' + a + '세) · ' + (sex === 'm' ? '남성' : '여성') + ' · ' + TYPE_NAME[type] +
+        '\n일반건강검진: ' + (g.ok ? '대상' : '대상 아님') + ' - ' + g.why +
+        (ex.length ? '\n추가 항목: ' + ex.map(function (r) { return r[0]; }).join(', ') : '') +
+        '\n암검진: ' + (ca.on.length ? ca.on.map(function (r) { return r[0] + '(' + r[2] + ')'; }).join(', ') : '해당 없음') +
+        (laterText ? '\n' + laterText : '') + '\n' + tip;
+    }
+
+    yI.addEventListener('input', function () {
+      var v = yI.value.replace(/\D/g, '').slice(0, 4);
+      if (v !== yI.value) yI.value = v;
+      calc();
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length >= 4) { e.preventDefault(); yI.value = t.slice(0, 4); calc(); }
+    });
+
+    function chipGroup(sel, attr, set) {
+      $$(sel).forEach(function (c) {
+        c.addEventListener('click', function () {
+          $$(sel).forEach(function (o) { var on = o === c; o.classList.toggle('khc-on', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+          set(c.getAttribute(attr));
+          calc();
+        });
+      });
+    }
+    chipGroup('[data-sex]', 'data-sex', function (v) { sex = v; });
+    chipGroup('[data-type]', 'data-type', function (v) { type = v; });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = ''; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 2027 국가건강검진 대상 확인 위젯 끝 -->

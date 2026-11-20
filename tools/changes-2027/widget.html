@@ -1,0 +1,317 @@
+<!-- 2027년 달라지는 것 찾기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kch" data-kch>
+  <style>
+    .kch{--kch-accent:#3b6ef5;--kch-accent-soft:#eef3ff;--kch-text:#1d2433;--kch-sub:#6b7385;--kch-line:#e3e7ef;--kch-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kch-line);border-radius:20px;background:var(--kch-bg);
+      color:var(--kch-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kch [hidden]{display:none!important}
+    .kch *,.kch *::before,.kch *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kch .kch-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kch .kch-desc{margin-top:4px;font-size:14px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-label{display:block;margin:18px 0 0;font-size:14px;font-weight:600;color:var(--kch-text);word-break:keep-all}
+    .kch .kch-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kch .kch-chip{min-height:36px;padding:0 13px;border:1.5px solid var(--kch-line);border-radius:999px;background:#fff;color:var(--kch-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;word-break:keep-all}
+    .kch .kch-chip:hover{border-color:#c9d3ea;color:var(--kch-text)}
+    .kch .kch-chip.kch-on{border-color:var(--kch-accent);background:var(--kch-accent-soft);color:var(--kch-accent)}
+    .kch .kch-hint{margin-top:6px;font-size:12.5px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-in{width:100%;height:52px;margin-top:8px;padding:0 14px;border:1.5px solid var(--kch-line);border-radius:12px;background:#f8f9fc;
+      font-size:16px;font-weight:600;color:var(--kch-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kch .kch-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kch .kch-in:focus{border-color:var(--kch-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kch .kch-in.kch-bad{border-color:#e0565b}
+    .kch .kch-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .kch .kch-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kch .kch-result.kch-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kch .kch-result-inner{overflow:hidden}
+    .kch .kch-main{margin-top:6px;padding:20px;border-radius:16px;background:var(--kch-accent-soft);text-align:center}
+    .kch .kch-main-label{font-size:14px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kch-accent);line-height:1.2}
+    .kch .kch-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kch .kch-sub{margin-top:6px;font-size:14px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-sec{margin-top:16px;font-size:15px;font-weight:700;color:var(--kch-text);word-break:keep-all}
+    .kch .kch-list{margin-top:8px;list-style:none}
+    .kch .kch-card{margin-top:8px;padding:14px;border:1px solid var(--kch-line);border-radius:14px;background:#fff}
+    .kch .kch-card:first-child{margin-top:0}
+    .kch .kch-card.kch-pend{background:#fafbfd;border-style:dashed}
+    .kch .kch-card-h{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+    .kch .kch-name{font-size:16px;font-weight:700;color:var(--kch-text);word-break:keep-all}
+    .kch .kch-badge{flex:none;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap;background:var(--kch-accent-soft);color:var(--kch-accent)}
+    .kch .kch-badge.kch-gray{background:#f1f3f8;color:var(--kch-sub)}
+    .kch .kch-row{display:grid;grid-template-columns:4.6em 1fr;gap:6px;margin-top:6px;font-size:13.5px;word-break:keep-all}
+    .kch .kch-row b{font-weight:600;color:var(--kch-sub);white-space:nowrap}
+    .kch .kch-row.kch-me span{color:var(--kch-text);font-weight:600}
+    .kch .kch-nowrap{white-space:nowrap}
+    .kch .kch-empty{margin-top:8px;padding:16px 14px;border:1px dashed var(--kch-line);border-radius:14px;font-size:14px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-note{margin-top:12px;font-size:12.5px;color:var(--kch-sub);word-break:keep-all}
+    .kch .kch-actions{display:flex;gap:8px;margin-top:14px}
+    .kch .kch-btn{flex:1;height:44px;border:1.5px solid var(--kch-line);border-radius:12px;background:#fff;color:var(--kch-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kch .kch-btn:hover{background:#f4f6fa}
+    .kch .kch-btn:active{transform:scale(.98)}
+    .kch .kch-btn.kch-primary{border-color:var(--kch-accent);background:var(--kch-accent);color:#fff}
+    .kch .kch-btn.kch-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kch{padding:18px;border-radius:16px}.kch .kch-big{font-size:38px}.kch .kch-chip{padding:0 11px;font-size:13.5px}}
+    @media (prefers-reduced-motion:reduce){.kch .kch-result,.kch .kch-btn,.kch .kch-chip,.kch .kch-in{transition:none}}
+  </style>
+
+  <p class="kch-title">2027년 달라지는 것 찾기</p>
+  <p class="kch-desc">내 상황을 고르면 2027년에 확정된 변화 중 나에게 해당하는 것만 골라 보여 줘요.</p>
+
+  <p class="kch-label">내 상황 (여러 개 고를 수 있어요)</p>
+  <div class="kch-chips" data-chips>
+    <button type="button" class="kch-chip" data-v="work" aria-pressed="false">직장인</button>
+    <button type="button" class="kch-chip" data-v="biz" aria-pressed="false">자영업자·사업주</button>
+    <button type="button" class="kch-chip" data-v="parent" aria-pressed="false">부모·예비부모</button>
+    <button type="button" class="kch-chip" data-v="youth" aria-pressed="false">청년(19~34세)</button>
+    <button type="button" class="kch-chip" data-v="senior" aria-pressed="false">어르신(65세+)</button>
+    <button type="button" class="kch-chip" data-v="home" aria-pressed="false">집주인·세입자</button>
+    <button type="button" class="kch-chip" data-v="driver" aria-pressed="false">운전자</button>
+    <button type="button" class="kch-chip" data-v="student" aria-pressed="false">학생</button>
+  </div>
+  <p class="kch-hint">아무것도 고르지 않으면 전체를 보여 줘요.</p>
+
+  <p class="kch-label">키워드로 좁히기 (선택)</p>
+  <input class="kch-in" type="search" aria-label="키워드로 좁히기" inputmode="search" enterkeyhint="search" maxlength="20" autocomplete="off" placeholder="예: 연금, 아동수당, 최저임금" data-q>
+
+  <p class="kch-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kch-result" data-result aria-live="polite">
+    <div class="kch-result-inner">
+      <div class="kch-main">
+        <p class="kch-main-label" data-mlabel>2027년 확정된 변화 (전체)</p>
+        <p class="kch-big"><span data-count>0</span><small>개</small></p>
+        <p class="kch-sub" data-summary></p>
+      </div>
+      <p class="kch-sec">확정된 변화</p>
+      <ul class="kch-list" data-list></ul>
+      <p class="kch-sec">아직 확정 안 된 것 (추진 중)</p>
+      <ul class="kch-list" data-plist></ul>
+      <p class="kch-note">2026. 11. 20. 기준이에요. ‘확정’은 국회 통과·공포, 고시, 법정 위원회 의결로 정해진 것만이고, ‘추진 중’은 국회 심의·예산 심사·입법예고 단계라 바뀔 수 있어요.</p>
+    </div>
+  </div>
+
+  <div class="kch-actions">
+    <button type="button" class="kch-btn" data-reset>다시 입력</button>
+    <button type="button" class="kch-btn kch-primary" data-copy>결과 복사</button>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kch]');
+    if (!root || root.__kch) return;
+    root.__kch = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var msg = $('[data-msg]'), result = $('[data-result]'), qIn = $('[data-q]');
+    var lastText = '';
+
+    var WHO = { work: '직장인', biz: '자영업자·사업주', parent: '부모·예비부모', youth: '청년', senior: '어르신', home: '집주인·세입자', driver: '운전자', student: '학생' };
+
+    // ===== 확정된 변화 (기준일 2026-11-20, README 출처 표와 함께 갱신) =====
+    // d: 정렬용 날짜, when: 화면 표시, area: 분야 배지, who: 해당 상황
+    var ITEMS = [
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '노동', who: ['work', 'biz', 'youth', 'student'],
+        name: '최저임금 시급 10,700원',
+        what: '2026년 10,320원에서 380원(3.7%) 올라요. 주 40시간(주휴 포함 월 209시간) 기준 월 2,236,300원이에요.',
+        me: '1월 근무분부터 시급 10,700원 이상인지 확인하세요. 사업주는 1월 급여부터 인건비가 올라요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '4대보험', who: ['work', 'biz'],
+        name: '국민연금 보험료율 9.5% → 10%',
+        what: '연금개혁에 따라 2033년 13%까지 해마다 0.5%p씩 올라요. 직장인은 회사와 반씩 내서 본인 몫이 4.75% → 5%예요.',
+        me: '월 보수 300만원 직장인은 본인 부담이 월 14만 2,500원 → 15만원(+7,500원). 지역가입자는 10%를 모두 내요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '4대보험', who: ['work', 'biz', 'senior'],
+        name: '건강보험료율 7.19% 동결',
+        what: '2027년 건강보험료율은 2026년과 같은 7.19%예요. 지역가입자 재산보험료 점수당 금액도 211.5원 그대로예요.',
+        me: '직장인 본인 부담은 보수의 3.595%로 변동이 없어요. 대신 장기요양보험료는 올라요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '4대보험', who: ['work', 'biz', 'senior'],
+        name: '장기요양보험료율 0.9994%로 인상',
+        what: '소득 대비 0.9448% → 0.9994%(5.78% 인상)로, 건강보험료의 13.90%를 장기요양보험료로 내요.',
+        me: '건강보험료가 월 10만원이면 장기요양보험료는 월 1만 3,900원이에요. 세대당 월평균 약 1,100원 늘어요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '노동', who: ['work', 'youth', 'student', 'biz'],
+        name: '고용보험 가입 기준, 근로시간 → 보수',
+        what: '‘주 15시간(월 60시간) 이상’ 대신 받는 보수로 가입 여부를 정해요. 정부 시행령안 기준은 월 보수 80만원 이상이고, 여러 곳 보수를 합쳐 신청하는 길도 생겨요.',
+        me: '짧게 여러 곳에서 일하는 아르바이트·단시간 근로자도 실업급여·육아휴직 급여를 받는 고용보험 대상이 될 수 있어요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '4대보험', who: ['biz'],
+        name: '고용·산재보험료, 국세청 소득자료로 부과',
+        what: '사업주가 따로 하던 보수총액 신고 대신, 국세청에 신고한 소득자료를 기준으로 그해 보수에 맞춰 보험료를 매겨요.',
+        me: '사업주는 국세청 지급명세서(소득) 신고를 정확히 해야 고용·산재보험료가 맞게 나와요.' },
+      { d: '2027-01-01', when: '2027. 1. 1. 이후 퇴사', area: '노동', who: ['work', 'youth'],
+        name: '실업급여 하루 하한액 68,480원',
+        what: '구직급여 하한액은 최저임금의 80% × 8시간이라 하루 66,048원에서 68,480원으로 올라요.',
+        me: '2027년에 퇴사해 실업급여를 받으면 하루 최소 68,480원이에요. 2027년 상한액은 아직 정해지지 않았어요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '노동', who: ['work', 'biz'],
+        name: '푸른씨앗(중소기업 퇴직연금기금) 100명 미만까지',
+        what: '중소기업 퇴직연금기금에 가입할 수 있는 사업장이 상시 근로자 100명 미만으로 넓어져요.',
+        me: '중소 사업장 사업주·직원은 근로복지공단이 운용하는 공동 퇴직연금기금을 쓸 수 있어요. 지원 요건은 근로복지공단에서 확인하세요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '노동', who: ['biz'],
+        name: '위험성평가 안 하면 과태료 (50명 이상)',
+        what: '상시 50명 이상 사업장(건설업은 공사금액 50억원 이상)이 위험성평가를 하지 않으면 과태료를 내요. 50명 미만은 2028. 1. 1.부터예요.',
+        me: '대상 사업주는 연초 전에 위험성평가 실시·기록을 갖춰 두세요(시행령안 기준 1차 500만원).' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '복지', who: ['senior', 'home', 'youth', 'parent'],
+        name: '기준중위소득 6.7% 인상',
+        what: '4인 가구 기준중위소득이 월 692만 9,885원이 돼요. 생계급여(중위 32%)는 1인 최대 월 87만 5,533원, 4인 221만 7,563원이에요.',
+        me: '의료(40%)·주거(48%)·교육(50%)급여 선정 기준도 함께 올라요. 2026년에 떨어졌다면 복지로 모의계산으로 다시 확인해 보세요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '육아', who: ['parent'],
+        name: '아동수당 만 10세 미만까지',
+        what: '2026년 9세 미만에서 한 살 늘어나요. 아동수당법에 따라 2030년 13세 미만까지 해마다 1세씩 넓어져요.',
+        me: '2027년에 만 9세인 자녀도 아동수당(월 10만원부터, 비수도권 추가)을 받아요.' },
+      { d: '2027-01-01', when: '2027년 소득분', area: '세금', who: ['parent', 'work', 'biz'],
+        name: '자녀세액공제 대상 만 10세 이상으로',
+        what: '아동수당 대상이 넓어진 만큼 자녀세액공제 나이도 올라가요. 2027년 소득분(2028년 초 연말정산)은 10세 이상 자녀가 대상이에요.',
+        me: '2027년에 만 9세인 자녀는 아동수당을 받는 대신 2027년 귀속 자녀세액공제에서 빠져요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '연금', who: ['youth', 'student'],
+        name: '군복무 크레딧, 복무기간 전체 인정',
+        what: '국민연금 가입기간으로 최대 12개월만 인정하던 군복무 크레딧을 복무기간 전체로 늘려요(육군 18개월 등). 6개월 미만 복무도 인정돼요.',
+        me: '군 복무한 만큼 연금 가입기간이 늘어 나중에 받는 연금이 많아져요. 보험료는 따로 내지 않아요.' },
+      { d: '2027-01-01', when: '2027. 1. 1.', area: '연금', who: ['parent'],
+        name: '출산 크레딧, 둘째 자녀 15개월로',
+        what: '2027년 이후 태어나거나 입양한 둘째 자녀의 국민연금 출산 크레딧 인정 기간이 12개월에서 15개월로 늘어요.',
+        me: '부모의 국민연금 가입기간이 더 길게 인정돼 노후 연금액이 늘어요.' },
+      { d: '2027-01-21', when: '2027. 1. 21.', area: '육아', who: ['parent'],
+        name: '아동수당·부모급여, 신청 안 해도 지급',
+        what: '아동수당·부모급여·첫만남이용권을 별도 신청 없이 정부가 가진 정보로 지급해요(원하지 않으면 거절 가능). 위기가구는 공무원이 직권으로 신청할 수 있어요.',
+        me: '출생신고 뒤 신청을 깜빡해 받을 돈을 놓치는 일이 줄어요. 계좌 확인 동의 같은 절차는 남을 수 있어요.' },
+      { d: '2027-04-21', when: '2027. 4. 21.', area: '복지', who: ['senior'],
+        name: '기초연금, 국내 5년 이상 거주해야',
+        what: '만 65세 이상이라도 19세 이후 국내에 5년 이상 살지 않았으면 원칙적으로 기초연금을 받을 수 없어요. 해외 소득·재산 신고 의무도 생겨요.',
+        me: '해외에서 오래 살다 귀국했다면 신청 전에 국내 거주기간을 확인하세요(시행일은 보도 기준).' },
+      { d: '2027-05-31', when: '2027. 5. 31. 마감', area: '주거', who: ['home'],
+        name: '전세사기 피해자 결정 신청 마감',
+        what: '전세사기피해자법 유효기간이 2027년 5월 31일까지라 피해자 결정 신청도 그 전에 해야 해요(2025. 5. 31.까지 최초 계약한 임차인 대상).',
+        me: '아직 신청하지 않은 피해 임차인은 마감 전에 관할 시·도(전세피해지원센터)에 신청하세요.' },
+      { d: '2027-06-03', when: '2027. 6. 3.', area: '교통', who: ['driver'],
+        name: '음주운전 권유·차량 제공·동승 요구 처벌',
+        what: '술 마신 걸 알면서 차를 내주거나 운전을 권하거나, 태워 달라고 요구해 함께 타면 3년 이하 징역 또는 1천만원 이하 벌금이에요. 운전기록 정정·말소 요구 제도도 같은 법에 들어갔어요.',
+        me: '술자리 뒤 “조금만 운전해”라고 권하거나 차 키를 건네는 것만으로도 처벌될 수 있어요.' },
+      { d: '2027-06-10', when: '2027. 6. 10.', area: '노동', who: ['work', 'youth'],
+        name: '연차휴가 나눠 쓸 권리 법제화',
+        what: '연차를 대통령령으로 정하는 단위로 나눠 쓸 수 있게 근로기준법이 바뀌어요(시행령 입법예고안: 반일 단위, 연 5일 한도). 연차를 썼다고 불이익을 주면 처벌돼요.',
+        me: '회사 규정에 반차가 없어도 법에 따라 반일 단위로 연차를 쓸 수 있게 돼요(단위·한도는 시행령 확정 후 확인).' },
+      { d: '2027-03-01', when: '2027학년도', area: '교육', who: ['student', 'parent'],
+        name: '의대 정원 3,548명 (490명 증원)',
+        what: '2027학년도 의대 정원이 3,058명에서 490명 늘어요. 증원분은 서울을 뺀 32개 의대가 지역의사전형으로 뽑아요.',
+        me: '의대 지망생은 지역의사전형의 지원 자격(지역 거주·학교)과 졸업 후 지역 근무 조건을 모집요강에서 확인하세요.' },
+      { d: '2027-12-31', when: '2027. 12. 31.까지', area: '주거', who: ['home'],
+        name: '토허구역 ‘세 낀 집’ 실거주 유예 신청 연장',
+        what: '토지거래허가구역에서 세입자가 있는 집을 무주택자가 살 때 실거주를 미뤄 주는 특례 신청 기한이 2027년 12월 31일까지로 1년 늘었어요(갱신계약 1회 포함).',
+        me: '집주인은 세입자가 있어도 매도가 쉬워지고, 매수자는 임대차가 끝난 뒤 입주해 2년 실거주하면 돼요.' }
+    ];
+    ITEMS.sort(function (a, b) { return a.d < b.d ? -1 : a.d > b.d ? 1 : 0; });
+
+    // ===== 추진 중 (미확정) =====
+    var PENDING = [
+      { area: '세금', who: ['work', 'biz', 'youth', 'parent'], name: '근로장려금 소득 기준·지급액 확대',
+        what: '2026년 세제개편안(국회 심의 중). 통과되면 2027년 소득분부터, 즉 2027년 9월 반기 신청분부터 적용돼요.' },
+      { area: '세금', who: ['work', 'biz', 'youth'], name: '가상자산(코인) 과세',
+        what: '현행법상 2027. 1. 1. 시행이지만, 정부가 2029년으로 2년 유예를 국회와 추진 중이에요(2026. 11. 5. 발표).' },
+      { area: '육아', who: ['youth', 'parent'], name: '결혼세액공제 종료 → 혼인지원금',
+        what: '결혼세액공제는 2026년 혼인신고분까지예요. 2027년 혼인신고 부부에게 1인 50만원을 주는 혼인지원금은 예산안 단계예요.' },
+      { area: '육아', who: ['parent'], name: '아이맞이지원금·아동기본수당 개편',
+        what: '첫만남이용권·부모급여·아동수당을 묶는 개편안이 2027년 예산안에 담겨 국회 심사 중이에요. 금액·시기는 바뀔 수 있어요.' },
+      { area: '4대보험', who: ['work', 'biz', 'youth'], name: '고용보험료율 인상·실업급여 주 6일 기준',
+        what: '실업급여 보험료율 1.8% → 2.0%(근로자·사업주 각 0.1%p), 구직급여 주 7일 → 6일 기준이 정부 개편안이에요.' },
+      { area: '의료', who: ['senior'], name: '희귀·중증난치 본인부담 인하, 어르신 임플란트',
+        what: '본인부담률 10% → 7%(2026. 12. 진료분 예정), 치아가 하나도 없는 65세 이상 임플란트 2개 지원(2027년)이 건정심 의결 후 하위법령 절차 중이에요.' },
+      { area: '교통', who: ['driver'], name: '하이브리드차 개별소비세 감면 종료',
+        what: '감면 기한이 2026. 12. 31.이고 정부 세제개편안은 연장하지 않는 안이에요. 국회에서 바뀔 수 있어요.' },
+      { area: '복지', who: ['senior'], name: '2027년 기초연금액',
+        what: '해마다 물가를 반영해 1월에 새 금액과 선정기준액이 고시돼요(2026년 단독 최대 월 34만 9,700원).' },
+      { area: '병역', who: ['youth', 'student'], name: '2027년 병사 봉급',
+        what: '국회 예산 심사 뒤 공무원보수규정 개정으로 정해져요(2026년 병장 기본급 월 150만원).' },
+      { area: '교육', who: ['student', 'parent'], name: '지방 국립대 등록금 지원·방과후 이용권 확대',
+        what: '지방 국립대 신입생 등록금 지원, 방과후 이용권 초4 확대, 3~5세 무상교육·보육 확대가 2027년 예산안에 담겨 심사 중이에요.' }
+    ];
+
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function nw(t) { return '<span class="kch-nowrap">' + esc(t) + '</span>'; }
+
+    function selected() { return $$('.kch-chip.kch-on').map(function (b) { return b.getAttribute('data-v'); }); }
+    function norm(t) { return String(t).replace(/\s+/g, '').toLowerCase(); }
+    function hit(item, sel, q) {
+      if (sel.length && !item.who.some(function (w) { return sel.indexOf(w) >= 0; })) return false;
+      if (q && norm(item.name + item.what + (item.me || '') + item.area).indexOf(q) < 0) return false;
+      return true;
+    }
+
+    function render() {
+      var sel = selected();
+      var raw = qIn.value.trim();
+      var q = norm(raw);
+      msg.textContent = '';
+      qIn.classList.remove('kch-bad');
+      if (raw && !/[0-9A-Za-z가-힣]/.test(raw)) {
+        qIn.classList.add('kch-bad');
+        msg.textContent = '키워드는 한글·영문·숫자로 입력해 주세요.';
+        result.classList.remove('kch-show');
+        lastText = '';
+        return;
+      }
+      var list = ITEMS.filter(function (i) { return hit(i, sel, q); });
+      var plist = PENDING.filter(function (i) { return hit(i, sel, q); });
+      if (raw && !list.length && !plist.length) {
+        qIn.classList.add('kch-bad');
+        msg.textContent = '‘' + raw + '’에 맞는 변화가 없어요. 다른 낱말로 찾아보세요.';
+        result.classList.remove('kch-show');
+        lastText = '';
+        return;
+      }
+      var who = sel.map(function (s) { return WHO[s]; });
+      $('[data-mlabel]').textContent = '2027년 확정된 변화 (' + (who.length ? who.join('·') : '전체') + (raw ? ' · ‘' + raw + '’' : '') + ')';
+      $('[data-count]').textContent = list.length;
+      var jan = list.filter(function (i) { return i.d.slice(0, 7) === '2027-01'; }).length;
+      $('[data-summary]').textContent = list.length ? '1월 시행 ' + jan + '개 · 그 밖의 시기 ' + (list.length - jan) + '개 · 추진 중 ' + plist.length + '개' : '확정된 변화는 없고 추진 중인 것만 ' + plist.length + '개 있어요';
+      $('[data-list]').innerHTML = list.length ? list.map(function (i) {
+        return '<li class="kch-card"><div class="kch-card-h"><p class="kch-name">' + esc(i.name) + '</p><span class="kch-badge">' + esc(i.area) + '</span></div>' +
+          '<p class="kch-row"><b>시행</b><span>' + nw(i.when) + '</span></p>' +
+          '<p class="kch-row"><b>바뀌는 점</b><span>' + esc(i.what) + '</span></p>' +
+          '<p class="kch-row kch-me"><b>나에게</b><span>' + esc(i.me) + '</span></p></li>';
+      }).join('') : '<li class="kch-empty">고른 상황에 해당하는 확정 변화가 없어요.</li>';
+      $('[data-plist]').innerHTML = plist.length ? plist.map(function (i) {
+        return '<li class="kch-card kch-pend"><div class="kch-card-h"><p class="kch-name">' + esc(i.name) + '</p><span class="kch-badge kch-gray">추진 중 · ' + esc(i.area) + '</span></div>' +
+          '<p class="kch-row"><b>상태</b><span>' + esc(i.what) + '</span></p></li>';
+      }).join('') : '<li class="kch-empty">고른 상황에 해당하는 추진 중 항목이 없어요.</li>';
+      result.classList.add('kch-show');
+
+      lastText = '[2027년 달라지는 것 - 내 체크리스트]\n내 상황: ' + (who.length ? who.join(', ') : '전체') + (raw ? ' / 키워드: ' + raw : '') + '\n' +
+        (list.length ? '\n■ 확정된 변화 ' + list.length + '개\n' + list.map(function (i) {
+          return '☐ ' + i.name + ' (' + i.when + ')\n   - ' + i.me;
+        }).join('\n') : '\n■ 확정된 변화 없음') +
+        (plist.length ? '\n\n■ 추진 중 (미확정)\n' + plist.map(function (i) { return '- ' + i.name + ': ' + i.what; }).join('\n') : '') +
+        '\n\n※ 2026. 11. 20. 기준. 시행 전 정부 공식 발표로 다시 확인하세요.';
+    }
+
+    $('[data-chips]').addEventListener('click', function (e) {
+      var c = e.target.closest('.kch-chip');
+      if (!c) return;
+      var on = !c.classList.contains('kch-on');
+      c.classList.toggle('kch-on', on);
+      c.setAttribute('aria-pressed', on);
+      render();
+    });
+    qIn.addEventListener('input', render);
+
+    $('[data-reset]').addEventListener('click', function () {
+      $$('.kch-chip').forEach(function (b) { b.classList.remove('kch-on'); b.setAttribute('aria-pressed', 'false'); });
+      qIn.value = '';
+      render();
+      var first = $('.kch-chip'); if (first) first.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this, text = lastText;
+      if (!result.classList.contains('kch-show') || !text) { msg.textContent = '복사할 결과가 없어요. 키워드를 고친 뒤 다시 눌러 주세요.'; return; }
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    });
+
+    render();
+  })();
+  </script>
+</div>
+<!-- 2027년 달라지는 것 찾기 위젯 끝 -->
