@@ -39,7 +39,7 @@
 - 통상임금 ÷ 209 × 8 × 일수 산정 사례(판결 속 보수규정): https://www.law.go.kr/LSW/precInfoP.do?precSeq=625415 / 실무 해설 https://www.bizforms.co.kr/365guide/view.asp?number=176
 - 퇴직 전년도 발생 연차의 미사용수당 × 3/12 평균임금 산입, 퇴직으로 처음 생기는 수당은 제외(고용노동부 근로기준정책과-136, 2020.1.7. 등 인용): https://www.dentalnews.or.kr/mobile/article.html?no=46259 , 고용노동부 빠른인터넷상담 https://www.moel.go.kr/minwon/fastcounsel/fastcounselView.do?inetDcssMngId=201707140941334611000 (severance-calculator README와 같은 출처)
 - 월 환산(365 ÷ 7 ÷ 12, 주 40시간 → 209시간)은 weekly-holiday-pay 위젯과 같은 고용노동부 방식
-- 2026년 최저임금 시급 10,320원(표 첫 줄): weekly-holiday-pay README의 고시 출처와 같음
+- 2026년 최저임금 시급 10,320원(표 첫 줄, 월 209시간 2,156,880원): 한국경제 https://www.hankyung.com/article/202510022821i (unemployment-benefit-calculator README와 같은 출처) / 2027년 10,700원(2026.8.5 고시): 고용노동부 https://moel.go.kr/news/enews/report/enewsView.do?news_seq=19659
 - 시간 단위 연차 분할 사용 근로기준법 개정(2026.5.7 국회 통과, 2027.6.10 시행, 단위는 시행령 위임): https://www.mt.co.kr/economy/2026/05/07/2026050719231093630 , https://www.lawtimes.co.kr/news/articleView.html?idxno=228955 — 계산식에는 영향 없음, 글에는 넣지 않았다.
 
 ## 확인하지 못한 것
