@@ -1,0 +1,389 @@
+<!-- 2027 세금 납부 달력 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="ktc" data-ktc>
+  <style>
+    .ktc{--ktc-accent:#3b6ef5;--ktc-accent-soft:#eef3ff;--ktc-text:#1d2433;--ktc-sub:#6b7385;--ktc-line:#e3e7ef;--ktc-bg:#fff;--ktc-red:#e0565b;--ktc-blue:#3b6ef5;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--ktc-line);border-radius:20px;background:var(--ktc-bg);
+      color:var(--ktc-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .ktc [hidden]{display:none!important}
+    .ktc *,.ktc *::before,.ktc *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .ktc .ktc-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .ktc .ktc-desc{margin-top:4px;font-size:14px;color:var(--ktc-sub)}
+    .ktc .ktc-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--ktc-text)}
+    .ktc .ktc-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .ktc .ktc-chip{height:36px;padding:0 13px;border:1.5px solid var(--ktc-line);border-radius:999px;background:#fff;color:var(--ktc-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+    .ktc .ktc-chip:hover{border-color:#c9d3ea;color:var(--ktc-text)}
+    .ktc .ktc-chip.ktc-on{border-color:var(--ktc-accent);background:var(--ktc-accent-soft);color:var(--ktc-accent)}
+    .ktc .ktc-chip.ktc-on::before{content:"✓ ";font-weight:700}
+    .ktc .ktc-chips.ktc-bad .ktc-chip{border-color:#f3c4c6}
+    .ktc .ktc-base{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 8px;margin-top:14px;font-size:13px;color:var(--ktc-sub)}
+    .ktc .ktc-link{border:0;background:none;color:var(--ktc-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .ktc .ktc-date{height:40px;padding:0 10px;border:1.5px solid var(--ktc-line);border-radius:10px;font-size:14px;color:var(--ktc-text);background:#fff}
+    .ktc .ktc-date.ktc-bad{border-color:var(--ktc-red)}
+    .ktc .ktc-msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--ktc-red)}
+    .ktc .ktc-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .ktc .ktc-result.ktc-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .ktc .ktc-result-inner{overflow:hidden}
+    .ktc .ktc-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--ktc-accent-soft);text-align:center}
+    .ktc .ktc-main-label{font-size:14px;color:var(--ktc-sub)}
+    .ktc .ktc-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--ktc-accent);line-height:1.2}
+    .ktc .ktc-main-sub{margin-top:6px;font-size:15px;font-weight:700;color:var(--ktc-text)}
+    .ktc .ktc-main-date{margin-top:2px;font-size:14px;color:var(--ktc-sub)}
+    .ktc .ktc-next{margin-top:12px;padding-top:10px;border-top:1px dashed #c9d6fb;font-size:13px;color:var(--ktc-sub);text-align:left;list-style:none}
+    .ktc .ktc-next li{display:flex;gap:8px;padding:2px 0}
+    .ktc .ktc-next b{flex:0 0 auto;min-width:52px;color:var(--ktc-accent);font-weight:700}
+    .ktc .ktc-count{margin-top:10px;font-size:13px;color:var(--ktc-sub);text-align:center}
+    .ktc .ktc-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px}
+    .ktc .ktc-arrow{width:44px;height:44px;border:1.5px solid var(--ktc-line);border-radius:12px;background:#fff;color:var(--ktc-text);font-size:18px;font-weight:700;
+      cursor:pointer;transition:background .2s,transform .1s}
+    .ktc .ktc-arrow:hover{background:#f4f6fa}
+    .ktc .ktc-arrow:active{transform:scale(.96)}
+    .ktc .ktc-arrow:disabled{opacity:.35;cursor:default;transform:none;background:#fff}
+    .ktc .ktc-month{font-size:18px;font-weight:800;letter-spacing:-.02em}
+    .ktc .ktc-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .ktc .ktc-tab{position:relative;height:34px;border:0;border-radius:10px;background:none;color:var(--ktc-sub);font-size:13px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s}
+    .ktc .ktc-tab:hover{color:var(--ktc-text)}
+    .ktc .ktc-tab.ktc-on{background:#fff;color:var(--ktc-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .ktc .ktc-tab.ktc-has::after{content:"";position:absolute;top:5px;right:6px;width:5px;height:5px;border-radius:50%;background:var(--ktc-accent)}
+    .ktc .ktc-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:12px}
+    .ktc .ktc-wd{padding:4px 0;font-size:12px;font-weight:700;text-align:center;color:var(--ktc-sub)}
+    .ktc .ktc-wd.ktc-sun{color:var(--ktc-red)}
+    .ktc .ktc-wd.ktc-sat{color:var(--ktc-blue)}
+    .ktc .ktc-day{min-height:48px;padding:5px 2px 4px;border:1px solid transparent;border-radius:10px;background:#f8f9fc;text-align:center;overflow:hidden}
+    .ktc .ktc-day.ktc-empty{background:none}
+    .ktc .ktc-num{display:block;font-size:15px;font-weight:700;line-height:1.3}
+    .ktc .ktc-day.ktc-sun .ktc-num,.ktc .ktc-day.ktc-hol .ktc-num{color:var(--ktc-red)}
+    .ktc .ktc-day.ktc-sat .ktc-num{color:var(--ktc-blue)}
+    .ktc .ktc-day.ktc-sat.ktc-hol .ktc-num{color:var(--ktc-red)}
+    .ktc .ktc-day.ktc-hol{background:#fff1f1}
+    .ktc .ktc-day.ktc-due{border:1.5px solid var(--ktc-accent);background:var(--ktc-accent-soft)}
+    .ktc .ktc-day.ktc-due.ktc-past{border-color:#c4c9d4;background:#f4f5f8}
+    .ktc .ktc-day.ktc-today{box-shadow:inset 0 0 0 2px #1d2433}
+    .ktc .ktc-dots{display:flex;justify-content:center;gap:2px;margin-top:3px;height:6px}
+    .ktc .ktc-dots i{display:block;width:6px;height:6px;border-radius:50%;background:var(--ktc-accent)}
+    .ktc .ktc-past .ktc-dots i{background:#b3b9c6}
+    .ktc .ktc-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:12px;color:var(--ktc-sub)}
+    .ktc .ktc-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;border-radius:3px;vertical-align:-1px}
+    .ktc .ktc-list{margin-top:10px;list-style:none}
+    .ktc .ktc-item{margin-top:8px;padding:12px 14px;border:1px solid var(--ktc-line);border-radius:14px;background:#fff}
+    .ktc .ktc-item.ktc-past{background:#fafbfc;color:var(--ktc-sub)}
+    .ktc .ktc-itop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+    .ktc .ktc-iname{font-size:15px;font-weight:700}
+    .ktc .ktc-dd{flex:0 0 auto;font-size:13px;font-weight:700;color:var(--ktc-accent);white-space:nowrap}
+    .ktc .ktc-past .ktc-dd{color:#9aa1b0}
+    .ktc .ktc-when{display:block;margin-top:3px;font-size:13.5px;font-weight:600;color:var(--ktc-text)}
+    .ktc .ktc-past .ktc-when{color:var(--ktc-sub)}
+    .ktc .ktc-ext{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:#fff1f1;color:var(--ktc-red);font-size:12px;font-weight:700;white-space:nowrap}
+    .ktc .ktc-flag{display:inline-block;margin-left:4px;padding:1px 7px;border-radius:999px;background:#fff6e5;color:#b7791f;font-size:12px;font-weight:700;white-space:nowrap}
+    .ktc .ktc-inote{display:block;margin-top:3px;font-size:13px;color:var(--ktc-sub)}
+    .ktc .ktc-none{margin-top:10px;padding:12px 14px;border:1px solid var(--ktc-line);border-radius:14px;font-size:13.5px;color:var(--ktc-sub)}
+    .ktc .ktc-nw{white-space:nowrap}
+    .ktc .ktc-note{margin-top:12px;font-size:12.5px;color:var(--ktc-sub)}
+    .ktc .ktc-actions{display:flex;gap:8px;margin-top:14px}
+    .ktc .ktc-btn{flex:1;height:44px;border:1.5px solid var(--ktc-line);border-radius:12px;background:#fff;color:var(--ktc-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .ktc .ktc-btn:hover{background:#f4f6fa}
+    .ktc .ktc-btn:active{transform:scale(.98)}
+    .ktc .ktc-btn.ktc-primary{border-color:var(--ktc-accent);background:var(--ktc-accent);color:#fff}
+    .ktc .ktc-btn.ktc-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.ktc{padding:18px;border-radius:16px}.ktc .ktc-big{font-size:38px}
+      .ktc .ktc-chip{height:34px;padding:0 11px;font-size:13.5px}
+      .ktc .ktc-cal{gap:2px}.ktc .ktc-day{min-height:44px;border-radius:8px}.ktc .ktc-num{font-size:14px}
+      .ktc .ktc-tab{font-size:12.5px}}
+    @media (prefers-reduced-motion:reduce){.ktc .ktc-result,.ktc .ktc-btn,.ktc .ktc-chip,.ktc .ktc-tab,.ktc .ktc-arrow{transition:none}}
+  </style>
+
+  <p class="ktc-title">2027년 세금 납부 달력</p>
+  <p class="ktc-desc">내 유형을 고르면 챙겨야 할 마감일만 모아 보여 드려요. 마감일이 주말·공휴일이면 미뤄진 실제 마감일로 계산해요.</p>
+
+  <p class="ktc-label" id="ktc-types">내 유형 (여러 개 고를 수 있어요)</p>
+  <div class="ktc-chips" data-chips role="group" aria-labelledby="ktc-types"></div>
+  <div class="ktc-base">
+    <span data-base-text>오늘 기준으로 D-day를 계산해요</span>
+    <button type="button" class="ktc-link" data-base-toggle>기준일 바꾸기</button>
+    <input type="date" class="ktc-date" data-base hidden min="2026-01-01" max="2027-12-31" aria-label="기준일" aria-describedby="ktc-msg">
+  </div>
+
+  <p class="ktc-msg" id="ktc-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="ktc-result" data-result aria-live="polite">
+    <div class="ktc-result-inner">
+      <div class="ktc-main">
+        <p class="ktc-main-label" data-main-label>다음 마감까지</p>
+        <p class="ktc-big" data-big>D-0</p>
+        <p class="ktc-main-sub" data-main-sub></p>
+        <p class="ktc-main-date" data-main-date></p>
+        <ul class="ktc-next" data-next-list></ul>
+      </div>
+      <p class="ktc-count" data-count></p>
+
+      <div class="ktc-nav">
+        <button type="button" class="ktc-arrow" data-prev aria-label="이전 달">‹</button>
+        <p class="ktc-month" data-month-label aria-live="polite">2027년 1월</p>
+        <button type="button" class="ktc-arrow" data-next aria-label="다음 달">›</button>
+      </div>
+      <div class="ktc-tabs" role="tablist" aria-label="월 선택" data-tabs></div>
+      <div class="ktc-cal" data-cal></div>
+      <p class="ktc-legend"><span><i style="background:#eef3ff;border:1.5px solid #3b6ef5"></i>실제 마감일</span><span><i style="background:#fff1f1;border:1px solid #f3c4c6"></i>공휴일</span><span><i style="background:#f4f5f8;border:1.5px solid #c4c9d4"></i>지난 마감</span></p>
+      <ul class="ktc-list" data-list></ul>
+
+      <p class="ktc-note">국세기본법 제5조·지방세기본법 제24조에 따라 기한이 토·일·공휴일이면 다음 날로 미뤄진 날짜예요. 2027년 공휴일(대체공휴일 포함)을 반영했고, 임시공휴일이 지정되거나 지자체·국세청이 기한을 따로 연장하면 바뀔 수 있어요. 고지서가 있는 세금은 고지서의 납부기한이 우선이에요.</p>
+      <div class="ktc-actions">
+        <button type="button" class="ktc-btn" data-reset>다시 입력</button>
+        <button type="button" class="ktc-btn ktc-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-ktc]');
+    if (!root || root.__ktc) return;
+    root.__ktc = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var YEAR = 2027, WD = ['일', '월', '화', '수', '목', '금', '토'];
+
+    // 2027년 관공서 공휴일 (우주항공청 2027년 월력요항, tools/holidays-2027 과 같음). [월, 일, 이름]
+    var HOLI = [[1, 1, '신정'], [2, 6, '설날 연휴'], [2, 7, '설날'], [2, 8, '설날 연휴'], [2, 9, '대체공휴일'], [3, 1, '삼일절'],
+      [5, 1, '노동절'], [5, 3, '대체공휴일'], [5, 5, '어린이날'], [5, 13, '부처님오신날'], [6, 6, '현충일'], [7, 17, '제헌절'], [7, 19, '대체공휴일'],
+      [8, 15, '광복절'], [8, 16, '대체공휴일'], [9, 14, '추석 연휴'], [9, 15, '추석'], [9, 16, '추석 연휴'], [10, 3, '개천절'], [10, 4, '대체공휴일'],
+      [10, 9, '한글날'], [10, 11, '대체공휴일'], [12, 25, '성탄절'], [12, 27, '대체공휴일']];
+
+    // 유형: 직장인 w, 프리랜서 f, 일반과세자 g, 간이과세자 s, 면세사업자 x, 직원 둔 사업자 e, 집주인 h, 차량 소유자 c
+    var TYPES = [['w', '직장인'], ['f', '프리랜서'], ['g', '일반과세자'], ['s', '간이과세자'], ['x', '면세사업자'], ['e', '직원 둔 사업자'], ['h', '집주인'], ['c', '차량 소유자']];
+
+    // 법정 기한(원래 날짜). [월, 일, 시작 월, 시작 일(없으면 0), 이름, 유형, 국세/지방세, 설명, 표시(발표 전 등)]
+    var EV = [
+      [1, 31, 1, 16, '자동차세 1월 연납', 'c', '지방세', '1년치를 미리 내면 약 4.6% 덜 내요. 2027년 공제율은 발표 전(2026년 5%)', '공제율 발표 전'],
+      [1, 31, 1, 16, '등록면허세(면허분) 정기분', 'gsx', '지방세', '1월 1일 기준 영업 허가·면허가 있는 사업자에게 고지돼요'],
+      [1, 25, 1, 1, '부가가치세 2026년 2기 확정신고', 'g', '국세', '2026년 7~12월분 신고·납부 (개인 일반과세자)'],
+      [1, 25, 1, 1, '간이과세자 부가가치세 신고 (2026년분)', 's', '국세', '1년에 한 번 신고해요. 2026년 매출(공급대가)이 4,800만원 미만이면 납부 의무는 없어요'],
+      [2, 10, 1, 1, '사업장현황신고 (면세사업자)', 'xh', '국세', '병의원·학원·주택임대 등 면세 개인사업자의 2026년 수입금액 신고. 주택임대소득이 있는 사업자도 해당'],
+      [3, 10, 0, 0, '연말정산 원천징수 신고·지급명세서 제출', 'we', '국세', '회사가 2월 급여에서 정산한 연말정산 결과를 신고해요. 직장인은 1~2월에 공제 서류를 회사에 내면 돼요'],
+      [3, 15, 3, 1, '근로장려금 반기신청 (2026년 하반기분)', 'w', '국세', '근로소득만 있는 가구. 2026년 9월에 상반기분을 신청했다면 다시 안 해도 돼요'],
+      [3, 31, 3, 16, '자동차세 3월 연납', 'c', '지방세', '남은 기간 몫을 미리 내면 약 3.8% 덜 내요 (공제율 5% 가정)', '공제율 발표 전'],
+      [4, 25, 0, 0, '부가가치세 1기 예정고지 납부', 'g', '국세', '직전 6개월 납부세액의 절반이 고지돼요. 50만원 미만이면 고지되지 않아요'],
+      [5, 31, 5, 1, '종합소득세·개인지방소득세 신고·납부', 'wfgsxh', '국세', '2026년 소득 신고. 직장인은 근로소득 말고 다른 소득이 있거나 연말정산에서 공제를 빠뜨렸을 때 해당'],
+      [5, 31, 5, 1, '근로·자녀장려금 정기신청', 'wfgsx', '국세', '2026년 소득·재산 요건을 갖춘 가구. 기한 뒤 6개월 안에 신청하면 조금 줄여서 줘요'],
+      [6, 30, 6, 16, '자동차세 1기분 납부 · 6월 연납', 'c', '지방세', '1~6월분 정기 납부. 이때 하반기분까지 함께 내면 약 2.5% 덜 내요'],
+      [6, 30, 0, 0, '종합소득세 신고 (성실신고확인 대상)', 'gx', '국세', '2026년 수입금액이 업종별 기준(5억·7.5억·15억원) 이상인 사업자만'],
+      [7, 25, 7, 1, '부가가치세 1기 확정신고', 'g', '국세', '2027년 1~6월분 신고·납부 (개인 일반과세자)'],
+      [7, 25, 0, 0, '간이과세자 부가가치세 예정부과 납부', 's', '국세', '직전 납부세액의 절반이 고지돼요. 50만원 미만이면 고지되지 않아요'],
+      [7, 31, 7, 16, '재산세 1기분 (주택 1/2·건축물)', 'h', '지방세', '6월 1일 기준 소유자. 주택분이 20만원 이하면 7월에 한 번에 고지될 수 있어요'],
+      [8, 31, 8, 1, '주민세 사업소분 신고·납부', 'gsx', '지방세', '7월 1일 기준 사업소를 둔 개인사업자 중 직전 연도 매출 8천만원 이상'],
+      [8, 31, 8, 16, '주민세 개인분', 'wfgsxehc', '지방세', '7월 1일 기준 세대주에게 1만원 안쪽으로 고지돼요 (지자체마다 금액이 달라요)'],
+      [9, 15, 9, 1, '근로장려금 반기신청 (2027년 상반기분)', 'w', '국세', '2027년 상반기에 근로소득만 있는 가구'],
+      [9, 30, 9, 16, '재산세 2기분 (토지·주택 1/2)', 'h', '지방세', '7월에 주택분을 모두 냈다면 토지가 있을 때만 고지돼요'],
+      [9, 30, 9, 16, '자동차세 9월 연납 (하반기분)', 'c', '지방세', '6월에 상반기분을 낸 뒤 하반기분을 미리 내면 약 1.3% 덜 내요', '공제율 발표 전'],
+      [10, 25, 0, 0, '부가가치세 2기 예정고지 납부', 'g', '국세', '직전 6개월 납부세액의 절반이 고지돼요. 50만원 미만이면 고지되지 않아요'],
+      [11, 30, 11, 1, '종합소득세 중간예납', 'fgsx', '국세', '직전 연도 종합소득세의 절반이 고지돼요. 50만원 미만이면 고지되지 않아요'],
+      [12, 15, 12, 1, '종합부동산세 납부', 'h', '국세', '6월 1일 기준 주택 공시가격 합계 9억원(1세대 1주택 12억원) 초과 등'],
+      [12, 31, 12, 16, '자동차세 2기분 납부', 'c', '지방세', '7~12월분 정기 납부. 연납했다면 낼 것 없어요']
+    ];
+    // 원천세: 매월 10일 (직전 달 급여·대가에서 뗀 세금)
+    for (var wm = 1; wm <= 12; wm++) {
+      var half = wm === 1 ? ' 반기별 납부 사업자는 2026년 7~12월분을 이날 내요.' : wm === 7 ? ' 반기별 납부 사업자는 1~6월분을 이날 내요.' : '';
+      EV.push([wm, 10, 0, 0, '원천세 신고·납부 (' + (wm === 1 ? '2026년 12' : wm - 1) + '월분)', 'e', '국세', '직원 급여·프리랜서 대가에서 뗀 세금.' + half]);
+    }
+
+    var hmap = {};
+    HOLI.forEach(function (h) { hmap[h[0] + '-' + h[1]] = h[2]; });
+    function dt(m, d) { return new Date(YEAR, m - 1, d); }
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    function isOff(d) { var w = d.getDay(); return w === 0 || w === 6 || (d.getFullYear() === YEAR && !!hmap[(d.getMonth() + 1) + '-' + d.getDate()]); }
+    function md(d) { return (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function ymd(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function offName(d) { var w = d.getDay(); return hmap[(d.getMonth() + 1) + '-' + d.getDate()] || (w === 0 ? '일요일' : '토요일'); }
+
+    // 실제 마감일: 법정 기한이 토·일·공휴일이면 그다음 첫 평일
+    var ITEMS = EV.map(function (e, i) {
+      var orig = dt(e[0], e[1]), due = orig;
+      while (isOff(due)) due = addDays(due, 1);
+      return { i: i, orig: orig, due: due, start: e[3] ? dt(e[2], e[3]) : null, name: e[4], tags: e[5], kind: e[6], note: e[7], flag: e[8] || '',
+        ext: due - orig !== 0, why: due - orig !== 0 ? offName(orig) : '' };
+    });
+    ITEMS.sort(function (a, b) { return (a.due - b.due) || (a.i - b.i); });
+
+    // ---------- 입력 ----------
+    var chipBox = $('[data-chips]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var baseI = $('[data-base]'), baseText = $('[data-base-text]'), baseToggle = $('[data-base-toggle]');
+    var sel = { w: 1, c: 1 }, cur = 0, list = [], base = null, lastText = '';
+    TYPES.forEach(function (t) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ktc-chip'; b.setAttribute('data-t', t[0]); b.textContent = t[1];
+      chipBox.appendChild(b);
+    });
+    chipBox.addEventListener('click', function (e) {
+      var c = e.target.closest('[data-t]'); if (!c) return;
+      var k = c.getAttribute('data-t');
+      if (sel[k]) delete sel[k]; else sel[k] = 1;
+      calc(true);
+    });
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function getBase() {
+      if (baseI.hidden) return today();
+      var p = (baseI.value || '').split('-');
+      if (p.length !== 3) return null;
+      var d = new Date(+p[0], +p[1] - 1, +p[2]);
+      return isNaN(d) ? null : d;
+    }
+
+    function hide(text, chips) {
+      result.classList.remove('ktc-show');
+      msg.textContent = text || '';
+      chipBox.classList.toggle('ktc-bad', !!(text && chips));
+      baseI.classList.toggle('ktc-bad', !!(text && !chips));
+    }
+
+    function calc(fromChip) {
+      $$('[data-t]').forEach(function (c) { var on = !!sel[c.getAttribute('data-t')]; c.classList.toggle('ktc-on', on); c.setAttribute('aria-pressed', on); });
+      var keys = Object.keys(sel);
+      if (!keys.length) return hide(fromChip ? '유형을 하나 이상 골라 주세요.' : '', true);
+      base = getBase();
+      if (!base) { base = null; return hide('기준일을 다시 골라 주세요.', false); }
+      if (!baseI.hidden && (base.getFullYear() < 2026 || base.getFullYear() > YEAR)) return hide('기준일은 2026. 1. 1.부터 2027. 12. 31. 사이로 골라 주세요.', false);
+      msg.textContent = ''; chipBox.classList.remove('ktc-bad'); baseI.classList.remove('ktc-bad');
+      list = ITEMS.filter(function (it) { return keys.some(function (k) { return it.tags.indexOf(k) >= 0; }); });
+      var future = list.filter(function (it) { return dayDiff(base, it.due) >= 0; });
+      var nx = future[0];
+      if (nx) {
+        var n = dayDiff(base, nx.due);
+        $('[data-main-label]').textContent = '다음 마감까지';
+        $('[data-big]').textContent = n === 0 ? 'D-day' : 'D-' + n;
+        $('[data-main-sub]').textContent = nx.name;
+        $('[data-main-date]').innerHTML = '<span class="ktc-nw">' + YEAR + '. ' + md(nx.due) + '</span>까지' + (nx.ext ? ' <span class="ktc-nw">(원래 ' + md(nx.orig) + ')</span>' : '');
+        $('[data-next-list]').innerHTML = future.slice(1, 4).map(function (it) {
+          var k = dayDiff(base, it.due);
+          return '<li><b>' + (k === 0 ? 'D-day' : 'D-' + k) + '</b><span><span class="ktc-nw">' + md(it.due) + '</span> ' + it.name + '</span></li>';
+        }).join('');
+        cur = nx.due.getMonth();
+      } else {
+        $('[data-main-label]').textContent = '고른 유형의 2027년 마감';
+        $('[data-big]').textContent = '완료';
+        $('[data-main-sub]').textContent = '2027년 일정이 모두 지났어요';
+        $('[data-main-date]').textContent = '2028년 일정은 새해에 다시 확인해 주세요.';
+        $('[data-next-list]').innerHTML = '';
+        cur = 11;
+      }
+      var extN = list.filter(function (it) { return it.ext; }).length;
+      $('[data-count]').innerHTML = '2027년에 챙길 마감 <b>' + list.length + '건</b> · 주말·공휴일로 미뤄진 마감 <b>' + extN + '건</b>';
+      result.classList.add('ktc-show');
+      draw();
+      makeText(keys, nx, future);
+    }
+
+    // ---------- 달력 ----------
+    var tabs = $('[data-tabs]'), cal = $('[data-cal]');
+    for (var m = 0; m < 12; m++) {
+      var tb = document.createElement('button');
+      tb.type = 'button'; tb.className = 'ktc-tab'; tb.setAttribute('role', 'tab'); tb.setAttribute('data-m', m);
+      tb.textContent = (m + 1) + '월';
+      tabs.appendChild(tb);
+    }
+    tabs.addEventListener('click', function (e) { var t = e.target.closest('[data-m]'); if (t) { cur = +t.getAttribute('data-m'); draw(); } });
+    $('[data-prev]').addEventListener('click', function () { if (cur > 0) { cur--; draw(); } });
+    $('[data-next]').addEventListener('click', function () { if (cur < 11) { cur++; draw(); } });
+    var sx = null, sy = null;
+    cal.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    cal.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0 && cur < 11) { cur++; draw(); } else if (dx > 0 && cur > 0) { cur--; draw(); }
+      }
+    });
+
+    function when(it) {
+      var s = it.start ? '<span class="ktc-nw">' + md(it.start) + '</span> ~ ' : '';
+      return s + '<span class="ktc-nw">' + md(it.due) + '</span>까지' +
+        (it.ext ? '<span class="ktc-ext">원래 ' + md(it.orig) + ' → 연장</span>' : '');
+    }
+
+    function draw() {
+      if (!base) return;
+      $('[data-month-label]').textContent = YEAR + '년 ' + (cur + 1) + '월';
+      $('[data-prev]').disabled = cur === 0; $('[data-next]').disabled = cur === 11;
+      $$('[data-m]').forEach(function (t) {
+        var mm = +t.getAttribute('data-m'), on = mm === cur;
+        t.classList.toggle('ktc-on', on); t.setAttribute('aria-selected', on);
+        t.classList.toggle('ktc-has', list.some(function (it) { return it.due.getMonth() === mm; }));
+      });
+      var byDay = {};
+      list.forEach(function (it) { if (it.due.getMonth() === cur) (byDay[it.due.getDate()] = byDay[it.due.getDate()] || []).push(it); });
+      var html = '';
+      WD.forEach(function (w, i) { html += '<div class="ktc-wd' + (i === 0 ? ' ktc-sun' : i === 6 ? ' ktc-sat' : '') + '">' + w + '</div>'; });
+      var first = new Date(YEAR, cur, 1), last = new Date(YEAR, cur + 1, 0).getDate();
+      for (var i = 0; i < first.getDay(); i++) html += '<div class="ktc-day ktc-empty" aria-hidden="true"></div>';
+      for (var d = 1; d <= last; d++) {
+        var x = new Date(YEAR, cur, d), w = x.getDay(), h = hmap[(cur + 1) + '-' + d], c = 'ktc-day', its = byDay[d], tip = h || '';
+        if (w === 0) c += ' ktc-sun'; if (w === 6) c += ' ktc-sat'; if (h) c += ' ktc-hol';
+        if (its) { c += ' ktc-due'; if (dayDiff(base, x) < 0) c += ' ktc-past'; tip = its.map(function (it) { return it.name; }).join(', '); }
+        if (base && dayDiff(base, x) === 0) c += ' ktc-today';
+        html += '<div class="' + c + '" title="' + tip + '"><span class="ktc-num">' + d + '</span><span class="ktc-dots">' +
+          (its ? its.slice(0, 3).map(function () { return '<i></i>'; }).join('') : '') + '</span></div>';
+      }
+      cal.innerHTML = html;
+      var items = list.filter(function (it) { return it.due.getMonth() === cur; });
+      $('[data-list]').innerHTML = items.length ? items.map(function (it) {
+        var n = dayDiff(base, it.due), past = n < 0;
+        return '<li class="ktc-item' + (past ? ' ktc-past' : '') + '"><span class="ktc-itop"><span class="ktc-iname">' + it.name +
+          (it.flag ? '<span class="ktc-flag">' + it.flag + '</span>' : '') + '</span><span class="ktc-dd">' + (past ? '지남' : n === 0 ? 'D-day' : 'D-' + n) + '</span></span>' +
+          '<span class="ktc-when">' + when(it) + '</span><span class="ktc-inote">' + it.kind + ' · ' + it.note + '</span></li>';
+      }).join('') : '<li class="ktc-none">이달에는 고른 유형의 마감이 없어요.</li>';
+    }
+
+    function makeText(keys, nx, future) {
+      var names = TYPES.filter(function (t) { return keys.indexOf(t[0]) >= 0; }).map(function (t) { return t[1]; }).join(', ');
+      var t = '[2027년 내 세금 납부 일정 · ' + names + ']\n';
+      if (nx) t += '다음 마감: ' + nx.name + ' ' + YEAR + '. ' + md(nx.due) + ' (D-' + dayDiff(base, nx.due) + ', ' + ymd(base) + ' 기준)\n';
+      var mm = -1;
+      list.forEach(function (it) {
+        if (it.due.getMonth() !== mm) { mm = it.due.getMonth(); t += '\n' + (mm + 1) + '월\n'; }
+        t += '- ' + md(it.due) + ' ' + it.name + (it.start ? ' (' + md(it.start) + '부터)' : '') + (it.ext ? ' ※ 원래 ' + md(it.orig) + ', ' + it.why + '이라 연장' : '') + '\n';
+      });
+      lastText = t + '\n※ 토·일·공휴일이면 다음 평일로 연장(국세기본법 제5조, 지방세기본법 제24조). 고지서의 기한이 우선이에요.';
+    }
+
+    baseToggle.addEventListener('click', function () {
+      var open = baseI.hidden;
+      baseI.hidden = !open;
+      baseText.hidden = open;
+      baseToggle.textContent = open ? '오늘로 되돌리기' : '기준일 바꾸기';
+      if (open) {
+        var t = today();
+        if (t.getFullYear() < 2026 || t.getFullYear() > YEAR) t = new Date(YEAR, 0, 1);
+        baseI.value = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+        baseI.focus();
+      }
+      calc();
+    });
+    baseI.addEventListener('change', function () { calc(); });
+    baseI.addEventListener('input', function () { calc(); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      sel = {};
+      if (!baseI.hidden) baseToggle.click(); else calc();
+      var f = chipBox.querySelector('[data-t]'); if (f) f.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (er) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    calc();
+  })();
+  </script>
+</div>
+<!-- 2027 세금 납부 달력 위젯 끝 -->

@@ -39,6 +39,7 @@ tools/
 | 청약 가점 계산기 (84점 만점, 점수 오르는 날) | `tools/subscription-score-calculator` | 완성 |
 | 주택 취득세 계산기 (1주택·다주택 중과·생애최초 감면) | `tools/acquisition-tax-calculator` | 완성 |
 | 자동차세 계산기 (배기량·차령·연납 할인) | `tools/car-tax-calculator` | 완성 |
+| 2027 세금 납부 달력 (자동차세·재산세·종소세 마감일, 주말 연장 반영) | `tools/tax-calendar-2027` | 완성 |
 
 ## 작업 규칙
 
