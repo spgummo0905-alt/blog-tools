@@ -1,0 +1,402 @@
+<!-- 출산 후 신청할 것 타임라인 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kbb" data-kbb>
+  <style>
+    .kbb{--kbb-accent:#3b6ef5;--kbb-accent-soft:#eef3ff;--kbb-text:#1d2433;--kbb-sub:#6b7385;--kbb-line:#e3e7ef;--kbb-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kbb-line);border-radius:20px;background:var(--kbb-bg);
+      color:var(--kbb-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kbb [hidden]{display:none!important}
+    .kbb *,.kbb *::before,.kbb *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kbb .kbb-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kbb .kbb-desc{margin-top:4px;font-size:14px;color:var(--kbb-sub)}
+    .kbb .kbb-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kbb-text)}
+    .kbb .kbb-row{display:flex;gap:8px}
+    .kbb .kbb-field{position:relative;flex:1;min-width:0}
+    .kbb .kbb-field.kbb-y{flex:1.4}
+    .kbb .kbb-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kbb-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kbb-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kbb .kbb-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kbb .kbb-in:focus{border-color:var(--kbb-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kbb .kbb-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kbb-sub);pointer-events:none}
+    .kbb .kbb-small{font-size:13px;font-weight:500;color:var(--kbb-sub)}
+    .kbb .kbb-link{border:0;background:none;color:var(--kbb-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .kbb .kbb-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:4px;border-radius:12px;background:#f1f3f8}
+    .kbb .kbb-seg button{height:40px;border:0;border-radius:9px;background:none;color:var(--kbb-sub);font-size:13.5px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s,box-shadow .2s;line-height:1.2}
+    .kbb .kbb-seg button.kbb-on{background:#fff;color:var(--kbb-accent);box-shadow:0 1px 4px rgba(30,45,90,.1)}
+    .kbb .kbb-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kbb .kbb-chip{height:34px;padding:0 12px;border:1.5px solid var(--kbb-line);border-radius:999px;background:#fff;color:var(--kbb-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kbb .kbb-chip:hover{border-color:#c9d3ea;color:var(--kbb-text)}
+    .kbb .kbb-chip.kbb-on{border-color:var(--kbb-accent);background:var(--kbb-accent-soft);color:var(--kbb-accent)}
+    .kbb .kbb-sel{width:100%;height:48px;padding:0 12px;border:1.5px solid var(--kbb-line);border-radius:12px;background:#f8f9fc;font-size:15px;font-weight:600;color:var(--kbb-text);outline:none}
+    .kbb .kbb-sel:focus{border-color:var(--kbb-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kbb .kbb-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b;transition:opacity .2s}
+    .kbb .kbb-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kbb .kbb-result.kbb-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kbb .kbb-result-inner{overflow:hidden}
+    .kbb .kbb-main{margin-top:6px;padding:20px;border-radius:16px;background:var(--kbb-accent-soft);text-align:center}
+    .kbb .kbb-main-label{font-size:14px;color:var(--kbb-sub)}
+    .kbb .kbb-big{margin-top:2px;font-size:24px;font-weight:800;letter-spacing:-.03em;color:var(--kbb-accent);line-height:1.3}
+    .kbb .kbb-big small{display:block;margin-top:2px;font-size:15px;font-weight:700;color:var(--kbb-text)}
+    .kbb .kbb-sum{margin-top:6px;font-size:13.5px;color:var(--kbb-sub)}
+    .kbb .kbb-list{list-style:none;margin-top:12px}
+    .kbb .kbb-card{position:relative;margin-top:8px;padding:14px 14px 14px 46px;border:1px solid var(--kbb-line);border-radius:14px;background:#fff;transition:opacity .2s}
+    .kbb .kbb-card.kbb-past{opacity:.55;background:#fafbfd}
+    .kbb .kbb-card.kbb-done{opacity:.5}
+    .kbb .kbb-card.kbb-done .kbb-name{text-decoration:line-through}
+    .kbb .kbb-chk{position:absolute;left:14px;top:16px;width:20px;height:20px;accent-color:var(--kbb-accent);cursor:pointer}
+    .kbb .kbb-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+    .kbb .kbb-name{font-size:15.5px;font-weight:700;color:var(--kbb-text)}
+    .kbb .kbb-badge{display:inline-block;padding:1px 7px;border-radius:999px;font-size:11.5px;font-weight:700;line-height:18px}
+    .kbb .kbb-b-must{background:#fdecec;color:#d6474c}
+    .kbb .kbb-b-imp{background:var(--kbb-accent-soft);color:var(--kbb-accent)}
+    .kbb .kbb-b-rec{background:#e8f6ef;color:#1f8a5b}
+    .kbb .kbb-b-info{background:#f1f3f8;color:var(--kbb-sub)}
+    .kbb .kbb-when{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin-top:4px;font-size:13.5px;color:var(--kbb-text)}
+    .kbb .kbb-date{white-space:nowrap;font-weight:600}
+    .kbb .kbb-d{white-space:nowrap;font-size:12.5px;font-weight:700;color:var(--kbb-accent)}
+    .kbb .kbb-d.kbb-urgent{color:#e0565b}
+    .kbb .kbb-d.kbb-over{color:var(--kbb-sub)}
+    .kbb .kbb-lines{margin-top:6px;font-size:12.5px;color:var(--kbb-sub)}
+    .kbb .kbb-lines p+p{margin-top:2px}
+    .kbb .kbb-lines b{color:var(--kbb-text);font-weight:600}
+    .kbb .kbb-late{margin-top:6px;padding:6px 8px;border-radius:8px;background:#fff4e5;font-size:12.5px;color:#9a5b00}
+    .kbb .kbb-lines a{color:var(--kbb-accent);font-weight:600;text-decoration:underline}
+    .kbb .kbb-note{margin-top:12px;font-size:12.5px;color:var(--kbb-sub)}
+    .kbb .kbb-actions{display:flex;gap:8px;margin-top:14px}
+    .kbb .kbb-btn{flex:1;height:44px;border:1.5px solid var(--kbb-line);border-radius:12px;background:#fff;color:var(--kbb-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kbb .kbb-btn:hover{background:#f4f6fa}
+    .kbb .kbb-btn:active{transform:scale(.98)}
+    .kbb .kbb-btn.kbb-primary{border-color:var(--kbb-accent);background:var(--kbb-accent);color:#fff}
+    .kbb .kbb-btn.kbb-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kbb{padding:18px;border-radius:16px}.kbb .kbb-in{font-size:17px}.kbb .kbb-big{font-size:22px}.kbb .kbb-card{padding:12px 12px 12px 42px}.kbb .kbb-chk{left:12px;top:14px}}
+    @media (prefers-reduced-motion:reduce){.kbb .kbb-result,.kbb .kbb-in,.kbb .kbb-btn,.kbb .kbb-chip,.kbb .kbb-seg button,.kbb .kbb-card{transition:none}}
+  </style>
+
+  <p class="kbb-title">출산 후 신청할 것 타임라인</p>
+  <p class="kbb-desc">출생일만 넣으면 해야 할 일을 기한 순서로 보여 줘요.</p>
+
+  <label class="kbb-label" for="kbb-y"><span>출생일 <small class="kbb-small">(예정일도 돼요)</small></span><button type="button" class="kbb-link" data-today>오늘로</button></label>
+  <div class="kbb-row">
+    <div class="kbb-field kbb-y"><input class="kbb-in" id="kbb-y" data-y inputmode="numeric" maxlength="4" placeholder="2026" aria-label="출생 연도"><span class="kbb-unit">년</span></div>
+    <div class="kbb-field"><input class="kbb-in" data-m inputmode="numeric" maxlength="2" placeholder="11" aria-label="출생 월"><span class="kbb-unit">월</span></div>
+    <div class="kbb-field"><input class="kbb-in" data-d inputmode="numeric" maxlength="2" placeholder="20" aria-label="출생 일"><span class="kbb-unit">일</span></div>
+  </div>
+
+  <p class="kbb-label">몇째 아이인가요?</p>
+  <div class="kbb-seg" data-order role="group" aria-label="출생 순위">
+    <button type="button" data-v="1" class="kbb-on" aria-pressed="true">첫째</button>
+    <button type="button" data-v="2" aria-pressed="false">둘째 이상</button>
+  </div>
+
+  <p class="kbb-label">부모가 일하는 형태</p>
+  <div class="kbb-chips" data-work role="group" aria-label="부모 근로 형태">
+    <button type="button" class="kbb-chip kbb-on" data-v="both" aria-pressed="true">맞벌이(직장)</button>
+    <button type="button" class="kbb-chip" data-v="mom" aria-pressed="false">엄마만 직장</button>
+    <button type="button" class="kbb-chip" data-v="dad" aria-pressed="false">아빠만 직장</button>
+    <button type="button" class="kbb-chip" data-v="self" aria-pressed="false">자영업·프리랜서</button>
+    <button type="button" class="kbb-chip" data-v="none" aria-pressed="false">해당 없음</button>
+  </div>
+
+  <label class="kbb-label" for="kbb-r">사는 곳 (시·도)</label>
+  <select class="kbb-sel" id="kbb-r" data-region>
+    <option value="">선택 안 함</option>
+    <option>서울</option><option>부산</option><option>대구</option><option>인천</option><option>광주</option><option>대전</option>
+    <option>울산</option><option>세종</option><option>경기</option><option>강원</option><option>충북</option><option>충남</option>
+    <option>전북</option><option>전남</option><option>경북</option><option>경남</option><option>제주</option>
+  </select>
+
+  <p class="kbb-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kbb-result" data-result aria-live="polite">
+    <div class="kbb-result-inner">
+      <div class="kbb-main">
+        <p class="kbb-main-label" data-main-label>가장 급한 일</p>
+        <p class="kbb-big" data-big></p>
+        <p class="kbb-sum" data-sum></p>
+      </div>
+      <ul class="kbb-list" data-list></ul>
+      <p class="kbb-note">2026년 11월 기준 보건복지부·고용노동부·질병관리청 안내를 정리했어요. 기한 날짜는 안전하게 가장 이른 날로 잡았고, 마지막 날이 주말·공휴일이면 실제로는 다음 날까지 인정될 수 있어요. 체크 표시는 저장되지 않아요.</p>
+      <div class="kbb-actions">
+        <button type="button" class="kbb-btn" data-reset>다시 입력</button>
+        <button type="button" class="kbb-btn kbb-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kbb]');
+    if (!root || root.__kbb) return;
+    root.__kbb = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), mI = $('[data-m]'), dI = $('[data-d]'), regionI = $('[data-region]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), list = $('[data-list]');
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var state = { order: 1, work: 'both' }, done = {}, lastItems = [], lastBirth = null, lastToday = null;
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function addD(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    // n개월 뒤 같은 날. 그 달에 같은 날이 없으면 그 달 말일
+    function addM(d, n) {
+      var y = d.getFullYear(), m = d.getMonth() + n, last = new Date(y, m + 1, 0).getDate();
+      return new Date(y, m, Math.min(d.getDate(), last));
+    }
+    // 출생일(초일 산입)부터 n개월 기간의 마지막 날: n개월 뒤 같은 날의 전날, 그 달에 같은 날이 없으면 그 달 말일 (민법 제160조)
+    function endM(d, n) {
+      var y = d.getFullYear(), m = d.getMonth() + n, last = new Date(y, m + 1, 0).getDate();
+      return d.getDate() > last ? new Date(y, m, last) : new Date(y, m, d.getDate() - 1);
+    }
+    function diff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    var REGION_LINK = { '서울': ['서울시 탄생육아 몽땅정보통', 'https://umppa.seoul.go.kr'] };
+
+    // kind: due(마감일) / win(기간) / rec(권장 시기) / rule(날짜 없이 규칙)
+    // badge: must 필수 / imp 중요 / rec 권장 / info 안내
+    function items(b, o) {
+      var mom = o.work === 'both' || o.work === 'mom', dad = o.work === 'both' || o.work === 'dad';
+      var reportDue = endM(b, 1);
+      var a = [];
+      a.push({ id: 'report', name: '출생신고', badge: 'must', kind: 'due', end: reportDue,
+        rule: '출생일 포함 1개월 이내',
+        where: '주민센터(시·구·읍·면), 온라인은 대법원 전자가족관계등록시스템',
+        docs: '출생증명서(병원 발급), 신고인 신분증',
+        miss: '5만원 이하 과태료가 나올 수 있고, 지원금 신청도 늦어져요',
+        late: '지금이라도 바로 신고하세요. 늦어도 신고는 꼭 해야 하고, 과태료가 나올 수 있어요.' });
+      a.push({ id: 'onestop', name: '행복출산 원스톱 서비스 (지원금 한 번에 신청)', badge: 'imp', kind: 'rec', end: reportDue, whenText: '출생신고할 때 함께',
+        where: '출생신고하는 주민센터, 또는 정부24 ‘행복출산’',
+        docs: '부모 신분증, 지원금 받을 통장, 국민행복카드(없으면 함께 발급)',
+        miss: '부모급여·아동수당·첫만남이용권 등을 하나씩 따로 신청해야 해요',
+        late: '원스톱을 못 했어도 복지로·주민센터에서 하나씩 신청하면 돼요.' });
+      a.push({ id: 'insure', name: '건강보험 피부양자 등록', badge: 'imp', kind: 'rule', sort: addD(reportDue, 0), whenText: '출생신고 끝나면 바로',
+        where: o.work === 'self' || o.work === 'none' ? '국민건강보험공단 지사·고객센터(1577-1000)' : '직장 건강보험 쪽 회사 인사팀 또는 국민건강보험공단',
+        docs: '가족관계증명서 등 출생 사실 증빙(공단·회사 안내에 따름)',
+        miss: '아기 진료·영유아 건강검진 때 자격 확인이 번거로워져요' });
+      a.push({ id: 'pay', name: '부모급여·아동수당 신청', badge: 'must', kind: 'due', end: addD(b, 59),
+        rule: '출생일 포함 60일 이내 신청하면 출생한 달부터 소급',
+        where: '행복출산 원스톱, 복지로, 주민센터',
+        docs: '신청인 신분증, 받을 통장',
+        miss: '60일을 넘기면 신청한 달부터만 받아요(부모급여 0세 월 100만원)',
+        late: '지금 신청해도 신청한 달부터는 받아요. 하루라도 빨리 신청하세요.' });
+      a.push({ id: 'voucher', name: '첫만남이용권 ' + (o.order === 1 ? '200만원 (첫째)' : '300만원 (둘째 이상)'), badge: 'imp', kind: 'due', end: endM(b, 24),
+        rule: '출생일부터 2년 안에 신청하고 다 써야 해요',
+        where: '행복출산 원스톱, 복지로, 주민센터 → 국민행복카드 포인트로 지급',
+        docs: '신청인 신분증, 국민행복카드',
+        miss: '사용 기간이 끝나면 남은 포인트가 자동으로 사라져요',
+        late: '사용 기간이 끝나 남은 포인트는 사라졌어요.' });
+      a.push({ id: 'helper', name: '산모·신생아 건강관리 서비스 (산후도우미)', badge: 'rec', kind: 'win', start: addD(b, -40), end: addD(b, 59),
+        rule: '출산 예정일 40일 전부터 출산 후 60일까지 신청',
+        where: '주소지 보건소, 복지로',
+        docs: '신분증, 출산(예정) 증빙, 소득 확인 자료(보건소 안내에 따름)',
+        miss: '신청 기간이 지나면 바우처를 받을 수 없어요' + (o.order > 1 ? '. 둘째 이상은 소득 기준 예외 지원이 있는 지역이 많아요' : ''),
+        late: '신청 기간이 지났어요. 지역 예외 지원이 있는지 보건소에 물어보세요.' });
+      a.push({ id: 'hepb1', name: 'B형간염 1차 예방접종', badge: 'rec', kind: 'rec', end: b, whenText: '출생 직후(보통 분만 병원에서)',
+        where: '분만 병원·소아청소년과', docs: '아기수첩(예방접종 기록)', miss: '접종 시기가 늦어지면 감염 예방이 늦어져요',
+        late: '맞았는지 아기수첩이나 예방접종도우미에서 확인하세요.' });
+      a.push({ id: 'bcg', name: 'BCG(결핵) 예방접종', badge: 'imp', kind: 'due', end: addD(b, 28),
+        rule: '생후 4주 이내',
+        where: '보건소·지정 의료기관(예방접종도우미에서 찾기)', docs: '아기수첩', miss: '권장 시기를 놓치면 접종 일정을 다시 상담해야 해요',
+        late: '아직 안 맞았다면 소아청소년과·보건소에 바로 상담하세요.' });
+      a.push({ id: 'check1', name: '영유아 건강검진 1차', badge: 'imp', kind: 'win', start: addD(b, 14), end: addD(b, 35),
+        rule: '생후 14~35일, 비용 무료(건강보험공단 부담)',
+        where: '영유아 검진기관(건강iN에서 찾기)', docs: '아기 건강보험 자격, 문진표', miss: '기간이 지나면 1차 검진은 받을 수 없어요',
+        late: '1차 기간은 지났어요. 2차(생후 4~6개월)는 꼭 챙기세요.' });
+      a.push({ id: 'hepb2', name: 'B형간염 2차 예방접종', badge: 'rec', kind: 'rec', end: addM(b, 1), whenText: '생후 1개월',
+        where: '소아청소년과·보건소', docs: '아기수첩', miss: '다음 접종 일정도 함께 밀려요',
+        late: '아직이라면 의료기관에서 따라잡기 접종 일정을 상담하세요.' });
+      if (mom) a.push({ id: 'mat', name: '출산전후휴가 급여 신청 (엄마)', badge: 'imp', kind: 'rule', sort: addD(b, 45), whenText: '휴가 시작 1개월 뒤부터 휴가 끝난 날 이후 12개월 이내',
+        where: '고용24·고용센터 (회사가 확인서를 먼저 제출)', docs: '회사의 출산전후휴가 확인서, 신청서, 통장',
+        miss: '휴가가 끝나고 12개월이 지나면 급여를 받을 수 없어요. 출산 후 휴가는 최소 45일(다태아 60일) 보장돼요' });
+      if (o.work === 'self') a.push({ id: 'selfpay', name: '출산급여 150만원 (고용보험 미적용자)', badge: 'imp', kind: 'due', end: endM(b, 12),
+        rule: '출산일부터 1년 이내 신청',
+        where: '고용24·고용센터', docs: '신분증, 출생 증빙, 소득활동 증빙(사업자등록·소득 신고 등)',
+        miss: '1년이 지나면 받을 수 없어요', late: '신청 기한이 지났어요.' });
+      a.push({ id: 'v2', name: '2개월 예방접종', badge: 'rec', kind: 'rec', end: addM(b, 2), whenText: '생후 2개월 (DTaP·폴리오·Hib·폐렴구균·로타바이러스 1차)',
+        where: '소아청소년과·보건소', docs: '아기수첩', miss: '다음 접종 일정도 함께 밀려요', late: '아직이라면 의료기관에서 따라잡기 접종 일정을 상담하세요.' });
+      if (dad) a.push({ id: 'spouse', name: '배우자 출산휴가 20일 사용 (아빠)', badge: 'must', kind: 'due', end: addD(b, 119),
+        rule: '출산일부터 120일 안에, 3번까지 나눠 쓸 수 있어요',
+        where: '회사에 휴가 고지. 우선지원대상기업이면 20일분 급여를 고용24에서 신청',
+        docs: '회사 휴가 신청서, 출생 증빙(가족관계증명서 등)',
+        miss: '120일이 지나면 쓸 수 없어요', late: '사용 기한(출산일부터 120일)이 지났어요.' });
+      if (o.work !== 'self' && o.work !== 'none') a.push({ id: 'leave', name: '육아휴직 신청', badge: 'rec', kind: 'rule', sort: addD(b, 60), whenText: '시작하려는 날 30일 전까지 회사에 신청',
+        where: '회사에 신청 → 급여는 고용24(시작 1개월 뒤부터 끝난 날 이후 12개월 이내)', docs: '육아휴직 신청서(회사 양식)',
+        miss: o.work === 'both' ? '아이가 생후 18개월이 되기 전에 부모 모두 쓰면 6+6 부모육아휴직제로 첫 6개월 급여가 늘어나요' : '30일 전에 못 내면 회사가 시작일을 늦출 수 있어요' });
+      a.push({ id: 'v4', name: '4개월 예방접종', badge: 'rec', kind: 'rec', end: addM(b, 4), whenText: '생후 4개월 (DTaP·폴리오·Hib·폐렴구균·로타바이러스 2차)',
+        where: '소아청소년과·보건소', docs: '아기수첩', miss: '다음 접종 일정도 함께 밀려요', late: '아직이라면 의료기관에서 따라잡기 접종 일정을 상담하세요.' });
+      a.push({ id: 'check2', name: '영유아 건강검진 2차', badge: 'imp', kind: 'win', start: addM(b, 4), end: endM(b, 7),
+        rule: '생후 4~6개월', where: '영유아 검진기관', docs: '문진표', miss: '기간이 지나면 2차 검진은 받을 수 없어요',
+        late: '2차 기간은 지났어요. 3차(생후 9~12개월)를 챙기세요.' });
+      a.push({ id: 'v6', name: '6개월 예방접종', badge: 'rec', kind: 'rec', end: addM(b, 6), whenText: '생후 6개월 (B형간염 3차, DTaP·Hib·폐렴구균 3차 등)',
+        where: '소아청소년과·보건소', docs: '아기수첩', miss: '다음 접종 일정도 함께 밀려요', late: '아직이라면 의료기관에서 따라잡기 접종 일정을 상담하세요.' });
+      a.push({ id: 'check3', name: '영유아 건강검진 3차', badge: 'imp', kind: 'win', start: addM(b, 9), end: endM(b, 13),
+        rule: '생후 9~12개월 (발달선별검사 포함)', where: '영유아 검진기관', docs: '문진표', miss: '기간이 지나면 3차 검진은 받을 수 없어요',
+        late: '3차 기간은 지났어요. 다음 검진은 생후 18~24개월이에요.' });
+      if (o.work !== 'none') a.push({ id: 'cpay', name: '자녀장려금 정기 신청', badge: 'info', kind: 'win', start: new Date(b.getFullYear() + 1, 4, 1), end: new Date(b.getFullYear() + 1, 4, 31),
+        rule: '태어난 다음 해 5월 (소득·재산 기준이 있어요)', where: '홈택스·손택스', docs: '국세청 안내문(대상자에게 발송)',
+        miss: '5월을 놓쳐도 11월까지 기한 후 신청할 수 있지만 금액이 줄어요', late: '기한 후 신청(6~11월)은 금액이 일부 줄어요.' });
+      var r = o.region, link = REGION_LINK[r];
+      a.push({ id: 'local', name: (r ? r + ' ' : '') + '지자체 출산지원금 확인', badge: 'info', kind: 'rule', sort: reportDue, whenText: '출생신고 무렵 (지역마다 기한이 달라요)',
+        where: link ? link[0] + ', 주민센터' : '주소지 주민센터, 복지로·정부24에서 지역 이름으로 검색',
+        docs: '지역 공고에 따름 (거주 기간 요건이 있는 곳이 많아요)',
+        miss: '지역마다 신청 기한이 따로 있어요',
+        url: link ? link[1] : 'https://www.bokjiro.go.kr', urlText: link ? link[0] : '복지로' });
+      return a;
+    }
+
+    function sortKey(it) { return it.kind === 'rule' ? it.sort : (it.kind === 'win' ? it.start : it.end); }
+
+    function status(it, t) {
+      if (it.kind === 'rule') return { cls: '', text: '', past: false };
+      var left = diff(t, it.end);
+      if (it.kind === 'win') {
+        var toStart = diff(t, it.start);
+        if (toStart > 0) return { cls: '', text: toStart + '일 뒤 시작', past: false, left: left };
+        if (left < 0) return { cls: 'kbb-over', text: '지났어요', past: true };
+        return { cls: left <= 7 ? 'kbb-urgent' : '', text: left === 0 ? '오늘 마감' : '마감 D-' + left, past: false, left: left };
+      }
+      if (it.kind === 'rec') {
+        if (left > 0) return { cls: '', text: 'D-' + left, past: false, left: left };
+        if (left === 0) return { cls: 'kbb-urgent', text: '오늘', past: false, left: 0 };
+        return { cls: 'kbb-over', text: '시기 지남', past: true };
+      }
+      if (left > 0) return { cls: left <= 7 ? 'kbb-urgent' : '', text: 'D-' + left, past: false, left: left };
+      if (left === 0) return { cls: 'kbb-urgent', text: '오늘 마감', past: false, left: 0 };
+      return { cls: 'kbb-over', text: -left + '일 지났어요', past: true };
+    }
+
+    function whenText(it) {
+      if (it.kind === 'rule') return it.whenText;
+      if (it.kind === 'win') return fmt(it.start) + ' ~ ' + fmt(it.end);
+      if (it.kind === 'rec') return fmt(it.end);
+      return fmt(it.end) + '까지';
+    }
+
+    var BADGE = { must: ['필수', 'kbb-b-must'], imp: ['중요', 'kbb-b-imp'], rec: ['권장', 'kbb-b-rec'], info: ['안내', 'kbb-b-info'] };
+
+    function readBirth() {
+      if (yI.value.length < 4 || !mI.value || !dI.value) return null;
+      var y = +yI.value, m = +mI.value, d = +dI.value, b = new Date(y, m - 1, d);
+      if (m < 1 || m > 12 || b.getMonth() !== m - 1 || b.getDate() !== d || y < 1900) return 'bad';
+      return b;
+    }
+
+    function hide(text) { result.classList.remove('kbb-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var b = readBirth(), t = today();
+      if (!b) return hide('');
+      if (b === 'bad') return hide('날짜를 다시 확인해 주세요.');
+      if (diff(t, b) > 300) return hide('출산 예정일은 300일 이내로 넣어 주세요.');
+      if (endM(b, 24) < t) return hide('출생 후 2년이 지나면 이 목록의 기한이 대부분 끝나요. 2년 안의 출생일을 넣어 주세요.');
+      msg.textContent = '';
+      var o = { order: state.order, work: state.work, region: regionI.value };
+      var arr = items(b, o).sort(function (x, y) { return sortKey(x) - sortKey(y); });
+      var html = '', next = null, open = 0, past = 0;
+      arr.forEach(function (it) {
+        var s = it.st = status(it, t), bd = BADGE[it.badge];
+        if (s.past) past++; else open++;
+        if (!s.past && it.kind === 'due' && !done[it.id] && (!next || it.end < next.end)) next = it;
+        html += '<li class="kbb-card' + (s.past ? ' kbb-past' : '') + (done[it.id] ? ' kbb-done' : '') + '" data-id="' + it.id + '">' +
+          '<input type="checkbox" class="kbb-chk" aria-label="' + esc(it.name) + ' 완료"' + (done[it.id] ? ' checked' : '') + '>' +
+          '<div class="kbb-top"><span class="kbb-name">' + esc(it.name) + '</span><span class="kbb-badge ' + bd[1] + '">' + bd[0] + '</span></div>' +
+          '<p class="kbb-when"><span class="kbb-date">' + esc(whenText(it)) + '</span>' + (s.text ? '<span class="kbb-d ' + s.cls + '">' + s.text + '</span>' : '') + '</p>' +
+          '<div class="kbb-lines">' +
+            (it.rule ? '<p><b>기한</b> ' + esc(it.rule) + '</p>' : '') +
+            (it.id === 'helper' && diff(t, it.start) > 0 ? '<p><b>신청 시작</b> ' + fmt(it.start) + '부터</p>' : '') +
+            '<p><b>어디서</b> ' + esc(it.where) + (it.url ? ' · <a href="' + it.url + '" target="_blank" rel="noopener">' + esc(it.urlText) + ' 열기</a>' : '') + '</p>' +
+            '<p><b>필요 서류</b> ' + esc(it.docs) + '</p>' +
+            '<p><b>놓치면</b> ' + esc(it.miss) + '</p>' +
+          '</div>' +
+          (s.past && it.late ? '<p class="kbb-late">지났어요 · ' + esc(it.late) + '</p>' : '') +
+          '</li>';
+      });
+      list.innerHTML = html;
+      lastItems = arr; lastBirth = b; lastToday = t;
+
+      var future = diff(t, b) > 0;
+      $('[data-main-label]').textContent = future ? '출산 예정일 기준 · 가장 먼저 챙길 마감' : '가장 급한 마감';
+      if (next) $('[data-big]').innerHTML = esc(next.st.text) + '<small>' + esc(next.name) + ' · <span class="kbb-date">' + fmt(next.end) + '</span></small>';
+      else $('[data-big]').innerHTML = '남은 마감 없음<small>지난 항목도 지금 가능한지 확인해 보세요</small>';
+      $('[data-sum]').textContent = '할 일 ' + arr.length + '개 · 남은 일 ' + open + '개 · 시기 지난 일 ' + past + '개';
+      result.classList.add('kbb-show');
+    }
+
+    function copyText() {
+      var b = lastBirth, t = lastToday;
+      return '[출산 후 신청할 것 체크리스트]\n출생일: ' + fmt(b) + ' · 기준일: ' + fmt(t) + '\n' +
+        lastItems.map(function (it) {
+          return (done[it.id] ? '[x] ' : '[ ] ') + it.name + ' — ' + whenText(it) + (it.st.text ? ' (' + it.st.text + ')' : '') + '\n    어디서: ' + it.where;
+        }).join('\n') + '\n※ 2026년 11월 기준, 실제 신청 전 각 기관 안내를 확인하세요.';
+    }
+
+    list.addEventListener('change', function (e) {
+      if (!e.target.classList.contains('kbb-chk')) return;
+      var li = e.target.closest('[data-id]'), id = li.getAttribute('data-id');
+      done[id] = e.target.checked;
+      li.classList.toggle('kbb-done', e.target.checked);
+      calc();
+    });
+
+    function bind(input, next, len) {
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/\D/g, '').slice(0, len);
+        if (v !== input.value) input.value = v;
+        if (next && v.length === len) next.focus();
+        if (next === dI && len === 2 && v.length === 1 && +v > 1) dI.focus();
+        if (input === dI && v.length === 1 && +v > 3) dI.blur();
+        calc();
+      });
+    }
+    bind(yI, mI, 4); bind(mI, dI, 2); bind(dI, null, 2);
+    [mI, dI].forEach(function (inp, i) {
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !inp.value) { e.preventDefault(); (i === 0 ? yI : mI).focus(); }
+      });
+    });
+    yI.addEventListener('paste', function (e) {
+      var s = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (s.length === 8) { e.preventDefault(); yI.value = s.slice(0, 4); mI.value = String(+s.slice(4, 6)); dI.value = String(+s.slice(6, 8)); calc(); }
+    });
+
+    function setToday() { var t = today(); yI.value = t.getFullYear(); mI.value = t.getMonth() + 1; dI.value = t.getDate(); }
+    $('[data-today]').addEventListener('click', function () { setToday(); calc(); });
+
+    function group(sel, key, numeric) {
+      $$(sel + ' button').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          $$(sel + ' button').forEach(function (x) { var on = x === btn; x.classList.toggle('kbb-on', on); x.setAttribute('aria-pressed', on); });
+          state[key] = numeric ? +btn.getAttribute('data-v') : btn.getAttribute('data-v');
+          calc();
+        });
+      });
+    }
+    group('[data-order]', 'order', true);
+    group('[data-work]', 'work', false);
+    regionI.addEventListener('change', calc);
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = mI.value = dI.value = ''; done = {}; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this, text = copyText();
+      function ok() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); ok(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(ok, fallback);
+      else fallback();
+    });
+
+    setToday();
+    calc();
+  })();
+  </script>
+</div>
+<!-- 출산 후 신청할 것 타임라인 위젯 끝 -->
