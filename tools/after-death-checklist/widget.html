@@ -1,0 +1,385 @@
+<!-- 가족 사망 후 할 일 타임라인 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kdt" data-kdt>
+  <style>
+    .kdt{--kdt-accent:#3b6ef5;--kdt-accent-soft:#eef3ff;--kdt-text:#1d2433;--kdt-sub:#6b7385;--kdt-line:#e3e7ef;--kdt-bg:#fff;--kdt-red:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kdt-line);border-radius:20px;background:var(--kdt-bg);
+      color:var(--kdt-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all;overflow-wrap:break-word}
+    .kdt [hidden]{display:none!important}
+    .kdt *,.kdt *::before,.kdt *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kdt .kdt-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kdt .kdt-desc{margin-top:4px;font-size:14px;color:var(--kdt-sub)}
+    .kdt .kdt-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kdt-text)}
+    .kdt .kdt-label small{font-weight:500;color:var(--kdt-sub)}
+    .kdt .kdt-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--kdt-line);border-radius:12px;background:#f8f9fc;display:block;min-width:0;
+      font-size:17px;font-weight:600;color:var(--kdt-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kdt .kdt-in:focus{border-color:var(--kdt-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kdt .kdt-link{margin-top:8px;border:0;background:none;color:var(--kdt-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .kdt .kdt-hint{margin-top:6px;font-size:12.5px;color:var(--kdt-sub)}
+    .kdt .kdt-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kdt .kdt-chip{min-height:36px;padding:6px 13px;border:1.5px solid var(--kdt-line);border-radius:999px;background:#fff;color:var(--kdt-sub);
+      font-size:13.5px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s;line-height:1.3}
+    .kdt .kdt-chip:hover{border-color:#c9d3ea;color:var(--kdt-text)}
+    .kdt .kdt-chip.kdt-on{border-color:var(--kdt-accent);background:var(--kdt-accent-soft);color:var(--kdt-accent)}
+    .kdt .kdt-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kdt-red)}
+    .kdt .kdt-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kdt .kdt-result.kdt-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kdt .kdt-result-inner{overflow:hidden}
+    .kdt .kdt-main{margin-top:6px;padding:20px;border-radius:16px;background:var(--kdt-accent-soft);text-align:center}
+    .kdt .kdt-main-label{font-size:14px;color:var(--kdt-sub)}
+    .kdt .kdt-main-name{margin-top:2px;font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--kdt-accent)}
+    .kdt .kdt-main-date{margin-top:2px;font-size:15px;font-weight:600;color:var(--kdt-text)}
+    .kdt .kdt-main-sub{margin-top:6px;font-size:13px;color:var(--kdt-sub)}
+    .kdt .kdt-nw{white-space:nowrap}
+    .kdt .kdt-list{list-style:none;margin-top:12px;display:flex;flex-direction:column;gap:10px}
+    .kdt .kdt-item{display:flex;gap:12px;padding:14px;border:1px solid var(--kdt-line);border-radius:14px;background:#fff;transition:opacity .2s,background .2s}
+    .kdt .kdt-item.kdt-past{background:#f8f9fc}
+    .kdt .kdt-item.kdt-past .kdt-name,.kdt .kdt-item.kdt-past .kdt-due,.kdt .kdt-item.kdt-past .kdt-meta{opacity:.62}
+    .kdt .kdt-item.kdt-done{opacity:.55}
+    .kdt .kdt-item.kdt-done .kdt-name{text-decoration:line-through}
+    .kdt .kdt-check{flex:none;padding-top:2px}
+    .kdt .kdt-check input{width:22px;height:22px;accent-color:var(--kdt-accent);cursor:pointer}
+    .kdt .kdt-body{flex:1;min-width:0}
+    .kdt .kdt-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .kdt .kdt-badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11.5px;font-weight:700;background:#f1f3f7;color:var(--kdt-sub)}
+    .kdt .kdt-badge.kdt-must{background:#fdeeee;color:#c9434a}
+    .kdt .kdt-badge.kdt-imp{background:var(--kdt-accent-soft);color:var(--kdt-accent)}
+    .kdt .kdt-dday{font-size:13px;font-weight:800;color:var(--kdt-accent);white-space:nowrap}
+    .kdt .kdt-dday.kdt-over{color:var(--kdt-sub)}
+    .kdt .kdt-dday.kdt-none{color:var(--kdt-sub);font-weight:600}
+    .kdt .kdt-name{margin-top:6px;font-size:16px;font-weight:700;letter-spacing:-.01em}
+    .kdt .kdt-due{margin-top:2px;font-size:13.5px;color:var(--kdt-text)}
+    .kdt .kdt-due b{font-weight:700}
+    .kdt .kdt-rule{display:block;font-size:12px;color:var(--kdt-sub)}
+    .kdt .kdt-pastmsg{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff4e5;color:#8a5a00;font-size:12.5px}
+    .kdt .kdt-text{margin-top:6px;font-size:13px;color:var(--kdt-text)}
+    .kdt .kdt-meta{margin-top:8px;display:grid;grid-template-columns:auto 1fr;gap:3px 10px;font-size:12.5px}
+    .kdt .kdt-meta dt{color:var(--kdt-sub);font-weight:600;white-space:nowrap}
+    .kdt .kdt-meta dd{color:var(--kdt-text)}
+    .kdt .kdt-note{margin-top:12px;font-size:12.5px;color:var(--kdt-sub)}
+    .kdt .kdt-actions{display:flex;gap:8px;margin-top:14px}
+    .kdt .kdt-btn{flex:1;height:44px;border:1.5px solid var(--kdt-line);border-radius:12px;background:#fff;color:var(--kdt-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kdt .kdt-btn:hover{background:#f4f6fa}
+    .kdt .kdt-btn:active{transform:scale(.98)}
+    .kdt .kdt-btn.kdt-primary{border-color:var(--kdt-accent);background:var(--kdt-accent);color:#fff}
+    .kdt .kdt-btn.kdt-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kdt{padding:18px;border-radius:16px}.kdt .kdt-in{font-size:16px}.kdt .kdt-item{padding:12px;gap:10px}}
+    @media (prefers-reduced-motion:reduce){.kdt .kdt-result,.kdt .kdt-in,.kdt .kdt-btn,.kdt .kdt-chip,.kdt .kdt-item{transition:none}}
+  </style>
+
+  <p class="kdt-title">가족 사망 후 할 일 타임라인</p>
+  <p class="kdt-desc">돌아가신 날을 넣으면 해야 할 일과 기한을 가까운 순서대로 보여 드려요.</p>
+
+  <label class="kdt-label" for="kdt-death">돌아가신 날</label>
+  <input class="kdt-in" id="kdt-death" type="date" data-death min="1950-01-01" max="2100-12-31" aria-label="돌아가신 날">
+  <button type="button" class="kdt-link" data-known-toggle>사망 사실을 나중에 알게 되셨나요?</button>
+  <div data-known-box hidden>
+    <label class="kdt-label" for="kdt-known">사망 사실을 안 날</label>
+    <input class="kdt-in" id="kdt-known" type="date" data-known min="1950-01-01" max="2100-12-31" aria-label="사망 사실을 안 날">
+    <p class="kdt-hint">사망신고와 상속포기·한정승인 기한은 이 날부터 세요. 세금·등록 기한은 돌아가신 날 기준이에요.</p>
+  </div>
+
+  <p class="kdt-label">고인 명의의 재산과 빚</p>
+  <div class="kdt-chips" data-group="asset">
+    <button type="button" class="kdt-chip" data-v="plus">재산이 더 많아요</button>
+    <button type="button" class="kdt-chip" data-v="minus">빚이 더 많거나 비슷해요</button>
+    <button type="button" class="kdt-chip kdt-on" data-v="unknown">잘 모르겠어요</button>
+    <button type="button" class="kdt-chip" data-v="none">거의 없어요</button>
+  </div>
+
+  <p class="kdt-label">고인 명의로 된 것 <small>(해당하는 것 모두)</small></p>
+  <div class="kdt-chips" data-multi="own">
+    <button type="button" class="kdt-chip" data-v="car">자동차</button>
+    <button type="button" class="kdt-chip" data-v="house">부동산(집·땅)</button>
+  </div>
+
+  <p class="kdt-label">고인이 받던(가입한) 연금 <small>(선택)</small></p>
+  <div class="kdt-chips" data-group="pension">
+    <button type="button" class="kdt-chip" data-v="nps">국민연금</button>
+    <button type="button" class="kdt-chip" data-v="gov">공무원·사학·군인연금</button>
+    <button type="button" class="kdt-chip kdt-on" data-v="unknown">잘 모르겠어요</button>
+    <button type="button" class="kdt-chip" data-v="none">해당 없음</button>
+  </div>
+
+  <p class="kdt-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kdt-result" data-result aria-live="polite">
+    <div class="kdt-result-inner">
+      <div class="kdt-main">
+        <p class="kdt-main-label" data-main-label>가장 가까운 기한</p>
+        <p class="kdt-main-name" data-main-name></p>
+        <p class="kdt-main-date" data-main-date></p>
+        <p class="kdt-main-sub" data-main-sub></p>
+      </div>
+      <ul class="kdt-list" data-list></ul>
+      <p class="kdt-note">기한의 마지막 날이 토·일요일이나 공휴일이면 다음 날로 계산했어요(2026~2027년 공휴일 반영). 이 내용은 법률·세무 자문이 아니며, 가족 상황에 따라 기한과 절차가 달라질 수 있어요. 결정하기 전에 대한법률구조공단(국번 없이 132)이나 세무사 등 전문가와 꼭 상담해 주세요.</p>
+      <div class="kdt-actions">
+        <button type="button" class="kdt-btn" data-reset>다시 입력</button>
+        <button type="button" class="kdt-btn kdt-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kdt]');
+    if (!root || root.__kdt) return;
+    root.__kdt = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var deathI = $('[data-death]'), knownI = $('[data-known]'), knownBox = $('[data-known-box]'), knownToggle = $('[data-known-toggle]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), list = $('[data-list]');
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var state = { asset: 'unknown', pension: 'unknown', car: false, house: false };
+    var done = {}, lastText = '', lastItems = [], lastDeath = null;
+
+    // 공휴일: 매년 같은 날짜(2026년부터 노동절·제헌절 포함) + 2026·2027년 설·추석·대체·임시공휴일
+    var FIXED = ['1-1', '3-1', '5-5', '6-6', '8-15', '10-3', '10-9', '12-25'];
+    var FIXED_2026 = ['5-1', '7-17'];
+    var EXTRA = {
+      2026: ['2-16', '2-17', '2-18', '3-2', '5-25', '6-3', '8-17', '9-24', '9-25', '9-26', '10-5'],
+      2027: ['2-6', '2-7', '2-8', '2-9', '5-3', '5-13', '7-19', '8-16', '9-14', '9-15', '9-16', '10-4', '10-11', '12-27']
+    };
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function parse(v) { if (!/^\d{4}-\d{2}-\d{2}$/.test(v || '')) return null; var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]); return d.getDate() === +p[2] ? d : null; }
+    function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function lastDay(y, m) { return new Date(y, m + 1, 0); } // m: 0부터
+    // 기간 계산(민법 제157·160조): 첫날은 빼고, n개월 뒤 같은 날짜에 끝남(그 날짜가 없으면 그 달 말일)
+    function addMonths(d, n) {
+      var y = d.getFullYear(), m = d.getMonth() + n, last = lastDay(y, m).getDate();
+      return new Date(y, m, Math.min(d.getDate(), last));
+    }
+    // "사망일이 속한 달의 말일부터 n개월" = 그 달 말일에서 n개월 뒤 달의 말일
+    function monthEndPlus(d, n) { return lastDay(d.getFullYear(), d.getMonth() + n); }
+    function isHoliday(d) {
+      var y = d.getFullYear(), k = (d.getMonth() + 1) + '-' + d.getDate();
+      if (d.getDay() === 0 || d.getDay() === 6) return true;
+      if (FIXED.indexOf(k) >= 0) return true;
+      if (y >= 2026 && FIXED_2026.indexOf(k) >= 0) return true;
+      return !!(EXTRA[y] && EXTRA[y].indexOf(k) >= 0);
+    }
+    // 기간의 말일이 토요일·공휴일이면 다음 날 만료(민법 제161조, 국세기본법 제5조)
+    function shift(d) { var r = new Date(d), moved = false; while (isHoliday(r)) { r.setDate(r.getDate() + 1); moved = true; } return { date: r, moved: moved }; }
+
+    function items(death, known) {
+      var a = state.asset, p = state.pension, out = [];
+      function add(o) { out.push(o); }
+      add({ id: 'report', name: '사망신고', badge: 'must', due: addMonths(known, 1), rule: '사망 사실을 안 날부터 1개월',
+        where: '시·구·읍·면사무소나 동 주민센터 (사망지·매장지·화장지에서도 가능)',
+        docs: '사망진단서(또는 시체검안서), 신고하는 분 신분증',
+        miss: '정당한 사유 없이 늦으면 5만 원 이하의 과태료가 부과될 수 있어요.',
+        past: '지금이라도 바로 신고하셔야 해요. 늦어진 사정이 있으면 접수할 때 함께 말씀해 주세요.' });
+      add({ id: 'onestop', name: '안심상속 원스톱 서비스 신청', badge: 'imp', due: monthEndPlus(death, 12), rule: '사망신고 때 함께, 늦어도 사망일이 속한 달의 말일부터 1년',
+        text: '금융거래·토지·건축물·자동차·세금·연금 등 고인의 재산과 빚을 한 번에 조회해요. 상속포기 여부를 정하려면 먼저 해 두는 것이 좋아요.',
+        where: '주민센터(사망신고와 동시 신청) 또는 정부24',
+        docs: '신청하는 분 신분증 (대리인은 위임장 등)',
+        miss: '재산과 빚을 모르는 채로 상속 여부를 정하게 될 수 있어요.',
+        past: '통합 조회 기한은 지났어요. 금융감독원 상속인 금융거래조회 등 기관별 개별 조회가 가능한지 확인해 보세요.' });
+      add({ id: 'phone', name: '휴대폰·인터넷·공과금 명의 정리', badge: 'none', due: null, rule: '법정 기한은 없어요. 가능하면 일찍',
+        where: '각 통신사 고객센터·대리점, 전기·가스·수도 등 해당 기관',
+        docs: '사망 사실이 나오는 서류(기본증명서 등), 신청하는 분 신분증·가족관계 확인 서류',
+        miss: '요금이 계속 청구되거나 고인 계좌에서 자동이체가 빠져나갈 수 있어요.' });
+      add({ id: 'nhis', name: '건강보험 자격 확인·환급금 조회', badge: 'none', due: null, rule: '법정 기한은 없어요. 환급금은 3년 지나면 소멸',
+        text: '고인의 자격 상실은 사망신고로 정리돼요. 고인의 피부양자였던 가족은 본인 자격이 바뀌는지 확인해 주세요.',
+        where: '국민건강보험공단 지사, 고객센터 1577-1000',
+        docs: '신청하는 분 신분증, 가족관계 확인 서류',
+        miss: '돌려받을 보험료가 있어도 3년이 지나면 받을 수 없어요.' });
+      add({ id: 'renounce', name: '상속포기·한정승인 결정', badge: (a === 'minus' || a === 'unknown') ? 'must' : (a === 'plus' ? 'imp' : 'opt'),
+        due: addMonths(known, 3), rule: '상속개시 있음을 안 날부터 3개월 (민법 제1019조)',
+        text: '빚이 더 많거나 알 수 없다면 가정법원에 상속포기나 한정승인을 신청할 수 있어요. 결정 전에는 고인 예금을 인출하거나 재산을 처분하지 마세요. 상속을 받아들인 것으로 볼 수 있어요.',
+        where: '고인 마지막 주소지 관할 가정법원 (대법원 전자소송으로도 가능)',
+        docs: '심판청구서, 고인 기본증명서·가족관계증명서·말소자 주민등록초본, 상속인 인감증명서 등',
+        miss: '기한 안에 하지 않으면 빚까지 그대로 물려받는 단순승인으로 봐요.',
+        past: '빚이 더 많다는 사실을 중대한 과실 없이 늦게 알았다면, 그 사실을 안 날부터 3개월 안에 특별한정승인이 가능할 수 있어요. 대한법률구조공단(132)에 상담해 보세요.' });
+      add({ id: 'bank', name: '금융거래 조회 결과 확인·예금 정리', badge: 'none', due: null, rule: '법정 기한은 없어요. 상속포기 여부를 정한 뒤에',
+        where: '조회 결과는 금융감독원 누리집, 인출·해지는 각 금융회사',
+        docs: '가족관계증명서, 상속인 전원 동의서(또는 상속재산분할협의서)·인감증명서 등 (금융회사마다 달라요)',
+        miss: '상속포기·한정승인을 생각 중이라면, 먼저 인출하거나 쓰면 상속을 받아들인 것으로 볼 수 있어요.' });
+      if (a !== 'none') {
+        add({ id: 'income', name: '고인 종합소득세 신고(준확정신고)', badge: 'opt', due: monthEndPlus(death, 6), rule: '사망일이 속한 달의 말일부터 6개월 (소득세법 제74조)',
+          text: '고인에게 사업·임대 등 종합소득이 있었다면 상속인이 대신 신고해요. 상속세와는 별개의 신고예요.',
+          where: '홈택스 또는 관할 세무서',
+          docs: '고인의 소득·경비 자료, 상속인 신분증',
+          miss: '기한이 지나면 무신고 가산세 등이 붙을 수 있어요.',
+          past: '기한 후 신고를 하면 가산세 일부를 줄일 수 있어요. 세무서나 세무사에 문의해 보세요.' });
+        add({ id: 'inhtax', name: '상속세 신고·납부', badge: a === 'minus' ? 'opt' : 'imp', due: monthEndPlus(death, 6),
+          rule: '사망일이 속한 달의 말일부터 6개월 (고인이나 상속인이 외국에 주소가 있으면 9개월)',
+          text: '각종 공제를 빼고 낼 세금이 없으면 신고하지 않아도 되는 경우가 많아요. 재산 규모가 크다면 세무사와 미리 확인해 주세요.',
+          where: '홈택스 또는 고인 주소지 관할 세무서',
+          docs: '상속세 과세표준신고서, 상속재산·채무·장례비용 증빙 등',
+          miss: '기한 안에 신고하면 신고세액공제(3%)를 받지만, 넘기면 공제를 못 받고 가산세가 붙어요.',
+          past: '기한 후 신고를 하면 가산세 일부를 줄일 수 있어요. 세무사와 상담해 보세요.' });
+      }
+      if (state.house) add({ id: 'house', name: '상속 부동산 취득세 신고·납부(상속등기)', badge: 'must', due: monthEndPlus(death, 6),
+        rule: '사망일이 속한 달의 말일부터 6개월 (외국에 주소를 둔 상속인은 9개월, 지방세법 제20조)',
+        text: '상속등기 자체에는 법정 기한이 없지만, 취득세는 기한이 있어 보통 함께 처리해요.',
+        where: '부동산 소재지 시·군·구청 세무과 또는 위택스, 등기는 관할 등기소·인터넷등기소',
+        docs: '상속재산분할협의서(공동상속 시), 고인 기본증명서·가족관계증명서, 상속인 인감증명서 등',
+        miss: '기한을 넘기면 무신고·납부지연 가산세가 붙어요.',
+        past: '지금이라도 신고·납부하면 가산세가 더 늘어나는 것을 막을 수 있어요. 시·군·구청 세무과에 문의해 보세요.' });
+      if (state.car) add({ id: 'car', name: '자동차 상속 이전등록', badge: 'must', due: monthEndPlus(death, 6),
+        rule: '사망일(상속개시일)이 속한 달의 말일부터 6개월 (자동차등록령 제26조)',
+        text: '이전등록할 때 차량 취득세도 함께 내요.',
+        where: '시·군·구청 차량등록사업소',
+        docs: '고인 기본증명서·가족관계증명서, 상속인 신분증, 상속재산분할협의서(상속인이 여럿일 때), 보험 가입 확인 등',
+        miss: '기한을 넘기면 과태료가 부과돼요.',
+        past: '과태료는 늦어질수록 늘어날 수 있어요. 지금 바로 차량등록사업소에 문의해 주세요.' });
+      add({ id: 'insure', name: '사망보험금 청구', badge: 'opt', due: addMonths(death, 36), rule: '사망일부터 3년 (상법 제662조)',
+        text: '고인이 가입한 보험은 안심상속 조회(금융거래) 결과로 확인할 수 있어요.',
+        where: '가입한 보험회사',
+        docs: '보험금 청구서, 사망진단서, 가족관계증명서, 수익자 신분증·통장 사본 등',
+        miss: '보험금 청구권은 3년간 행사하지 않으면 소멸해요.',
+        past: '청구 기한이 지났을 수 있어요. 보험회사에 지급 가능 여부를 먼저 문의해 보세요.' });
+      if (p === 'nps' || p === 'unknown') add({ id: 'nps', name: '국민연금 유족연금·사망일시금 청구', badge: p === 'nps' ? 'imp' : 'opt',
+        due: addMonths(death, 60), rule: '받을 권리가 생긴 날부터 5년 (국민연금법 제115조)',
+        text: '고인이 국민연금에 가입했거나 연금을 받고 있었다면 유족연금이나 사망일시금, 받지 못한 연금(미지급 급여)을 청구할 수 있어요.',
+        where: '국민연금공단 지사, 고객센터 1355',
+        docs: '청구서, 가족관계증명서, 청구인 신분증·통장 사본 등',
+        miss: '5년 안에 청구하지 않으면 받을 수 없게 될 수 있어요.',
+        past: '5년이 지났어요. 일부라도 받을 수 있는지 국민연금공단(1355)에 문의해 보세요.' });
+      if (p === 'gov') add({ id: 'gov', name: '공무원·사학·군인연금 유족급여 청구', badge: 'imp',
+        due: addMonths(death, 60), rule: '급여 사유가 생긴 날부터 5년 (공무원연금법 제88조, 기관별로 확인)',
+        text: '유족연금·유족일시금 등은 고인이 가입했던 연금 기관에 청구해요.',
+        where: '공무원연금공단, 사학연금공단, 국군재정관리단 등 해당 기관',
+        docs: '청구서, 가족관계증명서, 청구인 신분증·통장 사본 등',
+        miss: '5년이 지나면 받을 권리가 소멸할 수 있어요.',
+        past: '5년이 지났어요. 해당 연금 기관에 지급 가능 여부를 문의해 보세요.' });
+
+      out.forEach(function (it) {
+        if (it.due) { var s = shift(it.due); it.date = s.date; it.moved = s.moved; it.key = it.date.getTime(); }
+      });
+      // 순서: 사망신고 → 안심상속(기한은 길어도 사망신고 때 함께) → 통신·건강보험 → … 상속포기 → 예금 정리 → 나머지 기한순
+      var byId = {}; out.forEach(function (it) { byId[it.id] = it; });
+      var rk = byId.report.key;
+      byId.onestop.key = rk + 1; byId.phone.key = rk + 2; byId.nhis.key = rk + 3; byId.bank.key = byId.renounce.key + 1;
+      out.sort(function (x, y) { return x.key - y.key; });
+      return out;
+    }
+
+    var BADGE = { must: ['필수', 'kdt-must'], imp: ['중요', 'kdt-imp'], opt: ['해당 시', ''], none: ['기본', ''] };
+    function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+    function ddayText(n) { return n === 0 ? 'D-day' : (n > 0 ? 'D-' + n : '기한 지남'); }
+
+    function hide(text) { result.classList.remove('kdt-show'); msg.textContent = text || ''; }
+
+    function render() {
+      var death = parse(deathI.value);
+      if (!deathI.value) return hide('돌아가신 날을 입력해 주세요.');
+      if (!death || death.getFullYear() < 1950) return hide('날짜를 다시 확인해 주세요.');
+      var now = today();
+      if (death > now) return hide('돌아가신 날이 오늘보다 뒤예요. 날짜를 다시 확인해 주세요.');
+      var known = death;
+      if (!knownBox.hidden && knownI.value) {
+        known = parse(knownI.value);
+        if (!known) return hide('사망 사실을 안 날을 다시 확인해 주세요.');
+        if (known < death) return hide('사망 사실을 안 날은 돌아가신 날과 같거나 그 뒤여야 해요.');
+        if (known > now) return hide('사망 사실을 안 날이 오늘보다 뒤예요.');
+      }
+      msg.textContent = '';
+      var its = items(death, known), next = null, overdue = 0;
+      list.textContent = '';
+      its.forEach(function (it) {
+        var n = it.date ? dayDiff(now, it.date) : null, past = n !== null && n < 0;
+        if (past) overdue++;
+        if (n !== null && n >= 0 && !done[it.id] && (!next || n < next.n)) next = { it: it, n: n };
+        var li = el('li', 'kdt-item' + (past ? ' kdt-past' : '') + (done[it.id] ? ' kdt-done' : ''));
+        var lab = el('label', 'kdt-check'), cb = el('input');
+        cb.type = 'checkbox'; cb.checked = !!done[it.id]; cb.setAttribute('aria-label', it.name + ' 완료');
+        cb.addEventListener('change', function () { done[it.id] = cb.checked; render(); });
+        lab.appendChild(cb); li.appendChild(lab);
+        var body = el('div', 'kdt-body'), top = el('div', 'kdt-top'), b = BADGE[it.badge];
+        top.appendChild(el('span', 'kdt-badge ' + b[1], b[0]));
+        top.appendChild(el('span', 'kdt-dday' + (n === null ? ' kdt-none' : (past ? ' kdt-over' : '')), n === null ? '기한 없음' : ddayText(n)));
+        body.appendChild(top);
+        body.appendChild(el('p', 'kdt-name', it.name));
+        var due = el('p', 'kdt-due');
+        if (it.date) {
+          due.appendChild(el('b', 'kdt-nw', fmt(it.date)));
+          due.appendChild(document.createTextNode('까지' + (it.moved ? ' (마지막 날이 휴일이라 다음 날로)' : '')));
+        }
+        due.appendChild(el('span', 'kdt-rule', it.rule));
+        body.appendChild(due);
+        if (past && it.past) body.appendChild(el('p', 'kdt-pastmsg', '지났어요. ' + it.past));
+        if (it.text) body.appendChild(el('p', 'kdt-text', it.text));
+        var dl = el('dl', 'kdt-meta');
+        [['어디서', it.where], ['필요 서류', it.docs], ['놓치면', it.miss]].forEach(function (r) { dl.appendChild(el('dt', '', r[0])); dl.appendChild(el('dd', '', r[1])); });
+        body.appendChild(dl);
+        li.appendChild(body);
+        list.appendChild(li);
+      });
+      if (next) {
+        $('[data-main-label]').textContent = '가장 가까운 기한';
+        $('[data-main-name]').textContent = next.it.name;
+        $('[data-main-date]').textContent = fmt(next.it.date) + '까지 · ' + ddayText(next.n);
+      } else {
+        $('[data-main-label]').textContent = '남은 기한';
+        $('[data-main-name]').textContent = '남은 기한이 없어요';
+        $('[data-main-date]').textContent = '지난 항목은 지금이라도 가능한지 확인해 보세요';
+      }
+      $('[data-main-sub]').textContent = '할 일 ' + its.length + '개' + (overdue ? ' · 기한 지남 ' + overdue + '개' : '') + ' · 오늘 ' + fmt(now);
+      result.classList.add('kdt-show');
+
+      lastText = '[가족 사망 후 할 일 체크리스트]\n돌아가신 날: ' + fmt(death) + (known.getTime() !== death.getTime() ? '\n사망 사실을 안 날: ' + fmt(known) : '') + '\n기준: ' + fmt(now) + '\n\n' +
+        its.map(function (it) {
+          var n = it.date ? dayDiff(now, it.date) : null;
+          return (done[it.id] ? '[v] ' : '[ ] ') + it.name + ' - ' + (it.date ? fmt(it.date) + '까지 (' + ddayText(n) + ')' : '법정 기한 없음');
+        }).join('\n') + '\n\n※ 법률·세무 자문이 아니며 상황에 따라 다를 수 있어요. 대한법률구조공단(132)·세무사 상담을 권해요.';
+    }
+
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var c = e.target.closest('.kdt-chip'); if (!c) return;
+        state[g.getAttribute('data-group')] = c.getAttribute('data-v');
+        Array.prototype.forEach.call(g.children, function (x) { x.classList.toggle('kdt-on', x === c); x.setAttribute('aria-pressed', x === c); });
+        render();
+      });
+    });
+    $('[data-multi]').addEventListener('click', function (e) {
+      var c = e.target.closest('.kdt-chip'); if (!c) return;
+      var k = c.getAttribute('data-v'); state[k] = !state[k];
+      c.classList.toggle('kdt-on', state[k]); c.setAttribute('aria-pressed', state[k]);
+      render();
+    });
+    $$('.kdt-chip').forEach(function (c) { c.setAttribute('aria-pressed', c.classList.contains('kdt-on')); });
+
+    knownToggle.addEventListener('click', function () {
+      var open = knownBox.hidden;
+      knownBox.hidden = !open;
+      knownToggle.textContent = open ? '돌아가신 날에 바로 알았어요' : '사망 사실을 나중에 알게 되셨나요?';
+      if (open) { knownI.value = deathI.value; knownI.focus(); } else knownI.value = '';
+      render();
+    });
+    deathI.addEventListener('input', render); deathI.addEventListener('change', render);
+    knownI.addEventListener('input', render); knownI.addEventListener('change', render);
+
+    function init() {
+      deathI.value = iso(today()); deathI.max = iso(today()); done = {};
+      state = { asset: 'unknown', pension: 'unknown', car: false, house: false };
+      $$('[data-group] .kdt-chip').forEach(function (c) { var on = c.getAttribute('data-v') === 'unknown'; c.classList.toggle('kdt-on', on); c.setAttribute('aria-pressed', on); });
+      $$('[data-multi] .kdt-chip').forEach(function (c) { c.classList.remove('kdt-on'); c.setAttribute('aria-pressed', false); });
+      knownBox.hidden = true; knownI.value = ''; knownToggle.textContent = '사망 사실을 나중에 알게 되셨나요?';
+      render();
+    }
+
+    $('[data-reset]').addEventListener('click', function () { init(); deathI.focus(); });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function ok() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); ok(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(ok, fallback);
+      else fallback();
+    });
+
+    init();
+  })();
+  </script>
+</div>
+<!-- 가족 사망 후 할 일 타임라인 위젯 끝 -->

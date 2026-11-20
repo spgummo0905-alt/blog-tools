@@ -1,0 +1,487 @@
+<p><strong>2027년 국가건강검진은 홀수년도라서 1967·1977·1987년생처럼 홀수년에 태어난 사람이 대상이에요(사무직 기준).</strong> 일반건강검진은 2년에 한 번 출생연도 짝·홀로 대상이 정해지고, 비사무직 직장인은 출생연도와 관계없이 매년 받아요. 아래 도구에 출생연도·성별·가입 유형만 고르면 2027년 일반검진 대상 여부와 받을 수 있는 암검진, 나이별 추가 항목, 본인부담까지 한 번에 확인할 수 있어요.</p>
+<!-- 2027 국가건강검진 대상 확인 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="khc" data-khc>
+  <style>
+    .khc{--khc-accent:#3b6ef5;--khc-accent-soft:#eef3ff;--khc-text:#1d2433;--khc-sub:#6b7385;--khc-line:#e3e7ef;--khc-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--khc-line);border-radius:20px;background:var(--khc-bg);
+      color:var(--khc-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .khc [hidden]{display:none!important}
+    .khc *,.khc *::before,.khc *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .khc .khc-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .khc .khc-desc{margin-top:4px;font-size:14px;color:var(--khc-sub)}
+    .khc .khc-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--khc-text)}
+    .khc .khc-field{position:relative}
+    .khc .khc-in{width:100%;height:52px;padding:0 58px 0 14px;border:1.5px solid var(--khc-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--khc-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .khc .khc-in::placeholder{color:#b3b9c6;font-weight:500}
+    .khc .khc-in:focus{border-color:var(--khc-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .khc .khc-in.khc-err{border-color:#e0565b}
+    .khc .khc-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--khc-sub);pointer-events:none}
+    .khc .khc-opts{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin-top:14px}
+    .khc .khc-opt-k{font-size:13px;color:var(--khc-sub);min-width:52px}
+    .khc .khc-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .khc .khc-chip{height:32px;padding:0 12px;border:1.5px solid var(--khc-line);border-radius:999px;background:#fff;color:var(--khc-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .khc .khc-chip:hover{border-color:#c9d3ea;color:var(--khc-text)}
+    .khc .khc-chip.khc-on{border-color:var(--khc-accent);background:var(--khc-accent-soft);color:var(--khc-accent)}
+    .khc .khc-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .khc .khc-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .khc .khc-result.khc-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .khc .khc-result-inner{overflow:hidden}
+    .khc .khc-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--khc-accent-soft);text-align:center;transition:background .3s}
+    .khc .khc-main.khc-no{background:#f4f5f8}
+    .khc .khc-main-label{font-size:14px;color:var(--khc-sub)}
+    .khc .khc-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--khc-accent);line-height:1.25;word-break:keep-all}
+    .khc .khc-main.khc-no .khc-big{font-size:24px;color:var(--khc-text)}
+    .khc .khc-why{margin-top:6px;font-size:14px;color:var(--khc-sub)}
+    .khc .khc-box{margin-top:8px;padding:14px;border:1px solid var(--khc-line);border-radius:14px;background:#fff}
+    .khc .khc-box-t{font-size:12px;color:var(--khc-sub)}
+    .khc .khc-box-p{margin-top:6px;font-size:13.5px;color:var(--khc-text)}
+    .khc .khc-list{list-style:none;margin-top:6px}
+    .khc .khc-list li{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0f2f6;font-size:14px}
+    .khc .khc-list li:first-child{border-top:0}
+    .khc .khc-name{word-break:keep-all}
+    .khc .khc-name small{display:block;font-size:12px;color:var(--khc-sub)}
+    .khc .khc-tag{flex:none;padding:2px 8px;border-radius:999px;background:var(--khc-accent-soft);color:var(--khc-accent);font-size:12px;font-weight:700;white-space:nowrap}
+    .khc .khc-tag.khc-pay{background:#f4f5f8;color:var(--khc-text)}
+    .khc .khc-empty{margin-top:6px;font-size:13.5px;color:var(--khc-sub)}
+    .khc .khc-tip{margin-top:8px;padding:12px 14px;border-radius:14px;background:#fff8e8;font-size:13.5px;color:#6a4b00}
+    .khc .khc-note{margin-top:12px;font-size:12.5px;color:var(--khc-sub)}
+    .khc .khc-note li{margin-left:16px}
+    .khc .khc-desc,.khc .khc-main-label,.khc .khc-why,.khc .khc-note,.khc .khc-msg,.khc .khc-box-p,.khc .khc-empty,.khc .khc-tip{word-break:keep-all}
+    .khc .khc-actions{display:flex;gap:8px;margin-top:14px}
+    .khc .khc-btn{flex:1;height:44px;border:1.5px solid var(--khc-line);border-radius:12px;background:#fff;color:var(--khc-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .khc .khc-btn:hover{background:#f4f6fa}
+    .khc .khc-btn:active{transform:scale(.98)}
+    .khc .khc-btn.khc-primary{border-color:var(--khc-accent);background:var(--khc-accent);color:#fff}
+    .khc .khc-btn.khc-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.khc{padding:18px;border-radius:16px}.khc .khc-big{font-size:30px}.khc .khc-in{font-size:17px}.khc .khc-opt-k{min-width:0;width:100%}}
+    @media (prefers-reduced-motion:reduce){.khc .khc-result,.khc .khc-in,.khc .khc-btn,.khc .khc-chip,.khc .khc-main{transition:none}}
+  </style>
+
+  <p class="khc-title">2027 국가건강검진 대상 확인</p>
+  <p class="khc-desc">출생연도·성별·가입 유형을 고르면 2027년에 받을 수 있는 검진을 바로 알려 줘요.</p>
+
+  <label class="khc-label" for="khc-y">출생연도</label>
+  <div class="khc-field"><input class="khc-in" id="khc-y" data-y inputmode="numeric" maxlength="4" placeholder="1987" autocomplete="bday-year"><span class="khc-unit">년생</span></div>
+
+  <div class="khc-opts">
+    <span class="khc-opt-k">성별</span>
+    <div class="khc-chips" data-sexes role="group" aria-label="성별">
+      <button type="button" class="khc-chip khc-on" data-sex="m" aria-pressed="true">남성</button>
+      <button type="button" class="khc-chip" data-sex="f" aria-pressed="false">여성</button>
+    </div>
+  </div>
+  <div class="khc-opts">
+    <span class="khc-opt-k">가입 유형</span>
+    <div class="khc-chips" data-types role="group" aria-label="건강보험 가입 유형">
+      <button type="button" class="khc-chip khc-on" data-type="office" aria-pressed="true">직장 사무직</button>
+      <button type="button" class="khc-chip" data-type="field" aria-pressed="false">직장 비사무직</button>
+      <button type="button" class="khc-chip" data-type="local" aria-pressed="false">지역가입자·피부양자</button>
+      <button type="button" class="khc-chip" data-type="aid" aria-pressed="false">의료급여</button>
+    </div>
+  </div>
+
+  <p class="khc-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="khc-result" data-result aria-live="polite">
+    <div class="khc-result-inner">
+      <div class="khc-main" data-main>
+        <p class="khc-main-label" data-main-label></p>
+        <p class="khc-big" data-big></p>
+        <p class="khc-why" data-why></p>
+      </div>
+      <div class="khc-box" data-basic-box>
+        <p class="khc-box-t">일반건강검진 기본 항목 (무료)</p>
+        <p class="khc-box-p" data-basic></p>
+      </div>
+      <div class="khc-box" data-extra-box>
+        <p class="khc-box-t" data-extra-t>나이에 따라 추가되는 항목</p>
+        <ul class="khc-list" data-extra></ul>
+        <p class="khc-empty" data-extra-empty hidden></p>
+      </div>
+      <div class="khc-box">
+        <p class="khc-box-t">2027년에 받을 수 있는 국가 암검진</p>
+        <ul class="khc-list" data-cancer></ul>
+        <p class="khc-empty" data-cancer-empty hidden></p>
+      </div>
+      <p class="khc-tip" data-tip></p>
+      <ul class="khc-note">
+        <li>나이는 "2027 − 출생연도"로 따져요(생일과 관계없음). 본인부담은 건강보험료 상위 50%가 위·유방·간·폐암 검진비의 10%이고, 보험료 하위 50%와 의료급여는 무료예요.</li>
+        <li>2026. 11. 20. 기준 현행 고시를 2027년에 적용한 결과예요. 실제 대상 여부는 공단 '건강보험25시' 앱이나 누리집 대상 조회로 꼭 확인하세요.</li>
+      </ul>
+      <div class="khc-actions">
+        <button type="button" class="khc-btn" data-reset>다시 입력</button>
+        <button type="button" class="khc-btn khc-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-khc]');
+    if (!root || root.__khc) return;
+    root.__khc = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var YEAR = 2027, MIN = 1920, MAX = 2010;
+    var TYPE_NAME = { office: '직장가입자(사무직)', field: '직장가입자(비사무직)', local: '지역가입자·피부양자', aid: '의료급여 수급권자' };
+    var sex = 'm', type = 'office', lastText = '';
+
+    // 2027년 일반건강검진 대상 판정. 나이 a = 2027 - 출생연도, odd = 홀수년생(2027년 짝)
+    function general(y, a, odd) {
+      if (type === 'field') return { ok: true, why: '비사무직 직장가입자는 출생연도와 관계없이 매년 대상이에요.' };
+      if (type === 'office') {
+        return odd ? { ok: true, why: '사무직은 2년에 한 번, 2027년은 홀수년생 차례예요.' }
+          : { ok: false, why: '사무직은 2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+      }
+      if (type === 'local') {
+        if (a < 20) return { ok: false, why: '지역가입자 세대원·피부양자는 20세 이상부터 대상이에요(지역 세대주는 나이 무관).' };
+        return odd ? { ok: true, why: '2년에 한 번, 2027년은 홀수년생 차례예요.' }
+          : { ok: false, why: '2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+      }
+      // 의료급여
+      if (a === 66) return { ok: true, why: '66세 의료급여 수급권자는 의료급여 생애전환기검진 대상이에요.', life: true };
+      if (a < 20) return { ok: false, why: '의료급여 일반건강검진은 20~64세가 대상이에요.' };
+      if (a > 64) return { ok: false, why: '의료급여 일반건강검진은 20~64세, 생애전환기검진은 66세가 대상이에요. 그 밖의 나이는 보건소에 문의하세요.' };
+      return odd ? { ok: true, why: '20~64세 의료급여 수급권자는 2년에 한 번, 2027년은 홀수년생 차례예요.' }
+        : { ok: false, why: '2년에 한 번이라 짝수년생은 2026년과 2028년 차례예요.' };
+    }
+
+    // 연령별 추가 항목: 정해진 나이(모두 짝수)는 2027년엔 홀수년생에게만 해당
+    function extras(a, odd) {
+      var L = [];
+      if (!odd) return L;
+      if (sex === 'm' ? (a >= 24 && (a - 24) % 4 === 0) : (a >= 40 && (a - 40) % 4 === 0))
+        L.push(['이상지질혈증', '콜레스테롤·중성지방 (' + (sex === 'm' ? '남 24세' : '여 40세') + '부터 4년마다)']);
+      if (a === 40) L.push(['B형간염 검사', '40세 1회 (보유자·면역자 제외)']);
+      if (a === 56) L.push(['C형간염 항체검사', '56세 생애 1회']);
+      if (a === 56 || a === 66) L.push(['폐기능검사', '56·66세 (만성폐쇄성폐질환)']);
+      if (sex === 'f' && (a === 54 || a === 60 || a === 66)) L.push(['골밀도검사', '여성 54·60·66세']);
+      if (a === 40) L.push(['치면세균막검사', '구강검진 · 40세']);
+      if (a === 40 || a === 50 || a === 60 || a === 70) L.push(['생활습관평가', '40·50·60·70세']);
+      if (a >= 66) L.push(['인지기능장애 검사', '66세 이상 2년마다']);
+      if (a === 66 || a === 70 || a === 80) L.push(['노인신체기능검사', '66·70·80세']);
+      if (a >= 20 && a <= 34) {
+        L.push(['정신건강검사 (우울증)', '20~34세 2년마다']);
+        L.push(['조기정신증 검사', '20~34세 2년마다']);
+      } else if (a >= 35 && a <= 79) {
+        var lo = a < 40 ? 35 : Math.floor(a / 10) * 10, hi = a < 40 ? 39 : lo + 9;
+        L.push(['정신건강검사 (우울증)', lo + '~' + hi + '세 중 1회 (이미 받았으면 제외)']);
+      }
+      return L;
+    }
+
+    function cancers(a, odd) {
+      var aid = type === 'aid';
+      var pay10 = aid ? '무료' : '무료 또는 10%';
+      var on = [], later = [];
+      function c2(cond, name, sub, pay) { if (!cond) return; if (odd) on.push([name, sub, pay]); else later.push(name.replace(' (고위험군만)', '')); }
+      c2(a >= 40, '위암', '위내시경 · 40세 이상 2년마다', pay10);
+      if (a >= 50) on.push(['대장암', '분변잠혈검사 · 50세 이상 매년 (양성이면 대장내시경)', '무료']);
+      if (a >= 40) on.push(['간암 (고위험군만)', '간초음파+혈액검사 · 40세 이상 B·C형간염, 간경변 등 · 상·하반기 1회씩', pay10]);
+      c2(sex === 'f' && a >= 40, '유방암', '유방촬영 · 여성 40세 이상 2년마다', pay10);
+      c2(sex === 'f' && a >= 20, '자궁경부암', '자궁경부세포검사 · 여성 20세 이상 2년마다', '무료');
+      c2(a >= 54 && a <= 74, '폐암 (고위험군만)', '저선량 흉부CT · 54~74세 30갑년 이상 흡연자 등 2년마다', pay10);
+      return { on: on, later: later };
+    }
+
+    function basicText(a, g) {
+      if (!g.ok) return '';
+      var s = '문진·진찰, 키·몸무게·허리둘레, 혈압, 시력·청력, 혈액검사(빈혈·공복혈당·간기능·신장기능), 소변검사, 구강검진';
+      s += a >= 50 ? ', 흉부방사선(X-ray)' : '. 흉부방사선은 2027년부터 50세 이상만 받아요(20~49세는 고위험 직업군만)';
+      return s + '.';
+    }
+
+    function hide(text, err) {
+      result.classList.remove('khc-show');
+      msg.textContent = text || '';
+      yI.classList.toggle('khc-err', !!err);
+    }
+
+    function fill(ul, empty, rows, emptyText, tagFn) {
+      ul.innerHTML = '';
+      rows.forEach(function (r) {
+        var li = document.createElement('li');
+        var n = document.createElement('span'); n.className = 'khc-name'; n.textContent = r[0];
+        var sm = document.createElement('small'); sm.textContent = r[1]; n.appendChild(sm);
+        li.appendChild(n);
+        var t = tagFn(r);
+        if (t) { var tg = document.createElement('span'); tg.className = 'khc-tag' + (t === '무료' ? '' : ' khc-pay'); tg.textContent = t; li.appendChild(tg); }
+        ul.appendChild(li);
+      });
+      ul.hidden = !rows.length;
+      empty.hidden = !!rows.length;
+      empty.textContent = emptyText;
+    }
+
+    function calc() {
+      var v = yI.value;
+      if (!v || v.length < 4) return hide('');
+      var y = +v;
+      if (y > YEAR) return hide(y + '년생은 아직 태어나기 전이에요. 출생연도를 확인해 주세요.', true);
+      if (y < MIN || y > MAX) return hide(MIN + '~' + MAX + '년생 사이로 입력해 주세요. 영유아·학생 검진은 따로 안내돼요.', true);
+
+      var a = YEAR - y, odd = y % 2 === 1;
+      var g = general(y, a, odd);
+      msg.textContent = '';
+      yI.classList.remove('khc-err');
+
+      $('[data-main]').classList.toggle('khc-no', !g.ok);
+      $('[data-main-label]').textContent = y + '년생 · 2027년 ' + a + '세 · ' + TYPE_NAME[type];
+      $('[data-big]').textContent = g.ok ? (g.life ? '생애전환기검진 대상' : '2027년 검진 대상이에요') : '2027년엔 대상이 아니에요';
+      $('[data-why]').textContent = g.why;
+
+      $('[data-basic-box]').hidden = !g.ok;
+      $('[data-basic]').textContent = basicText(a, g);
+
+      var ex = g.ok ? extras(a, odd) : [];
+      $('[data-extra-box]').hidden = !g.ok;
+      fill($('[data-extra]'), $('[data-extra-empty]'), ex,
+        odd ? '이 나이에 추가되는 항목은 없어요. 기본 항목만 받아요.' : '연령별 추가 항목은 정해진 나이(짝수 나이)에 받는 거라 짝수년생은 2026·2028년에 받아요.',
+        function () { return ''; });
+
+      var ca = cancers(a, odd);
+      var laterText = ca.later.length ? ca.later.join('·') + ' 검진은 짝수년생이라 2028년 차례예요.' : '';
+      fill($('[data-cancer]'), $('[data-cancer-empty]'), ca.on,
+        a < 20 ? '국가 암검진은 20세 이상부터예요.' : (laterText || '나이·성별 기준으로 2027년에 해당하는 암검진이 없어요.'),
+        function (r) { return r[2]; });
+      if (ca.on.length && laterText) { $('[data-cancer-empty]').hidden = false; }
+
+      var tip;
+      if (g.ok) tip = '2027. 12. 31.까지 받아야 해요. 놓치면 2028년 1월부터 공단에 "전년도 미수검 추가 등록"을 신청해 받을 수 있어요(직장인은 회사 담당자, 지역·피부양자는 앱·고객센터 1577-1000).';
+      else if (!odd && (type === 'office' || (type === 'local' && a >= 21) || (type === 'aid' && a >= 21 && (a <= 65 || a === 67)))) tip = '2026년 검진을 아직 안 받았다면 2027년 1월부터 "전년도 미수검 추가 등록"을 신청해 2027년에 받을 수 있어요(고객센터 1577-1000, 직장인은 회사 담당자).';
+      else tip = '대상이 아니어도 암검진은 나이 기준에 맞으면 따로 받을 수 있어요. 공단 대상 조회로 확인해 보세요.';
+      $('[data-tip]').textContent = tip;
+
+      result.classList.add('khc-show');
+
+      lastText = '[2027 국가건강검진 대상 확인]\n' + y + '년생(2027년 ' + a + '세) · ' + (sex === 'm' ? '남성' : '여성') + ' · ' + TYPE_NAME[type] +
+        '\n일반건강검진: ' + (g.ok ? '대상' : '대상 아님') + ' - ' + g.why +
+        (ex.length ? '\n추가 항목: ' + ex.map(function (r) { return r[0]; }).join(', ') : '') +
+        '\n암검진: ' + (ca.on.length ? ca.on.map(function (r) { return r[0] + '(' + r[2] + ')'; }).join(', ') : '해당 없음') +
+        (laterText ? '\n' + laterText : '') + '\n' + tip;
+    }
+
+    yI.addEventListener('input', function () {
+      var v = yI.value.replace(/\D/g, '').slice(0, 4);
+      if (v !== yI.value) yI.value = v;
+      calc();
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length >= 4) { e.preventDefault(); yI.value = t.slice(0, 4); calc(); }
+    });
+
+    function chipGroup(sel, attr, set) {
+      $$(sel).forEach(function (c) {
+        c.addEventListener('click', function () {
+          $$(sel).forEach(function (o) { var on = o === c; o.classList.toggle('khc-on', on); o.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+          set(c.getAttribute(attr));
+          calc();
+        });
+      });
+    }
+    chipGroup('[data-sex]', 'data-sex', function (v) { sex = v; });
+    chipGroup('[data-type]', 'data-type', function (v) { type = v; });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = ''; hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 2027 국가건강검진 대상 확인 위젯 끝 -->
+
+<h2>2027년 국가건강검진 대상, 이렇게 정해져요</h2>
+<p>국가건강검진의 나이는 생일과 관계없이 <strong>"2027 − 출생연도"</strong>로 따지고, 2년 주기 검진은 <strong>출생연도의 짝·홀</strong>로 대상 해가 정해져요. 2027년은 홀수 해라서 홀수년생 차례예요.</p>
+<ul>
+  <li><strong>2년 주기 대상 여부:</strong> 출생연도가 홀수면 2027년 대상, 짝수면 2026년·2028년 대상</li>
+  <li><strong>2027년 나이:</strong> 2027 − 출생연도 (예: 1987년생은 40세)</li>
+  <li><strong>매년 받는 것:</strong> 비사무직 직장가입자의 일반검진, 50세 이상 대장암 검진, 40세 이상 간암 고위험군 검진(상·하반기)</li>
+</ul>
+<p>예를 들어 1987년생 여성 회사원(사무직)이라면 1987이 홀수라서 2027년 일반건강검진 대상이고, 2027년에 40세가 돼요. 그래서 기본 항목에 더해 이상지질혈증·B형간염·생활습관평가·치면세균막 검사와 우울증 검사를 받고, 암검진은 위암·유방암·자궁경부암(간암은 고위험군만)을 함께 받을 수 있어요.</p>
+
+<h2>가입 유형별 2027년 일반건강검진 대상</h2>
+<table>
+  <thead><tr><th>가입 유형</th><th>대상 기준</th><th>2027년 대상</th></tr></thead>
+  <tbody>
+    <tr><td>직장가입자 (사무직)</td><td>2년에 1회</td><td>홀수년생</td></tr>
+    <tr><td>직장가입자 (비사무직)</td><td>매년</td><td>출생연도 관계없이 모두</td></tr>
+    <tr><td>지역가입자</td><td>세대주, 20세 이상 세대원 · 2년에 1회</td><td>홀수년생 (세대원은 2007년생까지)</td></tr>
+    <tr><td>피부양자</td><td>20세 이상 · 2년에 1회</td><td>홀수년생 (2007년생까지)</td></tr>
+    <tr><td>의료급여 수급권자</td><td>20~64세 · 2년에 1회, 66세 생애전환기검진</td><td>1963~2007년 홀수년생, 1961년생(생애전환기)</td></tr>
+  </tbody>
+</table>
+<p>일반건강검진 기본 항목은 문진·진찰, 키·몸무게·허리둘레, 혈압, 시력·청력, 혈액검사(빈혈·공복혈당·간기능·신장기능), 소변검사, 구강검진이에요. <strong>2027년부터 흉부방사선(X-ray) 검사는 50세 이상만</strong> 받고, 20~49세는 결핵 취약 사업장 같은 고위험 직업군만 받도록 바뀌어요.</p>
+
+<h2>2027년 출생연도별 검진 항목 (홀수년생)</h2>
+<p>2027년 대상인 홀수년생이 기본 항목에 더해 받는 연령별 추가 항목과 암검진이에요. "고위험"은 해당하는 사람만 받을 수 있다는 뜻이에요.</p>
+<table>
+  <thead><tr><th>출생연도</th><th>2027년 나이</th><th>추가 항목</th><th>암검진</th></tr></thead>
+  <tbody>
+    <tr><td>2007년생</td><td>20세</td><td>우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>2005년생</td><td>22세</td><td>우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>2003년생</td><td>24세</td><td>이상지질혈증(남), 우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>2001년생</td><td>26세</td><td>우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>1999년생</td><td>28세</td><td>이상지질혈증(남), 우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>1997년생</td><td>30세</td><td>우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>1995년생</td><td>32세</td><td>이상지질혈증(남), 우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>1993년생</td><td>34세</td><td>우울증·조기정신증</td><td>자궁경부(여)</td></tr>
+    <tr><td>1991년생</td><td>36세</td><td>이상지질혈증(남), 우울증(연령대 1회)</td><td>자궁경부(여)</td></tr>
+    <tr><td>1989년생</td><td>38세</td><td>우울증(연령대 1회)</td><td>자궁경부(여)</td></tr>
+    <tr><td>1987년생</td><td>40세</td><td>이상지질혈증, B형간염, 치면세균막, 생활습관평가, 우울증(연령대 1회)</td><td>위, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1985년생</td><td>42세</td><td>우울증(연령대 1회)</td><td>위, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1983년생</td><td>44세</td><td>이상지질혈증, 우울증(연령대 1회)</td><td>위, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1981년생</td><td>46세</td><td>우울증(연령대 1회)</td><td>위, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1979년생</td><td>48세</td><td>이상지질혈증, 우울증(연령대 1회)</td><td>위, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1977년생</td><td>50세</td><td>생활습관평가, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1975년생</td><td>52세</td><td>이상지질혈증, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1973년생</td><td>54세</td><td>골밀도(여), 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1971년생</td><td>56세</td><td>이상지질혈증, C형간염, 폐기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1969년생</td><td>58세</td><td>우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1967년생</td><td>60세</td><td>이상지질혈증, 골밀도(여), 생활습관평가, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1965년생</td><td>62세</td><td>우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1963년생</td><td>64세</td><td>이상지질혈증, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1961년생</td><td>66세</td><td>폐기능, 골밀도(여), 인지기능, 노인신체기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1959년생</td><td>68세</td><td>이상지질혈증, 인지기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1957년생</td><td>70세</td><td>생활습관평가, 인지기능, 노인신체기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1955년생</td><td>72세</td><td>이상지질혈증, 인지기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1953년생</td><td>74세</td><td>인지기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여), 폐(고위험)</td></tr>
+    <tr><td>1951년생</td><td>76세</td><td>이상지질혈증, 인지기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1949년생</td><td>78세</td><td>인지기능, 우울증(연령대 1회)</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+    <tr><td>1947년생</td><td>80세</td><td>이상지질혈증, 인지기능, 노인신체기능</td><td>위, 대장, 간(고위험), 유방(여), 자궁경부(여)</td></tr>
+  </tbody>
+</table>
+<p>짝수년생도 50세 이상이면 대장암 검진(매년)을, 40세 이상 간암 고위험군이면 간암 검진(상·하반기)을 2027년에 받을 수 있어요.</p>
+
+<h2>국가 암검진 6종 정리</h2>
+<table>
+  <thead><tr><th>암 종류</th><th>대상</th><th>주기</th><th>검사</th><th>본인부담</th></tr></thead>
+  <tbody>
+    <tr><td>위암</td><td>40세 이상</td><td>2년</td><td>위내시경</td><td>10%</td></tr>
+    <tr><td>대장암</td><td>50세 이상</td><td>1년</td><td>분변잠혈검사 → 양성이면 대장내시경</td><td>무료</td></tr>
+    <tr><td>간암</td><td>40세 이상 고위험군(B·C형간염, 간경변 등)</td><td>6개월</td><td>간초음파 + 혈액검사</td><td>10%</td></tr>
+    <tr><td>유방암</td><td>40세 이상 여성</td><td>2년</td><td>유방촬영술</td><td>10%</td></tr>
+    <tr><td>자궁경부암</td><td>20세 이상 여성</td><td>2년</td><td>자궁경부세포검사</td><td>무료</td></tr>
+    <tr><td>폐암</td><td>54~74세 고위험군(30갑년 이상 흡연자 등)</td><td>2년</td><td>저선량 흉부CT</td><td>10%</td></tr>
+  </tbody>
+</table>
+<p>본인부담 10%는 건강보험료 상위 50%에 해당할 때이고, 보험료 하위 50%와 의료급여 수급권자는 무료예요. 일반건강검진은 모두 무료예요. 30갑년은 "하루 평균 흡연 갑 수 × 흡연 연수"가 30 이상이라는 뜻이에요.</p>
+
+<h2>나이에 따라 추가되는 검사</h2>
+<table>
+  <thead><tr><th>검사</th><th>대상 나이</th><th>2027년 해당 출생연도</th></tr></thead>
+  <tbody>
+    <tr><td>이상지질혈증</td><td>남 24세·여 40세부터 4년마다</td><td>남 2003·1999·1995·1991…년생, 여 1987·1983·1979…년생</td></tr>
+    <tr><td>B형간염</td><td>40세 (보유자·면역자 제외)</td><td>1987년생</td></tr>
+    <tr><td>C형간염 항체</td><td>56세 생애 1회</td><td>1971년생</td></tr>
+    <tr><td>폐기능검사</td><td>56·66세</td><td>1971·1961년생</td></tr>
+    <tr><td>골밀도검사</td><td>여성 54·60·66세</td><td>1973·1967·1961년생 여성</td></tr>
+    <tr><td>정신건강검사(우울증)</td><td>20~34세 2년마다, 35~39·40대·50대·60대·70대 각 1회</td><td>2007~1993년생, 그 이후는 연령대 중 1회</td></tr>
+    <tr><td>조기정신증 검사</td><td>20~34세 2년마다</td><td>2007~1993년생</td></tr>
+    <tr><td>생활습관평가</td><td>40·50·60·70세</td><td>1987·1977·1967·1957년생</td></tr>
+    <tr><td>인지기능장애 검사</td><td>66세 이상 2년마다</td><td>1961년생 이전 홀수년생</td></tr>
+    <tr><td>노인신체기능검사</td><td>66·70·80세</td><td>1961·1957·1947년생</td></tr>
+    <tr><td>치면세균막검사(구강)</td><td>40세</td><td>1987년생</td></tr>
+  </tbody>
+</table>
+
+<h2>2027년에 달라지는 점</h2>
+<ul>
+  <li><strong>흉부방사선 50세 이상으로 조정:</strong> 폐결핵 발견율이 매우 낮아 2027년부터 50세 이상만 받고, 20~49세는 고위험 직업군만 받아요.</li>
+  <li><strong>학생건강검진 국가검진 편입:</strong> 2027년 3월부터 학생건강검진을 국민건강보험공단이 맡아, 학생이 원하는 시기와 검진기관을 고를 수 있게 돼요.</li>
+  <li><strong>아직 확정 전인 것:</strong> 대장암 1차 대장내시경 도입과 폐암 검진 대상 확대는 2028년 도입을 목표로 추진 중이라 2027년에는 현행 기준이 적용돼요.</li>
+</ul>
+<p>2025년부터 20~34세 청년의 우울증 검사가 2년마다로 바뀌고 조기정신증 검사와 56세 C형간염 검사가 생겼으며, 2026년에는 56·66세 폐기능검사가 새로 들어왔어요. 이 항목들은 2027년에도 그대로 이어져요.</p>
+
+<h2>검진 대상 조회와 예약 방법</h2>
+<ol>
+  <li><strong>대상 조회:</strong> 국민건강보험공단 '건강보험25시' 앱(옛 The건강보험 앱)이나 공단 누리집 건강검진 메뉴에서 본인 인증 후 2027년 검진 대상과 항목을 확인해요. 연초에 우편이나 모바일로 검진 안내문도 보내 줘요.</li>
+  <li><strong>검진기관 찾기:</strong> 앱이나 누리집의 검진기관 찾기에서 일반검진·암검진·구강검진이 되는 병원을 골라요.</li>
+  <li><strong>예약:</strong> 병원에 전화나 온라인으로 예약해요. 위내시경·대장검사는 예약이 빨리 차니 상반기에 받는 게 편해요.</li>
+  <li><strong>당일:</strong> 신분증을 챙기고 전날 밤부터 8시간 이상 금식해요. 검진 결과는 나중에 우편이나 앱으로 확인할 수 있어요.</li>
+</ol>
+<p>검진 기한은 2027년 12월 31일까지예요. 연말에는 예약이 몰리니 미리 받아 두세요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>2027년 국가건강검진 대상은 몇 년생인가요?</h3>
+<p>2027년은 홀수 해라서 1987년생, 1977년생처럼 출생연도가 홀수인 사람이 2년 주기 일반건강검진 대상이에요. 사무직 직장가입자, 지역가입자, 20세 이상 피부양자가 여기에 해당하고, 비사무직 직장가입자는 출생연도와 관계없이 매년 대상이에요.</p>
+<h3>짝수년생인데 2026년 검진을 못 받았으면 어떻게 하나요?</h3>
+<p>2027년 1월부터 국민건강보험공단에 전년도 미수검 추가 등록을 신청하면 2027년에 받을 수 있어요. 직장가입자는 회사 담당자가 등록하고, 지역가입자와 피부양자는 공단 앱이나 고객센터(1577-1000)로 신청하면 돼요.</p>
+<h3>국가건강검진 비용은 정말 무료인가요?</h3>
+<p>일반건강검진과 대장암·자궁경부암 검진은 무료예요. 위암·유방암·간암·폐암 검진은 건강보험료 상위 50%라면 검진비의 10%를 내고, 보험료 하위 50%와 의료급여 수급권자는 무료예요. 수면내시경처럼 선택해서 추가하는 검사는 따로 비용이 들어요.</p>
+<h3>2027년부터 흉부 X-ray 검사를 안 받나요?</h3>
+<p>2027년부터 일반건강검진의 흉부방사선 검사는 50세 이상만 받아요. 결핵을 찾으려는 검사인데 발견율이 매우 낮아 대상을 조정했고, 20~49세는 결핵·감염병 취약 사업장 같은 고위험 직업군만 받을 수 있어요.</p>
+<h3>대장내시경은 국가검진으로 바로 받을 수 있나요?</h3>
+<p>2027년에는 아직 아니에요. 50세 이상이 매년 분변잠혈검사를 받고 양성이 나오면 대장내시경을 받는 방식이에요. 처음부터 대장내시경을 하는 방식은 정부가 2028년 도입을 목표로 추진하고 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:age-table-2027}}">2027년 나이 조견표</a>: 출생연도별 만 나이·띠·학년 한눈에</li>
+  <li><a href="{{LINK:support-calendar-2027}}">2027 정부 지원금 신청 일정</a>: 나에게 맞는 지원금과 월별 신청 달력</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "2027년 국가건강검진 대상은 몇 년생인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년은 홀수 해라서 1987년생, 1977년생처럼 출생연도가 홀수인 사람이 2년 주기 일반건강검진 대상이에요. 사무직 직장가입자, 지역가입자, 20세 이상 피부양자가 여기에 해당하고, 비사무직 직장가입자는 출생연도와 관계없이 매년 대상이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "짝수년생인데 2026년 검진을 못 받았으면 어떻게 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년 1월부터 국민건강보험공단에 전년도 미수검 추가 등록을 신청하면 2027년에 받을 수 있어요. 직장가입자는 회사 담당자가 등록하고, 지역가입자와 피부양자는 공단 앱이나 고객센터(1577-1000)로 신청하면 돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "국가건강검진 비용은 정말 무료인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "일반건강검진과 대장암·자궁경부암 검진은 무료예요. 위암·유방암·간암·폐암 검진은 건강보험료 상위 50%라면 검진비의 10%를 내고, 보험료 하위 50%와 의료급여 수급권자는 무료예요. 수면내시경처럼 선택해서 추가하는 검사는 따로 비용이 들어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년부터 흉부 X-ray 검사를 안 받나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년부터 일반건강검진의 흉부방사선 검사는 50세 이상만 받아요. 결핵을 찾으려는 검사인데 발견율이 매우 낮아 대상을 조정했고, 20~49세는 결핵·감염병 취약 사업장 같은 고위험 직업군만 받을 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "대장내시경은 국가검진으로 바로 받을 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년에는 아직 아니에요. 50세 이상이 매년 분변잠혈검사를 받고 양성이 나오면 대장내시경을 받는 방식이에요. 처음부터 대장내시경을 하는 방식은 정부가 2028년 도입을 목표로 추진하고 있어요."
+   }
+  }
+ ]
+}
+</script>
