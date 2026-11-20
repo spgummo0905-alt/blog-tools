@@ -46,6 +46,7 @@ tools/
 | 2027 세금 납부 달력 (자동차세·재산세·종소세 마감일, 주말 연장 반영) | `tools/tax-calendar-2027` | 완성 |
 | 2027년 달라지는 것 총정리 (내 상황별 체크리스트) | `tools/changes-2027` | 완성 |
 | 가족 사망 후 할 일 타임라인 (사망신고·상속포기·상속세 기한) | `tools/after-death-checklist` | 완성 |
+| 퇴사 후 할 일 타임라인 (실업급여·건강보험·국민연금 기한) | `tools/after-resignation-checklist` | 완성 |
 
 ## 작업 규칙
 

@@ -1,0 +1,495 @@
+<p><strong>퇴사하면 퇴직금·마지막 월급은 퇴직일부터 14일 안에 받아야 하고, 실업급여는 퇴사 다음 날부터 12개월 안에 다 받아야 해서 바로 신청하는 게 좋아요. 국민연금 지역가입 신고·납부예외는 다음 달 15일까지, 가족 건강보험 피부양자 등록은 90일 안에 해야 해요.</strong> 아래 타임라인에 마지막 근무일만 넣으면 내 기한을 날짜·요일과 D-day로 정리하고, 어디서 무엇을 챙겨야 하는지까지 한눈에 보여 줘요.</p>
+<!-- 퇴사 후 할 일 타임라인 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="krs" data-krs>
+  <style>
+    .krs{--krs-accent:#3b6ef5;--krs-accent-soft:#eef3ff;--krs-text:#1d2433;--krs-sub:#6b7385;--krs-line:#e3e7ef;--krs-bg:#fff;--krs-red:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--krs-line);border-radius:20px;background:var(--krs-bg);
+      color:var(--krs-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all;overflow-wrap:break-word}
+    .krs [hidden]{display:none!important}
+    .krs *,.krs *::before,.krs *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .krs .krs-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .krs .krs-desc{margin-top:4px;font-size:14px;color:var(--krs-sub)}
+    .krs .krs-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--krs-text)}
+    .krs .krs-label small{font-size:12.5px;font-weight:500;color:var(--krs-sub)}
+    .krs .krs-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--krs-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--krs-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .krs .krs-in:focus{border-color:var(--krs-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .krs .krs-in.krs-bad{border-color:var(--krs-red)}
+    .krs .krs-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .krs .krs-chip{min-height:36px;padding:6px 14px;border:1.5px solid var(--krs-line);border-radius:999px;background:#fff;color:var(--krs-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s;text-align:center}
+    .krs .krs-chip:hover{border-color:#c9d3ea;color:var(--krs-text)}
+    .krs .krs-chip.krs-on{border-color:var(--krs-accent);background:var(--krs-accent-soft);color:var(--krs-accent)}
+    .krs .krs-hint{margin-top:6px;font-size:12.5px;color:var(--krs-sub)}
+    .krs .krs-msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--krs-red)}
+    .krs .krs-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .krs .krs-result.krs-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .krs .krs-result-inner{overflow:hidden}
+    .krs .krs-main{margin-top:6px;padding:20px;border-radius:16px;background:var(--krs-accent-soft);text-align:center}
+    .krs .krs-main-label{font-size:14px;color:var(--krs-sub)}
+    .krs .krs-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--krs-accent);line-height:1.2}
+    .krs .krs-big-sub{margin-top:4px;font-size:15px;font-weight:700;color:var(--krs-text)}
+    .krs .krs-others{margin-top:4px;font-size:13.5px;color:var(--krs-sub)}
+    .krs .krs-nw{white-space:nowrap}
+    .krs .krs-sec{margin:18px 0 8px;font-size:13px;font-weight:700;color:var(--krs-sub)}
+    .krs .krs-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+    .krs .krs-item{position:relative;padding:14px 14px 14px 46px;border:1px solid var(--krs-line);border-radius:14px;background:#fff;transition:opacity .2s,background .2s}
+    .krs .krs-item.krs-past{background:#f8f9fc}
+    .krs .krs-item.krs-past .krs-item-body{opacity:.55}
+    .krs .krs-item.krs-done .krs-item-body{opacity:.45}
+    .krs .krs-item.krs-done .krs-item-t{text-decoration:line-through}
+    .krs .krs-check{position:absolute;left:14px;top:15px;width:22px;height:22px;margin:0;accent-color:var(--krs-accent);cursor:pointer}
+    .krs .krs-item-top{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+    .krs .krs-date{font-size:13px;font-weight:700;color:var(--krs-text);white-space:nowrap}
+    .krs .krs-dd{padding:2px 8px;border-radius:999px;background:var(--krs-accent-soft);color:var(--krs-accent);font-size:12px;font-weight:700;white-space:nowrap}
+    .krs .krs-dd.krs-dd-past{background:#eceef3;color:var(--krs-sub)}
+    .krs .krs-dd.krs-dd-soon{background:#fdecec;color:#d9434a}
+    .krs .krs-badge{padding:2px 8px;border:1px solid var(--krs-line);border-radius:999px;font-size:11.5px;font-weight:600;color:var(--krs-sub);white-space:nowrap}
+    .krs .krs-badge.krs-b1{border-color:#f3c4c6;color:#d9434a}
+    .krs .krs-badge.krs-b2{border-color:#c9d6fb;color:var(--krs-accent)}
+    .krs .krs-item-t{margin-top:6px;font-size:15.5px;font-weight:700;color:var(--krs-text);letter-spacing:-.01em}
+    .krs .krs-rows{margin-top:6px;display:flex;flex-direction:column;gap:3px;font-size:13px;color:var(--krs-sub)}
+    .krs .krs-rows p{display:grid;grid-template-columns:60px 1fr;gap:6px}
+    .krs .krs-rows b{font-weight:600;color:var(--krs-text)}
+    .krs .krs-late{margin-top:8px;padding:8px 10px;border-radius:10px;background:#fff4e5;font-size:12.5px;color:#8a5a00}
+    .krs .krs-shift{margin-top:4px;font-size:12px;color:var(--krs-sub)}
+    .krs .krs-note{margin-top:12px;font-size:12.5px;color:var(--krs-sub)}
+    .krs .krs-actions{display:flex;gap:8px;margin-top:14px}
+    .krs .krs-btn{flex:1;height:44px;border:1.5px solid var(--krs-line);border-radius:12px;background:#fff;color:var(--krs-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .krs .krs-btn:hover{background:#f4f6fa}
+    .krs .krs-btn:active{transform:scale(.98)}
+    .krs .krs-btn.krs-primary{border-color:var(--krs-accent);background:var(--krs-accent);color:#fff}
+    .krs .krs-btn.krs-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.krs{padding:18px;border-radius:16px}.krs .krs-big{font-size:36px}.krs .krs-in{font-size:17px}.krs .krs-chip{font-size:13.5px;padding:6px 12px}}
+    @media (prefers-reduced-motion:reduce){.krs .krs-result,.krs .krs-in,.krs .krs-btn,.krs .krs-chip,.krs .krs-item{transition:none}}
+  </style>
+
+  <p class="krs-title">퇴사 후 할 일 타임라인</p>
+  <p class="krs-desc">마지막 근무일만 넣으면 실업급여·건강보험·국민연금·퇴직금 기한을 날짜순으로 정리해 줘요.</p>
+
+  <label class="krs-label" for="krs-last">퇴사일 <small>마지막으로 근무한 날</small></label>
+  <input class="krs-in" id="krs-last" type="date" data-last min="2025-01-01" max="2027-12-31" aria-label="마지막 근무일">
+
+  <p class="krs-label">퇴사 사유</p>
+  <div class="krs-chips" role="group" aria-label="퇴사 사유" data-group="reason">
+    <button type="button" class="krs-chip krs-on" data-v="inv" aria-pressed="true">권고사직·계약만료 등</button>
+    <button type="button" class="krs-chip" data-v="vol" aria-pressed="false">개인 사정(자발적 퇴사)</button>
+  </div>
+
+  <p class="krs-label">재취업할 회사</p>
+  <div class="krs-chips" role="group" aria-label="재취업 예정" data-group="job">
+    <button type="button" class="krs-chip krs-on" data-v="no" aria-pressed="true">아직 없어요</button>
+    <button type="button" class="krs-chip" data-v="yes" aria-pressed="false">입사할 곳이 정해졌어요</button>
+  </div>
+
+  <p class="krs-label">가족 건강보험 피부양자로 <small>선택</small></p>
+  <div class="krs-chips" role="group" aria-label="피부양자 등록 가능 여부" data-group="dep">
+    <button type="button" class="krs-chip krs-on" data-v="unk" aria-pressed="true">잘 모르겠어요</button>
+    <button type="button" class="krs-chip" data-v="yes" aria-pressed="false">올라갈 수 있어요</button>
+    <button type="button" class="krs-chip" data-v="no" aria-pressed="false">어려워요</button>
+  </div>
+  <p class="krs-hint">직장에 다니는 배우자·부모·자녀가 있고 내 소득·재산이 기준 이하면 피부양자가 될 수 있어요.</p>
+
+  <p class="krs-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="krs-result" data-result aria-live="polite">
+    <div class="krs-result-inner">
+      <div class="krs-main">
+        <p class="krs-main-label" data-main-label>가장 가까운 기한</p>
+        <p class="krs-big" data-big></p>
+        <p class="krs-big-sub" data-big-sub></p>
+        <p class="krs-others" data-others></p>
+      </div>
+      <div data-list></div>
+      <p class="krs-note" data-note></p>
+      <p class="krs-note">기한은 법령과 각 기관 안내 기준이에요. 마지막 날이 토·일·공휴일이면 다음 평일로 옮겨 계산했어요(실업급여 수급기간 제외). 개인 상황에 따라 다를 수 있으니 신청 전 해당 기관에서 한 번 더 확인하세요.</p>
+      <div class="krs-actions">
+        <button type="button" class="krs-btn" data-reset>다시 입력</button>
+        <button type="button" class="krs-btn krs-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-krs]');
+    if (!root || root.__krs) return;
+    root.__krs = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var lastI = $('[data-last]'), msg = $('[data-msg]'), result = $('[data-result]'), listEl = $('[data-list]');
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var MIN = '2025-01-01', MAX = '2027-12-31';
+    var state = { reason: 'inv', job: 'no', dep: 'unk' };
+    var done = {}, lastText = '';
+
+    // 관공서 공휴일·대체공휴일·임시공휴일 (2026·2027년은 월력요항 기준 전체, 그 밖의 해는 양력 고정 공휴일만)
+    var HOL = {
+      2026: ['1-1', '2-16', '2-17', '2-18', '3-1', '3-2', '5-1', '5-5', '5-24', '5-25', '6-3', '6-6', '7-17', '8-15', '8-17', '9-24', '9-25', '9-26', '10-3', '10-5', '10-9', '12-25'],
+      2027: ['1-1', '2-6', '2-7', '2-8', '2-9', '3-1', '5-1', '5-3', '5-5', '5-13', '6-6', '7-17', '7-19', '8-15', '8-16', '9-14', '9-15', '9-16', '10-3', '10-4', '10-9', '10-11', '12-25', '12-27']
+    };
+    var FIXED = ['1-1', '3-1', '5-5', '6-6', '8-15', '10-3', '10-9', '12-25'];
+    var FIXED_2026 = ['5-1', '7-17']; // 노동절·제헌절: 2026년부터 공휴일
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    // n개월 뒤 같은 날. 그 달에 같은 날이 없으면 그 달 말일 (민법 제160조 제3항)
+    function addMonths(d, n) {
+      var y = d.getFullYear(), m = d.getMonth() + n, last = new Date(y, m + 1, 0).getDate();
+      return new Date(y, m, Math.min(d.getDate(), last));
+    }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function md(d) { return (d.getMonth() + 1) + '-' + d.getDate(); }
+    function isHoliday(d) {
+      var y = d.getFullYear(), k = md(d);
+      if (HOL[y]) return HOL[y].indexOf(k) >= 0;
+      return FIXED.indexOf(k) >= 0 || (y >= 2026 && FIXED_2026.indexOf(k) >= 0);
+    }
+    function isRest(d) { var w = d.getDay(); return w === 0 || w === 6 || isHoliday(d); }
+    // 기간의 말일이 토요일·공휴일이면 그다음 날 만료 (민법 제161조, 국세기본법 제5조)
+    function nextWork(d) { var x = d; while (isRest(x)) x = addDays(x, 1); return x; }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
+    function parse(v) {
+      var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!m) return null;
+      var d = new Date(+m[1], +m[2] - 1, +m[3]);
+      return d.getMonth() === +m[2] - 1 ? d : null;
+    }
+
+    // 할 일 목록 만들기. L = 마지막 근무일, Q = 다음 날(퇴직일·자격 상실일)
+    function build(L) {
+      var Q = addDays(L, 1), inv = state.reason === 'inv', job = state.job === 'yes', dep = state.dep;
+      var pensionDue = new Date(Q.getFullYear(), Q.getMonth() + 1, 15);
+      var items = [];
+      function add(o) { items.push(o); }
+
+      add({ id: 'irp', kind: '권장', lv: 2, date: L, title: 'IRP 계좌 만들고 회사에 알려 주기',
+        where: '은행·증권사 앱에서 개인형퇴직연금(IRP) 개설 → 회사 담당자에게 계좌 전달',
+        docs: '신분증, 본인 명의 계좌',
+        miss: '만 55세 전에 퇴직하면 퇴직금은 IRP로 받는 게 원칙이에요. 계좌가 없으면 지급이 늦어질 수 있어요.',
+        late: '현금으로 이미 받았다면, 받은 날부터 60일 안에 IRP에 넣으면 떼인 퇴직소득세를 돌려받을 수 있어요.' });
+
+      if (!job) {
+        add({ id: 'cert', kind: '권장', lv: inv ? 1 : 3, date: Q, title: '회사에 이직확인서 처리 요청',
+          where: '전 직장 인사·노무 담당자 (처리 여부는 고용24에서 조회)',
+          docs: '없음 (요청 사실을 문자·메일로 남겨 두면 좋아요)',
+          miss: '이직확인서가 고용센터에 들어가야 실업급여 수급자격을 판단해요. 회사는 요청받은 날부터 10일 안에 내야 해요.',
+          late: '아직 처리 전이면 지금 요청하세요. 10일이 지나도 안 되면 관할 고용센터에 알리세요.' });
+        add({ id: 'ui', kind: '권장', lv: inv ? 1 : 3, date: Q,
+          title: inv ? '고용24 구직신청 → 실업급여 신청' : '실업급여 대상인지 확인 (자발적 퇴사)',
+          where: '고용24 누리집·앱에서 구직신청과 수급자격 신청자 온라인 교육 → 거주지 관할 고용센터 방문',
+          docs: '신분증, 본인 명의 통장',
+          miss: inv ? '실업급여는 퇴사 다음 날부터 12개월 안에만 받을 수 있어요. 늦게 신청할수록 다 못 받고 남은 날이 사라질 수 있어요.'
+                    : '개인 사정 퇴사는 원칙적으로 대상이 아니지만, 임금 체불·통근 곤란 등 정당한 사유가 있으면 받을 수 있어요.',
+          late: '퇴사 다음 날부터 12개월(수급기간)이 남아 있다면 지금이라도 신청하세요.' });
+      }
+
+      add({ id: 'sev', kind: '법정 기한', lv: 1, date: nextWork(addDays(L, 14)), raw: addDays(L, 14), title: '퇴직금 받기',
+        where: '전 직장 (퇴직연금 가입 회사는 퇴직연금 금융회사를 통해 지급)',
+        docs: '없음 (1년 이상, 주 15시간 이상 일했다면 대상)',
+        miss: '퇴직일부터 14일 안에 줘야 해요. 당사자가 합의하면 늦출 수 있고, 늦으면 지연이자(연 20%)가 붙어요.',
+        late: '아직 못 받았다면 회사에 청구하고, 그래도 안 주면 고용노동부에 진정할 수 있어요. 퇴직금 청구권은 3년이 지나면 사라져요.' });
+
+      add({ id: 'pay', kind: '법정 기한', lv: 1, date: nextWork(addDays(L, 14)), raw: addDays(L, 14), title: '마지막 월급·미사용 연차수당 받기',
+        where: '전 직장 (급여명세서로 일할 계산·연차수당 확인)',
+        docs: '급여명세서, 남은 연차 일수',
+        miss: '임금, 쓰지 못한 연차수당 등 모든 금품은 퇴직일부터 14일 안에 정산해야 해요.',
+        late: '빠진 돈이 있으면 회사에 요청하고, 안 주면 고용노동부에 진정할 수 있어요. 임금 청구권은 3년이 지나면 사라져요.' });
+
+      add({ id: 'ins', kind: '회사가 할 일', lv: 3, date: nextWork(pensionDue), raw: pensionDue, title: '4대보험 자격 상실 처리됐는지 확인',
+        where: '4대사회보험 정보연계센터 또는 건강보험·국민연금 앱에서 자격 조회',
+        docs: '없음 (신고는 회사 몫)',
+        miss: '회사는 건강보험은 상실일부터 14일 안에, 국민연금·고용보험은 다음 달 15일까지 신고해야 해요. 늦으면 지역보험 전환이나 실업급여 신청이 꼬일 수 있어요.',
+        late: '아직 직장가입자로 남아 있으면 회사에 상실신고를 요청하세요.' });
+
+      if (!job) {
+        add({ id: 'nps', kind: '법정 기한', lv: 2, date: nextWork(pensionDue), raw: pensionDue, title: '국민연금 지역가입 신고 또는 납부예외 신청',
+          where: '국민연금공단 누리집·‘내 곁에 국민연금’ 앱, 전화 1355, 가까운 지사',
+          docs: '퇴사를 확인할 수 있는 서류(경력증명서 등)',
+          miss: '소득이 없으면 납부예외를 신청해 보험료를 쉴 수 있어요(그 기간은 가입기간에서 빠져요). 만 60세 이상이거나 소득 있는 배우자가 있으면 대상이 아닐 수 있어요.' +
+                (inv ? ' 실업급여를 받으면 보험료 75%를 지원하는 실업크레딧도 확인해 보세요.' : ''),
+          late: '지금이라도 신고·신청할 수 있어요. 이미 고지된 보험료 처리는 공단(1355)에 물어보세요.' });
+
+        if (dep !== 'no') {
+          add({ id: 'dep', kind: '법정 기한', lv: dep === 'yes' ? 1 : 2, date: nextWork(addDays(L, 90)), raw: addDays(L, 90), title: '가족의 건강보험 피부양자로 등록',
+            where: '국민건강보험공단(The건강보험 앱·누리집, 1577-1000) 또는 가족 회사의 담당자',
+            docs: '가족관계증명서 등 (공단에서 확인 가능하면 생략)',
+            miss: '자격이 바뀐 날(퇴사 다음 날)부터 90일 안에 신고하면 그날로 소급돼, 그사이 지역보험료를 내지 않아도 돼요.',
+            late: '지금도 등록할 수 있지만 신고한 날부터 인정돼서, 그 전까지의 지역보험료는 내야 해요.' });
+        }
+        if (dep !== 'yes') {
+          add({ id: 'cont', kind: '고지서 기준', lv: 2, date: null, sort: addDays(nextWork(pensionDue), 1), title: '첫 지역보험료 고지서 받으면 → 임의계속가입 비교',
+            where: '국민건강보험공단(The건강보험 앱·누리집, 1577-1000)',
+            docs: '없음 (공단이 직권으로 지역가입자로 바꾸고 고지서를 보내요)',
+            miss: '퇴직 전 18개월 중 직장가입 기간이 1년 이상이면 최대 36개월 직장 때 기준으로 낼 수 있어요. 첫 고지서 납부기한부터 2개월이 지나기 전에 신청해야 해요.',
+            late: '' });
+        }
+      }
+
+      if (!job && inv) {
+        var uiEnd = addDays(addMonths(Q, 12), -1);
+        add({ id: 'uiend', kind: '법정 기한', lv: 2, date: uiEnd, title: '실업급여 수급기간 끝 (퇴사 다음 날부터 12개월)',
+          where: '고용24 (남은 지급일수 확인)',
+          docs: '없음',
+          miss: '이날이 지나면 받을 날이 남아 있어도 더 받을 수 없어요. 임신·출산·육아, 질병 등으로 취업할 수 없으면 수급기간 연기를 신청할 수 있어요.',
+          late: '수급기간이 끝나 남은 구직급여는 받을 수 없어요.' });
+      }
+
+      var taxRaw = new Date(L.getFullYear() + 1, 4, 31);
+      add({ id: 'tax', kind: '법정 기한', lv: 2, date: nextWork(taxRaw), raw: taxRaw,
+        title: job ? '연말정산: 새 회사에 합산 또는 5월 종합소득세 신고' : '5월 종합소득세 신고로 연말정산 마무리',
+        where: '홈택스·손택스 (종합소득세 신고)' + (job ? ', 같은 해 새 회사에 입사하면 새 회사 연말정산' : ''),
+        docs: '전 직장 근로소득 원천징수영수증, 의료비·카드 등 공제 자료',
+        miss: '퇴사할 때 회사가 하는 연말정산은 기본공제 위주라 빠진 공제가 많아요. ' + (job ? '같은 해에 입사하면 새 회사에 전 직장 원천징수영수증을 내 합산하고, 해를 넘겨 입사하면 5월에 직접 신고해요.' : (L.getFullYear() + 1) + '년 5월 1일~31일 종합소득세 신고 때 반영하면 환급받을 수 있어요.'),
+        late: '기한이 지나도 5년 안에는 경정청구 등으로 빠진 공제를 돌려받을 수 있어요.' });
+
+      items.forEach(function (it) { it.key = it.date || it.sort; });
+      items.sort(function (a, b) { return a.key - b.key || a.lv - b.lv; });
+      return items;
+    }
+
+    function dlabel(n) { return n === 0 ? '오늘까지' : n > 0 ? 'D-' + n : -n + '일 지남'; }
+
+    function render(L) {
+      var t = today(), items = build(L), html = '', copy = [], next = null, pastCount = 0, outside = false;
+      items.forEach(function (it) {
+        var n = it.date ? dayDiff(t, it.date) : null, past = n !== null && n < 0;
+        if (past) pastCount++;
+        if (!past && n !== null && !next && it.kind !== '권장' && it.kind !== '회사가 할 일') next = { it: it, n: n };
+        if (it.date && !HOL[it.date.getFullYear()]) outside = true;
+        var lvTxt = it.lv === 1 ? '꼭 챙기기' : it.lv === 2 ? '중요' : '참고';
+        var ddCls = past ? ' krs-dd-past' : (n !== null && n <= 7 ? ' krs-dd-soon' : '');
+        var on = !!done[it.id];
+        html += '<li class="krs-item' + (past ? ' krs-past' : '') + (on ? ' krs-done' : '') + '">' +
+          '<input type="checkbox" class="krs-check" data-id="' + it.id + '"' + (on ? ' checked' : '') + ' aria-label="' + esc(it.title) + ' 완료">' +
+          '<div class="krs-item-body"><div class="krs-item-top">' +
+          '<span class="krs-date">' + (it.date ? fmt(it.date) : '고지서 받으면') + '</span>' +
+          (n !== null ? '<span class="krs-dd' + ddCls + '">' + (past ? dlabel(n) : (it.kind === '권장' && n >= 0 ? (n === 0 ? '오늘' : 'D-' + n) : dlabel(n))) + '</span>' : '') +
+          '<span class="krs-badge krs-b' + it.lv + '">' + lvTxt + '</span>' +
+          '<span class="krs-badge">' + it.kind + '</span></div>' +
+          '<p class="krs-item-t">' + esc(it.title) + '</p>' +
+          (it.raw && it.date && dayDiff(it.raw, it.date) > 0 ? '<p class="krs-shift">원래 기한 ' + fmt(it.raw) + ' → 휴일이라 다음 평일로 미뤘어요.</p>' : '') +
+          '<div class="krs-rows"><p><b>어디서</b>' + esc(it.where) + '</p><p><b>필요 서류</b>' + esc(it.docs) + '</p><p><b>놓치면</b>' + esc(it.miss) + '</p></div></div>' +
+          (past && it.late ? '<p class="krs-late">지났어요. ' + esc(it.late) + '</p>' : '') +
+          '</li>';
+        copy.push((on ? '☑ ' : '☐ ') + (it.date ? fmt(it.date) : '고지서 받으면') + ' ' + it.title + ' [' + it.kind + (n !== null ? ', ' + dlabel(n) : '') + ']');
+      });
+      listEl.innerHTML = '<p class="krs-sec">할 일 ' + items.length + '개 · 날짜순</p><ul class="krs-list">' + html + '</ul>';
+
+      if (next) {
+        $('[data-main-label]').textContent = '다음 기한까지';
+        $('[data-big]').textContent = next.n === 0 ? '오늘' : 'D-' + next.n;
+        $('[data-big-sub]').innerHTML = esc(next.it.title) + ' · <span class="krs-nw">' + fmt(next.it.date) + '</span>';
+      } else {
+        $('[data-main-label]').textContent = '남은 기한';
+        $('[data-big]').textContent = '없음';
+        $('[data-big-sub]').textContent = '날짜가 정해진 기한이 모두 지났어요.';
+      }
+      $('[data-others]').innerHTML = '퇴사일 <span class="krs-nw">' + fmt(L) + '</span> · 퇴직일(자격 상실일) <span class="krs-nw">' + fmt(addDays(L, 1)) + '</span>' +
+        (pastCount ? '<br>이미 지난 일 ' + pastCount + '개' : '');
+      $('[data-note]').textContent = outside ? '2026·2027년이 아닌 날짜는 토·일과 양력 공휴일만 반영했어요(설·추석 등 음력 공휴일과 대체공휴일 미반영).' : '';
+      $('[data-note]').hidden = !outside;
+
+      lastText = '[퇴사 후 할 일 체크리스트]\n퇴사일(마지막 근무일): ' + fmt(L) + '\n퇴사 사유: ' + (state.reason === 'inv' ? '권고사직·계약만료 등' : '개인 사정') +
+        ' / 재취업: ' + (state.job === 'yes' ? '정해짐' : '아직 없음') + '\n\n' + copy.join('\n') + '\n\n(토·일·공휴일이면 다음 평일 기준, 기관에서 최종 확인)';
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('krs-show');
+      msg.textContent = text || '';
+      lastI.classList.toggle('krs-bad', !!bad);
+    }
+
+    function calc() {
+      if (!lastI.value) return hide('');
+      var L = parse(lastI.value);
+      if (!L) return hide('날짜를 다시 확인해 주세요.', true);
+      if (lastI.value < MIN || lastI.value > MAX) return hide('2025. 1. 1.부터 2027. 12. 31. 사이 날짜를 넣어 주세요.', true);
+      msg.textContent = '';
+      lastI.classList.remove('krs-bad');
+      render(L);
+      result.classList.add('krs-show');
+    }
+
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var b = e.target.closest('.krs-chip');
+        if (!b) return;
+        state[g.getAttribute('data-group')] = b.getAttribute('data-v');
+        Array.prototype.forEach.call(g.querySelectorAll('.krs-chip'), function (c) {
+          var on = c === b; c.classList.toggle('krs-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        calc();
+      });
+    });
+
+    listEl.addEventListener('change', function (e) {
+      var c = e.target;
+      if (!c.classList || !c.classList.contains('krs-check')) return;
+      done[c.getAttribute('data-id')] = c.checked;
+      var li = c.closest('.krs-item');
+      if (li) li.classList.toggle('krs-done', c.checked);
+      var L = parse(lastI.value);
+      if (L) { var y = window.scrollY; render(L); window.scrollTo(0, y); var again = root.querySelector('.krs-check[data-id="' + c.getAttribute('data-id') + '"]'); if (again) again.focus(); }
+    });
+
+    lastI.addEventListener('input', calc);
+    lastI.addEventListener('change', calc);
+
+    function setToday() {
+      var t = today();
+      lastI.value = t.getFullYear() + '-' + ('0' + (t.getMonth() + 1)).slice(-2) + '-' + ('0' + t.getDate()).slice(-2);
+    }
+
+    $('[data-reset]').addEventListener('click', function () {
+      done = {}; setToday();
+      state = { reason: 'inv', job: 'no', dep: 'unk' };
+      $$('[data-group]').forEach(function (g) {
+        Array.prototype.forEach.call(g.querySelectorAll('.krs-chip'), function (c, i) {
+          c.classList.toggle('krs-on', i === 0); c.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+        });
+      });
+      calc(); lastI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function ok() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); ok(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(ok, fallback);
+      else fallback();
+    });
+
+    setToday();
+    calc();
+  })();
+  </script>
+</div>
+<!-- 퇴사 후 할 일 타임라인 위젯 끝 -->
+<h2>기한은 이렇게 계산해요</h2>
+<p>퇴사 관련 기한은 대부분 <strong>마지막 근무일의 다음 날</strong>(퇴직일, 4대보험 자격 상실일)을 기준으로 세요. 법에 따로 정한 계산법이 없으면 민법의 기간 계산을 따르고, 마지막 날이 토요일이나 공휴일이면 그다음 날까지로 늘어나요.</p>
+<ul>
+  <li><strong>퇴직금·마지막 월급·미사용 연차수당</strong> = 마지막 근무일 + 14일 (근로자퇴직급여 보장법 제9조, 근로기준법 제36조)</li>
+  <li><strong>국민연금 지역가입 신고·납부예외</strong> = 퇴직일이 속한 달의 다음 달 15일</li>
+  <li><strong>건강보험 피부양자 등록</strong> = 퇴직일부터 90일째 되는 날 (= 마지막 근무일 + 90일)</li>
+  <li><strong>실업급여 수급기간 끝</strong> = 퇴직일부터 12개월이 되는 날의 전날 (휴일이어도 미뤄지지 않아요)</li>
+  <li><strong>중도 퇴사 연말정산</strong> = 다음 해 5월 31일 종합소득세 신고 마감 (재취업하지 않은 경우)</li>
+</ul>
+<p>예를 들어 <strong>2026년 11월 30일(월)</strong>까지 일했다면 퇴직일은 12월 1일(화)이고, 기한은 이렇게 나와요.</p>
+<ul>
+  <li>퇴직금·마지막 월급: 11월 30일 + 14일 = <strong>2026. 12. 14.(월)</strong></li>
+  <li>국민연금 신고: 12월의 다음 달 15일 = <strong>2027. 1. 15.(금)</strong></li>
+  <li>피부양자 등록: 11월 30일 + 90일 = 2027. 2. 28.(일) → 일요일, 3월 1일 삼일절이라 <strong>2027. 3. 2.(화)</strong></li>
+  <li>실업급여 수급기간: 2026. 12. 1.부터 <strong>2027. 11. 30.(화)</strong>까지</li>
+  <li>종합소득세 신고: <strong>2027. 5. 31.(월)</strong>까지</li>
+</ul>
+
+<h2>퇴사 후 할 일 한눈에 보기</h2>
+<table>
+  <thead><tr><th>할 일</th><th>기한</th><th>어디서</th><th>근거</th></tr></thead>
+  <tbody>
+    <tr><td>IRP 계좌 만들어 회사에 알려 주기</td><td>퇴직금 받기 전</td><td>은행·증권사</td><td>근로자퇴직급여 보장법 제9조 제2항 (만 55세 전 퇴직은 IRP 이전이 원칙)</td></tr>
+    <tr><td>이직확인서 처리 요청</td><td>퇴사 직후 (회사는 요청받고 10일 안에 제출)</td><td>전 직장 → 고용24에서 조회</td><td>고용보험법 시행규칙</td></tr>
+    <tr><td>구직신청·실업급여 신청</td><td>퇴사 다음 날부터 바로</td><td>고용24, 관할 고용센터</td><td>고용보험법 제48조 (수급기간 12개월)</td></tr>
+    <tr><td>퇴직금 받기</td><td>퇴직일부터 14일</td><td>전 직장, 퇴직연금 금융회사</td><td>근로자퇴직급여 보장법 제9조</td></tr>
+    <tr><td>마지막 월급·연차수당 받기</td><td>퇴직일부터 14일</td><td>전 직장</td><td>근로기준법 제36조</td></tr>
+    <tr><td>4대보험 상실신고 (회사 몫)</td><td>건강보험 14일, 국민연금·고용보험 다음 달 15일</td><td>회사 → 각 공단</td><td>국민건강보험법 제10조 등</td></tr>
+    <tr><td>국민연금 지역가입 신고·납부예외</td><td>다음 달 15일</td><td>국민연금공단 (1355)</td><td>국민연금법 시행규칙</td></tr>
+    <tr><td>건강보험 피부양자 등록</td><td>퇴직일부터 90일</td><td>국민건강보험공단 (1577-1000)</td><td>국민건강보험법 시행규칙 제2조</td></tr>
+    <tr><td>건강보험 임의계속가입 신청</td><td>첫 지역보험료 납부기한부터 2개월</td><td>국민건강보험공단</td><td>국민건강보험법 제110조</td></tr>
+    <tr><td>종합소득세 신고 (연말정산 마무리)</td><td>다음 해 5월 1일~31일</td><td>홈택스</td><td>소득세법 제70조</td></tr>
+  </tbody>
+</table>
+
+<h2>실업급여: 하루라도 빨리 신청해야 하는 이유</h2>
+<p>실업급여(구직급여)는 퇴직일부터 <strong>12개월 안</strong>에서 소정급여일수(120~270일)만큼 받아요. 신청이 늦어지면 12개월이 끝나는 날까지 남은 날만 받을 수 있고, 남은 일수는 사라져요. 고용24에서 구직신청을 하고 수급자격 신청자 교육을 들은 뒤 거주지 관할 고용센터에 가서 수급자격을 신청하면 돼요. 회사가 이직확인서를 내야 심사가 진행되니 퇴사하면서 미리 부탁해 두세요.</p>
+<p>권고사직, 계약기간 만료, 경영상 해고처럼 본인 뜻이 아닌 퇴사가 기본 대상이에요. 개인 사정으로 그만뒀다면 원칙적으로 받을 수 없지만 임금 체불, 회사 이전으로 통근이 어려워진 경우처럼 정당한 사유가 인정되면 받을 수 있어요. 임신·출산·육아, 질병 등으로 당장 일할 수 없다면 수급기간 연기를 신청할 수 있어요.</p>
+
+<h2>건강보험: 피부양자, 지역가입, 임의계속가입 중 고르기</h2>
+<p>퇴사하면 직장가입자 자격이 사라지고, 공단이 직권으로 지역가입자로 바꿔 보험료 고지서를 보내요. 이때 고를 수 있는 길은 세 가지예요.</p>
+<ul>
+  <li><strong>가족의 피부양자:</strong> 직장에 다니는 배우자·부모·자녀가 있고 내 소득·재산이 기준 이하면 보험료를 내지 않아요. 퇴직일부터 90일 안에 신고하면 퇴직일로 소급돼요.</li>
+  <li><strong>임의계속가입:</strong> 퇴직 전 18개월 동안 직장가입 기간이 1년 이상이면 신청할 수 있어요. 최대 36개월 동안 직장 다닐 때 기준으로 보험료를 내요. 첫 지역보험료 고지서의 납부기한부터 2개월이 지나기 전에 신청해야 해요.</li>
+  <li><strong>지역가입자:</strong> 위 두 가지에 해당하지 않으면 소득·재산으로 매긴 지역보험료를 내요.</li>
+</ul>
+<p>지역보험료가 직장 때보다 많이 나오면 임의계속가입이 유리할 수 있으니, 첫 고지서를 받으면 공단 누리집이나 고객센터에서 두 금액을 비교해 보세요.</p>
+
+<h2>국민연금·퇴직금·연말정산</h2>
+<p>만 60세 전에 퇴사하고 소득이 없으면 국민연금공단에 지역가입자 신고를 하면서 <strong>납부예외</strong>를 함께 신청할 수 있어요. 납부예외 기간은 보험료를 안 내는 대신 가입기간에서 빠져요. 실업급여를 받는 동안에는 보험료 일부를 지원하는 실업크레딧도 있어요.</p>
+<p>퇴직금은 만 55세 전에 퇴사하면 IRP 계좌로 받는 게 원칙이에요. IRP로 받으면 퇴직소득세를 바로 떼지 않고 나중에 꺼낼 때 내고, 연금으로 나눠 받으면 세금이 줄어요. 현금으로 받았더라도 받은 날부터 60일 안에 IRP에 넣으면 떼인 세금을 돌려받을 수 있어요.</p>
+<p>퇴사할 때 회사가 하는 연말정산은 의료비·카드 사용액 같은 공제가 빠진 경우가 많아요. 그해 안에 재취업하면 새 회사에 전 직장 근로소득 원천징수영수증을 내 합산하고, 재취업하지 않았다면 다음 해 5월 종합소득세 신고 때 빠진 공제를 넣어 환급받을 수 있어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>퇴사일과 퇴직일은 다른가요?</h3>
+<p>네. 보통 퇴사일은 마지막으로 근무한 날을 말하고, 퇴직일은 그다음 날이에요. 4대보험 자격도 퇴직일에 상실돼요. 11월 30일까지 일했다면 퇴직일은 12월 1일이고, 퇴직금 지급 기한은 12월 14일까지예요.</p>
+<h3>실업급여는 퇴사하고 언제까지 신청해야 하나요?</h3>
+<p>법에 정해진 신청 마감일은 없지만, 실업급여는 퇴직일부터 12개월 안에서만 받을 수 있어요. 늦게 신청할수록 받을 수 있는 날이 줄어들고 12개월이 지나면 남은 일수는 사라지니, 퇴사하면 바로 고용24에서 구직신청부터 하는 게 좋아요.</p>
+<h3>퇴사하면 건강보험료는 어떻게 되나요?</h3>
+<p>퇴사하면 지역가입자로 바뀌어 소득·재산 기준으로 보험료가 나와요. 가족의 피부양자가 될 수 있으면 퇴직일부터 90일 안에 등록하고, 지역보험료가 많이 나오면 첫 고지서 납부기한부터 2개월 안에 임의계속가입을 신청해 최대 36개월 동안 직장 다닐 때 기준으로 낼 수 있어요.</p>
+<h3>소득이 없는데 국민연금도 내야 하나요?</h3>
+<p>만 60세 전에 퇴사해 소득이 없으면 퇴직일이 속한 달의 다음 달 15일까지 국민연금공단에 납부예외를 신청할 수 있어요. 그동안은 보험료를 안 내는 대신 가입기간에서 빠져요. 소득이 있는 배우자가 있으면 가입 대상이 아닐 수 있으니 공단(1355)에 확인해 보세요.</p>
+<h3>퇴사한 해 연말정산은 어떻게 하나요?</h3>
+<p>그해 안에 다른 회사에 들어가면 새 회사에 전 직장 근로소득 원천징수영수증을 내서 연말정산 때 합산해요. 재취업하지 않았다면 다음 해 5월 1일부터 31일까지 홈택스에서 종합소득세를 신고하면서 빠진 공제를 넣어 정산해요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:unemployment-benefit-calculator}}">실업급여 계산기</a>: 하루 지급액과 받는 기간 미리 계산</li>
+  <li><a href="{{LINK:severance-calculator}}">퇴직금 계산기</a>: 입사일·퇴사일로 퇴직금 바로 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "퇴사일과 퇴직일은 다른가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네. 보통 퇴사일은 마지막으로 근무한 날을 말하고, 퇴직일은 그다음 날이에요. 4대보험 자격도 퇴직일에 상실돼요. 11월 30일까지 일했다면 퇴직일은 12월 1일이고, 퇴직금 지급 기한은 12월 14일까지예요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "실업급여는 퇴사하고 언제까지 신청해야 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "법에 정해진 신청 마감일은 없지만, 실업급여는 퇴직일부터 12개월 안에서만 받을 수 있어요. 늦게 신청할수록 받을 수 있는 날이 줄어들고 12개월이 지나면 남은 일수는 사라지니, 퇴사하면 바로 고용24에서 구직신청부터 하는 게 좋아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "퇴사하면 건강보험료는 어떻게 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "퇴사하면 지역가입자로 바뀌어 소득·재산 기준으로 보험료가 나와요. 가족의 피부양자가 될 수 있으면 퇴직일부터 90일 안에 등록하고, 지역보험료가 많이 나오면 첫 고지서 납부기한부터 2개월 안에 임의계속가입을 신청해 최대 36개월 동안 직장 다닐 때 기준으로 낼 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "소득이 없는데 국민연금도 내야 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "만 60세 전에 퇴사해 소득이 없으면 퇴직일이 속한 달의 다음 달 15일까지 국민연금공단에 납부예외를 신청할 수 있어요. 그동안은 보험료를 안 내는 대신 가입기간에서 빠져요. 소득이 있는 배우자가 있으면 가입 대상이 아닐 수 있으니 공단(1355)에 확인해 보세요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "퇴사한 해 연말정산은 어떻게 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "그해 안에 다른 회사에 들어가면 새 회사에 전 직장 근로소득 원천징수영수증을 내서 연말정산 때 합산해요. 재취업하지 않았다면 다음 해 5월 1일부터 31일까지 홈택스에서 종합소득세를 신고하면서 빠진 공제를 넣어 정산해요."
+   }
+  }
+ ]
+}
+</script>
