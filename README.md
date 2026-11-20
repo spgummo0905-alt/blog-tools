@@ -39,6 +39,7 @@ tools/
 | 청약 가점 계산기 (84점 만점, 점수 오르는 날) | `tools/subscription-score-calculator` | 완성 |
 | 주택 취득세 계산기 (1주택·다주택 중과·생애최초 감면) | `tools/acquisition-tax-calculator` | 완성 |
 | 자동차세 계산기 (배기량·차령·연납 할인) | `tools/car-tax-calculator` | 완성 |
+| 2027년 손없는날 달력 (이사하기 좋은 날·주말 손없는날) | `tools/moving-days-2027` | 완성 |
 
 ## 작업 규칙
 
