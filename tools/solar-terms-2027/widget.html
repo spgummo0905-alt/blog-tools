@@ -1,0 +1,339 @@
+<!-- 2027 24절기·기념일 달력 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kse" data-kse>
+  <style>
+    .kse{--kse-accent:#3b6ef5;--kse-accent-soft:#eef3ff;--kse-text:#1d2433;--kse-sub:#6b7385;--kse-line:#e3e7ef;--kse-bg:#fff;--kse-red:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kse-line);border-radius:20px;background:var(--kse-bg);
+      color:var(--kse-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kse [hidden]{display:none!important}
+    .kse *,.kse *::before,.kse *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kse .kse-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kse .kse-desc{margin-top:4px;font-size:14px;color:var(--kse-sub)}
+    .kse .kse-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kse-text)}
+    .kse .kse-row{display:flex;gap:8px}
+    .kse .kse-field{position:relative;flex:1}
+    .kse .kse-field.kse-y{flex:1.4}
+    .kse .kse-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kse-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kse-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kse .kse-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kse .kse-in:focus{border-color:var(--kse-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kse .kse-in.kse-bad{border-color:var(--kse-red)}
+    .kse .kse-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kse-sub);pointer-events:none}
+    .kse .kse-base{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px;font-size:12.5px;color:var(--kse-sub)}
+    .kse .kse-link{flex:0 0 auto;border:0;background:none;color:var(--kse-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .kse .kse-msg{min-height:20px;margin-top:8px;font-size:13px;color:var(--kse-red)}
+    .kse .kse-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kse .kse-result.kse-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kse .kse-result-inner{overflow:hidden}
+    .kse .kse-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+    .kse .kse-main{padding:16px 14px;border-radius:16px;background:var(--kse-accent-soft);text-align:center}
+    .kse .kse-main-label{font-size:13px;color:var(--kse-sub)}
+    .kse .kse-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--kse-accent);line-height:1.2;white-space:nowrap}
+    .kse .kse-main-name{margin-top:2px;font-size:16px;font-weight:700}
+    .kse .kse-main-sub{margin-top:2px;font-size:13px;color:var(--kse-sub)}
+    .kse .kse-nw{white-space:nowrap}
+    .kse .kse-sep{height:1px;margin:20px 0 0;background:var(--kse-line);border:0}
+    .kse .kse-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px}
+    .kse .kse-arrow{width:44px;height:44px;border:1.5px solid var(--kse-line);border-radius:12px;background:#fff;color:var(--kse-text);font-size:18px;font-weight:700;
+      cursor:pointer;transition:background .2s,transform .1s}
+    .kse .kse-arrow:hover{background:#f4f6fa}
+    .kse .kse-arrow:active{transform:scale(.96)}
+    .kse .kse-arrow:disabled{opacity:.35;cursor:default;transform:none;background:#fff}
+    .kse .kse-month{font-size:18px;font-weight:800;letter-spacing:-.02em}
+    .kse .kse-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kse .kse-tab{height:34px;border:0;border-radius:10px;background:none;color:var(--kse-sub);font-size:13px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s}
+    .kse .kse-tab:hover{color:var(--kse-text)}
+    .kse .kse-tab.kse-on{background:#fff;color:var(--kse-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kse .kse-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+    .kse .kse-chip{height:32px;padding:0 12px;border:1.5px solid var(--kse-line);border-radius:999px;background:#fff;color:var(--kse-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+    .kse .kse-chip:hover{border-color:#c9d3ea;color:var(--kse-text)}
+    .kse .kse-chip.kse-on{border-color:var(--kse-accent);background:var(--kse-accent-soft);color:var(--kse-accent)}
+    .kse .kse-list{margin-top:10px;list-style:none}
+    .kse .kse-item{display:block;width:100%;margin-top:6px;padding:10px 12px;border:1px solid var(--kse-line);border-radius:12px;background:#fff;
+      text-align:left;color:var(--kse-text);cursor:pointer;transition:border-color .2s,background .2s}
+    .kse .kse-item:hover{border-color:#c9d3ea;background:#fafbfe}
+    .kse .kse-item.kse-on{border-color:var(--kse-accent);background:#fafcff}
+    .kse .kse-item.kse-past{opacity:.6}
+    .kse .kse-itop{display:flex;align-items:center;gap:8px}
+    .kse .kse-date{flex:0 0 auto;min-width:64px;font-size:14px;font-weight:700;white-space:nowrap}
+    .kse .kse-date.kse-red{color:var(--kse-red)}
+    .kse .kse-name{flex:1;font-size:14.5px;font-weight:600}
+    .kse .kse-tag{flex:0 0 auto;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:700;white-space:nowrap}
+    .kse .kse-t-term{background:#e8f6ef;color:#23865a}
+    .kse .kse-t-sesi{background:#fff3e3;color:#b4690e}
+    .kse .kse-t-hol{background:#fff1f1;color:var(--kse-red)}
+    .kse .kse-t-memo{background:var(--kse-accent-soft);color:var(--kse-accent)}
+    .kse .kse-t-day{background:#fcefff;color:#a03fb8}
+    .kse .kse-idesc{display:block;margin-top:6px;font-size:13px;color:var(--kse-sub)}
+    .kse .kse-none{padding:12px;border:1px dashed var(--kse-line);border-radius:12px;font-size:13.5px;color:var(--kse-sub);text-align:center}
+    .kse .kse-note{margin-top:12px;font-size:12.5px;color:var(--kse-sub)}
+    .kse .kse-actions{display:flex;gap:8px;margin-top:14px}
+    .kse .kse-btn{flex:1;height:44px;border:1.5px solid var(--kse-line);border-radius:12px;background:#fff;color:var(--kse-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kse .kse-btn:hover{background:#f4f6fa}
+    .kse .kse-btn:active{transform:scale(.98)}
+    .kse .kse-btn.kse-primary{border-color:var(--kse-accent);background:var(--kse-accent);color:#fff}
+    .kse .kse-btn.kse-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kse{padding:18px;border-radius:16px}.kse .kse-big{font-size:30px}.kse .kse-in{font-size:17px}.kse .kse-chip{padding:0 10px}}
+    @media (prefers-reduced-motion:reduce){.kse .kse-result,.kse .kse-in,.kse .kse-btn,.kse .kse-chip,.kse .kse-tab,.kse .kse-arrow,.kse .kse-item{transition:none}}
+  </style>
+
+  <p class="kse-title">2027년 24절기 · 기념일 달력</p>
+  <p class="kse-desc">다음 절기와 기념일까지 며칠 남았는지 보고, 달마다 절기·세시·공휴일·기념일·데이를 골라 볼 수 있어요.</p>
+
+  <label class="kse-label" for="kse-y">기준일</label>
+  <div class="kse-row">
+    <div class="kse-field kse-y"><input class="kse-in" id="kse-y" data-y inputmode="numeric" maxlength="4" placeholder="2027" aria-label="기준 연도" aria-describedby="kse-msg"><span class="kse-unit">년</span></div>
+    <div class="kse-field"><input class="kse-in" data-m inputmode="numeric" maxlength="2" placeholder="1" aria-label="기준 월" aria-describedby="kse-msg"><span class="kse-unit">월</span></div>
+    <div class="kse-field"><input class="kse-in" data-d inputmode="numeric" maxlength="2" placeholder="1" aria-label="기준 일" aria-describedby="kse-msg"><span class="kse-unit">일</span></div>
+  </div>
+  <div class="kse-base"><span>오늘 날짜가 들어 있어요. 다른 날을 기준으로 볼 수도 있어요.</span><button type="button" class="kse-link" data-today>오늘로</button></div>
+
+  <p class="kse-msg" id="kse-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kse-result" data-result aria-live="polite">
+    <div class="kse-result-inner">
+      <div class="kse-grid">
+        <div class="kse-main"><p class="kse-main-label">다음 절기</p><p class="kse-big" data-t-dd>D-0</p><p class="kse-main-name" data-t-name></p><p class="kse-main-sub" data-t-date></p></div>
+        <div class="kse-main"><p class="kse-main-label">다음 기념일</p><p class="kse-big" data-e-dd>D-0</p><p class="kse-main-name" data-e-name></p><p class="kse-main-sub" data-e-date></p></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="kse-sep">
+  <div class="kse-nav">
+    <button type="button" class="kse-arrow" data-prev aria-label="이전 달">‹</button>
+    <p class="kse-month" data-month-label aria-live="polite">2027년 1월</p>
+    <button type="button" class="kse-arrow" data-next aria-label="다음 달">›</button>
+  </div>
+  <div class="kse-tabs" role="tablist" aria-label="월 선택" data-tabs></div>
+  <div class="kse-chips" role="group" aria-label="종류 고르기" data-chips></div>
+  <ul class="kse-list" data-list></ul>
+  <p class="kse-note">항목을 누르면 뜻과 풍습이 나와요. 절기·음력 날짜는 한국 표준시 기준이며, 공휴일은 2027년 월력요항 기준이에요. 임시공휴일이 지정되면 바뀔 수 있어요.</p>
+  <div class="kse-actions">
+    <button type="button" class="kse-btn" data-reset>다시 입력</button>
+    <button type="button" class="kse-btn kse-primary" data-copy>결과 복사</button>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kse]');
+    if (!root || root.__kse) return;
+    root.__kse = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var YEAR = 2027, WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var CAT = { term: '절기', sesi: '세시', hol: '공휴일', memo: '기념일', day: '데이' };
+    // [월, 일, 종류(공백으로 여러 개), 이름, 한 줄 설명]
+    // 절기: 태양 황경 15° 배수 (한국 표준시 날짜). 음력 세시: 2027년 음력 초하루 1/1=2/7, 3/1=4/7, 5/1=6/5, 6/1=7/4, 7/1=8/2, 9/1=9/30
+    var EV = [
+      [1, 1, 'hol', '신정', '양력 새해 첫날이에요. 대체공휴일은 없어요.'],
+      [1, 5, 'term', '소한', '‘작은 추위’라는 뜻이지만 실제로는 대한보다 더 추운 때가 많아요.'],
+      [1, 20, 'term', '대한', '‘큰 추위’라는 뜻으로, 겨울을 마무리하는 마지막 절기예요.'],
+      [2, 4, 'term', '입춘', '봄이 시작되는 절기예요. 대문에 ‘입춘대길(立春大吉)’ 입춘첩을 붙여요.'],
+      [2, 6, 'hol', '설날 연휴', '설 연휴 첫날(음력 12월 30일, 섣달그믐)이에요.'],
+      [2, 7, 'hol sesi', '설날', '음력 1월 1일. 차례를 지내고 세배하며 떡국을 먹어요.'],
+      [2, 8, 'hol', '설날 연휴', '설 연휴 마지막 날(음력 1월 2일)이에요.'],
+      [2, 9, 'hol', '대체공휴일(설날)', '설날이 일요일과 겹쳐 하루 더 쉬어요.'],
+      [2, 14, 'day', '밸런타인데이', '좋아하는 사람에게 초콜릿을 주며 마음을 전하는 날이에요.'],
+      [2, 19, 'term', '우수', '눈이 녹아 비가 되고 얼었던 땅이 풀리기 시작해요.'],
+      [2, 21, 'sesi', '정월대보름', '음력 1월 15일. 부럼을 깨고 오곡밥·묵은 나물을 먹으며 달맞이를 해요.'],
+      [3, 1, 'hol', '삼일절', '1919년 3·1 운동을 기념하는 국경일이에요.'],
+      [3, 3, 'day', '삼겹살데이', '3이 두 번 겹친다는 뜻에서 삼겹살을 먹는 날이에요.'],
+      [3, 6, 'term', '경칩', '겨울잠을 자던 개구리가 깨어난다는 절기예요.'],
+      [3, 14, 'day', '화이트데이', '사탕을 주고받는 날이에요.'],
+      [3, 21, 'term', '춘분', '낮과 밤의 길이가 거의 같아지고, 이후 낮이 점점 길어져요.'],
+      [4, 5, 'term memo', '청명 · 식목일', '청명은 하늘이 맑아지는 절기예요. 같은 날 식목일(나무 심는 날, 공휴일 아님)이에요.'],
+      [4, 6, 'sesi', '한식', '동지에서 105일째 되는 날. 불을 쓰지 않고 찬 음식을 먹으며 성묘해요.'],
+      [4, 9, 'sesi', '삼짇날', '음력 3월 3일. 강남 갔던 제비가 돌아온다는 날로, 진달래 화전을 부쳐 먹어요.'],
+      [4, 14, 'day', '블랙데이', '연인이 없는 사람끼리 짜장면을 먹는다는 날이에요.'],
+      [4, 20, 'term', '곡우', '곡식을 기름지게 하는 봄비가 내리는 때예요. 볍씨를 담가요.'],
+      [5, 1, 'hol', '노동절', '2026년부터 공휴일이 된 노동절이에요. 2027년은 토요일이에요.'],
+      [5, 3, 'hol', '대체공휴일(노동절)', '노동절이 토요일과 겹쳐 월요일에 쉬어요.'],
+      [5, 5, 'hol', '어린이날', '어린이를 위한 공휴일이에요.'],
+      [5, 6, 'term', '입하', '여름이 시작되는 절기예요.'],
+      [5, 8, 'memo', '어버이날', '부모님께 카네이션을 드리며 감사하는 날이에요. 공휴일은 아니에요.'],
+      [5, 13, 'hol', '부처님오신날', '음력 4월 8일, 석가탄신일이에요. 연등을 달아요.'],
+      [5, 14, 'day', '로즈데이', '연인끼리 장미꽃을 주고받는 날이에요.'],
+      [5, 15, 'memo', '스승의 날', '선생님께 감사하는 날이에요(세종대왕 탄신일).'],
+      [5, 17, 'memo', '성년의 날', '5월 셋째 월요일. 만 19세가 되는 청년의 성년을 축하해요.'],
+      [5, 21, 'term memo', '소만 · 부부의 날', '소만은 햇볕이 풍부해 만물이 자라 가득 차는 절기예요. 같은 날 부부의 날(둘이 하나 된다는 뜻의 5월 21일)이에요.'],
+      [6, 6, 'term hol', '망종 · 현충일', '망종은 보리를 베고 모를 심는 절기예요. 같은 날 현충일(나라를 위해 희생한 분들을 추모)이에요.'],
+      [6, 9, 'sesi', '단오', '음력 5월 5일. 창포물에 머리를 감고 그네·씨름을 즐기며 수리취떡을 먹어요.'],
+      [6, 21, 'term', '하지', '1년 중 낮이 가장 긴 날이에요. 이 무렵부터 장마가 시작돼요.'],
+      [7, 7, 'term', '소서', '‘작은 더위’라는 뜻으로, 본격적인 장마철이에요.'],
+      [7, 17, 'hol', '제헌절', '헌법 공포를 기념하는 날로, 2026년부터 다시 공휴일이 됐어요.'],
+      [7, 18, 'sesi', '유두', '음력 6월 15일. 동쪽으로 흐르는 물에 머리를 감아 더위와 액운을 씻어요.'],
+      [7, 19, 'hol', '대체공휴일(제헌절)', '제헌절이 토요일과 겹쳐 월요일에 쉬어요.'],
+      [7, 20, 'sesi', '초복', '하지 뒤 셋째 경일(庚日). 삼복더위의 시작으로 삼계탕 같은 보양식을 먹어요.'],
+      [7, 23, 'term', '대서', '‘큰 더위’라는 뜻으로, 1년 중 가장 더운 때예요.'],
+      [7, 30, 'sesi', '중복', '하지 뒤 넷째 경일로, 초복에서 10일 뒤예요.'],
+      [8, 8, 'term sesi', '입추 · 칠석', '입추는 가을이 시작되는 절기예요. 같은 날 칠석(음력 7월 7일)은 견우와 직녀가 오작교에서 만나는 날이에요.'],
+      [8, 9, 'sesi', '말복', '입추 뒤 첫 경일로, 삼복의 마지막 날이에요. 2027년은 중복과 10일 간격이에요.'],
+      [8, 15, 'hol', '광복절', '1945년 광복과 1948년 정부 수립을 기념하는 국경일이에요.'],
+      [8, 16, 'hol sesi', '대체공휴일(광복절) · 백중', '광복절이 일요일과 겹쳐 쉬는 날이에요. 같은 날 백중(음력 7월 15일)은 머슴날이라고도 하며 조상께 제를 올려요.'],
+      [8, 23, 'term', '처서', '더위가 그치고 선선해지기 시작하는 절기예요.'],
+      [9, 8, 'term', '백로', '풀잎에 흰 이슬이 맺히기 시작하는 때예요.'],
+      [9, 14, 'hol', '추석 연휴', '추석 연휴 첫날(음력 8월 14일)이에요.'],
+      [9, 15, 'hol sesi', '추석', '음력 8월 15일, 한가위. 햇곡식으로 차례를 지내고 송편을 빚어요.'],
+      [9, 16, 'hol', '추석 연휴', '추석 연휴 마지막 날(음력 8월 16일)이에요.'],
+      [9, 23, 'term', '추분', '낮과 밤의 길이가 거의 같아지고, 이후 밤이 점점 길어져요.'],
+      [10, 1, 'memo', '국군의 날', '국군을 기념하는 날이에요. 2027년은 공휴일이 아니에요.'],
+      [10, 3, 'hol', '개천절', '단군이 나라를 세운 것을 기념하는 국경일이에요.'],
+      [10, 4, 'hol', '대체공휴일(개천절)', '개천절이 일요일과 겹쳐 월요일에 쉬어요.'],
+      [10, 8, 'term sesi', '한로 · 중양절', '한로는 찬 이슬이 맺히는 절기예요. 같은 날 중양절(음력 9월 9일)에는 국화전을 부쳐 먹어요.'],
+      [10, 9, 'hol', '한글날', '훈민정음 반포를 기념하는 국경일이에요.'],
+      [10, 11, 'hol', '대체공휴일(한글날)', '한글날이 토요일과 겹쳐 월요일에 쉬어요.'],
+      [10, 24, 'term', '상강', '서리가 내리기 시작하는 절기예요. 2027년은 자정을 갓 넘겨 들어 24일이에요.'],
+      [10, 31, 'day', '핼러윈', '분장을 하고 즐기는 서양 축제일이에요.'],
+      [11, 8, 'term', '입동', '겨울이 시작되는 절기로, 이 무렵 김장을 해요. 2027년은 자정을 갓 넘겨 들어 8일이에요.'],
+      [11, 11, 'day', '빼빼로데이', '1이 네 번 겹친 모양에서 막대 과자를 주고받는 날이에요.'],
+      [11, 22, 'term', '소설', '첫눈이 내린다는 절기예요.'],
+      [12, 7, 'term', '대설', '눈이 많이 내린다는 절기예요.'],
+      [12, 22, 'term sesi', '동지', '1년 중 밤이 가장 긴 날로 팥죽을 먹어요. 2027년은 음력 11월 25일이라 ‘노동지’예요.'],
+      [12, 24, 'day', '크리스마스이브', '성탄절 전날 밤이에요.'],
+      [12, 25, 'hol day', '성탄절(크리스마스)', '기독탄신일 공휴일이에요. 2027년은 토요일이에요.'],
+      [12, 27, 'hol', '대체공휴일(성탄절)', '성탄절이 토요일과 겹쳐 월요일에 쉬어요.']
+    ];
+    EV.forEach(function (e, i) { e.date = new Date(YEAR, e[0] - 1, e[1]); e.cats = e[2].split(' '); e.i = i; });
+    function has(e, c) { return e.cats.indexOf(c) > -1; }
+    // 이름에서 절기 이름만 / 기념일 이름만 뽑기 ('청명 · 식목일' → 절기 '청명', 기념일 '식목일')
+    function termName(e) { return e[3].split(' · ')[0]; }
+    function eventName(e) { return has(e, 'term') && e[3].indexOf(' · ') > -1 ? e[3].split(' · ').slice(1).join(' · ') : e[3]; }
+    function isEvent(e) { return e.cats.some(function (c) { return c !== 'term'; }); }
+
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function md(d) { return (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function dd(n) { return n === 0 ? 'D-Day' : 'D-' + n.toLocaleString('ko-KR'); }
+    function isRed(e) { return has(e, 'hol') || e.date.getDay() === 0; }
+
+    var yI = $('[data-y]'), mI = $('[data-m]'), dI = $('[data-d]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var cur = 0, filter = 'all', open = -1, base = null, nextT = null, nextE = null;
+
+    // ---------- 월 탭 · 필터 칩 ----------
+    var tabs = $('[data-tabs]'), chips = $('[data-chips]'), list = $('[data-list]');
+    for (var m = 0; m < 12; m++) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kse-tab'; b.setAttribute('role', 'tab'); b.setAttribute('data-mo', m); b.textContent = (m + 1) + '월';
+      tabs.appendChild(b);
+    }
+    [['all', '전체']].concat(Object.keys(CAT).map(function (k) { return [k, CAT[k]]; })).forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kse-chip'; b.setAttribute('data-f', c[0]); b.textContent = c[1];
+      chips.appendChild(b);
+    });
+    tabs.addEventListener('click', function (e) { var t = e.target.closest('[data-mo]'); if (t) { cur = +t.getAttribute('data-mo'); open = -1; draw(); } });
+    chips.addEventListener('click', function (e) { var t = e.target.closest('[data-f]'); if (t) { filter = t.getAttribute('data-f'); open = -1; draw(); } });
+    $('[data-prev]').addEventListener('click', function () { if (cur > 0) { cur--; open = -1; draw(); } });
+    $('[data-next]').addEventListener('click', function () { if (cur < 11) { cur++; open = -1; draw(); } });
+    list.addEventListener('click', function (e) {
+      var t = e.target.closest('[data-i]'); if (!t) return;
+      var i = +t.getAttribute('data-i'); open = open === i ? -1 : i; draw();
+    });
+
+    function shown() {
+      return EV.filter(function (e) { return e[0] === cur + 1 && (filter === 'all' || has(e, filter)); });
+    }
+
+    function draw() {
+      $('[data-month-label]').textContent = YEAR + '년 ' + (cur + 1) + '월';
+      $('[data-prev]').disabled = cur === 0; $('[data-next]').disabled = cur === 11;
+      $$('[data-mo]').forEach(function (t) { var on = +t.getAttribute('data-mo') === cur; t.classList.toggle('kse-on', on); t.setAttribute('aria-selected', on); });
+      $$('[data-f]').forEach(function (t) { var on = t.getAttribute('data-f') === filter; t.classList.toggle('kse-on', on); t.setAttribute('aria-pressed', on); });
+      var items = shown();
+      list.innerHTML = items.length ? items.map(function (e) {
+        var past = base && dayDiff(base, e.date) < 0, on = open === e.i;
+        var tags = e.cats.map(function (c) { return '<span class="kse-tag kse-t-' + c + '">' + CAT[c] + '</span>'; }).join('');
+        return '<li><button type="button" class="kse-item' + (on ? ' kse-on' : '') + (past ? ' kse-past' : '') + '" data-i="' + e.i + '" aria-expanded="' + on + '">' +
+          '<span class="kse-itop"><span class="kse-date' + (isRed(e) ? ' kse-red' : '') + '">' + md(e.date) + '</span><span class="kse-name">' + e[3] + '</span>' + tags + '</span>' +
+          (on ? '<span class="kse-idesc">' + e[4] + '</span>' : '') + '</button></li>';
+      }).join('') : '<li class="kse-none">이달에는 ' + (filter === 'all' ? '' : CAT[filter] + ' ') + '일정이 없어요.</li>';
+    }
+
+    // ---------- 기준일 · D-day ----------
+    function onlyNum(el) { var v = el.value.replace(/[^\d]/g, ''); if (v !== el.value) el.value = v; }
+    [yI, mI, dI].forEach(function (el) { el.addEventListener('input', function () { onlyNum(el); calc(); }); });
+
+    function bad(text, els) {
+      result.classList.remove('kse-show');
+      msg.textContent = text || '';
+      [yI, mI, dI].forEach(function (el) { el.classList.toggle('kse-bad', !!text && els.indexOf(el) > -1); });
+      base = null; nextT = nextE = null; draw();
+    }
+
+    function setCard(k, e, nameFn) {
+      if (!e) {
+        $('[data-' + k + '-dd]').textContent = '종료';
+        $('[data-' + k + '-name]').textContent = '2027년 일정이 모두 지났어요';
+        $('[data-' + k + '-date]').textContent = '';
+        return;
+      }
+      $('[data-' + k + '-dd]').textContent = dd(dayDiff(base, e.date));
+      $('[data-' + k + '-name]').textContent = nameFn(e);
+      $('[data-' + k + '-date]').innerHTML = '<span class="kse-nw">' + fmt(e.date) + '(' + WD[e.date.getDay()] + ')</span>';
+    }
+
+    function calc() {
+      var ys = yI.value, ms = mI.value, ds = dI.value;
+      if (!ys && !ms && !ds) return bad('', []);
+      if (ys.length < 4 || !ms || !ds) {
+        if (ys && ys.length < 4 && (ms || ds)) return bad('연도는 4자리로 입력해 주세요.', [yI]);
+        return bad('', []);
+      }
+      var y = +ys, mo = +ms, d = +ds;
+      if (y < 1900 || y > 2100) return bad('연도는 1900~2100 사이로 입력해 주세요.', [yI]);
+      if (mo < 1 || mo > 12) return bad('월은 1~12 사이로 입력해 주세요.', [mI]);
+      var last = new Date(y, mo, 0).getDate();
+      if (d < 1 || d > last) return bad(y + '년 ' + mo + '월은 ' + last + '일까지 있어요.', [dI]);
+      msg.textContent = ''; [yI, mI, dI].forEach(function (el) { el.classList.remove('kse-bad'); });
+      base = new Date(y, mo - 1, d);
+      var up = EV.filter(function (e) { return dayDiff(base, e.date) >= 0; });
+      nextT = up.filter(function (e) { return has(e, 'term'); })[0] || null;
+      nextE = up.filter(isEvent)[0] || null;
+      setCard('t', nextT, termName);
+      setCard('e', nextE, eventName);
+      cur = y < YEAR ? 0 : y > YEAR ? 11 : mo - 1;
+      open = -1; draw();
+      result.classList.add('kse-show');
+    }
+
+    function fillToday() {
+      var n = new Date();
+      yI.value = n.getFullYear(); mI.value = n.getMonth() + 1; dI.value = n.getDate();
+      calc();
+    }
+    $('[data-today]').addEventListener('click', fillToday);
+    $('[data-reset]').addEventListener('click', function () { filter = 'all'; fillToday(); yI.focus(); });
+
+    function copyText() {
+      var out = '[2027년 24절기·기념일 달력]\n';
+      if (base) {
+        out += '기준일 ' + fmt(base) + '\n';
+        out += '다음 절기: ' + (nextT ? termName(nextT) + ' ' + fmt(nextT.date) + ' (' + dd(dayDiff(base, nextT.date)) + ')' : '2027년 일정 종료') + '\n';
+        out += '다음 기념일: ' + (nextE ? eventName(nextE) + ' ' + fmt(nextE.date) + ' (' + dd(dayDiff(base, nextE.date)) + ')' : '2027년 일정 종료') + '\n';
+      }
+      var items = shown();
+      out += '\n' + YEAR + '년 ' + (cur + 1) + '월' + (filter === 'all' ? '' : ' · ' + CAT[filter]) + '\n';
+      out += items.length ? items.map(function (e) { return md(e.date) + ' ' + e[3]; }).join('\n') : '일정 없음';
+      return out + '\n\n※ 공휴일은 2027년 월력요항 기준, 임시공휴일 지정 시 바뀔 수 있어요.';
+    }
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this, text = copyText();
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (er) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(text).then(done, fallback);
+      else fallback();
+    });
+
+    fillToday();
+  })();
+  </script>
+</div>
+<!-- 2027 24절기·기념일 달력 위젯 끝 -->
