@@ -1,0 +1,362 @@
+<!-- 연차수당 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kau" data-kau>
+  <style>
+    .kau{--kau-accent:#3b6ef5;--kau-accent-soft:#eef3ff;--kau-text:#1d2433;--kau-sub:#6b7385;--kau-line:#e3e7ef;--kau-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kau-line);border-radius:20px;background:var(--kau-bg);
+      color:var(--kau-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kau [hidden]{display:none!important}
+    .kau *,.kau *::before,.kau *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kau .kau-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kau .kau-desc{margin-top:4px;font-size:14px;color:var(--kau-sub)}
+    .kau .kau-tabs{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kau .kau-tab{height:40px;border:0;border-radius:10px;background:none;color:var(--kau-sub);font-size:14px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s,box-shadow .2s}
+    .kau .kau-tab:hover{color:var(--kau-text)}
+    .kau .kau-tab.kau-on{background:#fff;color:var(--kau-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kau .kau-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kau-text)}
+    .kau .kau-field{position:relative}
+    .kau .kau-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .kau .kau-row .kau-label{margin-top:20px}
+    .kau .kau-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--kau-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kau-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kau .kau-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kau .kau-in:focus{border-color:var(--kau-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kau .kau-in.kau-bad{border-color:#e0565b}
+    .kau .kau-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kau-sub);pointer-events:none}
+    .kau .kau-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kau .kau-chip{height:32px;padding:0 12px;border:1.5px solid var(--kau-line);border-radius:999px;background:#fff;color:var(--kau-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kau .kau-chip:hover{border-color:#c9d3ea;color:var(--kau-text)}
+    .kau .kau-chip.kau-on{border-color:var(--kau-accent);background:var(--kau-accent-soft);color:var(--kau-accent)}
+    .kau .kau-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kau .kau-seg .kau-chip{height:44px;border-radius:12px;font-size:14px}
+    .kau .kau-link{border:0;background:none;color:var(--kau-accent);font-size:13px;font-weight:600;cursor:pointer;padding:2px;white-space:nowrap}
+    .kau .kau-hint{margin-top:6px;font-size:12.5px;color:var(--kau-sub)}
+    .kau .kau-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kau .kau-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kau .kau-result.kau-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kau .kau-result-inner{overflow:hidden}
+    .kau .kau-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kau-accent-soft);text-align:center;transition:background .3s}
+    .kau .kau-main.kau-no{background:#f4f5f8}
+    .kau .kau-main-label{font-size:14px;color:var(--kau-sub)}
+    .kau .kau-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kau-accent);line-height:1.2;word-break:keep-all}
+    .kau .kau-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kau .kau-main.kau-no .kau-big{font-size:22px;color:var(--kau-text)}
+    .kau .kau-sub{margin-top:6px;font-size:14px;color:var(--kau-sub)}
+    .kau .kau-sub,.kau .kau-note,.kau .kau-desc,.kau .kau-hint,.kau .kau-formula,.kau .kau-msg{word-break:keep-all}
+    .kau .kau-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kau .kau-card{padding:14px;border:1px solid var(--kau-line);border-radius:14px;background:#fff}
+    .kau .kau-card-k{font-size:12px;color:var(--kau-sub)}
+    .kau .kau-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kau-text)}
+    .kau .kau-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kau-text)}
+    .kau .kau-formula p+p{margin-top:4px}
+    .kau .kau-nw{white-space:nowrap}
+    .kau .kau-note{margin-top:12px;font-size:12.5px;color:var(--kau-sub)}
+    .kau .kau-note li{margin-left:16px}
+    .kau .kau-actions{display:flex;gap:8px;margin-top:14px}
+    .kau .kau-btn{flex:1;height:44px;border:1.5px solid var(--kau-line);border-radius:12px;background:#fff;color:var(--kau-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kau .kau-btn:hover{background:#f4f6fa}
+    .kau .kau-btn:active{transform:scale(.98)}
+    .kau .kau-btn.kau-primary{border-color:var(--kau-accent);background:var(--kau-accent);color:#fff}
+    .kau .kau-btn.kau-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kau{padding:18px;border-radius:16px}.kau .kau-big{font-size:34px}.kau .kau-in{font-size:17px}.kau .kau-tab{font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kau .kau-result,.kau .kau-in,.kau .kau-btn,.kau .kau-chip,.kau .kau-tab{transition:none}}
+  </style>
+
+  <p class="kau-title">연차수당 계산기</p>
+  <p class="kau-desc">월급(또는 시급)과 남은 연차 일수만 넣으면 미사용 연차수당을 바로 계산해요.</p>
+
+  <div class="kau-tabs" role="tablist" aria-label="임금 입력 방식">
+    <button type="button" class="kau-tab kau-on" role="tab" aria-selected="true" data-tab="month">월급으로 계산</button>
+    <button type="button" class="kau-tab" role="tab" aria-selected="false" data-tab="hour">시급으로 계산</button>
+  </div>
+
+  <div data-mode-month>
+    <label class="kau-label" for="kau-month">월 통상임금 (기본급 + 고정수당)</label>
+    <div class="kau-field"><input class="kau-in" id="kau-month" data-month inputmode="numeric" placeholder="3,000,000" autocomplete="off"><span class="kau-unit">원</span></div>
+    <p class="kau-hint">매달 고정으로 받는 세전 금액이에요. 연장·야간수당, 성과급은 빼고 입력하세요.</p>
+  </div>
+
+  <div data-mode-hour hidden>
+    <label class="kau-label" for="kau-hourly">시간당 통상임금 (시급)</label>
+    <div class="kau-field"><input class="kau-in" id="kau-hourly" data-hourly inputmode="numeric" placeholder="10,320" autocomplete="off"><span class="kau-unit">원</span></div>
+  </div>
+
+  <div class="kau-row">
+    <div>
+      <label class="kau-label" for="kau-week">주 소정근로시간</label>
+      <div class="kau-field"><input class="kau-in" id="kau-week" data-week inputmode="decimal" value="40" autocomplete="off"><span class="kau-unit">시간</span></div>
+    </div>
+    <div>
+      <label class="kau-label" for="kau-day">1일 소정근로시간</label>
+      <div class="kau-field"><input class="kau-in" id="kau-day" data-day inputmode="decimal" value="8" autocomplete="off"><span class="kau-unit">시간</span></div>
+    </div>
+  </div>
+
+  <div data-mode-month2>
+    <p class="kau-hint" data-mh-hint></p>
+    <div data-mh-box hidden>
+      <label class="kau-label" for="kau-mh"><span>월 기준시간 직접 입력</span><button type="button" class="kau-link" data-mh-off>자동으로</button></label>
+      <div class="kau-field"><input class="kau-in" id="kau-mh" data-mh inputmode="decimal" placeholder="209" autocomplete="off"><span class="kau-unit">시간</span></div>
+      <p class="kau-hint">급여명세서나 취업규칙에 적힌 '통상임금 산정 기준시간'이 따로 있으면 넣으세요.</p>
+    </div>
+  </div>
+
+  <label class="kau-label" for="kau-left">못 쓴 연차 일수</label>
+  <div class="kau-field"><input class="kau-in" id="kau-left" data-left inputmode="decimal" placeholder="10" autocomplete="off"><span class="kau-unit">일</span></div>
+  <div class="kau-chips" data-left-chips>
+    <button type="button" class="kau-chip" data-add="0.5">+ 반차 0.5일</button>
+    <button type="button" class="kau-chip" data-set="5">5일</button>
+    <button type="button" class="kau-chip" data-set="11">11일</button>
+    <button type="button" class="kau-chip" data-set="15">15일</button>
+  </div>
+  <p class="kau-hint">반차는 0.5일로 넣어요. 남은 연차가 며칠인지 모르면 연차 계산기로 먼저 확인해 보세요.</p>
+
+  <p class="kau-label"><span>회사에서 연차 사용촉진을 받았나요?</span></p>
+  <div class="kau-seg" role="group" aria-label="연차 사용촉진 여부">
+    <button type="button" class="kau-chip kau-on" data-promo="0" aria-pressed="true">안 받았어요</button>
+    <button type="button" class="kau-chip" data-promo="1" aria-pressed="false">서면 촉진 받았어요</button>
+  </div>
+  <p class="kau-hint">회사가 사용기간 끝나기 전에 1차(남은 일수 알림·사용 시기 요청)와 2차(사용 날짜 지정) 서면 통보를 모두 했는지 확인하세요.</p>
+
+  <p class="kau-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kau-result" data-result aria-live="polite">
+    <div class="kau-result-inner">
+      <div class="kau-main" data-main>
+        <p class="kau-main-label" data-main-label>미사용 연차수당 (세전)</p>
+        <p class="kau-big" data-big></p>
+        <p class="kau-sub" data-sub></p>
+      </div>
+      <div class="kau-grid" data-grid>
+        <div class="kau-card"><p class="kau-card-k">1일 통상임금</p><p class="kau-card-v" data-daily></p></div>
+        <div class="kau-card"><p class="kau-card-k">시간당 통상임금</p><p class="kau-card-v" data-hour-v></p></div>
+        <div class="kau-card"><p class="kau-card-k">반차(0.5일) 1번</p><p class="kau-card-v" data-half></p></div>
+        <div class="kau-card"><p class="kau-card-k" data-k4>월 기준시간</p><p class="kau-card-v" data-v4></p></div>
+      </div>
+      <div class="kau-formula" data-formula></div>
+      <ul class="kau-note">
+        <li data-promo-note hidden>법에 맞게 사용촉진을 했는데도 쓰지 않아 사용기간(1년)이 끝난 연차는 회사가 수당을 주지 않아도 돼요(근로기준법 제61조). 다만 촉진 절차가 빠졌거나 지정한 날 회사가 일을 시켰다면 수당을 받을 수 있고, 사용기간이 끝나기 전에 퇴사해서 못 쓴 연차는 퇴직 때 수당으로 정산해요.</li>
+        <li>세금·4대보험을 빼기 전 금액이에요. 1일 통상임금은 원 미만을 버리고 계산했어요.</li>
+        <li>퇴사할 때는 남은 연차를 모두 수당으로 정산하고, 퇴직 전년도에 생긴 연차의 미사용수당은 퇴직금 평균임금에 3/12만큼 들어가요.</li>
+      </ul>
+      <div class="kau-actions">
+        <button type="button" class="kau-btn" data-reset>다시 입력</button>
+        <button type="button" class="kau-btn kau-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kau]');
+    if (!root || root.__kau) return;
+    root.__kau = true;
+
+    var WEEKS_PER_MONTH = 365 / 7 / 12; // 약 4.345주 (고용노동부 월 환산 방식)
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var monthI = $('[data-month]'), hourlyI = $('[data-hourly]'), weekI = $('[data-week]'), dayI = $('[data-day]');
+    var mhI = $('[data-mh]'), leftI = $('[data-left]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var mode = 'month', promo = false, manualMH = false, lastText = '';
+
+    function fmt(n) { return Math.floor(n).toLocaleString('ko-KR'); }
+    function won(n) { return fmt(n) + '원'; }
+    function num(s) { return parseFloat(String(s).replace(/,/g, '')); }
+    function dec(n) { return String(Math.round(n * 100) / 100); }
+    function nw(s) { return '<span class="kau-nw">' + s + '</span>'; }
+
+    // 주 소정근로시간 → 월 기준시간 (유급 주휴 포함). 주 40시간 → 209시간
+    function autoMonthHours(w) { return Math.round((w + w / 40 * 8) * WEEKS_PER_MONTH); }
+
+    function hide(text, bad) {
+      result.classList.remove('kau-show');
+      msg.textContent = text || '';
+      $$('.kau-in').forEach(function (i) { i.classList.toggle('kau-bad', !!bad && i === bad); });
+    }
+
+    function calc() {
+      $$('.kau-in').forEach(function (i) { i.classList.remove('kau-bad'); });
+      var w = num(weekI.value), d = num(dayI.value);
+      var mhHint = $('[data-mh-hint]');
+      if (weekI.value && w >= 15 && w <= 40) {
+        mhHint.innerHTML = '월 기준시간: ' + nw(autoMonthHours(w) + '시간') + ' (주휴 포함 자동 계산) ' + (manualMH ? '' : '<button type="button" class="kau-link" data-mh-on>직접 입력</button>');
+      } else mhHint.textContent = '';
+
+      var wageEmpty = mode === 'month' ? !monthI.value : !hourlyI.value;
+      if (wageEmpty || !weekI.value || !dayI.value || !leftI.value) return hide('');
+
+      if (!(w > 0)) return hide('주 소정근로시간을 다시 확인해 주세요.', weekI);
+      if (w > 40) return hide('주 소정근로시간은 40시간을 넘을 수 없어요. 연장근로는 빼고 입력해 주세요.', weekI);
+      if (!(d > 0)) return hide('1일 소정근로시간을 다시 확인해 주세요.', dayI);
+      if (d > 8) return hide('1일 소정근로시간은 8시간을 넘을 수 없어요. 연장근로는 빼고 입력해 주세요.', dayI);
+      if (d > w) return hide('1일 소정근로시간이 주 소정근로시간보다 길어요. 다시 확인해 주세요.', dayI);
+
+      var left = num(leftI.value);
+      if (isNaN(left) || left <= 0) return hide('못 쓴 연차 일수를 0.5일 이상 입력해 주세요.', leftI);
+      if (Math.round(left * 2) !== left * 2) return hide('연차 일수는 1일 또는 반차(0.5일) 단위로 입력해 주세요.', leftI);
+      if (left > 100) return hide('연차 일수가 너무 커요. 100일 이하로 입력해 주세요.', leftI);
+
+      var main = $('[data-main]'), grid = $('[data-grid]'), formula = $('[data-formula]');
+
+      if (w < 15) {
+        msg.textContent = '';
+        main.classList.add('kau-no'); grid.hidden = true; formula.hidden = true;
+        $('[data-promo-note]').hidden = true;
+        $('[data-main-label]').textContent = '연차 유급휴가 대상이 아니에요';
+        $('[data-big]').textContent = '주 15시간 미만 근무';
+        $('[data-sub]').textContent = '4주 평균 주 15시간 미만인 초단시간 근로자는 법정 연차가 없어요(근로기준법 제18조).';
+        lastText = '[연차수당 계산 결과]\n주 소정근로시간 ' + dec(w) + '시간으로 주 15시간 미만이라 법정 연차 대상이 아니에요.';
+        result.classList.add('kau-show');
+        return;
+      }
+
+      var hourly, mh = 0;
+      if (mode === 'month') {
+        var m = num(monthI.value);
+        if (!(m > 0)) return hide('월 통상임금을 다시 확인해 주세요.', monthI);
+        if (manualMH) {
+          if (!mhI.value) return hide('월 기준시간을 입력하거나 자동으로 바꿔 주세요.', mhI);
+          mh = num(mhI.value);
+          if (!(mh >= 40 && mh <= 300)) return hide('월 기준시간은 40~300시간 사이로 입력해 주세요.', mhI);
+        } else mh = autoMonthHours(w);
+        hourly = m / mh;
+      } else {
+        hourly = num(hourlyI.value);
+        if (!(hourly > 0)) return hide('시급을 다시 확인해 주세요.', hourlyI);
+      }
+      msg.textContent = '';
+
+      var daily = Math.floor(hourly * d);
+      var pay = Math.floor(daily * left);
+      var leftTxt = dec(left) + '일';
+
+      main.classList.toggle('kau-no', promo);
+      grid.hidden = false; formula.hidden = false;
+      $('[data-promo-note]').hidden = !promo;
+      $('[data-daily]').textContent = won(daily);
+      $('[data-hour-v]').textContent = (Math.floor(hourly * 100) / 100).toLocaleString('ko-KR') + '원';
+      $('[data-half]').textContent = won(daily * 0.5);
+      if (mode === 'month') { $('[data-k4]').textContent = '월 기준시간'; $('[data-v4]').textContent = dec(mh) + '시간'; }
+      else { $('[data-k4]').textContent = '1일 소정근로시간'; $('[data-v4]').textContent = dec(d) + '시간'; }
+
+      var f1 = mode === 'month'
+        ? '<p>시간당 통상임금 = ' + nw(won(num(monthI.value))) + ' ÷ ' + nw(dec(mh) + '시간') + ' = ' + nw((Math.floor(hourly * 100) / 100).toLocaleString('ko-KR') + '원') + '</p>'
+        : '';
+      formula.innerHTML = f1 +
+        '<p>1일 통상임금 = 시급 × ' + nw(dec(d) + '시간') + ' = ' + nw(won(daily)) + '</p>' +
+        '<p>연차수당 = ' + nw(won(daily)) + ' × ' + nw(leftTxt) + ' = ' + nw('<strong>' + won(pay) + '</strong>') + '</p>';
+
+      if (promo) {
+        $('[data-main-label]').textContent = '사용촉진을 제대로 받았다면';
+        $('[data-big]').innerHTML = '0<small>원</small>';
+        $('[data-sub]').textContent = '촉진이 없었다면 ' + won(pay) + '이에요. 아래 조건을 확인하세요.';
+      } else {
+        $('[data-main-label]').textContent = '미사용 연차수당 (세전)';
+        $('[data-big]').innerHTML = fmt(pay) + '<small>원</small>';
+        $('[data-sub]').textContent = '1일 ' + won(daily) + ' × ' + leftTxt;
+      }
+
+      lastText = '[연차수당 계산 결과]\n' +
+        (mode === 'month' ? '월 통상임금: ' + won(num(monthI.value)) + ' (월 ' + dec(mh) + '시간 기준)\n' : '') +
+        '시간당 통상임금: ' + (Math.floor(hourly * 100) / 100).toLocaleString('ko-KR') + '원\n' +
+        '1일 통상임금: ' + won(daily) + ' (1일 ' + dec(d) + '시간)\n' +
+        '못 쓴 연차: ' + leftTxt + '\n' +
+        '연차수당(세전): ' + won(pay) +
+        (promo ? '\n※ 적법한 사용촉진(제61조)을 받고 사용기간이 끝난 연차라면 지급 의무 없음(0원)' : '');
+      result.classList.add('kau-show');
+    }
+
+    function moneyInput(inp, max) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').slice(0, max);
+        inp.value = v ? (+v).toLocaleString('ko-KR') : '';
+        calc();
+      });
+    }
+    moneyInput(monthI, 10);
+    moneyInput(hourlyI, 7);
+    [weekI, dayI, mhI, leftI].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').slice(0, 5);
+        if (v !== inp.value) inp.value = v;
+        syncLeftChips(); calc();
+      });
+    });
+
+    function syncLeftChips() {
+      var v = num(leftI.value);
+      $$('[data-set]').forEach(function (c) { c.classList.toggle('kau-on', num(c.getAttribute('data-set')) === v); });
+    }
+    $$('[data-set]').forEach(function (c) {
+      c.addEventListener('click', function () { leftI.value = c.getAttribute('data-set'); syncLeftChips(); calc(); });
+    });
+    $('[data-add]').addEventListener('click', function () {
+      var v = num(leftI.value); if (isNaN(v)) v = 0;
+      leftI.value = dec(v + 0.5); syncLeftChips(); calc();
+    });
+
+    $$('[data-tab]').forEach(function (t) {
+      t.addEventListener('click', function () {
+        mode = t.getAttribute('data-tab');
+        $$('[data-tab]').forEach(function (x) { var on = x === t; x.classList.toggle('kau-on', on); x.setAttribute('aria-selected', on); });
+        $('[data-mode-month]').hidden = mode !== 'month';
+        $('[data-mode-month2]').hidden = mode !== 'month';
+        $('[data-mode-hour]').hidden = mode !== 'hour';
+        calc();
+      });
+    });
+
+    $$('[data-promo]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        promo = b.getAttribute('data-promo') === '1';
+        $$('[data-promo]').forEach(function (x) { var on = x === b; x.classList.toggle('kau-on', on); x.setAttribute('aria-pressed', on); });
+        calc();
+      });
+    });
+
+    root.addEventListener('click', function (e) {
+      var t = e.target;
+      if (t.closest && t.closest('[data-mh-on]')) {
+        manualMH = true; $('[data-mh-box]').hidden = false;
+        if (!mhI.value) { var w = num(weekI.value); if (w >= 15 && w <= 40) mhI.value = String(autoMonthHours(w)); }
+        mhI.focus(); calc();
+      }
+    });
+    $('[data-mh-off]').addEventListener('click', function () { manualMH = false; $('[data-mh-box]').hidden = true; calc(); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      monthI.value = hourlyI.value = leftI.value = mhI.value = '';
+      weekI.value = '40'; dayI.value = '8';
+      manualMH = false; $('[data-mh-box]').hidden = true;
+      promo = false;
+      $$('[data-promo]').forEach(function (x) { var on = x.getAttribute('data-promo') === '0'; x.classList.toggle('kau-on', on); x.setAttribute('aria-pressed', on); });
+      syncLeftChips(); calc();
+      (mode === 'month' ? monthI : hourlyI).focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() {
+        var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', '');
+        ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch (e) {}
+        ta.remove(); done();
+      }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    calc();
+  })();
+  </script>
+</div>
+<!-- 연차수당 계산기 위젯 끝 -->
