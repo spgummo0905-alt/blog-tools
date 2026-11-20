@@ -39,6 +39,15 @@ tools/
 | 청약 가점 계산기 (84점 만점, 점수 오르는 날) | `tools/subscription-score-calculator` | 완성 |
 | 주택 취득세 계산기 (1주택·다주택 중과·생애최초 감면) | `tools/acquisition-tax-calculator` | 완성 |
 | 자동차세 계산기 (배기량·차령·연납 할인) | `tools/car-tax-calculator` | 완성 |
+| 2027년 손없는날 달력 (이사하기 좋은 날·주말 손없는날) | `tools/moving-days-2027` | 완성 |
+| 2027 국가건강검진 대상 확인 (홀수년생·암검진·추가 항목) | `tools/health-checkup-2027` | 완성 |
+| 연차수당 계산기 (미사용 연차수당·퇴사 시 정산) | `tools/annual-leave-pay` | 완성 |
+| 2027 24절기·기념일 달력 (세시풍속·데이·D-day) | `tools/solar-terms-2027` | 완성 |
+| 2027 세금 납부 달력 (자동차세·재산세·종소세 마감일, 주말 연장 반영) | `tools/tax-calendar-2027` | 완성 |
+| 2027년 달라지는 것 총정리 (내 상황별 체크리스트) | `tools/changes-2027` | 완성 |
+| 가족 사망 후 할 일 타임라인 (사망신고·상속포기·상속세 기한) | `tools/after-death-checklist` | 완성 |
+| 퇴사 후 할 일 타임라인 (실업급여·건강보험·국민연금 기한) | `tools/after-resignation-checklist` | 완성 |
+| 이사 행정 타임라인 (전입신고·확정일자·대항력) | `tools/moving-admin-checklist` | 완성 |
 | 출산 후 신청할 것 타임라인 (출생신고·부모급여·첫만남이용권 기한) | `tools/after-birth-checklist` | 완성 |
 
 ## 작업 규칙
