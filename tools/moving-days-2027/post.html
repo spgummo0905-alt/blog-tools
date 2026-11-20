@@ -1,0 +1,485 @@
+<p><strong>2027년 손없는날은 모두 68일이고, 그중 주말·공휴일은 19일이에요.</strong> 토·일요일이 17일이고, 평일 공휴일과 겹치는 날이 2일(5월 5일 어린이날, 12월 27일 성탄절 대체공휴일)이에요. 아래 달력에서 월별 손없는날과 음력 날짜를 보고, 이삿날을 입력하면 손없는날인지와 가장 가까운 손없는날을 바로 알려 드려요.</p>
+<!-- 2027 손없는날 달력 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kmv" data-kmv>
+  <style>
+    .kmv{--kmv-accent:#3b6ef5;--kmv-accent-soft:#eef3ff;--kmv-text:#1d2433;--kmv-sub:#6b7385;--kmv-line:#e3e7ef;--kmv-bg:#fff;--kmv-red:#e0565b;--kmv-blue:#3b6ef5;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kmv-line);border-radius:20px;background:var(--kmv-bg);
+      color:var(--kmv-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kmv [hidden]{display:none!important}
+    .kmv *,.kmv *::before,.kmv *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kmv .kmv-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kmv .kmv-desc{margin-top:4px;font-size:14px;color:var(--kmv-sub)}
+    .kmv .kmv-nw{white-space:nowrap}
+    .kmv .kmv-main{margin-top:16px;padding:20px;border-radius:16px;background:var(--kmv-accent-soft);text-align:center}
+    .kmv .kmv-main-label{font-size:14px;color:var(--kmv-sub)}
+    .kmv .kmv-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kmv-accent);line-height:1.2}
+    .kmv .kmv-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kmv .kmv-main-sub{margin-top:4px;font-size:14px;color:var(--kmv-sub)}
+    .kmv .kmv-main-sub b{color:var(--kmv-text)}
+    .kmv .kmv-sum{margin-top:8px;font-size:13px;color:var(--kmv-sub);text-align:center}
+    .kmv .kmv-nav{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:18px}
+    .kmv .kmv-arrow{width:44px;height:44px;border:1.5px solid var(--kmv-line);border-radius:12px;background:#fff;color:var(--kmv-text);font-size:18px;font-weight:700;
+      cursor:pointer;transition:background .2s,transform .1s}
+    .kmv .kmv-arrow:hover{background:#f4f6fa}
+    .kmv .kmv-arrow:active{transform:scale(.96)}
+    .kmv .kmv-arrow:disabled{opacity:.35;cursor:default;transform:none;background:#fff}
+    .kmv .kmv-month{font-size:18px;font-weight:800;letter-spacing:-.02em;text-align:center}
+    .kmv .kmv-month small{display:block;font-size:12.5px;font-weight:600;color:var(--kmv-accent);letter-spacing:0}
+    .kmv .kmv-tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin-top:10px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kmv .kmv-tab{height:34px;border:0;border-radius:10px;background:none;color:var(--kmv-sub);font-size:13px;font-weight:600;cursor:pointer;transition:background .2s,color .2s}
+    .kmv .kmv-tab:hover{color:var(--kmv-text)}
+    .kmv .kmv-tab.kmv-on{background:#fff;color:var(--kmv-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kmv .kmv-toggle{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:10px;padding:10px 14px;border:1.5px solid var(--kmv-line);
+      border-radius:12px;background:#fff;color:var(--kmv-text);font-size:14px;font-weight:600;cursor:pointer;text-align:left;transition:border-color .2s,background .2s}
+    .kmv .kmv-toggle:hover{background:#fafbfe}
+    .kmv .kmv-sw{position:relative;flex:0 0 auto;width:40px;height:24px;border-radius:999px;background:#d5dae5;transition:background .2s}
+    .kmv .kmv-sw::after{content:"";position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.2);transition:transform .2s}
+    .kmv .kmv-toggle[aria-pressed="true"]{border-color:var(--kmv-accent);background:#fafcff}
+    .kmv .kmv-toggle[aria-pressed="true"] .kmv-sw{background:var(--kmv-accent)}
+    .kmv .kmv-toggle[aria-pressed="true"] .kmv-sw::after{transform:translateX(16px)}
+    .kmv .kmv-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-top:12px}
+    .kmv .kmv-wd{padding:4px 0;font-size:12px;font-weight:700;text-align:center;color:var(--kmv-sub)}
+    .kmv .kmv-wd.kmv-sun{color:var(--kmv-red)}
+    .kmv .kmv-wd.kmv-sat{color:var(--kmv-blue)}
+    .kmv .kmv-day{display:block;width:100%;min-height:58px;padding:5px 1px 4px;border:1.5px solid transparent;border-radius:10px;background:#f8f9fc;text-align:center;
+      overflow:hidden;cursor:pointer;color:var(--kmv-text);font-size:inherit;transition:border-color .2s,background .2s}
+    .kmv .kmv-day:hover{border-color:#c9d3ea}
+    .kmv .kmv-day.kmv-empty{background:none;cursor:default;border:0}
+    .kmv .kmv-num{display:block;font-size:15px;font-weight:700;line-height:1.3}
+    .kmv .kmv-day.kmv-sun .kmv-num,.kmv .kmv-day.kmv-hol .kmv-num{color:var(--kmv-red)}
+    .kmv .kmv-day.kmv-sat .kmv-num{color:var(--kmv-blue)}
+    .kmv .kmv-day.kmv-sat.kmv-hol .kmv-num{color:var(--kmv-red)}
+    .kmv .kmv-lun{display:block;font-size:10px;line-height:1.3;color:#9aa1b0}
+    .kmv .kmv-hn{display:block;margin-top:1px;font-size:9.5px;line-height:1.2;color:var(--kmv-red);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .kmv .kmv-day.kmv-son{border-color:#c9d6fb;background:var(--kmv-accent-soft)}
+    .kmv .kmv-day.kmv-son .kmv-lun{color:var(--kmv-accent);font-weight:700}
+    .kmv .kmv-day.kmv-son.kmv-off{border-color:var(--kmv-accent);background:#dfe8ff}
+    .kmv .kmv-day.kmv-pick{box-shadow:0 0 0 2px var(--kmv-text) inset}
+    .kmv .kmv-day.kmv-today .kmv-num{text-decoration:underline;text-underline-offset:3px}
+    .kmv .kmv-legend{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font-size:12px;color:var(--kmv-sub)}
+    .kmv .kmv-legend i{display:inline-block;width:10px;height:10px;margin-right:4px;border-radius:3px;vertical-align:-1px}
+    .kmv .kmv-list{margin-top:10px;padding:12px 14px;border:1px solid var(--kmv-line);border-radius:14px;font-size:13.5px;list-style:none}
+    .kmv .kmv-list li{display:flex;align-items:baseline;gap:8px;padding:3px 0}
+    .kmv .kmv-list b{flex:0 0 auto;min-width:84px;font-weight:700;white-space:nowrap}
+    .kmv .kmv-list .kmv-l2{color:var(--kmv-sub)}
+    .kmv .kmv-tag{flex:0 0 auto;margin-left:auto;padding:1px 8px;border-radius:999px;background:var(--kmv-accent-soft);color:var(--kmv-accent);font-size:12px;font-weight:700;white-space:nowrap}
+    .kmv .kmv-tag.kmv-tag-h{background:#fff1f1;color:var(--kmv-red)}
+    .kmv .kmv-list .kmv-none{color:var(--kmv-sub)}
+    .kmv .kmv-sep{height:1px;margin:24px 0 0;background:var(--kmv-line);border:0}
+    .kmv .kmv-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kmv-text)}
+    .kmv .kmv-row{display:flex;gap:8px}
+    .kmv .kmv-fixed{display:flex;align-items:center;flex:0 0 auto;padding:0 4px;font-size:16px;font-weight:700;color:var(--kmv-sub)}
+    .kmv .kmv-field{position:relative;flex:1}
+    .kmv .kmv-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kmv-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kmv-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kmv .kmv-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kmv .kmv-in:focus{border-color:var(--kmv-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kmv .kmv-in.kmv-bad{border-color:var(--kmv-red)}
+    .kmv .kmv-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kmv-sub);pointer-events:none}
+    .kmv .kmv-base{margin-top:8px;font-size:12.5px;color:var(--kmv-sub)}
+    .kmv .kmv-msg{min-height:20px;margin-top:10px;font-size:13px;color:var(--kmv-red)}
+    .kmv .kmv-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kmv .kmv-result.kmv-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kmv .kmv-result-inner{overflow:hidden}
+    .kmv .kmv-verdict{margin-top:6px;padding:18px 16px;border-radius:16px;background:var(--kmv-accent-soft);text-align:center}
+    .kmv .kmv-verdict.kmv-no{background:#f4f6fa}
+    .kmv .kmv-vt{font-size:22px;font-weight:800;letter-spacing:-.02em;color:var(--kmv-accent)}
+    .kmv .kmv-verdict.kmv-no .kmv-vt{color:var(--kmv-text)}
+    .kmv .kmv-vs{margin-top:4px;font-size:14px;color:var(--kmv-sub)}
+    .kmv .kmv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kmv .kmv-card{padding:14px;border:1px solid var(--kmv-line);border-radius:14px;background:#fff}
+    .kmv .kmv-card-k{font-size:12px;color:var(--kmv-sub)}
+    .kmv .kmv-card-v{margin-top:2px;font-size:16px;font-weight:700;color:var(--kmv-text)}
+    .kmv .kmv-card-s{font-size:12.5px;color:var(--kmv-sub)}
+    .kmv .kmv-note{margin-top:12px;font-size:12.5px;color:var(--kmv-sub)}
+    .kmv .kmv-actions{display:flex;gap:8px;margin-top:14px}
+    .kmv .kmv-btn{flex:1;height:44px;border:1.5px solid var(--kmv-line);border-radius:12px;background:#fff;color:var(--kmv-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kmv .kmv-btn:hover{background:#f4f6fa}
+    .kmv .kmv-btn:active{transform:scale(.98)}
+    .kmv .kmv-btn.kmv-primary{border-color:var(--kmv-accent);background:var(--kmv-accent);color:#fff}
+    .kmv .kmv-btn.kmv-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kmv{padding:18px;border-radius:16px}.kmv .kmv-big{font-size:38px}.kmv .kmv-in{font-size:17px}
+      .kmv .kmv-cal{gap:2px}.kmv .kmv-day{min-height:54px;border-radius:8px}.kmv .kmv-num{font-size:14px}.kmv .kmv-hn{font-size:9px}.kmv .kmv-lun{font-size:9.5px}
+      .kmv .kmv-tab{font-size:12.5px}.kmv .kmv-list b{min-width:76px}}
+    @media (prefers-reduced-motion:reduce){.kmv .kmv-result,.kmv .kmv-in,.kmv .kmv-btn,.kmv .kmv-tab,.kmv .kmv-arrow,.kmv .kmv-day,.kmv .kmv-toggle,.kmv .kmv-sw,.kmv .kmv-sw::after{transition:none}}
+  </style>
+
+  <p class="kmv-title">2027년 손없는날 달력</p>
+  <p class="kmv-desc">음력 끝자리가 9·0인 날(손없는날)을 달력에 표시했어요. 날짜를 누르거나 입력하면 음력과 가까운 손없는날을 알려 드려요.</p>
+
+  <div class="kmv-main">
+    <p class="kmv-main-label" data-near-label>오늘 이후 가장 가까운 손없는날</p>
+    <p class="kmv-big" data-near-big>D-0</p>
+    <p class="kmv-main-sub" data-near-sub></p>
+  </div>
+  <p class="kmv-sum">2027년 손없는날 <b>68일</b> · 그중 주말·공휴일 <b>19일</b></p>
+
+  <div class="kmv-nav">
+    <button type="button" class="kmv-arrow" data-prev aria-label="이전 달">‹</button>
+    <p class="kmv-month" aria-live="polite"><span data-month-label>2027년 1월</span><small data-month-count></small></p>
+    <button type="button" class="kmv-arrow" data-next aria-label="다음 달">›</button>
+  </div>
+  <div class="kmv-tabs" role="tablist" aria-label="월 선택" data-tabs></div>
+  <button type="button" class="kmv-toggle" data-off aria-pressed="false"><span>주말·공휴일 손없는날만 보기</span><span class="kmv-sw" aria-hidden="true"></span></button>
+  <div class="kmv-cal" data-cal></div>
+  <p class="kmv-legend"><span><i style="background:#eef3ff;border:1px solid #c9d6fb"></i>손없는날</span><span><i style="background:#dfe8ff;border:1.5px solid #3b6ef5"></i>주말·공휴일 손없는날</span><span><i style="background:#f8f9fc;border:1px solid #e3e7ef"></i>작은 숫자 = 음력</span></p>
+  <ul class="kmv-list" data-list></ul>
+
+  <hr class="kmv-sep">
+  <label class="kmv-label" for="kmv-m">이삿날이 손없는날인지 확인하기</label>
+  <div class="kmv-row">
+    <span class="kmv-fixed">2027년</span>
+    <div class="kmv-field"><input class="kmv-in" id="kmv-m" data-m inputmode="numeric" maxlength="2" placeholder="3" aria-label="월" aria-describedby="kmv-msg"><span class="kmv-unit">월</span></div>
+    <div class="kmv-field"><input class="kmv-in" data-d inputmode="numeric" maxlength="2" placeholder="27" aria-label="일" aria-describedby="kmv-msg"><span class="kmv-unit">일</span></div>
+  </div>
+  <p class="kmv-base">2027년 1월 1일 ~ 12월 31일 중 날짜를 입력하거나 위 달력에서 날짜를 눌러 주세요.</p>
+
+  <p class="kmv-msg" id="kmv-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kmv-result" data-result aria-live="polite">
+    <div class="kmv-result-inner">
+      <div class="kmv-verdict" data-verdict>
+        <p class="kmv-vt" data-vt></p>
+        <p class="kmv-vs" data-vs></p>
+      </div>
+      <div class="kmv-grid">
+        <div class="kmv-card"><p class="kmv-card-k">바로 앞 손없는날</p><p class="kmv-card-v" data-prev-son></p><p class="kmv-card-s" data-prev-son-s></p></div>
+        <div class="kmv-card"><p class="kmv-card-k">바로 뒤 손없는날</p><p class="kmv-card-v" data-next-son></p><p class="kmv-card-s" data-next-son-s></p></div>
+      </div>
+      <p class="kmv-note">한국천문연구원 음양력과 같은 방식(한국 표준시 기준 합삭·중기)으로 계산한 음력이에요. 2027년에는 윤달이 없어요. 공휴일은 2027년 월력요항 기준이며, 임시공휴일이 지정되면 바뀔 수 있어요.</p>
+      <div class="kmv-actions">
+        <button type="button" class="kmv-btn" data-reset>다시 입력</button>
+        <button type="button" class="kmv-btn kmv-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kmv]');
+    if (!root || root.__kmv) return;
+    root.__kmv = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var YEAR = 2027, WD = ['일', '월', '화', '수', '목', '금', '토'];
+    // 음력 달이 시작하는 양력 날짜 [월, 일, 음력 달]. 한국 표준시(UTC+9) 합삭일 = 음력 1일. 2027년 윤달 없음.
+    // 앞 두 줄은 2026년 음력 11월(2026. 12. 9. 시작)·12월. 마지막 줄 다음 달은 2028. 1. 27.(음력 2028년 1월 1일)
+    var LSTART = [[1, 8, 12], [2, 7, 1], [3, 8, 2], [4, 7, 3], [5, 6, 4], [6, 5, 5], [7, 4, 6], [8, 2, 7], [9, 1, 8], [9, 30, 9], [10, 29, 10], [11, 28, 11], [12, 28, 12]];
+    var PREV_START = new Date(2026, 11, 9); // 2026년 음력 11월 1일
+    // 2027년 관공서 공휴일 (우주항공청 2027년 월력요항, 2026. 6. 발표). [월, 일, 이름, 달력 약칭]
+    var HOLI = [
+      [1, 1, '신정', '신정'],
+      [2, 6, '설날 연휴', '설 연휴'], [2, 7, '설날', '설날'], [2, 8, '설날 연휴', '설 연휴'], [2, 9, '대체공휴일(설날)', '대체'],
+      [3, 1, '삼일절', '삼일절'],
+      [5, 1, '노동절', '노동절'], [5, 3, '대체공휴일(노동절)', '대체'], [5, 5, '어린이날', '어린이날'], [5, 13, '부처님오신날', '부처님 오신날'],
+      [6, 6, '현충일', '현충일'],
+      [7, 17, '제헌절', '제헌절'], [7, 19, '대체공휴일(제헌절)', '대체'],
+      [8, 15, '광복절', '광복절'], [8, 16, '대체공휴일(광복절)', '대체'],
+      [9, 14, '추석 연휴', '추석 연휴'], [9, 15, '추석', '추석'], [9, 16, '추석 연휴', '추석 연휴'],
+      [10, 3, '개천절', '개천절'], [10, 4, '대체공휴일(개천절)', '대체'], [10, 9, '한글날', '한글날'], [10, 11, '대체공휴일(한글날)', '대체'],
+      [12, 25, '성탄절', '성탄절'], [12, 27, '대체공휴일(성탄절)', '대체']
+    ];
+    var hmap = {};
+    HOLI.forEach(function (h) { hmap[h[0] + '-' + h[1]] = h; });
+
+    function key(d) { return (d.getMonth() + 1) + '-' + d.getDate(); }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function md(d) { return (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function full(d) { return d.getFullYear() + '. ' + md(d); }
+
+    // 2027년 모든 날의 음력과 손없는날 여부
+    var DAYS = [], SON = [];
+    (function () {
+      var starts = LSTART.map(function (s) { return { d: new Date(YEAR, s[0] - 1, s[1]), m: s[2] }; });
+      for (var d = new Date(YEAR, 0, 1); d.getFullYear() === YEAR; d = new Date(YEAR, d.getMonth(), d.getDate() + 1)) {
+        var st = { d: PREV_START, m: 11 };
+        for (var i = 0; i < starts.length; i++) if (starts[i].d <= d) st = starts[i];
+        var ld = dayDiff(st.d, d) + 1, w = d.getDay(), h = hmap[key(d)];
+        var o = { d: d, lm: st.m, ld: ld, ly: st.m >= 11 && d.getMonth() < 2 ? YEAR - 1 : YEAR, son: ld % 10 === 9 || ld % 10 === 0, hol: h, off: w === 0 || w === 6 || !!h };
+        DAYS.push(o);
+        if (o.son) SON.push(o);
+      }
+    })();
+    function info(d) { return DAYS[dayDiff(new Date(YEAR, 0, 1), d)]; }
+    function lunarText(o) { return '음력 ' + (o.ly !== YEAR ? o.ly + '년 ' : '') + o.lm + '월 ' + o.ld + '일'; }
+    function kind(o) { return o.hol ? o.hol[2] : (o.d.getDay() === 0 ? '일요일' : o.d.getDay() === 6 ? '토요일' : '평일'); }
+
+    // ---------- 가장 가까운 손없는날 ----------
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function drawNear() {
+      var t = today(), next = null;
+      for (var i = 0; i < SON.length; i++) if (SON[i].d >= t) { next = SON[i]; break; }
+      var label = $('[data-near-label]'), big = $('[data-near-big]'), sub = $('[data-near-sub]');
+      if (!next) {
+        label.textContent = '2027년 손없는날';
+        big.textContent = '끝';
+        sub.textContent = '2027년 손없는날이 모두 지났어요.';
+        return;
+      }
+      var n = dayDiff(t, next.d);
+      label.textContent = t.getFullYear() < YEAR ? '가장 가까운 2027년 손없는날' : '오늘 이후 가장 가까운 손없는날';
+      big.textContent = n === 0 ? '오늘' : 'D-' + n;
+      sub.innerHTML = '<b class="kmv-nw">' + full(next.d) + '</b> <span class="kmv-nw">' + lunarText(next) + '</span>' + (next.off ? ' <span class="kmv-nw">· ' + kind(next) + '</span>' : '');
+    }
+
+    // ---------- 달력 ----------
+    var cur = 0, onlyOff = false, pickKey = null;
+    var now = today();
+    if (now.getFullYear() === YEAR) cur = now.getMonth();
+    var tabs = $('[data-tabs]'), cal = $('[data-cal]'), list = $('[data-list]'), offBtn = $('[data-off]');
+    for (var m = 0; m < 12; m++) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kmv-tab'; b.setAttribute('role', 'tab'); b.setAttribute('data-tab', m);
+      b.textContent = (m + 1) + '월';
+      tabs.appendChild(b);
+    }
+    tabs.addEventListener('click', function (e) { var t = e.target.closest('[data-tab]'); if (t) { cur = +t.getAttribute('data-tab'); draw(); } });
+    $('[data-prev]').addEventListener('click', function () { if (cur > 0) { cur--; draw(); } });
+    $('[data-next]').addEventListener('click', function () { if (cur < 11) { cur++; draw(); } });
+    offBtn.addEventListener('click', function () { onlyOff = !onlyOff; offBtn.setAttribute('aria-pressed', onlyOff); draw(); });
+
+    var sx = null, sy = null;
+    cal.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
+    cal.addEventListener('touchend', function (e) {
+      if (sx === null) return;
+      var dx = e.changedTouches[0].clientX - sx, dy = e.changedTouches[0].clientY - sy; sx = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+        if (dx < 0 && cur < 11) { cur++; draw(); } else if (dx > 0 && cur > 0) { cur--; draw(); }
+      }
+    });
+    cal.addEventListener('click', function (e) {
+      var c = e.target.closest('[data-day]'); if (!c) return;
+      mI.value = cur + 1; dI.value = c.getAttribute('data-day'); calc();
+    });
+
+    function show(o) { return o.son && (!onlyOff || o.off); }
+
+    function draw() {
+      $('[data-month-label]').textContent = YEAR + '년 ' + (cur + 1) + '월';
+      $('[data-prev]').disabled = cur === 0; $('[data-next]').disabled = cur === 11;
+      $$('[data-tab]').forEach(function (t) { var on = +t.getAttribute('data-tab') === cur; t.classList.toggle('kmv-on', on); t.setAttribute('aria-selected', on); });
+      var html = '';
+      WD.forEach(function (w, i) { html += '<div class="kmv-wd' + (i === 0 ? ' kmv-sun' : i === 6 ? ' kmv-sat' : '') + '">' + w + '</div>'; });
+      var first = new Date(YEAR, cur, 1), last = new Date(YEAR, cur + 1, 0).getDate(), tk = now.getFullYear() === YEAR ? key(now) : '';
+      for (var i = 0; i < first.getDay(); i++) html += '<div class="kmv-day kmv-empty" aria-hidden="true"></div>';
+      for (var dd = 1; dd <= last; dd++) {
+        var o = info(new Date(YEAR, cur, dd)), w = o.d.getDay(), c = 'kmv-day';
+        if (w === 0) c += ' kmv-sun'; if (w === 6) c += ' kmv-sat'; if (o.hol) c += ' kmv-hol';
+        if (show(o)) c += ' kmv-son' + (o.off ? ' kmv-off' : '');
+        if (key(o.d) === pickKey) c += ' kmv-pick';
+        if (key(o.d) === tk) c += ' kmv-today';
+        var lun = o.ld === 1 ? o.lm + '.1' : String(o.ld);
+        var aria = (cur + 1) + '월 ' + dd + '일 ' + WD[w] + '요일, ' + lunarText(o) + (o.son ? ', 손없는날' : '') + (o.hol ? ', ' + o.hol[2] : '');
+        html += '<button type="button" class="' + c + '" data-day="' + dd + '" aria-label="' + aria + '"><span class="kmv-num">' + dd + '</span><span class="kmv-lun">' + lun + '</span>' +
+          (o.hol ? '<span class="kmv-hn">' + o.hol[3] + '</span>' : '') + '</button>';
+      }
+      cal.innerHTML = html;
+      var all = SON.filter(function (o) { return o.d.getMonth() === cur; });
+      var items = all.filter(show);
+      var offCnt = all.filter(function (o) { return o.off; }).length;
+      $('[data-month-count]').textContent = '손없는날 ' + all.length + '일 · 주말·공휴일 ' + offCnt + '일';
+      list.innerHTML = items.length ? items.map(function (o) {
+        return '<li><b>' + md(o.d) + '</b><span class="kmv-l2">' + lunarText(o) + '</span>' +
+          (o.off ? '<span class="kmv-tag' + (o.hol ? ' kmv-tag-h' : '') + '">' + (o.hol ? '공휴일' : '주말') + '</span>' : '') + '</li>';
+      }).join('') : '<li class="kmv-none">이달에는 주말·공휴일 손없는날이 없어요.</li>';
+    }
+
+    // ---------- 날짜 확인 ----------
+    var mI = $('[data-m]'), dI = $('[data-d]'), msg = $('[data-msg]'), result = $('[data-result]'), lastText = '';
+
+    function hide(text) {
+      result.classList.remove('kmv-show');
+      msg.textContent = text || '';
+      mI.classList.toggle('kmv-bad', !!text); dI.classList.toggle('kmv-bad', !!text);
+      if (pickKey) { pickKey = null; draw(); }
+    }
+
+    function sonDesc(o, base) {
+      var n = dayDiff(base, o.d);
+      return lunarText(o) + ' · ' + (n > 0 ? n + '일 뒤' : -n + '일 전') + (o.off ? ' · ' + kind(o) : '');
+    }
+
+    function calc() {
+      var mv = mI.value, dv = dI.value;
+      if (!mv || !dv) return hide('');
+      var m = +mv, d = +dv, dt = new Date(YEAR, m - 1, d);
+      if (m < 1 || m > 12) return hide('월은 1~12 사이로 입력해 주세요.');
+      if (d < 1 || dt.getMonth() !== m - 1) return hide('2027년 ' + m + '월에는 ' + d + '일이 없어요. 날짜를 다시 확인해 주세요.');
+      msg.textContent = ''; mI.classList.remove('kmv-bad'); dI.classList.remove('kmv-bad');
+      var o = info(dt), prev = null, next = null;
+      SON.forEach(function (s) { if (s.d < dt) prev = s; else if (s.d > dt && !next) next = s; });
+      var v = $('[data-verdict]');
+      v.classList.toggle('kmv-no', !o.son);
+      $('[data-vt]').textContent = o.son ? '손없는날이에요' : '손없는날이 아니에요';
+      $('[data-vs]').innerHTML = '<span class="kmv-nw">' + full(dt) + '</span> = <span class="kmv-nw">' + lunarText(o) + '</span>' +
+        (o.off ? ' <span class="kmv-nw">· ' + kind(o) + '</span>' : '');
+      $('[data-prev-son]').textContent = prev ? md(prev.d) : '없음';
+      $('[data-prev-son-s]').textContent = prev ? sonDesc(prev, dt) : '2027년 첫 손없는날은 1. 6.(수)';
+      $('[data-next-son]').textContent = next ? md(next.d) : '없음';
+      $('[data-next-son-s]').textContent = next ? sonDesc(next, dt) : '2027년 마지막 손없는날이 지났어요';
+      result.classList.add('kmv-show');
+      pickKey = key(dt);
+      if (cur !== m - 1) cur = m - 1;
+      draw();
+      lastText = '[2027년 손없는날 확인]\n' + full(dt) + ' = ' + lunarText(o) + (o.off ? ' (' + kind(o) + ')' : '') + '\n→ ' + (o.son ? '손없는날이에요' : '손없는날이 아니에요') +
+        '\n바로 앞 손없는날: ' + (prev ? full(prev.d) + ' ' + lunarText(prev) : '없음') +
+        '\n바로 뒤 손없는날: ' + (next ? full(next.d) + ' ' + lunarText(next) : '없음') +
+        '\n\n' + (m) + '월 손없는날: ' + SON.filter(function (s) { return s.d.getMonth() === m - 1; }).map(function (s) { return md(s.d); }).join(', ') +
+        '\n※ 손없는날 = 음력 9·10·19·20·29·30일';
+    }
+
+    function bind(input, next) {
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/\D/g, '').slice(0, 2);
+        if (v !== input.value) input.value = v;
+        if (next && (v.length === 2 || (v.length === 1 && +v > 1))) next.focus();
+        calc();
+      });
+    }
+    bind(mI, dI); bind(dI, null);
+    dI.addEventListener('keydown', function (e) { if (e.key === 'Backspace' && !dI.value) { e.preventDefault(); mI.focus(); } });
+
+    $('[data-reset]').addEventListener('click', function () { mI.value = dI.value = ''; hide(''); mI.focus(); });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (er) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    drawNear();
+    draw();
+  })();
+  </script>
+</div>
+<!-- 2027 손없는날 달력 위젯 끝 -->
+<h2>손없는날 계산법</h2>
+<p>손없는날은 양력이 아니라 <strong>음력 날짜</strong>로 정해요. 음력 날짜의 끝자리가 9나 0인 날, 곧 매달 음력 9일·10일·19일·20일·29일·30일이 손없는날이에요.</p>
+<ul>
+  <li><strong>손없는날</strong> = 음력 날짜 끝자리가 9 또는 0인 날 (음력 9·10·19·20·29·30일)</li>
+  <li>음력 한 달은 29일(작은달)이나 30일(큰달)이라, 작은달에는 30일이 없어 손없는날이 5일, 큰달에는 6일이에요.</li>
+</ul>
+<p>예를 들어 2027년 3월 16일(화)은 음력으로 2월 9일이에요. 끝자리가 9라서 손없는날이에요. 바로 다음 날인 3월 17일(수)도 음력 2월 10일이라 손없는날이에요. 반대로 추석인 9월 15일(수)은 음력 8월 15일이라 손없는날이 아니에요.</p>
+<p>음력은 한국천문연구원 음양력과 같은 방식으로 계산했어요. 달과 해가 같은 방향에 놓이는 합삭 시각을 한국 표준시로 따져, 합삭이 있는 날을 음력 1일로 삼아요. 이렇게 구한 2027년 음력은 설날(2월 7일 = 음력 1월 1일), 부처님오신날(5월 13일 = 음력 4월 8일), 추석(9월 15일 = 음력 8월 15일) 같은 공휴일 날짜와 모두 맞아요. 2027년에는 윤달이 없어요.</p>
+
+<h2>2027년 월별 손없는날</h2>
+<p>굵은 글씨는 토·일요일이나 공휴일과 겹치는 손없는날이에요. '음 11.29'는 음력 11월 29일이라는 뜻이고, 1월과 2월 6일까지는 음력으로 아직 2026년(병오년) 11~12월이에요.</p>
+<table>
+  <thead><tr><th>월</th><th>손없는날 (양력·요일·음력)</th><th>개수</th><th>주말·공휴일</th></tr></thead>
+  <tbody>
+    <tr><td>1월</td><td>6일(수) 음 11.29, 7일(목) 음 11.30, <strong>16일(토)</strong> 음 12.9, <strong>17일(일)</strong> 음 12.10, 26일(화) 음 12.19, 27일(수) 음 12.20</td><td>6일</td><td>2일</td></tr>
+    <tr><td>2월</td><td>5일(금) 음 12.29, <strong>6일(토)</strong> 음 12.30, 15일(월) 음 1.9, 16일(화) 음 1.10, 25일(목) 음 1.19, 26일(금) 음 1.20</td><td>6일</td><td>1일</td></tr>
+    <tr><td>3월</td><td><strong>7일(일)</strong> 음 1.29, 16일(화) 음 2.9, 17일(수) 음 2.10, 26일(금) 음 2.19, <strong>27일(토)</strong> 음 2.20</td><td>5일</td><td>2일</td></tr>
+    <tr><td>4월</td><td>5일(월) 음 2.29, 6일(화) 음 2.30, 15일(목) 음 3.9, 16일(금) 음 3.10, <strong>25일(일)</strong> 음 3.19, 26일(월) 음 3.20</td><td>6일</td><td>1일</td></tr>
+    <tr><td>5월</td><td><strong>5일(수)</strong> 음 3.29, 14일(금) 음 4.9, <strong>15일(토)</strong> 음 4.10, 24일(월) 음 4.19, 25일(화) 음 4.20</td><td>5일</td><td>2일</td></tr>
+    <tr><td>6월</td><td>3일(목) 음 4.29, 4일(금) 음 4.30, <strong>13일(일)</strong> 음 5.9, 14일(월) 음 5.10, 23일(수) 음 5.19, 24일(목) 음 5.20</td><td>6일</td><td>1일</td></tr>
+    <tr><td>7월</td><td><strong>3일(토)</strong> 음 5.29, 12일(월) 음 6.9, 13일(화) 음 6.10, 22일(목) 음 6.19, 23일(금) 음 6.20</td><td>5일</td><td>1일</td></tr>
+    <tr><td>8월</td><td><strong>1일(일)</strong> 음 6.29, 10일(화) 음 7.9, 11일(수) 음 7.10, 20일(금) 음 7.19, <strong>21일(토)</strong> 음 7.20, 30일(월) 음 7.29, 31일(화) 음 7.30</td><td>7일</td><td>2일</td></tr>
+    <tr><td>9월</td><td>9일(목) 음 8.9, 10일(금) 음 8.10, <strong>19일(일)</strong> 음 8.19, 20일(월) 음 8.20, 29일(수) 음 8.29</td><td>5일</td><td>1일</td></tr>
+    <tr><td>10월</td><td>8일(금) 음 9.9, <strong>9일(토)</strong> 음 9.10, 18일(월) 음 9.19, 19일(화) 음 9.20, 28일(목) 음 9.29</td><td>5일</td><td>1일</td></tr>
+    <tr><td>11월</td><td><strong>6일(토)</strong> 음 10.9, <strong>7일(일)</strong> 음 10.10, 16일(화) 음 10.19, 17일(수) 음 10.20, 26일(금) 음 10.29, <strong>27일(토)</strong> 음 10.30</td><td>6일</td><td>3일</td></tr>
+    <tr><td>12월</td><td>6일(월) 음 11.9, 7일(화) 음 11.10, 16일(목) 음 11.19, 17일(금) 음 11.20, <strong>26일(일)</strong> 음 11.29, <strong>27일(월)</strong> 음 11.30</td><td>6일</td><td>2일</td></tr>
+  </tbody>
+</table>
+<p>한 해 동안 손없는날은 <strong>68일</strong>이에요. 8월이 7일로 가장 많고, 3·5·7·9·10월은 5일로 가장 적어요. 12월 마지막 손없는날은 12월 27일(월)이고, 그다음 손없는날은 2028년 1월 5일(수, 음력 12월 9일)이에요.</p>
+
+<h2>2027년 주말·공휴일 손없는날 19일</h2>
+<p>직장인이 연차 없이 이사하기 좋은 날은 주말이나 공휴일과 겹친 손없는날이에요. 그만큼 이사 수요가 가장 몰리는 날이기도 해서 예약을 서두르는 게 좋아요.</p>
+<table>
+  <thead><tr><th>구분</th><th>날짜</th></tr></thead>
+  <tbody>
+    <tr><td>토요일 (9일)</td><td>1월 16일, 2월 6일(설 연휴), 3월 27일, 5월 15일, 7월 3일, 8월 21일, 10월 9일(한글날), 11월 6일, 11월 27일</td></tr>
+    <tr><td>일요일 (8일)</td><td>1월 17일, 3월 7일, 4월 25일, 6월 13일, 8월 1일, 9월 19일, 11월 7일, 12월 26일</td></tr>
+    <tr><td>평일 공휴일 (2일)</td><td>5월 5일(수, 어린이날), 12월 27일(월, 성탄절 대체공휴일)</td></tr>
+  </tbody>
+</table>
+<p>11월 6일(토)·7일(일)은 토·일 이틀이 연달아 손없는날이라 짐 정리까지 하루 여유가 있어요. 12월 26일(일)·27일(월, 대체공휴일)도 이틀 연속이에요. 반대로 2월 6일(토)은 설 연휴 첫날이라 업체가 쉬거나 예약이 어려울 수 있어요.</p>
+
+<h2>손없는날의 의미</h2>
+<p>'손'은 날짜에 따라 동서남북을 옮겨 다니며 사람의 일을 방해한다고 믿었던 민속 신앙 속 귀신이에요. 음력 1·2일에는 동쪽, 3·4일에는 남쪽, 5·6일에는 서쪽, 7·8일에는 북쪽에 있다가, 끝자리가 9·0인 날에는 어느 방향에도 없다고 여겼어요(11일부터는 같은 순서로 다시 돌아요). 그래서 이사, 혼례, 개업처럼 집을 옮기거나 새로 시작하는 일을 이날 하면 탈이 없다고 생각했어요.</p>
+<p>손없는날은 오랫동안 이어져 온 생활 풍습일 뿐 과학적 근거가 있는 건 아니에요. 날짜보다 이사 업체, 날씨, 잔금·입주 일정이 실제로는 더 중요하니, 손없는날은 참고만 하고 일정에 맞춰 고르면 돼요.</p>
+
+<h2>손없는날 이사 비용이 오르는 이유와 절약 팁</h2>
+<p>손없는날, 그중에서도 주말·공휴일 손없는날에는 이사하려는 사람이 한꺼번에 몰려요. 이사 업체는 하루에 맡을 수 있는 일이 정해져 있어서 예약이 일찍 차고, 수요가 많은 날엔 견적이 평소보다 높게 나오는 경우가 많아요. 월말과 계약 만기가 몰리는 시기, 봄·가을 이사철과 겹치면 더 그래요. 얼마나 오르는지는 업체와 지역마다 달라 정해진 기준은 없어요.</p>
+<ul>
+  <li><strong>평일·손없는날이 아닌 날</strong>에 이사하면 예약이 쉽고 견적을 조정할 여지가 커요.</li>
+  <li>꼭 손없는날이어야 한다면 주말보다 <strong>평일 손없는날</strong>(2027년 49일)을 고르면 수요가 덜 몰려요.</li>
+  <li>날짜가 정해지면 <strong>2~3곳 이상 방문 견적</strong>을 받아 짐 양과 추가 비용(사다리차, 에어컨 이전 등)을 비교해요.</li>
+  <li>계약 전에 <strong>허가받은 업체인지</strong>, 계약서에 작업 범위와 파손 보상이 적혀 있는지 확인해요.</li>
+  <li>잔금일과 이삿날을 맞춰야 하니 부동산 계약 단계에서 날짜를 함께 정해 두면 좋아요.</li>
+</ul>
+
+<h2>자주 묻는 질문</h2>
+<h3>2027년 손없는날은 모두 며칠인가요?</h3>
+<p>모두 68일이에요. 음력 큰달(30일)에는 6일, 작은달(29일)에는 5일씩 생겨요. 그중 토·일요일이 17일, 평일 공휴일(5월 5일 어린이날, 12월 27일 성탄절 대체공휴일)이 2일이라 주말·공휴일 손없는날은 19일이에요.</p>
+<h3>2027년에 윤달이 있나요?</h3>
+<p>없어요. 2027년 음력은 1월부터 12월까지 평달만 있어요. 그래서 음력 기준 명절과 손없는날도 윤달 없이 그대로 계산하면 돼요.</p>
+<h3>손없는날이 사이트마다 하루씩 다르게 나오는 이유는 뭔가요?</h3>
+<p>음력은 합삭(달이 해와 같은 방향에 놓이는 때)이 있는 날을 1일로 삼는데, 기준 시간대에 따라 날짜가 하루 달라질 수 있어요. 중국 표준시로 만든 음력을 쓰면 한국 음력과 어긋나는 달이 생겨요. 이 글은 한국천문연구원 음양력과 같은 한국 표준시 기준으로 계산했어요.</p>
+<h3>손없는날에 이사하지 않으면 안 좋은가요?</h3>
+<p>손없는날은 민속 신앙에서 나온 풍습이라 과학적 근거는 없어요. 마음이 편한 날을 고르는 정도로 참고하면 되고, 손없는날을 피하면 예약이 쉽고 견적을 조정하기도 좋아요.</p>
+<h3>주말 손없는날 이사는 언제 예약해야 하나요?</h3>
+<p>정해진 기준은 없지만 주말·공휴일 손없는날은 예약이 가장 먼저 차요. 날짜가 정해지면 바로 여러 업체에 방문 견적을 받아 두는 게 좋아요. 특히 봄·가을 이사철이나 월말과 겹치는 날은 더 서두르는 게 좋아요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:brokerage-fee-calculator}}">부동산 중개수수료(복비) 계산기</a>: 이사 전 매매·전세·월세 복비 미리 계산</li>
+  <li><a href="{{LINK:holidays-2027}}">2027 공휴일·연휴 달력</a>: 연휴와 연차를 붙여 이삿날 잡기</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "2027년 손없는날은 모두 며칠인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "모두 68일이에요. 음력 큰달(30일)에는 6일, 작은달(29일)에는 5일씩 생겨요. 그중 토·일요일이 17일, 평일 공휴일(5월 5일 어린이날, 12월 27일 성탄절 대체공휴일)이 2일이라 주말·공휴일 손없는날은 19일이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 윤달이 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "없어요. 2027년 음력은 1월부터 12월까지 평달만 있어요. 그래서 음력 기준 명절과 손없는날도 윤달 없이 그대로 계산하면 돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "손없는날이 사이트마다 하루씩 다르게 나오는 이유는 뭔가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "음력은 합삭(달이 해와 같은 방향에 놓이는 때)이 있는 날을 1일로 삼는데, 기준 시간대에 따라 날짜가 하루 달라질 수 있어요. 중국 표준시로 만든 음력을 쓰면 한국 음력과 어긋나는 달이 생겨요. 이 글은 한국천문연구원 음양력과 같은 한국 표준시 기준으로 계산했어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "손없는날에 이사하지 않으면 안 좋은가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "손없는날은 민속 신앙에서 나온 풍습이라 과학적 근거는 없어요. 마음이 편한 날을 고르는 정도로 참고하면 되고, 손없는날을 피하면 예약이 쉽고 견적을 조정하기도 좋아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "주말 손없는날 이사는 언제 예약해야 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "정해진 기준은 없지만 주말·공휴일 손없는날은 예약이 가장 먼저 차요. 날짜가 정해지면 바로 여러 업체에 방문 견적을 받아 두는 게 좋아요. 특히 봄·가을 이사철이나 월말과 겹치는 날은 더 서두르는 게 좋아요."
+   }
+  }
+ ]
+}
+</script>
