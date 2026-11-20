@@ -1,0 +1,501 @@
+<p><strong>HUG 전세보증보험(전세반환보증)은 전세보증금과 선순위 채권을 합한 금액이 주택가격의 90% 이내이고, 보증금이 수도권 7억원·그 외 지역 5억원 이하이면 가입할 수 있어요. 빌라처럼 공시가격으로 따지는 집은 주택가격이 공시가격의 140%라서, 근저당이 없으면 보증금이 공시가격의 126%까지예요.</strong> 아래 계산기에 주택 유형, 공시가격(또는 시세), 보증금, 근저당 금액을 넣으면 가입 가능 여부와 이유, 가입 가능한 최대 보증금, 전세가율까지 바로 나와요.</p>
+<!-- 전세보증보험(HUG 전세반환보증) 가입 가능 여부 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kjs" data-kjs>
+  <style>
+    .kjs{--kjs-accent:#3b6ef5;--kjs-accent-soft:#eef3ff;--kjs-text:#1d2433;--kjs-sub:#6b7385;--kjs-line:#e3e7ef;--kjs-bg:#fff;--kjs-bad:#e0565b;--kjs-bad-soft:#fdeeee;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kjs-line);border-radius:20px;background:var(--kjs-bg);
+      color:var(--kjs-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kjs [hidden]{display:none!important}
+    .kjs *,.kjs *::before,.kjs *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kjs .kjs-title{font-size:20px;font-weight:700;letter-spacing:-.02em;word-break:keep-all}
+    .kjs .kjs-desc{margin-top:4px;font-size:14px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kjs .kjs-tab{min-height:40px;padding:4px 2px;border:0;border-radius:10px;background:none;color:var(--kjs-sub);font-size:14px;font-weight:600;line-height:1.25;cursor:pointer;
+      word-break:keep-all;transition:background .2s,color .2s,box-shadow .2s}
+    .kjs .kjs-tab:hover{color:var(--kjs-text)}
+    .kjs .kjs-tab.kjs-on{background:#fff;color:var(--kjs-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kjs .kjs-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kjs-text);word-break:keep-all}
+    .kjs .kjs-label small{font-weight:500;color:var(--kjs-sub)}
+    .kjs .kjs-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kjs .kjs-opt{min-height:44px;padding:6px 8px;border:1.5px solid var(--kjs-line);border-radius:12px;background:#f8f9fc;color:var(--kjs-text);
+      font-size:14px;font-weight:600;line-height:1.3;cursor:pointer;word-break:keep-all;transition:all .2s}
+    .kjs .kjs-opt:hover{border-color:#c9d3ea}
+    .kjs .kjs-opt.kjs-on{border-color:var(--kjs-accent);background:var(--kjs-accent-soft);color:var(--kjs-accent)}
+    .kjs .kjs-opt small{display:block;font-size:11.5px;font-weight:500;color:var(--kjs-sub)}
+    .kjs .kjs-field{position:relative}
+    .kjs .kjs-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kjs-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kjs-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kjs .kjs-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kjs .kjs-in:focus{border-color:var(--kjs-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kjs .kjs-in.kjs-bad{border-color:var(--kjs-bad)}
+    .kjs .kjs-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kjs-sub);pointer-events:none}
+    .kjs .kjs-hint{margin-top:6px;font-size:12.5px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-hint b{color:var(--kjs-accent);font-weight:700}
+    .kjs .kjs-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kjs-bad);word-break:keep-all}
+    .kjs .kjs-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kjs .kjs-result.kjs-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kjs .kjs-result-inner{overflow:hidden}
+    .kjs .kjs-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kjs-accent-soft);text-align:center}
+    .kjs .kjs-main.kjs-no{background:var(--kjs-bad-soft)}
+    .kjs .kjs-main-label{font-size:14px;color:var(--kjs-sub)}
+    .kjs .kjs-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--kjs-accent);line-height:1.25;word-break:keep-all}
+    .kjs .kjs-main.kjs-no .kjs-big{color:var(--kjs-bad)}
+    .kjs .kjs-sub{margin-top:6px;font-size:14px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kjs .kjs-card{padding:14px;border:1px solid var(--kjs-line);border-radius:14px;background:#fff}
+    .kjs .kjs-card-k{font-size:12px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kjs-text);word-break:keep-all}
+    .kjs .kjs-card-s{margin-top:2px;font-size:12px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-checks{margin-top:8px;padding:12px 14px;border:1px solid var(--kjs-line);border-radius:14px;list-style:none}
+    .kjs .kjs-checks li{position:relative;padding-left:24px;font-size:13.5px;word-break:keep-all}
+    .kjs .kjs-checks li+li{margin-top:6px}
+    .kjs .kjs-checks li::before{position:absolute;left:0;top:0;width:18px;text-align:center;font-weight:800}
+    .kjs .kjs-checks li.kjs-ok::before{content:"✓";color:var(--kjs-accent)}
+    .kjs .kjs-checks li.kjs-x::before{content:"✕";color:var(--kjs-bad)}
+    .kjs .kjs-checks li.kjs-x{color:var(--kjs-bad)}
+    .kjs .kjs-risk{margin-top:8px;padding:12px 14px;border-radius:12px;font-size:13.5px;word-break:keep-all}
+    .kjs .kjs-risk.kjs-r0{background:#f8f9fc;color:var(--kjs-text)}
+    .kjs .kjs-risk.kjs-r1{background:#fff7e8;color:#8a5a00}
+    .kjs .kjs-risk.kjs-r2{background:var(--kjs-bad-soft);color:#b23a3f}
+    .kjs .kjs-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kjs-text);word-break:keep-all}
+    .kjs .kjs-formula p+p{margin-top:2px}
+    .kjs .kjs-note{margin-top:12px;font-size:12.5px;color:var(--kjs-sub);word-break:keep-all}
+    .kjs .kjs-note li{margin-left:16px}
+    .kjs .kjs-note li+li{margin-top:2px}
+    .kjs .kjs-nowrap{white-space:nowrap}
+    .kjs .kjs-actions{display:flex;gap:8px;margin-top:14px}
+    .kjs .kjs-btn{flex:1;height:44px;border:1.5px solid var(--kjs-line);border-radius:12px;background:#fff;color:var(--kjs-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kjs .kjs-btn:hover{background:#f4f6fa}
+    .kjs .kjs-btn:active{transform:scale(.98)}
+    .kjs .kjs-btn.kjs-primary{border-color:var(--kjs-accent);background:var(--kjs-accent);color:#fff}
+    .kjs .kjs-btn.kjs-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kjs{padding:18px;border-radius:16px}.kjs .kjs-big{font-size:30px}.kjs .kjs-in{font-size:17px}
+      .kjs .kjs-tab{font-size:12.5px}.kjs .kjs-opt{font-size:13.5px}}
+    @media (prefers-reduced-motion:reduce){.kjs .kjs-result,.kjs .kjs-in,.kjs .kjs-btn,.kjs .kjs-tab,.kjs .kjs-opt{transition:none}}
+  </style>
+
+  <p class="kjs-title">전세보증보험 가입 가능 여부 계산기</p>
+  <p class="kjs-desc">HUG 전세반환보증(전세보증금반환보증) 기준으로 내 전세가 가입 요건에 들어가는지 바로 확인해요.</p>
+
+  <div class="kjs-tabs" role="tablist" aria-label="주택 유형">
+    <button type="button" class="kjs-tab kjs-on" role="tab" aria-selected="true" data-type="apt">아파트</button>
+    <button type="button" class="kjs-tab" role="tab" aria-selected="false" data-type="ot">오피스텔</button>
+    <button type="button" class="kjs-tab" role="tab" aria-selected="false" data-type="villa">연립·<br>다세대</button>
+    <button type="button" class="kjs-tab" role="tab" aria-selected="false" data-type="house">단독·<br>다가구</button>
+  </div>
+
+  <p class="kjs-label"><span>지역 <small>(수도권 = 서울·경기·인천)</small></span></p>
+  <div class="kjs-seg" role="group" aria-label="지역">
+    <button type="button" class="kjs-opt kjs-on" data-region="metro" aria-pressed="true">수도권<small>보증금 7억원 이하</small></button>
+    <button type="button" class="kjs-opt" data-region="other" aria-pressed="false">그 외 지역<small>보증금 5억원 이하</small></button>
+  </div>
+
+  <div data-basis-box>
+    <p class="kjs-label">주택가격 기준</p>
+    <div class="kjs-seg" role="group" aria-label="주택가격 기준">
+      <button type="button" class="kjs-opt kjs-on" data-basis="market" aria-pressed="true"><span data-market-name>시세</span><small data-market-small>KB·부동산원 시세 × 100%</small></button>
+      <button type="button" class="kjs-opt" data-basis="official" aria-pressed="false"><span data-official-name>공시가격</span><small>× 140%</small></button>
+    </div>
+  </div>
+
+  <label class="kjs-label" for="kjs-price" data-price-label>KB시세</label>
+  <div class="kjs-field"><input class="kjs-in" id="kjs-price" data-price inputmode="numeric" placeholder="30,000" autocomplete="off"><span class="kjs-unit">만원</span></div>
+  <p class="kjs-hint" data-price-read></p>
+  <p class="kjs-hint" data-basis-hint></p>
+
+  <label class="kjs-label" for="kjs-dep">전세보증금</label>
+  <div class="kjs-field"><input class="kjs-in" id="kjs-dep" data-dep inputmode="numeric" placeholder="25,000" autocomplete="off"><span class="kjs-unit">만원</span></div>
+  <p class="kjs-hint" data-dep-read>만원 단위로 입력하세요. 2억 5천만원이면 25,000</p>
+
+  <label class="kjs-label" for="kjs-senior"><span>선순위 채권 <small>(근저당 채권최고액 등)</small></span></label>
+  <div class="kjs-field"><input class="kjs-in" id="kjs-senior" data-senior inputmode="numeric" placeholder="0" autocomplete="off"><span class="kjs-unit">만원</span></div>
+  <p class="kjs-hint" data-senior-read>등기부등본 을구의 근저당 채권최고액 합계예요. 없으면 비워 두거나 0을 넣으세요.</p>
+
+  <div data-prior-box hidden>
+    <label class="kjs-label" for="kjs-prior"><span>먼저 입주한 다른 세입자 보증금 <small>(선순위 임차보증금)</small></span></label>
+    <div class="kjs-field"><input class="kjs-in" id="kjs-prior" data-prior inputmode="numeric" placeholder="0" autocomplete="off"><span class="kjs-unit">만원</span></div>
+    <p class="kjs-hint" data-prior-read>다가구는 나보다 먼저 전입·확정일자를 받은 세입자 보증금도 선순위로 빠져요. 없으면 0.</p>
+  </div>
+
+  <p class="kjs-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kjs-result" data-result aria-live="polite">
+    <div class="kjs-result-inner">
+      <div class="kjs-main" data-main>
+        <p class="kjs-main-label">HUG 전세반환보증 기준 판정</p>
+        <p class="kjs-big" data-big></p>
+        <p class="kjs-sub" data-sub></p>
+      </div>
+      <div class="kjs-grid">
+        <div class="kjs-card"><p class="kjs-card-k">인정 주택가격</p><p class="kjs-card-v" data-v-price></p><p class="kjs-card-s" data-s-price></p></div>
+        <div class="kjs-card"><p class="kjs-card-k">가입 가능한 최대 보증금</p><p class="kjs-card-v" data-v-max></p><p class="kjs-card-s" data-s-max></p></div>
+        <div class="kjs-card"><p class="kjs-card-k">전세가율 (보증금 ÷ 주택가격)</p><p class="kjs-card-v" data-v-ratio></p></div>
+        <div class="kjs-card"><p class="kjs-card-k">부채비율 (선순위 포함)</p><p class="kjs-card-v" data-v-debt></p><p class="kjs-card-s">90% 이하여야 가입 가능</p></div>
+      </div>
+      <ul class="kjs-checks" data-checks></ul>
+      <p class="kjs-risk" data-risk></p>
+      <div class="kjs-formula" data-formula></div>
+      <ul class="kjs-note">
+        <li>최종 가입 여부는 <strong>HUG(또는 위탁 은행) 심사</strong>로 정해져요. 위반건축물, 근린생활시설(이른바 근생빌라), 임대인 보증사고 이력 등 다른 사유로도 거절될 수 있어요.</li>
+        <li>계약 후 잔금 전에 <strong>안심전세앱 사전심사</strong>로 가입 가능 여부를 미리 확인할 수 있어요.</li>
+        <li>담보인정비율 90%는 2026. 11. 기준이에요. 정부가 80~70%로 낮추는 방안을 검토 중이라 계약 직전에 다시 확인하세요.</li>
+      </ul>
+      <div class="kjs-actions">
+        <button type="button" class="kjs-btn" data-reset>다시 입력</button>
+        <button type="button" class="kjs-btn kjs-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kjs]');
+    if (!root || root.__kjs) return;
+    root.__kjs = true;
+
+    // HUG 전세반환보증(구 전세보증금반환보증) 기준, 2026. 11. 20. 확인
+    var LTV = 90;            // 담보인정비율(전세가율) %: (보증금 + 선순위) ≤ 주택가격 × 90% (2023. 5. 1. 신규분부터)
+    var OFFICIAL_RATE = 140; // 공시가격 적용비율 % (2023. 1. 1. 신청분부터 150% → 140%)
+    var SENIOR_MAX = 60;     // 선순위채권 ≤ 주택가격의 60%
+    var SENIOR_MAX_HOUSE = 80; // 단독·다중·다가구: 선순위 임차보증금 포함 80% (그중 보증금 외 채권은 60%)
+    var CAP = { metro: 70000, other: 50000 }; // 보증 대상 전세보증금 한도(만원): 수도권 7억, 그 외 5억
+    var SCENARIOS = [80, 70]; // 정부 검토 중인 인하안(미확정) 미리 보기
+    var MAX = 9999999; // 만원
+
+    var TYPE = {
+      apt: { name: '아파트', basis: true, def: 'market', market: '시세', marketSmall: 'KB·부동산원 시세 × 100%', official: '공시가격',
+        priceLabel: { market: 'KB시세 (또는 한국부동산원 시세)', official: '공동주택 공시가격' },
+        hint: { market: '아파트는 KB시세·한국부동산원 시세가 1순위예요. 시세가 있으면 보통 이 값이 쓰여요.',
+          official: '시세가 없는 아파트만 공시가격 × 140%를 써요. 시세가 있으면 시세가 우선이에요.' } },
+      ot: { name: '오피스텔', basis: true, def: 'market', market: '시세', marketSmall: 'KB·부동산원 시세 × 100%', official: '기준시가',
+        priceLabel: { market: 'KB시세 (또는 한국부동산원 시세)', official: '오피스텔 기준시가 (국세청)' },
+        hint: { market: '오피스텔도 KB시세·한국부동산원 시세가 1순위예요.',
+          official: '시세가 없으면 홈택스에서 조회한 오피스텔 기준시가 × 140%를 써요.' } },
+      villa: { name: '연립·다세대', basis: true, def: 'official', market: '안심전세앱 시세', marketSmall: '하한가 × 100%', official: '공시가격',
+        priceLabel: { market: '안심전세앱 시세 하한가', official: '공동주택 공시가격' },
+        hint: { market: '연립·다세대는 공시가격 × 140%가 1순위예요. 공시가격이 없을 때 안심전세앱 시세 하한가 등을 봐요.',
+          official: '연립·다세대(빌라)는 공시가격 × 140%가 1순위예요. 부동산공시가격알리미에서 조회할 수 있어요.' } },
+      house: { name: '단독·다가구', basis: false, def: 'official', official: '공시가격',
+        priceLabel: { official: '개별단독주택 공시가격' },
+        hint: { official: '단독·다가구는 개별단독주택가격 × 140%를 써요. 부동산공시가격알리미에서 조회할 수 있어요.' } }
+    };
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var priceI = $('[data-price]'), depI = $('[data-dep]'), seniorI = $('[data-senior]'), priorI = $('[data-prior]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var type = 'apt', region = 'metro', basis = 'market', lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function num(s) { return s === '' ? NaN : +String(s).replace(/,/g, ''); }
+    // 만원 단위 정수 → "3억 5,000만원"
+    function man(m) {
+      if (m <= 0) return '0원';
+      var eok = Math.floor(m / 10000), rest = m % 10000;
+      if (!eok) return comma(rest) + '만원';
+      return comma(eok) + '억' + (rest ? ' ' + comma(rest) + '만원' : '원');
+    }
+    // 원 → 만원 미만 버림 표시
+    function wonToMan(w) { return man(Math.floor(w / 10000)); }
+    function pct(a, b) { return (Math.floor(a / b * 1000 + 1e-9) / 10).toFixed(1) + '%'; }
+
+    function select(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) {
+        var on = b.getAttribute(attr) === val;
+        b.classList.toggle('kjs-on', on);
+        b.setAttribute(b.getAttribute('role') === 'tab' ? 'aria-selected' : 'aria-pressed', on);
+      });
+    }
+
+    function readOne(inp, el, empty) {
+      var v = num(inp.value);
+      if (v > 0) el.innerHTML = '= <b>' + man(v) + '</b>';
+      else el.textContent = empty;
+    }
+    function readAll() {
+      readOne(priceI, $('[data-price-read]'), '만원 단위로 입력하세요. 3억원이면 30,000');
+      readOne(depI, $('[data-dep-read]'), '만원 단위로 입력하세요. 2억 5천만원이면 25,000');
+      readOne(seniorI, $('[data-senior-read]'), '등기부등본 을구의 근저당 채권최고액 합계예요. 없으면 비워 두거나 0을 넣으세요.');
+      readOne(priorI, $('[data-prior-read]'), '다가구는 나보다 먼저 전입·확정일자를 받은 세입자 보증금도 선순위로 빠져요. 없으면 0.');
+    }
+
+    function applyType() {
+      var t = TYPE[type];
+      $('[data-basis-box]').hidden = !t.basis;
+      if (!t.basis) basis = 'official';
+      if (t.basis) {
+        $('[data-market-name]').textContent = t.market;
+        $('[data-market-small]').textContent = t.marketSmall;
+      }
+      $('[data-official-name]').textContent = t.official;
+      select('data-basis', basis);
+      $('[data-price-label]').textContent = t.priceLabel[basis];
+      $('[data-basis-hint]').textContent = t.hint[basis];
+      $('[data-prior-box]').hidden = type !== 'house';
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('kjs-show');
+      msg.textContent = text || '';
+      $$('.kjs-in').forEach(function (i) { i.classList.toggle('kjs-bad', !!bad && i === bad); });
+    }
+
+    function li(ok, text) { return { ok: ok, text: text }; }
+
+    function calc() {
+      if (priceI.value === '' || depI.value === '') return hide('');
+      var p = num(priceI.value), dep = num(depI.value);
+      var senior = seniorI.value === '' ? 0 : num(seniorI.value);
+      var prior = type !== 'house' || priorI.value === '' ? 0 : num(priorI.value);
+      if (!(p > 0)) return hide('주택가격을 1만원 이상으로 입력해 주세요.', priceI);
+      if (!(dep > 0)) return hide('전세보증금을 1만원 이상으로 입력해 주세요.', depI);
+      if (p > MAX) return hide('주택가격이 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', priceI);
+      if (dep > MAX) return hide('전세보증금이 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', depI);
+      if (senior > MAX) return hide('선순위 채권이 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', seniorI);
+      if (prior > MAX) return hide('선순위 임차보증금이 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', priorI);
+      hide('');
+
+      var t = TYPE[type];
+      var rate = basis === 'official' ? OFFICIAL_RATE : 100;
+      // 모든 금액을 원 단위 정수로 계산
+      var priceW = p * 10000 * rate / 100;              // 인정 주택가격 (1만원 × 정수 % → 원 단위 정수)
+      var depW = dep * 10000, seniorW = senior * 10000, priorW = prior * 10000;
+      var capMan = CAP[region], capW = capMan * 10000;
+      var limitW = Math.floor(priceW * LTV / 100);       // 주택가격 × 90%
+      var totalW = depW + seniorW + priorW;
+      var room = limitW - seniorW - priorW;
+      var maxW = Math.max(0, Math.min(room, capW));
+
+      var checks = [];
+      var okCap = depW <= capW;
+      checks.push(li(okCap, '보증금 한도: ' + man(dep) + (okCap ? ' ≤ ' : ' > ') + (region === 'metro' ? '수도권 ' : '그 외 지역 ') + man(capMan)));
+      var seniorLimW = Math.floor(priceW * SENIOR_MAX / 100);
+      var okSenior = seniorW <= seniorLimW;
+      checks.push(li(okSenior, '선순위 채권: ' + man(senior) + (okSenior ? ' ≤ ' : ' > ') + '주택가격의 60% (' + wonToMan(seniorLimW) + ')'));
+      var okHouse = true;
+      if (type === 'house') {
+        var houseLimW = Math.floor(priceW * SENIOR_MAX_HOUSE / 100);
+        okHouse = seniorW + priorW <= houseLimW;
+        checks.push(li(okHouse, '선순위 채권 + 선순위 임차보증금: ' + man(senior + prior) + (okHouse ? ' ≤ ' : ' > ') + '주택가격의 80% (' + wonToMan(houseLimW) + ')'));
+      }
+      var okLtv = totalW <= limitW;
+      checks.push(li(okLtv, '보증금 + 선순위: ' + man(dep + senior + prior) + (okLtv ? ' ≤ ' : ' > ') + '주택가격의 90% (' + wonToMan(limitW) + ')'));
+      var ok = okCap && okSenior && okHouse && okLtv;
+
+      var main = $('[data-main]');
+      main.classList.toggle('kjs-no', !ok);
+      $('[data-big]').textContent = ok ? '가입 가능해 보여요' : '가입이 어려워요';
+      var reasons = [];
+      if (!okLtv) reasons.push('보증금과 선순위 채권 합계가 주택가격의 90%를 ' + wonToMan(totalW - limitW) + ' 넘어요');
+      if (!okCap) reasons.push('보증금이 ' + (region === 'metro' ? '수도권' : '지역') + ' 한도 ' + man(capMan) + '을 넘어요');
+      if (!okSenior) reasons.push('선순위 채권이 주택가격의 60%를 넘어요');
+      if (!okHouse) reasons.push('선순위 채권과 선순위 임차보증금 합계가 주택가격의 80%를 넘어요');
+      $('[data-sub]').textContent = ok
+        ? '이 집은 보증금 ' + wonToMan(maxW) + '까지 가입 요건 안이에요'
+        : reasons.join(' · ');
+
+      $('[data-v-price]').textContent = wonToMan(priceW);
+      $('[data-s-price]').textContent = basis === 'official' ? t.official + ' ' + man(p) + ' × 140%' : t.market + ' ' + man(p) + ' × 100%';
+      $('[data-v-max]').textContent = maxW > 0 && okSenior && okHouse ? wonToMan(maxW) : '0원';
+      $('[data-s-max]').textContent = !(okSenior && okHouse) ? '선순위 채권 요건부터 넘어서 가입이 안 돼요'
+        : room <= 0 ? '선순위만으로 90%를 채워요'
+        : (room > capW ? '지역 한도 ' + man(capMan) + ' 적용' : '주택가격 × 90% − 선순위');
+      $('[data-v-ratio]').textContent = pct(depW, priceW);
+      $('[data-v-debt]').textContent = pct(totalW, priceW);
+
+      var box = $('[data-checks]'); box.innerHTML = '';
+      checks.forEach(function (c) { var el = document.createElement('li'); el.className = c.ok ? 'kjs-ok' : 'kjs-x'; el.textContent = c.text; box.appendChild(el); });
+
+      var debt = totalW / priceW * 100, risk = $('[data-risk]'), lvl, rtxt;
+      if (debt > LTV) { lvl = 2; rtxt = '위험 신호: 보증금과 선순위 채권이 인정 주택가격의 90%를 넘어요. 집이 경매로 넘어가면 보증금을 다 돌려받기 어려울 수 있는 깡통전세 구간이에요.'; }
+      else if (debt >= 80) { lvl = 2; rtxt = '위험 신호: 부채비율이 80% 이상이에요. 지금은 가입 요건 안이지만 집값이 조금만 내려도 보증금이 위험해지고, 비율 기준이 낮아지면 갱신 때 가입이 안 될 수 있어요.'; }
+      else if (debt > 70) { lvl = 1; rtxt = '주의: 부채비율이 70%를 넘어요. 보증료율이 더 높은 구간이고, 담보인정비율이 낮아지면 영향을 받을 수 있어요.'; }
+      else { lvl = 0; rtxt = '부채비율이 70% 이하로 비교적 여유가 있어요. 그래도 계약 전 등기부등본과 임대인 체납 여부는 꼭 확인하세요.'; }
+      if (seniorW > priceW * 0.5 && okSenior) rtxt += ' 선순위 채권이 주택가격의 50%를 넘어 보증료가 10% 할증돼요.';
+      risk.className = 'kjs-risk kjs-r' + lvl;
+      risk.textContent = rtxt;
+
+      var lines = [];
+      lines.push('인정 주택가격: ' + man(p) + ' × ' + rate + '% = ' + wonToMan(priceW));
+      lines.push('가입 한도: ' + wonToMan(priceW) + ' × 90% = ' + wonToMan(limitW));
+      lines.push('최대 보증금: ' + wonToMan(limitW) + ' − 선순위 ' + man(senior + prior) + ' = ' + (room > 0 ? wonToMan(room) : '0원') +
+        (room > capW ? ' → 지역 한도 ' + man(capMan) : '') + (okSenior && okHouse ? '' : ' (선순위 비율 요건 초과로 가입 불가)'));
+      var sc = SCENARIOS.map(function (r) {
+        var m = Math.max(0, Math.min(Math.floor(priceW * r / 100) - seniorW - priorW, capW));
+        return r + '%면 ' + wonToMan(m);
+      });
+      lines.push('비율이 낮아진다면(검토 중, 미확정): ' + sc.join(' / '));
+      var f = $('[data-formula]'); f.innerHTML = '';
+      lines.forEach(function (s) { var el = document.createElement('p'); el.textContent = s; f.appendChild(el); });
+
+      result.classList.add('kjs-show');
+
+      lastText = '[전세보증보험(HUG 전세반환보증) 가입 가능 여부]\n' +
+        '주택: ' + t.name + ' / ' + (region === 'metro' ? '수도권' : '그 외 지역') + '\n' +
+        '인정 주택가격: ' + wonToMan(priceW) + ' (' + (basis === 'official' ? t.official + ' × 140%' : t.market) + ')\n' +
+        '전세보증금: ' + man(dep) + ' / 선순위: ' + man(senior + prior) + '\n' +
+        '판정: ' + (ok ? '가입 가능해 보여요' : '가입이 어려워요 (' + reasons.join(', ') + ')') + '\n' +
+        '가입 가능한 최대 보증금: ' + $('[data-v-max]').textContent + '\n' +
+        '전세가율 ' + pct(depW, priceW) + ' / 부채비율 ' + pct(totalW, priceW) + '\n' +
+        '※ 2026. 11. 기준 담보인정비율 90%. 최종 심사는 HUG·은행이 해요.';
+    }
+
+    $$('[data-type]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        type = b.getAttribute('data-type'); select('data-type', type);
+        basis = TYPE[type].def; applyType(); calc();
+      });
+    });
+    $$('[data-region]').forEach(function (b) { b.addEventListener('click', function () { region = b.getAttribute('data-region'); select('data-region', region); calc(); }); });
+    $$('[data-basis]').forEach(function (b) { b.addEventListener('click', function () { basis = b.getAttribute('data-basis'); applyType(); calc(); }); });
+
+    [priceI, depI, seniorI, priorI].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 8);
+        inp.value = v === '' ? '' : comma(v);
+        readAll(); calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      priceI.value = depI.value = seniorI.value = priorI.value = '';
+      readAll(); hide(''); priceI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    applyType(); readAll();
+  })();
+  </script>
+</div>
+<!-- 전세보증보험(HUG 전세반환보증) 가입 가능 여부 계산기 위젯 끝 -->
+<h2>전세보증보험 가입 가능 여부 계산법</h2>
+<p>주택도시보증공사(HUG)의 전세반환보증(2026년 10월 말 개편 전 이름은 전세보증금반환보증)은 세 가지를 차례로 따져요.</p>
+<ol>
+  <li><strong>인정 주택가격 정하기:</strong> 아파트·오피스텔은 KB시세·한국부동산원 시세, 빌라와 단독주택은 공시가격 × 140%가 기본이에요.</li>
+  <li><strong>90% 요건:</strong> 전세보증금 + 선순위 채권(근저당 채권최고액 등) ≤ 인정 주택가격 × 90%</li>
+  <li><strong>그 밖의 한도:</strong> 보증금은 수도권 7억원·그 외 지역 5억원 이하, 선순위 채권은 주택가격의 60% 이하(단독·다가구는 먼저 입주한 세입자 보증금을 포함해 80% 이하)</li>
+</ol>
+<p>그래서 <strong>가입 가능한 최대 보증금 = 인정 주택가격 × 90% − 선순위 채권</strong>이고, 이 값이 지역 한도보다 크면 지역 한도까지예요.</p>
+<p>예를 들어 서울에 있는 공시가격 2억원 다세대(빌라)에 근저당 채권최고액이 3천만원 잡혀 있다면, 인정 주택가격은 2억원 × 140% = 2억 8,000만원이에요. 여기에 90%를 곱하면 2억 5,200만원이고, 선순위 3천만원을 빼면 <strong>보증금 2억 2,200만원까지</strong> 가입 요건 안이에요. 같은 집에 보증금 2억 3,000만원으로 계약하면 합계 2억 6,000만원이 2억 5,200만원을 넘어 가입이 어려워요.</p>
+<h2>주택 유형별 주택가격 산정 기준</h2>
+<p>HUG는 주택 유형마다 어떤 가격을 먼저 쓸지 순서를 정해 두고 있어요. 앞 순위 가격이 있으면 그 값을 써요.</p>
+<table>
+  <thead><tr><th>주택 유형</th><th>1순위</th><th>앞 순위가 없을 때</th></tr></thead>
+  <tbody>
+    <tr><td>아파트</td><td>KB시세 또는 한국부동산원 시세</td><td>공동주택 공시가격 × 140%, 그다음 안심전세앱 시세·최근 1년 내 매매가 등</td></tr>
+    <tr><td>오피스텔</td><td>KB시세 또는 한국부동산원 시세</td><td>국세청 오피스텔 기준시가 × 140% 등</td></tr>
+    <tr><td>연립·다세대(빌라)</td><td>공동주택 공시가격 × 140%</td><td>안심전세앱 시세 하한가, 최근 1년 내 매매가 등</td></tr>
+    <tr><td>단독·다가구</td><td>개별단독주택 공시가격 × 140%</td><td>토지 공시지가 + 건물 시가표준액 × 140% 등</td></tr>
+  </tbody>
+</table>
+<p>감정평가액은 2023년 심사기준 개편 이후 시세나 공시가격이 없을 때만 쓰고, HUG가 정한 감정평가기관의 평가서만 인정해요. 공시가격은 부동산공시가격알리미, 오피스텔 기준시가는 홈택스에서 조회할 수 있어요.</p>
+<h2>전세보증보험 가입 요건 한눈에 보기</h2>
+<table>
+  <thead><tr><th>항목</th><th>기준 (2026년 11월 기준)</th></tr></thead>
+  <tbody>
+    <tr><td>보증 대상 보증금</td><td>수도권 7억원 이하, 그 외 지역 5억원 이하</td></tr>
+    <tr><td>담보인정비율(전세가율)</td><td>보증금 + 선순위 채권 ≤ 주택가격 × 90%</td></tr>
+    <tr><td>공시가격 적용비율</td><td>140% (공시가격 기준이면 사실상 126%까지)</td></tr>
+    <tr><td>선순위 채권</td><td>주택가격의 60% 이하 (단독·다중·다가구는 선순위 임차보증금 포함 80% 이하, 그중 보증금 외 채권은 60% 이하)</td></tr>
+    <tr><td>보증료(참고)</td><td>임차인 기준 연 약 0.097~0.211%, 보증금·주택 유형·부채비율에 따라 달라요. 선순위 채권이 주택가격의 50%를 넘으면 10% 할증</td></tr>
+  </tbody>
+</table>
+<h2>공시가격별 가입 가능한 최대 보증금</h2>
+<p>공시가격으로 주택가격을 정하는 빌라·단독주택이고, 근저당 같은 선순위 채권이 없을 때 기준이에요. 근저당이 있으면 그 금액만큼 빼야 해요.</p>
+<table>
+  <thead><tr><th>공시가격</th><th>인정 주택가격 (× 140%)</th><th>최대 보증금 (수도권)</th><th>최대 보증금 (그 외 지역)</th></tr></thead>
+  <tbody>
+    <tr><td>1억원</td><td>1억 4,000만원</td><td>1억 2,600만원</td><td>1억 2,600만원</td></tr>
+    <tr><td>1억 5,000만원</td><td>2억 1,000만원</td><td>1억 8,900만원</td><td>1억 8,900만원</td></tr>
+    <tr><td>2억원</td><td>2억 8,000만원</td><td>2억 5,200만원</td><td>2억 5,200만원</td></tr>
+    <tr><td>3억원</td><td>4억 2,000만원</td><td>3억 7,800만원</td><td>3억 7,800만원</td></tr>
+    <tr><td>4억원</td><td>5억 6,000만원</td><td>5억 400만원</td><td>5억원 (지역 한도)</td></tr>
+    <tr><td>5억원</td><td>7억원</td><td>6억 3,000만원</td><td>5억원 (지역 한도)</td></tr>
+    <tr><td>6억원</td><td>8억 4,000만원</td><td>7억원 (지역 한도)</td><td>5억원 (지역 한도)</td></tr>
+  </tbody>
+</table>
+<h2>가입 요건 안이어도 살펴볼 위험 신호</h2>
+<ul>
+  <li><strong>부채비율 80% 이상:</strong> 보증금과 선순위 채권이 주택가격의 80%를 넘으면 집값이 조금만 내려도 경매 때 보증금을 다 돌려받기 어려워져요. 보증보험 가입이 사실상 필수인 구간이에요.</li>
+  <li><strong>부채비율 70% 초과:</strong> 2025년 3월 31일 보증 신청분부터 보증료율이 위험도에 따라 달라져, 비율이 높을수록 보증료가 비싸요.</li>
+  <li><strong>기준 강화 가능성:</strong> 2026년 국회와 국토교통부에서 담보인정비율을 90%에서 80~70%로 낮추는 방안이 논의됐지만, 2026년 11월 20일 현재 시행일과 비율은 확정되지 않았어요. 2년 뒤 갱신할 때 기준이 바뀌어 있을 수 있으니 여유 있게 계약하는 게 안전해요.</li>
+  <li><strong>다른 거절 사유:</strong> 위반건축물, 주택이 아닌 근린생활시설, 임대인의 보증사고 이력, 보증 신청 기한 경과 등은 금액 요건과 상관없이 가입이 안 될 수 있어요.</li>
+</ul>
+<p>HUG는 2026년 10월 말부터 전세 계약 뒤 잔금 전에 안심전세앱에서 가입 가능 여부를 미리 심사받는 사전심사 제도를 운영한다고 밝혔어요. 결과가 나오기 전이라면 "보증 가입이 안 되면 계약을 해제하고 계약금을 돌려준다"는 특약을 넣어 두면 좋아요.</p>
+<h2>자주 묻는 질문</h2>
+<h3>전세보증보험 공시가격 126% 기준이 뭔가요?</h3>
+<p>HUG는 빌라·단독주택처럼 공시가격으로 주택가격을 정하는 집에 공시가격의 140%를 주택가격으로 인정하고, 보증금과 선순위 채권 합계가 그 90% 이내여야 가입을 받아 줘요. 140% × 90% = 126%라서, 근저당이 없으면 보증금이 공시가격의 126%까지라는 뜻이에요. 공시가격 2억원 빌라라면 보증금 2억 5,200만원까지예요.</p>
+<h3>아파트도 공시가격 140%로 계산하나요?</h3>
+<p>아니요. 아파트와 오피스텔은 KB시세나 한국부동산원 시세가 1순위라서 시세가 있으면 시세를 주택가격으로 써요. 공시가격 × 140%(오피스텔은 국세청 기준시가 × 140%)는 시세가 없는 경우에 쓰는 기준이에요. 그래서 아파트는 보통 시세 × 90%에서 선순위 채권을 뺀 금액까지 가입할 수 있어요.</p>
+<h3>집에 근저당이 있으면 전세보증보험 가입이 안 되나요?</h3>
+<p>근저당이 있어도 가입할 수 있어요. 다만 근저당 채권최고액(대출 원금이 아니라 등기부등본 을구에 적힌 최고액)이 주택가격의 60% 이하여야 하고, 보증금과 합한 금액이 주택가격의 90% 이내여야 해요. 선순위 채권이 주택가격의 50%를 넘으면 보증료가 10% 할증돼요. 잔금일에 근저당을 말소하기로 했다면 말소 후 등기부등본으로 다시 심사받아요.</p>
+<h3>SGI서울보증이나 HF 전세보증과는 뭐가 다른가요?</h3>
+<p>HUG는 보증금 한도가 수도권 7억원·그 외 5억원이고 보증료가 비교적 낮아요. SGI서울보증 전세금보장신용보험은 아파트는 보증금 한도가 없고 그 밖의 주택은 10억원 이내라 고액 전세도 가입할 수 있지만 보증료율이 더 높은 편이에요. 한국주택금융공사(HF) 전세지킴보증은 HF 전세자금대출 보증과 함께 이용하는 경우가 많아요. 상품마다 주택가격 산정 방식과 심사 기준이 달라, HUG에서 거절돼도 다른 곳은 가입될 수 있으니 각 기관에서 확인해 보세요.</p>
+<h3>전세가율 90% 기준이 80%나 70%로 바뀌나요?</h3>
+<p>2026년에 국회 국토교통위원회가 70%로 낮추는 방안을 검토하라는 의견을 냈고 국토교통부도 단계적으로 낮추는 방향을 밝혔지만, 2026년 11월 20일 현재 시행일과 비율은 확정되지 않았어요. 위 계산기의 계산식 칸에서 80%·70%로 바뀔 때의 최대 보증금도 함께 볼 수 있어요. 계약 직전에 HUG 누리집이나 안심전세앱에서 현재 기준을 꼭 다시 확인하세요.</p>
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:moving-admin-checklist}}">이사 행정 체크리스트</a>: 전입신고·확정일자 등 이사 날짜별로 챙길 일</li>
+  <li><a href="{{LINK:brokerage-fee-calculator}}">부동산 중개수수료(복비) 계산기</a>: 전세·월세 중개보수 상한 바로 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "전세보증보험 공시가격 126% 기준이 뭔가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "HUG는 빌라·단독주택처럼 공시가격으로 주택가격을 정하는 집에 공시가격의 140%를 주택가격으로 인정하고, 보증금과 선순위 채권 합계가 그 90% 이내여야 가입을 받아 줘요. 140% × 90% = 126%라서, 근저당이 없으면 보증금이 공시가격의 126%까지라는 뜻이에요. 공시가격 2억원 빌라라면 보증금 2억 5,200만원까지예요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "아파트도 공시가격 140%로 계산하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "아니요. 아파트와 오피스텔은 KB시세나 한국부동산원 시세가 1순위라서 시세가 있으면 시세를 주택가격으로 써요. 공시가격 × 140%(오피스텔은 국세청 기준시가 × 140%)는 시세가 없는 경우에 쓰는 기준이에요. 그래서 아파트는 보통 시세 × 90%에서 선순위 채권을 뺀 금액까지 가입할 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "집에 근저당이 있으면 전세보증보험 가입이 안 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "근저당이 있어도 가입할 수 있어요. 다만 근저당 채권최고액(대출 원금이 아니라 등기부등본 을구에 적힌 최고액)이 주택가격의 60% 이하여야 하고, 보증금과 합한 금액이 주택가격의 90% 이내여야 해요. 선순위 채권이 주택가격의 50%를 넘으면 보증료가 10% 할증돼요. 잔금일에 근저당을 말소하기로 했다면 말소 후 등기부등본으로 다시 심사받아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "SGI서울보증이나 HF 전세보증과는 뭐가 다른가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "HUG는 보증금 한도가 수도권 7억원·그 외 5억원이고 보증료가 비교적 낮아요. SGI서울보증 전세금보장신용보험은 아파트는 보증금 한도가 없고 그 밖의 주택은 10억원 이내라 고액 전세도 가입할 수 있지만 보증료율이 더 높은 편이에요. 한국주택금융공사(HF) 전세지킴보증은 HF 전세자금대출 보증과 함께 이용하는 경우가 많아요. 상품마다 주택가격 산정 방식과 심사 기준이 달라, HUG에서 거절돼도 다른 곳은 가입될 수 있으니 각 기관에서 확인해 보세요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "전세가율 90% 기준이 80%나 70%로 바뀌나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2026년에 국회 국토교통위원회가 70%로 낮추는 방안을 검토하라는 의견을 냈고 국토교통부도 단계적으로 낮추는 방향을 밝혔지만, 2026년 11월 20일 현재 시행일과 비율은 확정되지 않았어요. 위 계산기의 계산식 칸에서 80%·70%로 바뀔 때의 최대 보증금도 함께 볼 수 있어요. 계약 직전에 HUG 누리집이나 안심전세앱에서 현재 기준을 꼭 다시 확인하세요."
+   }
+  }
+ ]
+}
+</script>
