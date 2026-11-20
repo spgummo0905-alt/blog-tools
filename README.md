@@ -48,6 +48,7 @@ tools/
 | 가족 사망 후 할 일 타임라인 (사망신고·상속포기·상속세 기한) | `tools/after-death-checklist` | 완성 |
 | 퇴사 후 할 일 타임라인 (실업급여·건강보험·국민연금 기한) | `tools/after-resignation-checklist` | 완성 |
 | 이사 행정 타임라인 (전입신고·확정일자·대항력) | `tools/moving-admin-checklist` | 완성 |
+| 출산 후 신청할 것 타임라인 (출생신고·부모급여·첫만남이용권 기한) | `tools/after-birth-checklist` | 완성 |
 
 ## 작업 규칙
 
