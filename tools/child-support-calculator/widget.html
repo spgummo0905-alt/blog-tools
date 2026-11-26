@@ -1,0 +1,237 @@
+<!-- 양육비 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kcs" data-kcs>
+  <style>
+    .kcs{--kcs-accent:#3b6ef5;--kcs-accent-soft:#eef3ff;--kcs-text:#1d2433;--kcs-sub:#6b7385;--kcs-line:#e3e7ef;--kcs-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kcs-line);border-radius:20px;background:var(--kcs-bg);
+      color:var(--kcs-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kcs [hidden]{display:none!important}
+    .kcs *,.kcs *::before,.kcs *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kcs .kcs-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kcs .kcs-desc{margin-top:4px;font-size:14px;color:var(--kcs-sub)}
+    .kcs .kcs-label{display:block;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kcs-text)}
+    .kcs .kcs-label small{font-weight:500;color:var(--kcs-sub);margin-left:4px}
+    .kcs .kcs-row{display:flex;gap:8px}
+    .kcs .kcs-field{position:relative;flex:1;min-width:0}
+    .kcs .kcs-cap{display:block;margin-bottom:6px;font-size:12.5px;color:var(--kcs-sub)}
+    .kcs .kcs-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--kcs-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kcs-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcs .kcs-in.kcs-age{padding:0 26px 0 12px}
+    .kcs .kcs-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kcs .kcs-in:focus{border-color:var(--kcs-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcs .kcs-in.kcs-bad{border-color:#e0565b}
+    .kcs .kcs-unit{position:absolute;right:12px;bottom:15px;font-size:14px;color:var(--kcs-sub);pointer-events:none}
+    .kcs .kcs-age + .kcs-unit{right:10px}
+    .kcs .kcs-hint{margin-top:8px;font-size:12.5px;color:var(--kcs-sub)}
+    .kcs .kcs-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kcs .kcs-chip{height:36px;padding:0 16px;border:1.5px solid var(--kcs-line);border-radius:999px;background:#fff;color:var(--kcs-sub);
+      font-size:14px;font-weight:600;cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+    .kcs .kcs-chip:hover{border-color:#c9d3ea;color:var(--kcs-text)}
+    .kcs .kcs-chip.kcs-on{border-color:var(--kcs-accent);background:var(--kcs-accent-soft);color:var(--kcs-accent)}
+    .kcs .kcs-kids{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
+    .kcs .kcs-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b}
+    .kcs .kcs-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kcs .kcs-result.kcs-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kcs .kcs-result-inner{overflow:hidden}
+    .kcs .kcs-main{margin-top:6px;padding:22px 20px;border-radius:16px;background:var(--kcs-accent-soft);text-align:center}
+    .kcs .kcs-main-label{font-size:14px;color:var(--kcs-sub)}
+    .kcs .kcs-big{margin-top:2px;font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--kcs-accent);line-height:1.25;white-space:nowrap}
+    .kcs .kcs-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kcs .kcs-sub{margin-top:6px;font-size:14px;color:var(--kcs-sub)}
+    .kcs .kcs-list{margin-top:8px;border:1px solid var(--kcs-line);border-radius:16px;overflow:hidden}
+    .kcs .kcs-item{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;padding:12px 14px;border-top:1px solid var(--kcs-line);font-size:14px}
+    .kcs .kcs-item:first-child{border-top:0}
+    .kcs .kcs-item-k{color:var(--kcs-text);font-weight:600}
+    .kcs .kcs-item-k span{display:block;margin-top:2px;font-size:12.5px;font-weight:400;color:var(--kcs-sub)}
+    .kcs .kcs-item-v{text-align:right;font-weight:700;white-space:nowrap}
+    .kcs .kcs-item-v span{display:block;margin-top:2px;font-size:12px;font-weight:400;color:var(--kcs-sub)}
+    .kcs .kcs-item.kcs-total{background:#f8f9fc}
+    .kcs .kcs-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kcs-text)}
+    .kcs .kcs-formula b{font-weight:700}
+    .kcs .kcs-adj{margin-top:8px;padding:12px 14px;border:1px solid #f1dfb8;border-radius:12px;background:#fffaf0;font-size:13px;color:#7a5b16}
+    .kcs .kcs-note{margin-top:12px;font-size:12.5px;color:var(--kcs-sub)}
+    .kcs .kcs-note + .kcs-note{margin-top:6px}
+    .kcs .kcs-nb{white-space:nowrap}
+    .kcs .kcs-actions{display:flex;gap:8px;margin-top:14px}
+    .kcs .kcs-btn{flex:1;height:44px;border:1.5px solid var(--kcs-line);border-radius:12px;background:#fff;color:var(--kcs-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kcs .kcs-btn:hover{background:#f4f6fa}
+    .kcs .kcs-btn:active{transform:scale(.98)}
+    .kcs .kcs-btn.kcs-primary{border-color:var(--kcs-accent);background:var(--kcs-accent);color:#fff}
+    .kcs .kcs-btn.kcs-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kcs{padding:18px;border-radius:16px}.kcs .kcs-big{font-size:31px}.kcs .kcs-in{font-size:17px}.kcs .kcs-kids{grid-template-columns:repeat(2,1fr)}}
+    @media (prefers-reduced-motion:reduce){.kcs .kcs-result,.kcs .kcs-in,.kcs .kcs-btn,.kcs .kcs-chip{transition:none}}
+  </style>
+
+  <p class="kcs-title">양육비 계산기</p>
+  <p class="kcs-desc">서울가정법원 <span class="kcs-nb">「2021 양육비 산정기준표」</span>(<span class="kcs-nb">2022. 3. 1.</span> 시행, 현행)로 자녀별 표준양육비와 비양육자 분담액을 계산해요.</p>
+
+  <p class="kcs-label">부모 각자의 월 소득 <small>세전, 만원 단위</small></p>
+  <div class="kcs-row">
+    <div class="kcs-field"><span class="kcs-cap">양육자 (아이와 함께 사는 부모)</span><input class="kcs-in" data-inc-a inputmode="numeric" maxlength="7" placeholder="180" aria-label="양육자 월 소득(세전, 만원)"><span class="kcs-unit">만원</span></div>
+    <div class="kcs-field"><span class="kcs-cap">비양육자 (양육비를 주는 부모)</span><input class="kcs-in" data-inc-b inputmode="numeric" maxlength="7" placeholder="270" aria-label="비양육자 월 소득(세전, 만원)"><span class="kcs-unit">만원</span></div>
+  </div>
+  <p class="kcs-hint">근로·사업·임대·이자 소득 등을 합친 세전 월평균이에요. 소득이 없으면 0을 넣어 주세요.</p>
+
+  <p class="kcs-label">양육비를 받을 자녀 수</p>
+  <div class="kcs-chips" data-chips role="group" aria-label="자녀 수">
+    <button type="button" class="kcs-chip kcs-on" data-n="1">1명</button>
+    <button type="button" class="kcs-chip" data-n="2">2명</button>
+    <button type="button" class="kcs-chip" data-n="3">3명</button>
+    <button type="button" class="kcs-chip" data-n="4">4명</button>
+  </div>
+  <div class="kcs-kids" data-kids>
+    <div class="kcs-field"><span class="kcs-cap">첫째 만 나이</span><input class="kcs-in kcs-age" data-age inputmode="numeric" maxlength="2" placeholder="7" aria-label="첫째 만 나이"><span class="kcs-unit">세</span></div>
+    <div class="kcs-field" hidden><span class="kcs-cap">둘째 만 나이</span><input class="kcs-in kcs-age" data-age inputmode="numeric" maxlength="2" placeholder="4" aria-label="둘째 만 나이"><span class="kcs-unit">세</span></div>
+    <div class="kcs-field" hidden><span class="kcs-cap">셋째 만 나이</span><input class="kcs-in kcs-age" data-age inputmode="numeric" maxlength="2" placeholder="2" aria-label="셋째 만 나이"><span class="kcs-unit">세</span></div>
+    <div class="kcs-field" hidden><span class="kcs-cap">넷째 만 나이</span><input class="kcs-in kcs-age" data-age inputmode="numeric" maxlength="2" placeholder="1" aria-label="넷째 만 나이"><span class="kcs-unit">세</span></div>
+  </div>
+
+  <p class="kcs-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kcs-result" data-result aria-live="polite">
+    <div class="kcs-result-inner">
+      <div class="kcs-main">
+        <p class="kcs-main-label">비양육자가 매달 부담할 양육비 (기준표 평균값)</p>
+        <p class="kcs-big"><span data-pay>0</span><small>원</small></p>
+        <p class="kcs-sub" data-pay-sub></p>
+      </div>
+      <div class="kcs-list" data-list></div>
+      <p class="kcs-formula" data-formula></p>
+      <p class="kcs-adj" data-adj hidden></p>
+      <p class="kcs-note">기준표는 법적 구속력이 없는 참고 기준이에요. 실제 양육비는 부모의 재산, 거주 지역, 자녀 수, 고액의 치료비·교육비 등 개별 사정을 고려해 협의하거나 법원이 정해요. 이 결과는 법률 자문이 아니에요.</p>
+      <p class="kcs-note">상담: <span class="kcs-nb">대한법률구조공단 ☎ 132</span>, <span class="kcs-nb">가까운 가정법원 상담</span>, 양육비를 받지 못하고 있다면 <span class="kcs-nb">양육비이행관리원 ☎ 1644-6621</span></p>
+      <div class="kcs-actions">
+        <button type="button" class="kcs-btn" data-reset>다시 입력</button>
+        <button type="button" class="kcs-btn kcs-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kcs]');
+    if (!root || root.__kcs) return;
+    root.__kcs = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+
+    // 서울가정법원 2021 양육비 산정기준표 (2021. 12. 22. 공표, 2022. 3. 1. 시행)
+    // 자녀 1인당 월 표준양육비, 단위 천원: [평균, 구간 하한, 구간 상한(마지막 칸은 상한 없음)]
+    var INC = ['0~199만원', '200~299만원', '300~399만원', '400~499만원', '500~599만원', '600~699만원',
+      '700~799만원', '800~899만원', '900~999만원', '1,000~1,199만원', '1,200만원 이상'];
+    var AGES = [
+      { name: '0~2세', max: 2, row: [[621,264,686],[752,687,848],[945,849,1021],[1098,1022,1171],[1245,1172,1323],[1401,1324,1491],[1582,1492,1685],[1789,1686,1893],[1997,1894,2046],[2095,2047,2151],[2207,2152,0]] },
+      { name: '3~5세', max: 5, row: [[631,268,695],[759,696,854],[949,855,1031],[1113,1032,1189],[1266,1190,1344],[1422,1345,1510],[1598,1511,1702],[1807,1703,1912],[2017,1913,2066],[2116,2067,2180],[2245,2181,0]] },
+      { name: '6~8세', max: 8, row: [[648,272,707],[767,708,863],[959,864,1049],[1140,1050,1216],[1292,1217,1385],[1479,1386,1546],[1614,1547,1732],[1850,1733,1957],[2065,1958,2101],[2137,2102,2224],[2312,2225,0]] },
+      { name: '9~11세', max: 11, row: [[667,281,724],[782,725,885],[988,886,1075],[1163,1076,1240],[1318,1241,1406],[1494,1407,1562],[1630,1563,1758],[1887,1759,2012],[2137,2013,2158],[2180,2159,2292],[2405,2293,0]] },
+      { name: '12~14세', max: 14, row: [[679,295,734],[790,735,894],[998,895,1139],[1280,1140,1351],[1423,1352,1510],[1598,1511,1654],[1711,1655,1847],[1984,1848,2071],[2159,2072,2191],[2223,2192,2349],[2476,2350,0]] },
+      { name: '15~18세', max: 18, row: [[703,319,830],[957,831,1092],[1227,1093,1314],[1402,1315,1503],[1604,1504,1699],[1794,1700,1879],[1964,1880,2063],[2163,2064,2204],[2246,2205,2393],[2540,2394,2711],[2883,2712,0]] }
+    ];
+    var ORD = ['첫째', '둘째', '셋째', '넷째'];
+
+    var incA = $('[data-inc-a]'), incB = $('[data-inc-b]');
+    var ages = $$('[data-age]'), fields = $$('[data-kids] .kcs-field');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var n = 1, lastText = '';
+
+    function num(inp) { return inp.value === '' ? null : +inp.value.replace(/\D/g, ''); }
+    function won(v) { return Math.round(v).toLocaleString('ko-KR') + '원'; }
+    function man(v) { return v.toLocaleString('ko-KR') + '만원'; }
+    function incIdx(m) { return m < 200 ? 0 : m < 1000 ? Math.floor(m / 100) - 1 : m < 1200 ? 9 : 10; }
+    function ageIdx(a) { for (var i = 0; i < AGES.length; i++) if (a <= AGES[i].max) return i; return -1; }
+    function pct(r) { var p = Math.round(r * 1000) / 10; return (p % 1 ? p.toFixed(1) : String(p)) + '%'; }
+
+    function hide(text) { result.classList.remove('kcs-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var a = num(incA), b = num(incB);
+      ages.forEach(function (x) { x.classList.remove('kcs-bad'); });
+      var list = [], bad = '', empty = false;
+      for (var i = 0; i < n; i++) {
+        var v = ages[i].value;
+        if (v === '') { empty = true; continue; }
+        var age = +v;
+        if (age > 18) { ages[i].classList.add('kcs-bad'); bad = bad || '만 19세 이상은 성년이라 기준표 대상이 아니에요. 만 0~18세로 입력해 주세요.'; }
+        list.push(age);
+      }
+      if (bad) return hide(bad);
+      if (a === null || b === null || empty) return hide('');
+      if (a > 99999 || b > 99999) return hide('월 소득을 다시 확인해 주세요. 만원 단위로 입력해요 (예: 300만원 → 300).');
+      var sum = a + b;
+      if (sum === 0) return hide('두 분의 소득이 모두 0이면 분담비율을 계산할 수 없어요.');
+
+      var ci = incIdx(sum), total = 0, rows = '', copyRows = '';
+      list.forEach(function (age, k) {
+        var g = AGES[ageIdx(age)], c = g.row[ci];
+        var avg = c[0] * 1000, lo = c[1] * 1000, hi = c[2] * 1000;
+        var range = won(lo) + (hi ? ' ~ ' + won(hi) : ' 이상');
+        total += avg;
+        rows += '<div class="kcs-item"><p class="kcs-item-k">' + ORD[k] + ' (만 ' + age + '세)<span>' + g.name + ' 구간</span></p>' +
+          '<p class="kcs-item-v">' + won(avg) + '<span>범위 ' + range + '</span></p></div>';
+        copyRows += '\n' + ORD[k] + '(만 ' + age + '세, ' + g.name + '): ' + won(avg) + ' (범위 ' + range + ')';
+      });
+      var ratio = b / sum, pay = Math.round(total * b / sum);
+      rows += '<div class="kcs-item kcs-total"><p class="kcs-item-k">표준양육비 합계<span>부모 합산소득 ' + man(sum) + ' → ' + INC[ci] + ' 구간</span></p>' +
+        '<p class="kcs-item-v">' + won(total) + '<span>자녀 ' + n + '명</span></p></div>' +
+        '<div class="kcs-item"><p class="kcs-item-k">비양육자 분담비율<span>' + man(b) + ' ÷ ' + man(sum) + '</span></p><p class="kcs-item-v">' + pct(ratio) + '</p></div>';
+
+      $('[data-list]').innerHTML = rows;
+      $('[data-pay]').textContent = pay.toLocaleString('ko-KR');
+      $('[data-pay-sub]').textContent = '자녀 1명당 평균 약 ' + won(Math.round(pay / n)) + ' · 양육자 부담분 ' + won(total - pay);
+      $('[data-formula]').innerHTML = '<b>계산식</b> 표준양육비 합계 ' + won(total) + ' × 비양육자 소득 비율(' + man(b) + ' ÷ ' + man(sum) + ') = <b>' + won(pay) + '</b>';
+      var adj = $('[data-adj]');
+      if (n === 1) { adj.hidden = false; adj.textContent = '기준표는 자녀 2명 가구 기준이에요. 자녀가 1명이면 표 금액보다 가산될 수 있어요(얼마나 조정할지는 협의나 법원이 정해요).'; }
+      else if (n >= 3) { adj.hidden = false; adj.textContent = '기준표는 자녀 2명 가구 기준이에요. 자녀가 3명 이상이면 표 금액보다 감산될 수 있어요(얼마나 조정할지는 협의나 법원이 정해요).'; }
+      else adj.hidden = true;
+      msg.textContent = '';
+      result.classList.add('kcs-show');
+
+      lastText = '[양육비 계산 결과 - 2021 양육비 산정기준표]\n양육자 소득: ' + man(a) + ' / 비양육자 소득: ' + man(b) +
+        '\n부모 합산소득: ' + man(sum) + ' (' + INC[ci] + ' 구간)' + copyRows +
+        '\n표준양육비 합계: ' + won(total) + '\n비양육자 분담비율: ' + pct(ratio) +
+        '\n비양육자 월 부담액: ' + won(pay) + '\n※ 참고용이며 실제 양육비는 개별 사정을 고려해 협의하거나 법원이 정해요.';
+    }
+
+    function setN(k) {
+      n = k;
+      $$('[data-n]').forEach(function (c) { c.classList.toggle('kcs-on', +c.dataset.n === k); c.setAttribute('aria-pressed', +c.dataset.n === k); });
+      fields.forEach(function (f, i) { f.hidden = i >= k; });
+      calc();
+    }
+    $$('[data-n]').forEach(function (c) { c.addEventListener('click', function () { setN(+c.dataset.n); }); });
+
+    [incA, incB].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 6);
+        inp.value = v ? (+v).toLocaleString('ko-KR') : '';
+        calc();
+      });
+    });
+    ages.forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 2);
+        if (v !== inp.value) inp.value = v;
+        calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      incA.value = incB.value = ''; ages.forEach(function (x) { x.value = ''; }); setN(1); hide(''); incA.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+    setN(1);
+  })();
+  </script>
+</div>
+<!-- 양육비 계산기 위젯 끝 -->
