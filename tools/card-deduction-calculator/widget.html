@@ -1,0 +1,402 @@
+<!-- 신용카드 소득공제 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kcd" data-kcd>
+  <style>
+    .kcd{--kcd-accent:#3b6ef5;--kcd-accent-soft:#eef3ff;--kcd-text:#1d2433;--kcd-sub:#6b7385;--kcd-line:#e3e7ef;--kcd-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kcd-line);border-radius:20px;background:var(--kcd-bg);
+      color:var(--kcd-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kcd [hidden]{display:none!important}
+    .kcd *,.kcd *::before,.kcd *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kcd .kcd-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kcd .kcd-desc{margin-top:4px;font-size:14px;color:var(--kcd-sub)}
+    .kcd .kcd-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kcd-text)}
+    .kcd .kcd-label small{font-weight:500;color:var(--kcd-sub);text-align:right}
+    .kcd .kcd-field{position:relative}
+    .kcd .kcd-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--kcd-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kcd-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcd .kcd-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kcd .kcd-in:focus{border-color:var(--kcd-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcd .kcd-in.kcd-bad{border-color:#e0565b}
+    .kcd .kcd-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kcd-sub);pointer-events:none}
+    .kcd .kcd-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kcd .kcd-chip{height:32px;padding:0 12px;border:1.5px solid var(--kcd-line);border-radius:999px;background:#fff;color:var(--kcd-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kcd .kcd-chip:hover{border-color:#c9d3ea;color:var(--kcd-text)}
+    .kcd .kcd-chip.kcd-on{border-color:var(--kcd-accent);background:var(--kcd-accent-soft);color:var(--kcd-accent)}
+    .kcd .kcd-hint{margin-top:6px;font-size:12.5px;color:var(--kcd-sub)}
+    .kcd .kcd-seg{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+    .kcd .kcd-seg-btn{min-height:44px;padding:4px 6px;border:1.5px solid var(--kcd-line);border-radius:12px;background:#f8f9fc;color:var(--kcd-text);
+      font-size:14px;font-weight:600;line-height:1.3;cursor:pointer;transition:all .2s;word-break:keep-all}
+    .kcd .kcd-seg-btn:hover{border-color:#c9d3ea}
+    .kcd .kcd-seg-btn.kcd-on{border-color:var(--kcd-accent);background:var(--kcd-accent);color:#fff}
+    .kcd .kcd-box{margin-top:12px;padding:2px 14px 14px;border:1px solid var(--kcd-line);border-radius:16px;background:#fbfcfe}
+    .kcd .kcd-box .kcd-label{margin-top:14px}
+    .kcd .kcd-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kcd .kcd-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kcd .kcd-result.kcd-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kcd .kcd-result-inner{overflow:hidden}
+    .kcd .kcd-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kcd-accent-soft);text-align:center}
+    .kcd .kcd-main-label{font-size:14px;color:var(--kcd-sub)}
+    .kcd .kcd-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kcd-accent);line-height:1.2;word-break:keep-all}
+    .kcd .kcd-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kcd .kcd-sub{margin-top:6px;font-size:14px;color:var(--kcd-sub)}
+    .kcd .kcd-sub b{color:var(--kcd-text)}
+    .kcd .kcd-main-label,.kcd .kcd-sub,.kcd .kcd-note,.kcd .kcd-desc,.kcd .kcd-hint,.kcd .kcd-msg,.kcd .kcd-info,.kcd .kcd-formula,.kcd .kcd-table th{word-break:keep-all}
+    .kcd .kcd-nw{white-space:nowrap}
+    .kcd .kcd-bar{position:relative;height:10px;margin-top:12px;border-radius:999px;background:#fff;overflow:hidden}
+    .kcd .kcd-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--kcd-accent);transition:width .35s ease}
+    .kcd .kcd-bar-cap{display:flex;justify-content:space-between;margin-top:4px;font-size:12px;color:var(--kcd-sub)}
+    .kcd .kcd-info{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13.5px;color:var(--kcd-text)}
+    .kcd .kcd-info b{color:var(--kcd-accent)}
+    .kcd .kcd-h{margin:18px 0 0;font-size:14px;font-weight:700}
+    .kcd .kcd-table{width:100%;margin-top:8px;border:1px solid var(--kcd-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .kcd .kcd-table th,.kcd .kcd-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--kcd-line);background:#fff;text-align:left;font-weight:500;color:var(--kcd-text);vertical-align:middle}
+    .kcd .kcd-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .kcd .kcd-table th small{display:block;font-size:11.5px;color:var(--kcd-sub);font-weight:400}
+    .kcd .kcd-table thead th{background:#f8f9fc;font-size:12.5px;color:var(--kcd-sub);font-weight:600}
+    .kcd .kcd-table thead th+th{text-align:right}
+    .kcd .kcd-table tr:last-child th,.kcd .kcd-table tr:last-child td{border-bottom:0}
+    .kcd .kcd-table .kcd-strong th,.kcd .kcd-table .kcd-strong td{background:#f8f9fc;font-weight:700}
+    .kcd .kcd-table .kcd-net th,.kcd .kcd-table .kcd-net td{background:var(--kcd-accent-soft);font-weight:700}
+    .kcd .kcd-table .kcd-net td{color:var(--kcd-accent)}
+    .kcd .kcd-table .kcd-best th,.kcd .kcd-table .kcd-best td{color:var(--kcd-accent);font-weight:700}
+    .kcd .kcd-table .kcd-zero td{color:var(--kcd-sub);font-weight:500}
+    .kcd .kcd-formula{margin-top:8px;padding:12px 14px;border:1px dashed var(--kcd-line);border-radius:12px;font-size:13px;color:var(--kcd-text)}
+    .kcd .kcd-formula p+p{margin-top:4px}
+    .kcd .kcd-note{margin-top:12px;font-size:12.5px;color:var(--kcd-sub)}
+    .kcd .kcd-note li{margin-left:16px}
+    .kcd .kcd-note li+li{margin-top:2px}
+    .kcd .kcd-actions{display:flex;gap:8px;margin-top:14px}
+    .kcd .kcd-btn{flex:1;height:44px;border:1.5px solid var(--kcd-line);border-radius:12px;background:#fff;color:var(--kcd-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kcd .kcd-btn:hover{background:#f4f6fa}
+    .kcd .kcd-btn:active{transform:scale(.98)}
+    .kcd .kcd-btn.kcd-primary{border-color:var(--kcd-accent);background:var(--kcd-accent);color:#fff}
+    .kcd .kcd-btn.kcd-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kcd{padding:18px;border-radius:16px}.kcd .kcd-big{font-size:34px}.kcd .kcd-in{font-size:17px}
+      .kcd .kcd-table th,.kcd .kcd-table td{padding:9px 10px}.kcd .kcd-seg-btn{font-size:13.5px}.kcd .kcd-box{padding:2px 12px 12px}}
+    @media (prefers-reduced-motion:reduce){.kcd .kcd-result,.kcd .kcd-in,.kcd .kcd-btn,.kcd .kcd-chip,.kcd .kcd-seg-btn,.kcd .kcd-bar i{transition:none}}
+  </style>
+
+  <p class="kcd-title">신용카드 소득공제 계산기 (2026년 사용분)</p>
+  <p class="kcd-desc">총급여와 수단별 사용액을 넣으면 25% 문턱, 공제액, 줄어드는 세금, 다음 1만 원을 어디에 쓰면 좋은지 바로 보여 줘요.</p>
+
+  <label class="kcd-label" for="kcd-sal"><span>총급여 <small>비과세 빼고 1년 치</small></span></label>
+  <div class="kcd-field"><input class="kcd-in" id="kcd-sal" data-sal inputmode="numeric" placeholder="50,000,000" autocomplete="off"><span class="kcd-unit">원</span></div>
+  <div class="kcd-chips" data-chips></div>
+  <p class="kcd-hint" data-sal-read>연봉에서 식대 등 비과세 수당을 뺀 금액이에요. 원천징수영수증의 ‘총급여’ 칸을 보면 정확해요.</p>
+
+  <div class="kcd-box">
+    <p class="kcd-label">2026년 1~12월 사용액 <small>본인 + 부양가족</small></p>
+    <p class="kcd-hint">전통시장·대중교통·문화 사용분은 아래 칸에만 넣고 신용카드·체크카드 칸에서는 빼 주세요.</p>
+    <label class="kcd-label" for="kcd-c"><span>신용카드 <small>공제율 15%</small></span></label>
+    <div class="kcd-field"><input class="kcd-in" id="kcd-c" data-use="c" inputmode="numeric" placeholder="15,000,000" autocomplete="off"><span class="kcd-unit">원</span></div>
+    <label class="kcd-label" for="kcd-d"><span>체크카드·현금영수증 <small>공제율 30%</small></span></label>
+    <div class="kcd-field"><input class="kcd-in" id="kcd-d" data-use="d" inputmode="numeric" placeholder="5,000,000" autocomplete="off"><span class="kcd-unit">원</span></div>
+    <label class="kcd-label" for="kcd-m"><span>전통시장 <small>공제율 40%</small></span></label>
+    <div class="kcd-field"><input class="kcd-in" id="kcd-m" data-use="m" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kcd-unit">원</span></div>
+    <label class="kcd-label" for="kcd-t"><span>대중교통 <small>공제율 40%</small></span></label>
+    <div class="kcd-field"><input class="kcd-in" id="kcd-t" data-use="t" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kcd-unit">원</span></div>
+    <div data-b-box>
+      <label class="kcd-label" for="kcd-b"><span>도서·공연·박물관·영화·수영장·헬스장 <small>30%</small></span></label>
+      <div class="kcd-field"><input class="kcd-in" id="kcd-b" data-use="b" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kcd-unit">원</span></div>
+    </div>
+    <p class="kcd-hint" data-b-hint>신문 구독료도 포함돼요. 총급여 7천만 원 이하일 때만 따로 30%를 받아요.</p>
+  </div>
+
+  <p class="kcd-label">기본공제 받는 자녀 수 <small>2026년 신설 한도</small></p>
+  <div class="kcd-seg" role="group" aria-label="자녀 수">
+    <button type="button" class="kcd-seg-btn kcd-on" data-kids="0" aria-pressed="true">없음</button>
+    <button type="button" class="kcd-seg-btn" data-kids="1" aria-pressed="false">1명</button>
+    <button type="button" class="kcd-seg-btn" data-kids="2" aria-pressed="false">2명 이상</button>
+  </div>
+  <p class="kcd-hint" data-kids-hint></p>
+
+  <p class="kcd-label">내 한계세율 <small>지방소득세 포함</small></p>
+  <div class="kcd-chips" data-rates></div>
+  <p class="kcd-hint" data-rate-hint></p>
+
+  <p class="kcd-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kcd-result" data-result aria-live="polite">
+    <div class="kcd-result-inner">
+      <div class="kcd-main">
+        <p class="kcd-main-label">신용카드 등 소득공제액</p>
+        <p class="kcd-big" data-big></p>
+        <p class="kcd-sub" data-sub></p>
+        <div class="kcd-bar" aria-hidden="true"><i data-bar></i></div>
+        <p class="kcd-bar-cap"><span data-bar-l></span><span data-bar-r></span></p>
+      </div>
+      <p class="kcd-info" data-advice></p>
+
+      <p class="kcd-h">다음 1만 원을 쓰면</p>
+      <table class="kcd-table">
+        <thead><tr><th>어디에 쓰면</th><th>공제 증가</th><th>세금 감소</th></tr></thead>
+        <tbody data-next></tbody>
+      </table>
+
+      <p class="kcd-h">계산 과정</p>
+      <table class="kcd-table">
+        <tbody>
+          <tr><th>사용액 합계</th><td data-r="total"></td></tr>
+          <tr><th>최저사용금액<small>총급여 × 25%</small></th><td data-r="min"></td></tr>
+          <tr><th>공제율 적용 합계<small data-r="grosslab"></small></th><td data-r="gross"></td></tr>
+          <tr><th>공제 제외 금액<small data-r="excllab"></small></th><td data-r="excl"></td></tr>
+          <tr class="kcd-strong"><th>공제 대상 금액</th><td data-r="ded"></td></tr>
+          <tr><th>기본 공제<small data-r="baselab"></small></th><td data-r="base"></td></tr>
+          <tr><th>추가 공제<small data-r="addlab"></small></th><td data-r="add"></td></tr>
+          <tr class="kcd-net"><th>최종 소득공제액</th><td data-r="final"></td></tr>
+          <tr><th>예상 절세액<small data-r="savelab"></small></th><td data-r="save"></td></tr>
+        </tbody>
+      </table>
+      <div class="kcd-formula" data-formula></div>
+
+      <ul class="kcd-note">
+        <li>조세특례제한법 제126조의2의 2026년 사용분(2027년 초 연말정산) 기준이에요. 2027년 사용분부터 대중교통 40% 폐지 등을 담은 정부 개정안은 국회 처리 전(2026. 11. 26. 기준)이라 반영하지 않았어요.</li>
+        <li>절세액은 공제액 × 한계세율로 구한 추정치예요. 공제로 과세표준 구간이 바뀌거나 결정세액이 0원이면 실제로 줄어드는 세금은 더 적어요.</li>
+        <li>보험료, 학교 수업료, 세금·공과금, 아파트 관리비, 상품권, 해외 사용액 등은 공제 대상이 아니니 빼고 넣어 주세요. 정확한 금액은 연말정산 간소화 자료로 확인하세요.</li>
+      </ul>
+      <div class="kcd-actions">
+        <button type="button" class="kcd-btn" data-reset>다시 입력</button>
+        <button type="button" class="kcd-btn kcd-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kcd]');
+    if (!root || root.__kcd) return;
+    root.__kcd = true;
+
+    // ===== 법령 기준값: 조세특례제한법 제126조의2, 2026. 1. 1.~12. 31. 사용분 (README.md "매년 할 일" 참고) =====
+    var MIN_RATE = .25;                 // 최저사용금액: 총급여의 25%
+    var RATE = { c: .15, d: .30, b: .30, m: .40, t: .40 }; // 신용카드, 직불·선불·현금영수증, 도서·공연 등(7천만 이하), 전통시장, 대중교통
+    var LOW = 7e7;                      // 총급여 7천만 원 이하 / 초과
+    var BASE_LIMIT = { low: 3e6, high: 2.5e6 };   // 기본 한도
+    var KID_LIMIT = { low: 5e5, high: 2.5e5 };    // 자녀 1명당 기본 한도 추가(2026~2028년 사용분), 최대 2명분
+    var KID_MAX = 2;
+    var ADD_LIMIT = { low: 3e6, high: 2e6 };      // 추가 한도: 전통시장·대중교통·도서공연 등 합산(7천만 초과는 전통시장·대중교통)
+    // 한계세율(소득세 + 지방소득세 10%)과 과세표준 구간
+    var RATES = [[.066, '1,400만 원 이하'], [.165, '1,400만~5,000만 원'], [.264, '5,000만~8,800만 원'], [.385, '8,800만~1억 5천만 원'],
+      [.418, '1억 5천만~3억 원'], [.44, '3억~5억 원'], [.462, '5억~10억 원'], [.495, '10억 원 초과']];
+    var MAX_SAL = 1e9, MAX_USE = 1e9;
+    // ===== 기준값 끝 =====
+
+    // ENGINE START
+    // o: { sal, c, d, m, t, b, kids }  (금액은 원)
+    function compute(o) {
+      var low = o.sal <= LOW, k = low ? 'low' : 'high';
+      var b = low ? o.b : 0;
+      var total = o.c + o.d + o.m + o.t + b;
+      var min = Math.floor(o.sal * MIN_RATE);
+      var g = { c: Math.floor(o.c * RATE.c), d: Math.floor(o.d * RATE.d), b: Math.floor(b * RATE.b), m: Math.floor(o.m * RATE.m), t: Math.floor(o.t * RATE.t) };
+      var gross = g.c + g.d + g.b + g.m + g.t;
+      // 공제 제외 금액(제126조의2 제2항): 최저사용금액을 신용카드 → 체크카드·현금영수증·도서공연 → 전통시장·대중교통 순으로 채운다고 보고 계산
+      var excl, tier;
+      if (total <= min) { excl = gross; tier = 0; }
+      else if (min <= o.c) { excl = Math.floor(min * RATE.c); tier = 1; }
+      else if (min <= o.c + o.d + b) { excl = g.c + Math.floor((min - o.c) * RATE.d); tier = 2; }
+      else { excl = g.c + g.d + g.b + Math.floor((min - o.c - o.d - b) * RATE.m); tier = 3; }
+      var ded = Math.max(gross - excl, 0);
+      var kids = Math.min(o.kids, KID_MAX);
+      var kidAdd = kids * KID_LIMIT[k];
+      var limit = BASE_LIMIT[k] + kidAdd;
+      var base = Math.min(ded, limit);
+      var over = ded - base;
+      var special = g.m + g.t + g.b;  // 추가 공제 대상: 전통시장·대중교통·도서공연 등 공제율 적용액
+      var addLimit = ADD_LIMIT[k];
+      var add = Math.min(over, addLimit, special);
+      return { low: low, b: b, total: total, min: min, g: g, gross: gross, excl: excl, tier: tier, ded: ded, kids: kids, kidAdd: kidAdd,
+        limit: limit, base: base, over: over, special: special, addLimit: addLimit, add: add, final: base + add, short: Math.max(min - total, 0) };
+    }
+    // ENGINE END
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var salI = $('[data-sal]'), msg = $('[data-msg]'), result = $('[data-result]'), salRead = $('[data-sal-read]');
+    var useI = {}; $$('[data-use]').forEach(function (i) { useI[i.dataset.use] = i; });
+    var SAL_HINT = salRead.textContent, lastText = '';
+    var NAME = { c: '신용카드', d: '체크카드·현금영수증', m: '전통시장', t: '대중교통', b: '도서·공연·박물관·영화·체육시설' };
+    var st = { kids: 0, rate: 1 };
+
+    function comma(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(n) + '원'; }
+    function digits(s) { return String(s).replace(/\D/g, ''); }
+    function korean(n) {
+      var eok = Math.floor(n / 1e8), man = Math.floor(n % 1e8 / 1e4), r = n % 1e4, out = [];
+      if (eok) out.push(comma(eok) + '억');
+      if (man) out.push(comma(man) + '만');
+      if (r) out.push(comma(r));
+      return (out.join(' ') || '0') + '원';
+    }
+    function pct(x) { return (Math.round(x * 1000) / 10) + '%'; }
+    function val(i) { return i.value ? +digits(i.value) : 0; }
+
+    [[3e7, '3천만'], [4e7, '4천만'], [5e7, '5천만'], [6e7, '6천만'], [7e7, '7천만'], [1e8, '1억']].forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kcd-chip'; b.textContent = c[1];
+      b.addEventListener('click', function () { salI.value = comma(c[0]); calc(); });
+      $('[data-chips]').appendChild(b);
+    });
+    RATES.forEach(function (r, i) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kcd-chip'; b.dataset.rate = i; b.textContent = pct(r[0]);
+      b.addEventListener('click', function () { st.rate = i; calc(); });
+      $('[data-rates]').appendChild(b);
+    });
+
+    function sync(sal) {
+      $$('[data-kids]').forEach(function (b) { var on = +b.dataset.kids === st.kids; b.classList.toggle('kcd-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-rate]').forEach(function (b) { var on = +b.dataset.rate === st.rate; b.classList.toggle('kcd-on', on); b.setAttribute('aria-pressed', on); });
+      var high = sal > LOW;
+      $('[data-b-box]').hidden = high;
+      $('[data-b-hint]').textContent = high
+        ? '총급여 7천만 원 초과라 도서·공연·박물관·영화·체육시설 사용분은 따로 우대받지 않아요. 결제한 수단에 맞춰 신용카드나 체크카드 칸에 더해 넣어 주세요.'
+        : '신문 구독료도 포함돼요. 총급여 7천만 원 이하일 때만 따로 30%를 받아요.';
+      var k = high ? 'high' : 'low';
+      $('[data-kids-hint]').textContent = '연말정산에서 기본공제를 받는 자녀 기준으로 1명당 기본 한도가 ' + comma(KID_LIMIT[k] / 1e4) + '만 원(최대 ' +
+        comma(KID_LIMIT[k] * KID_MAX / 1e4) + '만 원) 늘어나요' + (sal ? (high ? '(총급여 7천만 원 초과).' : '(총급여 7천만 원 이하).') : '. 7천만 원 초과는 25만 원(최대 50만 원)이에요.') +
+        ' 맞벌이면 자녀를 기본공제로 올린 사람만 받아요.';
+      $('[data-rate-hint]').textContent = '과세표준 ' + RATES[st.rate][1] + ' 구간이에요. 작년 원천징수영수증의 과세표준으로 확인하고, 모르면 많은 직장인이 속하는 16.5%로 두세요.';
+    }
+
+    function hide(t) { result.classList.remove('kcd-show'); msg.textContent = t || ''; }
+
+    function read() {
+      return { sal: val(salI), c: val(useI.c), d: val(useI.d), m: val(useI.m), t: val(useI.t), b: val(useI.b), kids: st.kids };
+    }
+
+    function calc() {
+      var o = read();
+      salRead.textContent = salI.value ? '총급여 ' + korean(o.sal) : SAL_HINT;
+      sync(o.sal);
+      salI.classList.remove('kcd-bad');
+      $$('[data-use]').forEach(function (i) { i.classList.remove('kcd-bad'); });
+      if (!salI.value) return hide('');
+      if (o.sal <= 0 || o.sal > MAX_SAL) { salI.classList.add('kcd-bad'); return hide(o.sal <= 0 ? '총급여를 1원 이상으로 넣어 주세요.' : '총급여는 10억 원 이하로 넣어 주세요.'); }
+      var bad = $$('[data-use]').filter(function (i) { return val(i) > MAX_USE; });
+      if (bad.length) { bad.forEach(function (i) { i.classList.add('kcd-bad'); }); return hide('사용액은 칸마다 10억 원 이하로 넣어 주세요.'); }
+      var r = compute(o);
+      if (r.total <= 0) return hide('사용액을 한 칸 이상 넣어 주세요.');
+      msg.textContent = '';
+      render(o, r);
+      result.classList.add('kcd-show');
+    }
+
+    function render(o, r) {
+      var rate = RATES[st.rate][0], save = Math.floor(r.final * rate);
+      $('[data-big]').innerHTML = comma(r.final) + '<small>원</small>';
+      $('[data-sub]').innerHTML = r.final > 0
+        ? '세금 약 <b>' + won(save) + '</b> 감소 (한계세율 ' + pct(rate) + ')'
+        : '총급여의 25%까지 <b>' + won(r.short) + '</b> 더 써야 공제가 시작돼요';
+      // 사용액 vs 25% 문턱 막대
+      var cap = Math.max(r.total, r.min) || 1;
+      $('[data-bar]').style.width = Math.min(r.total / cap * 100, 100) + '%';
+      $('[data-bar-l]').textContent = '사용액 ' + korean(r.total);
+      $('[data-bar-r]').textContent = '25% 문턱 ' + korean(r.min);
+
+      // 다음 1만 원: 수단마다 1만 원을 더했을 때 공제액이 얼마나 늘어나는지 직접 다시 계산
+      var keys = r.low ? ['c', 'd', 'm', 't', 'b'] : ['c', 'd', 'm', 't'];
+      var inc = {}, best = 0;
+      keys.forEach(function (key) {
+        var p = {}; for (var x in o) p[x] = o[x];
+        p[key] += 1e4;
+        inc[key] = compute(p).final - r.final;
+        if (inc[key] > best) best = inc[key];
+      });
+      $('[data-next]').innerHTML = keys.map(function (key) {
+        var cls = inc[key] <= 0 ? ' class="kcd-zero"' : (inc[key] === best ? ' class="kcd-best"' : '');
+        return '<tr' + cls + '><th>' + NAME[key] + '</th><td>+' + won(inc[key]) + '</td><td>−' + won(Math.floor(inc[key] * rate)) + '</td></tr>';
+      }).join('');
+
+      // 안내 문구
+      var adv, room = r.limit - r.base;
+      if (r.short > 0) {
+        adv = '총급여의 25%인 <b>' + won(r.min) + '</b>까지 <b>' + won(r.short) + '</b> 남았어요. 이 문턱까지는 어떤 수단으로 써도 공제가 똑같이 0원이라, 할인·포인트 혜택이 큰 카드를 쓰는 편이 나아요. 문턱을 넘은 뒤부터 체크카드·현금영수증(30%)이 신용카드(15%)의 두 배예요.';
+      } else if (r.ded < r.limit) {
+        adv = (inc.d > inc.c
+          ? '25% 문턱을 넘었어요. 지금부터는 <b>체크카드·현금영수증</b>이 1만 원당 ' + won(inc.d) + ' 공제로 신용카드(' + won(inc.c) + ')보다 유리하고, 전통시장·대중교통은 ' + won(inc.m) + '이에요. '
+          : '25% 문턱을 넘었지만 문턱의 일부를 공제율이 높은 사용분으로 채운 상태라, 지금은 어떤 수단으로 1만 원을 더 써도 공제가 ' + won(inc.c) + '씩 늘어요. ') +
+          '기본 한도 ' + won(r.limit) + '까지 공제 대상이 ' + won(room) + ' 남았어요.';
+      } else if (r.add < r.addLimit) {
+        adv = '기본 한도 <b>' + won(r.limit) + '</b>를 다 채웠어요. 이제 일반 신용카드·체크카드 사용분은 공제가 늘지 않고, <b>' + (r.low ? '전통시장·대중교통·문화' : '전통시장·대중교통') + '</b> 사용분만 추가 한도 ' + won(r.addLimit) + ' 안에서 더 공제돼요(남은 추가 한도 ' + won(r.addLimit - r.add) + ').';
+      } else {
+        adv = '<b>공제 한도를 모두 채웠어요.</b> 기본 한도 ' + won(r.limit) + (r.add > 0 ? ' + 추가 공제 ' + won(r.add) : '') + '까지 받았고, ' + (r.add >= r.addLimit ? '추가 한도도 찼어요. ' : '') + '이제는 어떤 수단으로 써도 공제가 늘지 않으니 혜택이 큰 카드를 쓰세요.';
+      }
+      $('[data-advice]').innerHTML = adv;
+
+      function set(k, v) { $('[data-r="' + k + '"]').textContent = v; }
+      set('total', won(r.total));
+      set('min', won(r.min));
+      var gl = [];
+      keys.forEach(function (key) { if (r.g[key]) gl.push(NAME[key].split('·')[0] + ' ' + pct(RATE[key])); });
+      set('grosslab', gl.join(' · ') || '사용액 × 수단별 공제율');
+      set('gross', won(r.gross));
+      set('excllab', ['사용액이 25%에 못 미쳐 전액 제외', '최저사용금액 × 15% (신용카드로 채움)', '신용카드 15% + 나머지 30%로 채움', '신용·체크 등 + 나머지 40%로 채움'][r.tier]);
+      set('excl', '−' + won(r.excl));
+      set('ded', won(r.ded));
+      set('baselab', '한도 ' + won(r.limit) + (r.kidAdd ? ' (자녀 ' + r.kids + '명 +' + comma(r.kidAdd / 1e4) + '만 원 포함)' : ''));
+      set('base', won(r.base));
+      set('addlab', r.over > 0 ? '한도 ' + won(r.addLimit) + ', 대상 ' + won(r.special) : '기본 한도 안이라 없음');
+      set('add', won(r.add));
+      set('final', won(r.final));
+      set('savelab', '공제액 × ' + pct(rate) + ' (추정)');
+      set('save', won(save));
+
+      var f = [];
+      f.push('최저사용금액 = ' + comma(o.sal) + ' × 25% = ' + comma(r.min) + '원');
+      if (r.tier === 0) f.push('사용액 ' + comma(r.total) + '원이 최저사용금액보다 적어 <b>공제 0원</b>');
+      else {
+        f.push('공제 대상 = ' + comma(r.gross) + ' − ' + comma(r.excl) + ' = ' + comma(r.ded) + '원');
+        f.push('기본 공제 = min(' + comma(r.ded) + ', ' + comma(r.limit) + ') = ' + comma(r.base) + '원');
+        if (r.over > 0) f.push('추가 공제 = min(' + comma(r.over) + ', ' + comma(r.addLimit) + ', ' + comma(r.special) + ') = ' + comma(r.add) + '원');
+        f.push('소득공제액 = <b>' + comma(r.final) + '원</b>, 절세액 ≈ ' + comma(r.final) + ' × ' + pct(rate) + ' = ' + comma(save) + '원');
+      }
+      $('[data-formula]').innerHTML = f.map(function (s) { return '<p>' + s + '</p>'; }).join('');
+
+      var lines = ['[신용카드 소득공제 계산 결과 (2026년 사용분)]', '총급여: ' + won(o.sal)];
+      keys.forEach(function (key) { if (o[key]) lines.push(NAME[key] + ': ' + won(o[key])); });
+      lines.push('자녀: ' + (st.kids ? (st.kids >= 2 ? '2명 이상' : '1명') : '없음'));
+      lines.push('사용액 합계: ' + won(r.total) + ' / 최저사용금액(25%): ' + won(r.min));
+      lines.push('공제 대상 금액: ' + won(r.ded));
+      lines.push('기본 공제: ' + won(r.base) + ' (한도 ' + won(r.limit) + ')');
+      lines.push('추가 공제: ' + won(r.add));
+      lines.push('소득공제액: ' + won(r.final));
+      lines.push('예상 절세액: 약 ' + won(save) + ' (한계세율 ' + pct(rate) + ')');
+      lines.push('※ 참고용 계산이며 세무 자문이 아니에요.');
+      lastText = lines.join('\n');
+    }
+
+    function money(i) {
+      i.addEventListener('input', function () {
+        var v = digits(i.value).slice(0, 12);
+        i.value = v ? comma(+v) : '';
+        calc();
+      });
+    }
+    money(salI);
+    Object.keys(useI).forEach(function (k) { money(useI[k]); });
+    $$('[data-kids]').forEach(function (b) { b.addEventListener('click', function () { st.kids = +b.dataset.kids; calc(); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      salI.value = ''; Object.keys(useI).forEach(function (k) { useI[k].value = ''; });
+      st = { kids: 0, rate: 1 };
+      hide(''); calc(); salI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    calc();
+  })();
+  </script>
+</div>
+<!-- 신용카드 소득공제 계산기 위젯 끝 -->
