@@ -62,6 +62,7 @@ tools/
 | 건강보험 피부양자 자격 확인기 (소득 2천만원·재산 과세표준·형제자매 기준) | `tools/dependent-eligibility-check` | 완성 |
 | 육아기 근로시간 단축 급여 계산기 (주 10시간 100%·회사 월급 합산) | `tools/reduced-hours-pay` | 완성 |
 | 증여세 계산기 (자녀·배우자 공제, 10년 합산, 혼인·출산 1억, 세대생략 할증, 신고 기한) | `tools/gift-tax-calculator` | 완성 |
+| 스트레스 DSR 주담대 한도 계산기 (2026 하반기 3단계·수도권 3.0%, 금리 유형별, LTV·6억 한도 비교) | `tools/stress-dsr-calculator` | 완성 |
 
 ## 작업 규칙
 
