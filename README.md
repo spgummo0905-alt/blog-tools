@@ -56,6 +56,7 @@ tools/
 | 퇴직소득세 계산기 (IRP 연금 수령 시 절세액 비교) | `tools/retirement-income-tax` | 완성 |
 | 청약 1순위 자격·예치금 확인기 (지역·면적별 예치금, 가입기간 D-day) | `tools/subscription-first-rank` | 완성 |
 | 계약갱신청구권 기간·5% 인상 상한 계산기 (갱신 요구 D-day·전월세 상한) | `tools/lease-renewal-calculator` | 완성 |
+| 건강보험 피부양자 자격 확인기 (소득 2천만원·재산 과세표준·형제자매 기준) | `tools/dependent-eligibility-check` | 완성 |
 
 ## 작업 규칙
 
