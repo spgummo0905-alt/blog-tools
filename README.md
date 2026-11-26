@@ -50,6 +50,7 @@ tools/
 | 이사 행정 타임라인 (전입신고·확정일자·대항력) | `tools/moving-admin-checklist` | 완성 |
 | 출산 후 신청할 것 타임라인 (출생신고·부모급여·첫만남이용권 기한) | `tools/after-birth-checklist` | 완성 |
 | 전세보증보험 가입 가능 여부 계산기 (HUG 공시가격 140%·전세가율 90%) | `tools/jeonse-guarantee-check` | 완성 |
+| 청약 1순위 자격·예치금 확인기 (지역·면적별 예치금, 가입기간 D-day) | `tools/subscription-first-rank` | 완성 |
 
 ## 작업 규칙
 
