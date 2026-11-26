@@ -1,0 +1,658 @@
+<p><strong>스트레스 DSR은 실제 대출 금리에 ‘스트레스 금리’를 더한 금리로 연간 원리금을 계산해, 그 합이 연소득의 40%(2금융권 50%)를 넘지 않는 만큼만 빌려주는 규제예요. 2026년 하반기에는 수도권·규제지역 주담대에 3.0%p, 지방 주담대에 0.75%p가 더해져서, 연소득 6천만 원인 사람이 은행에서 금리 4%·30년 변동형으로 수도권 집을 사면 최대 한도는 약 3억 61만 원이에요(스트레스 금리가 없을 때 4억 1,892만 원).</strong> 아래 계산기에 연소득과 금리만 넣으면 지역·금리 유형별 스트레스 금리, 최대 대출 가능액, LTV·주택가격별 한도까지 비교해 바로 알려 드려요.</p>
+<!-- 스트레스 DSR 주담대 한도 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="ksd" data-ksd>
+  <style>
+    .ksd{--ksd-accent:#3b6ef5;--ksd-accent-soft:#eef3ff;--ksd-text:#1d2433;--ksd-sub:#6b7385;--ksd-line:#e3e7ef;--ksd-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--ksd-line);border-radius:20px;background:var(--ksd-bg);
+      color:var(--ksd-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .ksd [hidden]{display:none!important}
+    .ksd *,.ksd *::before,.ksd *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .ksd .ksd-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .ksd .ksd-desc{margin-top:4px;font-size:14px;color:var(--ksd-sub)}
+    .ksd .ksd-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--ksd-text)}
+    .ksd .ksd-label small{font-weight:500;color:var(--ksd-sub);text-align:right}
+    .ksd .ksd-row{display:flex;gap:8px}
+    .ksd .ksd-row>*{flex:1;min-width:0}
+    .ksd .ksd-field{position:relative}
+    .ksd .ksd-in{width:100%;height:52px;padding:0 48px 0 14px;border:1.5px solid var(--ksd-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--ksd-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .ksd .ksd-in::placeholder{color:#b3b9c6;font-weight:500}
+    .ksd .ksd-in:focus{border-color:var(--ksd-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .ksd .ksd-in.ksd-bad{border-color:#e0565b}
+    .ksd .ksd-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--ksd-sub);pointer-events:none}
+    .ksd .ksd-hint{margin-top:6px;font-size:12.5px;color:var(--ksd-sub)}
+    .ksd .ksd-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .ksd .ksd-seg.ksd-seg3{grid-template-columns:1fr 1fr 1fr}
+    .ksd .ksd-seg.ksd-seg4{grid-template-columns:1fr 1fr 1fr 1fr}
+    .ksd .ksd-seg-btn{min-height:44px;padding:4px 6px;border:1.5px solid var(--ksd-line);border-radius:12px;background:#f8f9fc;color:var(--ksd-text);
+      font-size:14px;font-weight:600;line-height:1.3;cursor:pointer;transition:all .2s;word-break:keep-all}
+    .ksd .ksd-seg-btn small{display:block;font-size:11.5px;font-weight:500;opacity:.8}
+    .ksd .ksd-seg-btn:hover{border-color:#c9d3ea}
+    .ksd .ksd-seg-btn.ksd-on{border-color:var(--ksd-accent);background:var(--ksd-accent);color:#fff}
+    .ksd .ksd-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .ksd .ksd-chip{height:32px;padding:0 12px;border:1.5px solid var(--ksd-line);border-radius:999px;background:#fff;color:var(--ksd-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .ksd .ksd-chip:hover{border-color:#c9d3ea;color:var(--ksd-text)}
+    .ksd .ksd-chip.ksd-on{border-color:var(--ksd-accent);background:var(--ksd-accent-soft);color:var(--ksd-accent)}
+    .ksd .ksd-more{display:block;width:100%;margin-top:18px;padding:12px 14px;border:1.5px dashed var(--ksd-line);border-radius:12px;background:#fff;
+      color:var(--ksd-accent);font-size:14px;font-weight:600;text-align:left;cursor:pointer}
+    .ksd .ksd-box{margin-top:12px;padding:2px 14px 14px;border:1px solid var(--ksd-line);border-radius:16px;background:#fbfcfe}
+    .ksd .ksd-box .ksd-label{margin-top:14px}
+    .ksd .ksd-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .ksd .ksd-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .ksd .ksd-result.ksd-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .ksd .ksd-result-inner{overflow:hidden}
+    .ksd .ksd-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--ksd-accent-soft);text-align:center}
+    .ksd .ksd-main-label{font-size:14px;color:var(--ksd-sub)}
+    .ksd .ksd-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--ksd-accent);line-height:1.2;word-break:keep-all}
+    .ksd .ksd-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .ksd .ksd-sub{margin-top:6px;font-size:14px;color:var(--ksd-sub)}
+    .ksd .ksd-main-label,.ksd .ksd-sub,.ksd .ksd-note,.ksd .ksd-desc,.ksd .ksd-hint,.ksd .ksd-msg,.ksd .ksd-info,.ksd .ksd-formula,.ksd .ksd-table th{word-break:keep-all}
+    .ksd .ksd-nw{white-space:nowrap}
+    .ksd .ksd-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .ksd .ksd-card{padding:14px;border:1px solid var(--ksd-line);border-radius:14px;background:#fff}
+    .ksd .ksd-card-k{font-size:12px;color:var(--ksd-sub);word-break:keep-all}
+    .ksd .ksd-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--ksd-text);word-break:keep-all}
+    .ksd .ksd-info{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13.5px;color:var(--ksd-text)}
+    .ksd .ksd-info b{color:var(--ksd-accent)}
+    .ksd .ksd-info.ksd-warn b{color:#e0565b}
+    .ksd .ksd-h{margin:18px 0 0;font-size:14px;font-weight:700}
+    .ksd .ksd-table{width:100%;margin-top:8px;border:1px solid var(--ksd-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .ksd .ksd-table th,.ksd .ksd-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--ksd-line);background:#fff;text-align:left;font-weight:500;color:var(--ksd-text);vertical-align:middle}
+    .ksd .ksd-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .ksd .ksd-table th small{display:block;font-size:11.5px;color:var(--ksd-sub);font-weight:400}
+    .ksd .ksd-table tr:last-child th,.ksd .ksd-table tr:last-child td{border-bottom:0}
+    .ksd .ksd-table .ksd-net th,.ksd .ksd-table .ksd-net td{background:var(--ksd-accent-soft);font-weight:700}
+    .ksd .ksd-table .ksd-net td{color:var(--ksd-accent)}
+    .ksd .ksd-formula{margin-top:8px;padding:12px 14px;border:1px dashed var(--ksd-line);border-radius:12px;font-size:13px;color:var(--ksd-text)}
+    .ksd .ksd-formula p+p{margin-top:4px}
+    .ksd .ksd-note{margin-top:12px;font-size:12.5px;color:var(--ksd-sub)}
+    .ksd .ksd-note li{margin-left:16px}
+    .ksd .ksd-note li+li{margin-top:2px}
+    .ksd .ksd-actions{display:flex;gap:8px;margin-top:14px}
+    .ksd .ksd-btn{flex:1;height:44px;border:1.5px solid var(--ksd-line);border-radius:12px;background:#fff;color:var(--ksd-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .ksd .ksd-btn:hover{background:#f4f6fa}
+    .ksd .ksd-btn:active{transform:scale(.98)}
+    .ksd .ksd-btn.ksd-primary{border-color:var(--ksd-accent);background:var(--ksd-accent);color:#fff}
+    .ksd .ksd-btn.ksd-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.ksd{padding:18px;border-radius:16px}.ksd .ksd-big{font-size:34px}.ksd .ksd-in{font-size:17px}
+      .ksd .ksd-table th,.ksd .ksd-table td{padding:9px 10px}.ksd .ksd-seg-btn{font-size:13.5px}.ksd .ksd-box{padding:2px 12px 12px}
+      .ksd .ksd-seg.ksd-seg4{grid-template-columns:1fr 1fr}}
+    @media (prefers-reduced-motion:reduce){.ksd .ksd-result,.ksd .ksd-in,.ksd .ksd-btn,.ksd .ksd-chip,.ksd .ksd-seg-btn{transition:none}}
+  </style>
+
+  <p class="ksd-title">스트레스 DSR 주담대 한도 계산기</p>
+  <p class="ksd-desc">연소득과 금리만 넣으면 스트레스 금리를 더해 받을 수 있는 주택담보대출 최대 금액을 바로 계산해요. (2026년 하반기 기준)</p>
+
+  <label class="ksd-label" for="ksd-inc"><span>연소득 <small>세전, 부부 합산 아님</small></span></label>
+  <div class="ksd-field"><input class="ksd-in" id="ksd-inc" data-inc inputmode="numeric" placeholder="6,000" autocomplete="off"><span class="ksd-unit">만원</span></div>
+  <div class="ksd-chips" data-inc-chips></div>
+  <p class="ksd-hint" data-inc-read>원천징수영수증·소득금액증명원의 연소득을 만원 단위로 넣어요.</p>
+
+  <p class="ksd-label">집이 있는 곳 <small>스트레스 금리가 달라요</small></p>
+  <div class="ksd-seg ksd-seg3" role="group" aria-label="지역">
+    <button type="button" class="ksd-seg-btn ksd-on" data-region="reg" aria-pressed="true">규제지역<small>서울 등</small></button>
+    <button type="button" class="ksd-seg-btn" data-region="metro" aria-pressed="false">수도권<small>비규제 경기·인천</small></button>
+    <button type="button" class="ksd-seg-btn" data-region="local" aria-pressed="false">지방<small>비규제</small></button>
+  </div>
+  <p class="ksd-hint" data-region-hint></p>
+
+  <p class="ksd-label">대출 받을 곳</p>
+  <div class="ksd-seg" role="group" aria-label="업권">
+    <button type="button" class="ksd-seg-btn ksd-on" data-sector="bank" aria-pressed="true">은행<small>DSR 40%</small></button>
+    <button type="button" class="ksd-seg-btn" data-sector="nonbank" aria-pressed="false">2금융권<small>보험·저축은행 등 DSR 50%</small></button>
+  </div>
+
+  <p class="ksd-label">금리 유형</p>
+  <div class="ksd-seg ksd-seg4" role="group" aria-label="금리 유형">
+    <button type="button" class="ksd-seg-btn ksd-on" data-type="var" aria-pressed="true">변동형</button>
+    <button type="button" class="ksd-seg-btn" data-type="mix" aria-pressed="false">혼합형<small>몇 년 고정 후 변동</small></button>
+    <button type="button" class="ksd-seg-btn" data-type="cyc" aria-pressed="false">주기형<small>몇 년마다 재산정</small></button>
+    <button type="button" class="ksd-seg-btn" data-type="fix" aria-pressed="false">순수 고정<small>만기까지 고정</small></button>
+  </div>
+  <div data-fixp-box hidden>
+    <p class="ksd-label">고정 기간 (금리 바뀌는 주기) <small>만기 30년 기준</small></p>
+    <div class="ksd-seg ksd-seg4" role="group" aria-label="고정 기간">
+      <button type="button" class="ksd-seg-btn ksd-on" data-fixp="0" aria-pressed="true">5~9년</button>
+      <button type="button" class="ksd-seg-btn" data-fixp="1" aria-pressed="false">9~15년</button>
+      <button type="button" class="ksd-seg-btn" data-fixp="2" aria-pressed="false">15~21년</button>
+      <button type="button" class="ksd-seg-btn" data-fixp="3" aria-pressed="false">21년 이상</button>
+    </div>
+    <p class="ksd-hint">고정 기간이 5년보다 짧으면 변동형과 같아요. 시중의 ‘5년 고정 혼합형’, ‘5년 주기형’은 5~9년을 고르세요.</p>
+  </div>
+
+  <div class="ksd-row">
+    <div>
+      <label class="ksd-label" for="ksd-rate"><span>대출 금리</span></label>
+      <div class="ksd-field"><input class="ksd-in" id="ksd-rate" data-rate inputmode="decimal" placeholder="4.0" autocomplete="off"><span class="ksd-unit">%</span></div>
+    </div>
+    <div>
+      <label class="ksd-label" for="ksd-yrs"><span>대출 기간</span></label>
+      <div class="ksd-field"><input class="ksd-in" id="ksd-yrs" data-yrs inputmode="numeric" placeholder="30" value="30" autocomplete="off"><span class="ksd-unit">년</span></div>
+    </div>
+  </div>
+  <p class="ksd-hint">원리금균등분할상환으로 계산해요. 은행에서 안내받은 금리(스트레스 금리 더하기 전)를 넣어요.</p>
+
+  <button type="button" class="ksd-more" data-more aria-expanded="false">+ 기존 대출·집값 넣기 (선택)</button>
+  <div class="ksd-box" data-more-box hidden>
+    <label class="ksd-label" for="ksd-ext"><span>기존 대출 연간 원리금 <small>주담대·자동차·학자금 등</small></span></label>
+    <div class="ksd-field"><input class="ksd-in" id="ksd-ext" data-ext inputmode="numeric" placeholder="0" autocomplete="off"><span class="ksd-unit">만원</span></div>
+    <p class="ksd-hint">1년 동안 갚는 원금과 이자의 합이에요(월 상환액 × 12). 신용대출은 아래 칸에 따로 넣어요.</p>
+
+    <div class="ksd-row">
+      <div>
+        <label class="ksd-label" for="ksd-cr"><span>신용대출 잔액</span></label>
+        <div class="ksd-field"><input class="ksd-in" id="ksd-cr" data-cr inputmode="numeric" placeholder="0" autocomplete="off"><span class="ksd-unit">만원</span></div>
+      </div>
+      <div>
+        <label class="ksd-label" for="ksd-crr"><span>신용대출 금리</span></label>
+        <div class="ksd-field"><input class="ksd-in" id="ksd-crr" data-crr inputmode="decimal" placeholder="5.0" autocomplete="off"><span class="ksd-unit">%</span></div>
+      </div>
+    </div>
+    <p class="ksd-hint">마이너스통장은 쓴 돈이 아니라 약정 한도 전체를 넣어요. DSR에서는 만기와 상관없이 5년 동안 나눠 갚는다고 봐요.</p>
+
+    <label class="ksd-label" for="ksd-price"><span>사려는 집값 <small>시세, LTV·한도 비교용</small></span></label>
+    <div class="ksd-field"><input class="ksd-in" id="ksd-price" data-price inputmode="numeric" placeholder="90,000" autocomplete="off"><span class="ksd-unit">만원</span></div>
+    <p class="ksd-hint" data-price-read>무주택자(또는 기존 집 처분 조건 1주택자)가 집을 살 때 기준이에요.</p>
+    <p class="ksd-label">생애최초 주택 구입인가요?</p>
+    <div class="ksd-seg" role="group" aria-label="생애최초 여부">
+      <button type="button" class="ksd-seg-btn ksd-on" data-first="0" aria-pressed="true">아니요</button>
+      <button type="button" class="ksd-seg-btn" data-first="1" aria-pressed="false">예, 생애최초</button>
+    </div>
+
+    <label class="ksd-label" for="ksd-want"><span>받고 싶은 금액 <small>DSR 몇 %인지 확인</small></span></label>
+    <div class="ksd-field"><input class="ksd-in" id="ksd-want" data-want inputmode="numeric" placeholder="40,000" autocomplete="off"><span class="ksd-unit">만원</span></div>
+  </div>
+
+  <p class="ksd-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="ksd-result" data-result aria-live="polite">
+    <div class="ksd-result-inner">
+      <div class="ksd-main">
+        <p class="ksd-main-label" data-big-label>주담대 최대 한도 (DSR 기준)</p>
+        <p class="ksd-big" data-big></p>
+        <p class="ksd-sub" data-sub></p>
+      </div>
+      <div class="ksd-grid">
+        <div class="ksd-card"><p class="ksd-card-k">적용 스트레스 금리</p><p class="ksd-card-v" data-c-stress></p></div>
+        <div class="ksd-card"><p class="ksd-card-k">DSR 계산에 쓰는 금리</p><p class="ksd-card-v" data-c-dsrrate></p></div>
+        <div class="ksd-card"><p class="ksd-card-k">스트레스 없을 때 한도</p><p class="ksd-card-v" data-c-nostress></p></div>
+        <div class="ksd-card"><p class="ksd-card-k">한도 다 받으면 실제 월 상환액</p><p class="ksd-card-v" data-c-month></p></div>
+      </div>
+      <p class="ksd-info" data-cap></p>
+      <p class="ksd-info" data-want-info hidden></p>
+      <p class="ksd-info" data-local-info hidden></p>
+
+      <p class="ksd-h">계산 과정</p>
+      <table class="ksd-table">
+        <tbody>
+          <tr><th>연소득 × DSR 한도<small data-r="limlab"></small></th><td data-r="lim"></td></tr>
+          <tr><th>기존 대출 연간 원리금<small data-r="extlab"></small></th><td data-r="ext"></td></tr>
+          <tr><th>새 주담대에 쓸 수 있는 연간 원리금</th><td data-r="room"></td></tr>
+          <tr><th>DSR 산정 금리<small data-r="ratelab"></small></th><td data-r="rate"></td></tr>
+          <tr class="ksd-net"><th>DSR 기준 최대 대출</th><td data-r="max"></td></tr>
+        </tbody>
+      </table>
+      <div class="ksd-formula" data-formula></div>
+
+      <ul class="ksd-note">
+        <li>은행연합회 ‘2026년 하반기 스트레스 DSR 운영방안’(2026. 7. 1.~12. 31.) 기준이에요. 2027년 1월부터 쓸 스트레스 금리와 지방 완화 연장 여부는 12월에 발표될 예정이라 아직 반영하지 못했어요.</li>
+        <li>실제 한도는 은행 심사로 정해져요. 소득 인정 방식, 기존 대출 산정, 금리, 은행별 내부 기준, 다주택 여부(수도권·규제지역 다주택자는 구입 목적 주담대 불가)에 따라 달라질 수 있어요.</li>
+        <li>특정 금융상품을 권하는 내용이 아니며, 정확한 한도는 대출받을 금융회사에 확인해 주세요.</li>
+      </ul>
+      <div class="ksd-actions">
+        <button type="button" class="ksd-btn" data-reset>다시 입력</button>
+        <button type="button" class="ksd-btn ksd-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-ksd]');
+    if (!root || root.__ksd) return;
+    root.__ksd = true;
+
+    // ===== 규제 기준값 (README.md "매년 할 일" 참고, 2026. 7. 1.~12. 31. 적용) =====
+    // 스트레스 금리(%p) = 기준 스트레스 금리 × 기본 적용비율 × 금리유형별 반영비율
+    // 혼합형·주기형 반영비율은 고정기간 [5~9년, 9~15년, 15~21년, 21년 이상] (만기 30년 기준)
+    var STRESS = {
+      // 수도권·규제지역 주담대: 10·15 대책 3.0%, 3단계 기본 적용비율 100%, 3단계 유형별 비율
+      metro: { base: 3.0, ratio: 1.0, mix: [.8, .6, .4, 0], cyc: [.4, .3, .2, 0], stage: '3단계(10·15 대책 3.0%)' },
+      // 지방(비규제) 주담대: 2026. 12. 31.까지 2단계 유지 → 1.5% × 50%, 2단계 유형별 비율
+      local: { base: 1.5, ratio: .5, mix: [.6, .4, .2, 0], cyc: [.3, .2, .1, 0], stage: '2단계 유지(1.5% × 50%)' },
+      // 비교용: 지방에도 3단계가 적용되면
+      local3: { base: 1.5, ratio: 1.0, mix: [.8, .6, .4, 0], cyc: [.4, .3, .2, 0], stage: '3단계(1.5%)' }
+    };
+    var CREDIT_STRESS = 1.5, CREDIT_STRESS_OVER = 10000; // 신용대출 잔액 1억 원(만원 단위) 초과 시 1.5%p
+    var CREDIT_YEARS = 5;                                  // DSR 산정 시 신용대출 만기 5년 가정
+    var DSR = { bank: .4, nonbank: .5 };
+    var MAX_YEARS_METRO = 30;                              // 6·27 대책: 수도권·규제지역 주담대 만기 30년 이내
+    // LTV(무주택·처분조건 1주택, 구입 목적): [일반, 생애최초]
+    var LTV = { reg: [.4, .7], metro: [.7, .7], local: [.7, .8] };
+    // 수도권·규제지역 구입 목적 주담대 한도(10·15 대책): 시가 15억 이하 6억, 25억 이하 4억, 초과 2억 (만원)
+    var CAPS = [[150000, 60000], [250000, 40000], [Infinity, 20000]];
+    // ===== 기준값 끝 =====
+
+    // ENGINE START
+    function stressOf(set, type, fixp) {
+      var f = type === 'var' ? 1 : type === 'fix' ? 0 : set[type][fixp];
+      return Math.round(set.base * set.ratio * f * 1000) / 1000;
+    }
+    // 연간 원리금 A(만원)로 갚을 수 있는 원금(만원), 원리금균등, 월 단위
+    function principal(A, ratePct, years) {
+      var r = ratePct / 100 / 12, n = years * 12, m = A / 12;
+      if (A <= 0) return 0;
+      if (r === 0) return m * n;
+      return m * (1 - Math.pow(1 + r, -n)) / r;
+    }
+    function annualPay(P, ratePct, years) {
+      var r = ratePct / 100 / 12, n = years * 12;
+      if (r === 0) return P / n * 12;
+      return P * r / (1 - Math.pow(1 + r, -n)) * 12;
+    }
+    // o: { inc, region, sector, type, fixp, rate, yrs, ext, cr, crr, price, first, want } (금액은 만원)
+    function compute(o) {
+      var set = o.region === 'local' ? STRESS.local : STRESS.metro;
+      var st = stressOf(set, o.type, o.fixp);
+      var dsrRate = o.rate + st;
+      var crStress = o.cr > CREDIT_STRESS_OVER ? CREDIT_STRESS : 0;
+      var crAnnual = o.cr > 0 ? o.cr / CREDIT_YEARS + o.cr * (o.crr + crStress) / 100 : 0;
+      var existing = o.ext + crAnnual;
+      var lim = o.inc * DSR[o.sector];
+      var room = lim - existing;
+      var max = Math.max(Math.floor(principal(room, dsrRate, o.yrs)), 0);
+      var noStress = Math.max(Math.floor(principal(room, o.rate, o.yrs)), 0);
+      var local3 = null;
+      if (o.region === 'local') {
+        var st3 = stressOf(STRESS.local3, o.type, o.fixp);
+        local3 = { st: st3, max: Math.max(Math.floor(principal(room, o.rate + st3, o.yrs)), 0) };
+      }
+      var ltv = null, cap = null, final = max, bind = 'dsr';
+      if (o.price > 0) {
+        var lr = LTV[o.region][o.first ? 1 : 0];
+        ltv = { rate: lr, amt: Math.floor(o.price * lr + 1e-6) };
+        if (o.region !== 'local') for (var i = 0; i < CAPS.length; i++) if (o.price <= CAPS[i][0]) { cap = CAPS[i][1]; break; }
+        if (ltv.amt < final) { final = ltv.amt; bind = 'ltv'; }
+        if (cap !== null && cap < final) { final = cap; bind = 'cap'; }
+      }
+      var month = final > 0 ? annualPay(final, o.rate, o.yrs) / 12 : 0;
+      var want = null;
+      if (o.want > 0) {
+        var wa = annualPay(o.want, dsrRate, o.yrs);
+        want = { annual: wa, dsr: (existing + wa) / o.inc * 100 };
+      }
+      return { set: set, st: st, dsrRate: dsrRate, crStress: crStress, crAnnual: crAnnual, existing: existing, lim: lim, room: room,
+        max: max, noStress: noStress, local3: local3, ltv: ltv, cap: cap, final: final, bind: bind, month: month, want: want };
+    }
+    // ENGINE END
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var incI = $('[data-inc]'), rateI = $('[data-rate]'), yrsI = $('[data-yrs]'), extI = $('[data-ext]'), crI = $('[data-cr]'), crrI = $('[data-crr]'),
+      priceI = $('[data-price]'), wantI = $('[data-want]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), incRead = $('[data-inc-read]'), priceRead = $('[data-price-read]');
+    var INC_HINT = incRead.textContent, PRICE_HINT = priceRead.textContent, lastText = '';
+    var st = { region: 'reg', sector: 'bank', type: 'var', fixp: 0, first: false, more: false };
+    var REGION_NAME = { reg: '규제지역', metro: '수도권(비규제)', local: '지방(비규제)' };
+    var TYPE_NAME = { 'var': '변동형', mix: '혼합형', cyc: '주기형', fix: '순수 고정형' };
+    var FIXP_NAME = ['5~9년', '9~15년', '15~21년', '21년 이상'];
+    var REGION_HINT = {
+      reg: '투기과열지구·조정대상지역(2025. 10. 16. 기준 서울 전역과 경기 12곳)이에요. 스트레스 금리 3.0%, LTV 40%, 만기 30년 이내가 적용돼요.',
+      metro: '규제지역이 아닌 경기·인천도 수도권이라 스트레스 금리 3.0%와 주택가격별 한도(최대 6억 원)가 적용돼요. LTV는 70%예요.',
+      local: '서울·경기·인천 밖 비규제지역이에요. 2026년 말까지는 완화된 2단계 스트레스 금리(0.75%)가 적용돼요.'
+    };
+
+    function comma(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function digits(s) { return String(s).replace(/\D/g, ''); }
+    function num(s) { var v = String(s).replace(/[^\d.]/g, ''); return v === '' || isNaN(+v) ? NaN : +v; }
+    // 만원 → "3억 5,120만 원"
+    function man(n) {
+      n = Math.floor(n);
+      var eok = Math.floor(n / 1e4), m = n % 1e4, out = [];
+      if (eok) out.push(comma(eok) + '억');
+      if (m) out.push(comma(m) + '만');
+      return (out.join(' ') || '0') + ' 원';
+    }
+    function manWon(n) { return comma(Math.round(n)) + '만 원'; }
+    function dec(x) { var t = Math.round(x * 1000); return (t % 10 ? t / 1000 : t / 1000).toFixed(t % 10 ? 3 : 2); }
+    function pctp(x) { return dec(x) + '%p'; }
+    function pct(x) { return dec(x) + '%'; }
+    function ratio(x) { return Math.round(x * 100) + '%'; }
+
+    [[3000, '3천'], [4000, '4천'], [5000, '5천'], [6000, '6천'], [8000, '8천'], [10000, '1억']].forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'ksd-chip'; b.dataset.v = c[0]; b.textContent = c[1] + '만 원';
+      b.addEventListener('click', function () { incI.value = comma(c[0]); calc(); });
+      $('[data-inc-chips]').appendChild(b);
+    });
+
+    function press(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) { var on = b.getAttribute(attr) === String(val); b.classList.toggle('ksd-on', on); b.setAttribute('aria-pressed', on); });
+    }
+    function sync() {
+      press('data-region', st.region); press('data-sector', st.sector); press('data-type', st.type);
+      press('data-fixp', st.fixp); press('data-first', st.first ? 1 : 0);
+      $('[data-fixp-box]').hidden = !(st.type === 'mix' || st.type === 'cyc');
+      $('[data-region-hint]').textContent = REGION_HINT[st.region];
+      $('[data-more-box]').hidden = !st.more;
+      $('[data-more]').setAttribute('aria-expanded', st.more);
+      $('[data-more]').textContent = (st.more ? '− ' : '+ ') + '기존 대출·집값 넣기 (선택)';
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('ksd-show');
+      msg.textContent = text || '';
+      $$('.ksd-in').forEach(function (i) { i.classList.toggle('ksd-bad', !!bad && bad.indexOf(i) >= 0); });
+    }
+
+    function money(input, max, name) {
+      // 빈칸 = 0, 숫자만, 상한 확인
+      var d = digits(input.value);
+      if (d.length > 9 || +d > max) return { err: name + ' 금액이 너무 커요. 만원 단위로 넣었는지 확인해 주세요.' };
+      return { v: +d };
+    }
+
+    function calc() {
+      sync();
+      var inc = +digits(incI.value);
+      $$('.ksd-chip').forEach(function (c) { c.classList.toggle('ksd-on', +c.dataset.v === inc && !!incI.value); });
+      incRead.textContent = inc ? '= ' + man(inc) : INC_HINT;
+      var price = +digits(priceI.value);
+      priceRead.textContent = price ? '= ' + man(price) + ' · ' + PRICE_HINT : PRICE_HINT;
+
+      if (!incI.value) return hide('');
+      if (digits(incI.value).length > 7) return hide('연소득이 너무 커요. 만원 단위로 넣었는지 확인해 주세요.', [incI]);
+      if (inc < 100) return hide('연소득을 만원 단위로 100만 원 이상 넣어 주세요.', [incI]);
+      if (!rateI.value.trim()) return hide('대출 금리를 넣어 주세요.', [rateI]);
+      var rate = num(rateI.value);
+      if (isNaN(rate) || rate <= 0 || rate > 20) return hide('대출 금리는 0%보다 크고 20% 이하로 넣어 주세요.', [rateI]);
+      if (!yrsI.value.trim()) return hide('대출 기간을 넣어 주세요.', [yrsI]);
+      var yrs = +digits(yrsI.value);
+      if (!yrs || yrs > 50) return hide('대출 기간은 1년부터 50년까지 넣어 주세요.', [yrsI]);
+      if (st.region !== 'local' && yrs > MAX_YEARS_METRO) return hide('수도권·규제지역 주담대는 만기를 30년 이내로만 받을 수 있어요(2025. 6. 28.부터).', [yrsI]);
+
+      var ext = 0, cr = 0, crr = 0, want = 0;
+      if (st.more) {
+        var e = money(extI, 9999999, '기존 대출 원리금'); if (e.err) return hide(e.err, [extI]); ext = e.v;
+        var c = money(crI, 9999999, '신용대출 잔액'); if (c.err) return hide(c.err, [crI]); cr = c.v;
+        if (cr > 0) {
+          if (!crrI.value.trim()) return hide('신용대출 금리를 넣어 주세요.', [crrI]);
+          crr = num(crrI.value);
+          if (isNaN(crr) || crr < 0 || crr > 20) return hide('신용대출 금리는 0~20% 사이로 넣어 주세요.', [crrI]);
+        }
+        var p = money(priceI, 99999999, '집값'); if (p.err) return hide(p.err, [priceI]);
+        if (priceI.value && p.v < 100) return hide('집값을 만원 단위로 넣어 주세요(예: 9억 원 → 90,000).', [priceI]);
+        var w = money(wantI, 9999999, '받고 싶은'); if (w.err) return hide(w.err, [wantI]); want = w.v;
+      } else price = 0;
+
+      var o = { inc: inc, region: st.region, sector: st.sector, type: st.type, fixp: st.fixp, rate: rate, yrs: yrs,
+        ext: ext, cr: cr, crr: crr, price: price, first: st.first, want: want };
+      var r = compute(o);
+      hide('');
+
+      var noRoom = r.room <= 0;
+      $('[data-big-label]').textContent = price ? '받을 수 있는 최대 주담대 (DSR·LTV·한도 중 작은 값)' : '주담대 최대 한도 (DSR 기준)';
+      $('[data-big]').innerHTML = noRoom ? '0<small>원</small>' : man(r.final).replace(/ 원$/, '') + '<small>원</small>';
+      $('[data-sub]').innerHTML = '<span class="ksd-nw">' + REGION_NAME[st.region] + '</span> · <span class="ksd-nw">' +
+        (st.sector === 'bank' ? '은행' : '2금융권') + ' DSR ' + ratio(DSR[st.sector]) + '</span> · <span class="ksd-nw">' + TYPE_NAME[st.type] +
+        (st.type === 'mix' || st.type === 'cyc' ? '(' + FIXP_NAME[st.fixp] + ')' : '') + '</span> · <span class="ksd-nw">' + yrs + '년</span>';
+
+      $('[data-c-stress]').textContent = '+' + pctp(r.st);
+      $('[data-c-dsrrate]').textContent = pct(r.dsrRate);
+      $('[data-c-nostress]').textContent = noRoom ? '0원' : man(r.noStress);
+      $('[data-c-month]').textContent = r.final > 0 ? '월 ' + manWon(r.month) : '-';
+
+      var capEl = $('[data-cap]');
+      capEl.classList.remove('ksd-warn');
+      if (noRoom) {
+        capEl.classList.add('ksd-warn');
+        capEl.innerHTML = '기존 대출 원리금이 이미 연소득의 ' + ratio(DSR[st.sector]) + '(' + manWon(r.lim) + ')를 넘어 <b>새 주담대를 받을 DSR 여유가 없어요.</b> 기존 대출을 줄이거나 갚으면 한도가 생겨요.';
+      } else {
+        var lost = r.noStress - r.max;
+        var t = lost > 0 ? '스트레스 금리 ' + pctp(r.st) + ' 때문에 한도가 <b>' + man(lost) + '</b> 줄었어요.' : '이 조건은 스트레스 금리가 붙지 않아 <b>한도가 줄지 않아요.</b>';
+        if (r.ltv) {
+          t += ' DSR 기준 ' + man(r.max) + ', LTV ' + ratio(r.ltv.rate) + ' 기준 ' + man(r.ltv.amt) +
+            (r.cap !== null ? ', 주택가격별 한도 ' + man(r.cap) : '') + ' 중 가장 작은 <b>' + { dsr: 'DSR', ltv: 'LTV', cap: '주택가격별 한도' }[r.bind] + '</b> 기준이 적용돼요.' +
+            (r.cap === null ? ' 지방(비규제)은 주택가격별 한도가 없어요.' : '');
+        }
+        capEl.innerHTML = t;
+      }
+
+      var wi = $('[data-want-info]');
+      wi.hidden = !r.want;
+      wi.classList.remove('ksd-warn');
+      if (r.want) {
+        var ok = r.want.dsr <= DSR[st.sector] * 100 + 1e-9;
+        var okLtv = !r.ltv || (want <= r.ltv.amt && (r.cap === null || want <= r.cap));
+        wi.classList.toggle('ksd-warn', !(ok && okLtv));
+        wi.innerHTML = man(want) + '을 받으면 스트레스 DSR은 <b>' + (Math.round(r.want.dsr * 10) / 10).toFixed(1) + '%</b>예요(한도 ' + ratio(DSR[st.sector]) + '). ' +
+          (ok ? (okLtv ? 'DSR·LTV 기준 안에 들어와요.' : 'DSR은 괜찮지만 <b>LTV나 주택가격별 한도를 넘어요.</b>') : '<b>DSR 한도를 넘어요.</b>');
+      }
+
+      var li = $('[data-local-info]');
+      li.hidden = !r.local3 || noRoom;
+      if (r.local3 && !noRoom) {
+        li.innerHTML = '지방 주담대 완화(2단계)는 <span class="ksd-nw">2026. 12. 31.</span>까지예요. 2027년에 지방에도 3단계(스트레스 ' + pctp(r.local3.st) + ')가 적용되면 DSR 한도는 <b>' + man(r.local3.max) + '</b>까지 줄어요(12월 발표 전, 참고용).';
+      }
+
+      var set = function (k, v) { root.querySelector('[data-r="' + k + '"]').textContent = v; };
+      set('limlab', manWon(inc) + ' × ' + ratio(DSR[st.sector]));
+      set('lim', manWon(r.lim));
+      set('extlab', cr > 0 ? '입력 ' + manWon(ext) + ' + 신용대출 ' + manWon(r.crAnnual) + (r.crStress ? ' (1억 초과, 금리 +1.5%p)' : '') : '입력한 값');
+      set('ext', '−' + manWon(r.existing));
+      set('room', noRoom ? '0만 원' : manWon(r.room));
+      var stLab = r.set.stage + ', ' + TYPE_NAME[st.type] + (st.type === 'mix' || st.type === 'cyc' ? ' ' + FIXP_NAME[st.fixp] : '');
+      set('ratelab', rate + '% + 스트레스 ' + pctp(r.st) + ' (' + stLab + ')');
+      set('rate', pct(r.dsrRate));
+      set('max', noRoom ? '0원' : man(r.max));
+
+      var f = [];
+      var factor = st.type === 'var' ? 1 : st.type === 'fix' ? 0 : r.set[st.type][st.fixp];
+      f.push('스트레스 금리 = ' + r.set.base.toFixed(1) + '% × 기본 ' + ratio(r.set.ratio) + ' × ' + TYPE_NAME[st.type] + ' ' + ratio(factor) + ' = <b>' + pctp(r.st) + '</b>');
+      f.push('연간 원리금 여유 = ' + manWon(r.lim) + ' − ' + manWon(r.existing) + ' = ' + (noRoom ? '0만 원' : manWon(r.room)));
+      if (!noRoom) f.push('최대 대출 = 월 ' + manWon(r.room / 12) + ' × (1 − (1 + ' + pct(r.dsrRate) + '÷12)<sup>−' + (yrs * 12) + '</sup>) ÷ (' + pct(r.dsrRate) + '÷12) = <b>' + man(r.max) + '</b>');
+      $('[data-formula]').innerHTML = f.map(function (x) { return '<p>' + x + '</p>'; }).join('');
+      result.classList.add('ksd-show');
+
+      lastText = '[스트레스 DSR 주담대 한도 계산 결과]\n연소득: ' + manWon(inc) + '\n지역·업권: ' + REGION_NAME[st.region] + ' · ' + (st.sector === 'bank' ? '은행(DSR 40%)' : '2금융권(DSR 50%)') +
+        '\n금리: ' + rate + '% ' + TYPE_NAME[st.type] + (st.type === 'mix' || st.type === 'cyc' ? '(' + FIXP_NAME[st.fixp] + ')' : '') + ', ' + yrs + '년 원리금균등' +
+        '\n스트레스 금리: +' + pctp(r.st) + ' → DSR 산정 금리 ' + pct(r.dsrRate) +
+        '\n기존 대출 연 원리금: ' + manWon(r.existing) +
+        '\nDSR 기준 최대 대출: ' + (noRoom ? '0원' : man(r.max)) + ' (스트레스 없으면 ' + (noRoom ? '0원' : man(r.noStress)) + ')' +
+        (r.ltv ? '\nLTV ' + ratio(r.ltv.rate) + ' 기준: ' + man(r.ltv.amt) + (r.cap !== null ? '\n주택가격별 한도: ' + man(r.cap) : '') + '\n최종 최대 대출: ' + (noRoom ? '0원' : man(r.final)) : '') +
+        (r.want ? '\n' + man(want) + ' 대출 시 DSR: ' + (Math.round(r.want.dsr * 10) / 10).toFixed(1) + '%' : '') +
+        '\n(2026년 하반기 스트레스 DSR 기준, 실제 한도는 은행 심사로 정해져요)';
+    }
+
+    function bindMoney(input) {
+      input.addEventListener('input', function () {
+        var d = digits(input.value);
+        var v = d ? comma(+d.slice(0, 10)) : '';
+        if (v !== input.value) input.value = v;
+        calc();
+      });
+    }
+    [incI, extI, crI, priceI, wantI].forEach(bindMoney);
+    [rateI, crrI].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').slice(0, 6);
+        if (v !== inp.value) inp.value = v;
+        calc();
+      });
+    });
+    yrsI.addEventListener('input', function () {
+      var v = digits(yrsI.value).slice(0, 3);
+      if (v !== yrsI.value) yrsI.value = v;
+      calc();
+    });
+
+    root.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b || !root.contains(b)) return;
+      if (b.hasAttribute('data-region')) st.region = b.getAttribute('data-region');
+      else if (b.hasAttribute('data-sector')) st.sector = b.getAttribute('data-sector');
+      else if (b.hasAttribute('data-type')) st.type = b.getAttribute('data-type');
+      else if (b.hasAttribute('data-fixp')) st.fixp = +b.getAttribute('data-fixp');
+      else if (b.hasAttribute('data-first')) st.first = b.getAttribute('data-first') === '1';
+      else if (b.hasAttribute('data-more')) st.more = !st.more;
+      else return;
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      [incI, rateI, extI, crI, crrI, priceI, wantI].forEach(function (i) { i.value = ''; });
+      yrsI.value = '30';
+      st = { region: 'reg', sector: 'bank', type: 'var', fixp: 0, first: false, more: false };
+      calc(); incI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (err) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    sync();
+  })();
+  </script>
+</div>
+<!-- 스트레스 DSR 주담대 한도 계산기 위젯 끝 -->
+
+<h2>스트레스 DSR 한도 계산법</h2>
+<p>DSR(총부채원리금상환비율)은 1년 동안 갚는 모든 대출의 원금과 이자를 연소득으로 나눈 비율이에요. 스트레스 DSR은 여기에 ‘앞으로 금리가 오를 수 있다’는 가정을 넣어, 새로 받는 대출의 금리에 스트레스 금리를 더해서 원리금을 계산해요. 실제로 내는 이자가 늘어나는 것은 아니고, 한도를 계산할 때만 쓰는 가상의 금리예요.</p>
+<ol>
+  <li><strong>DSR 한도:</strong> 연소득 × 40%(은행) 또는 50%(보험·저축은행·상호금융 등 2금융권)</li>
+  <li><strong>새 대출에 쓸 수 있는 연간 원리금:</strong> DSR 한도 − 기존 대출의 연간 원리금. 신용대출·마이너스통장은 실제 만기와 상관없이 5년 동안 나눠 갚는다고 보고 (잔액 ÷ 5 + 1년 이자)로 넣어요.</li>
+  <li><strong>스트레스 금리:</strong> 기준 스트레스 금리 × 기본 적용비율 × 금리 유형별 반영비율 (아래 표)</li>
+  <li><strong>최대 대출:</strong> 연간 원리금 여유를 12로 나눈 월 상환액으로, (대출 금리 + 스트레스 금리)와 대출 기간에 맞춰 원리금균등으로 갚을 수 있는 원금</li>
+  <li><strong>최종 한도:</strong> 집을 살 때는 DSR 한도, LTV 한도(집값 × 40~80%), 수도권·규제지역 주택가격별 한도(6억·4억·2억 원) 중 가장 작은 금액</li>
+</ol>
+<p>예를 들어 연소득 6천만 원, 기존 대출이 없는 사람이 은행에서 서울 아파트를 사려고 금리 4%, 30년 변동형 주담대를 알아본다면 이렇게 계산해요.</p>
+<ul>
+  <li>DSR 한도: 6,000만 원 × 40% = <strong>연 2,400만 원</strong> (월 200만 원)</li>
+  <li>스트레스 금리: 3.0% × 100% × 변동형 100% = <strong>3.0%p</strong> → DSR 산정 금리 4% + 3% = 7%</li>
+  <li>최대 대출: 월 200만 원을 연 7%, 360개월 원리금균등으로 갚을 수 있는 원금 = <strong>약 3억 61만 원</strong></li>
+  <li>실제 월 상환액: 3억 61만 원을 실제 금리 4%로 갚으면 <strong>월 약 144만 원</strong>이에요. 스트레스 금리는 한도 계산에만 쓰여요.</li>
+  <li>집값이 9억 원이면 LTV 40%인 3억 6,000만 원, 주택가격별 한도 6억 원보다 DSR 한도 3억 61만 원이 작아서 <strong>3억 61만 원</strong>까지 받을 수 있어요.</li>
+</ul>
+
+<h2>2026년 하반기 스트레스 금리 표</h2>
+<p>은행연합회가 2026년 6월 30일 발표한 ‘2026년 하반기 스트레스 DSR 운영방안’(2026. 7. 1.~12. 31. 적용) 기준이에요. 혼합형·주기형 비율은 만기 30년 대출의 고정 기간(금리 변동 주기) 기준이에요.</p>
+<table>
+  <thead><tr><th>구분</th><th>수도권·규제지역 주담대</th><th>지방(비규제) 주담대</th></tr></thead>
+  <tbody>
+    <tr><td>기준 스트레스 금리 × 기본 비율</td><td>3.0% × 100% (3단계, 10·15 대책)</td><td>1.5% × 50% (2단계 유지)</td></tr>
+    <tr><td>변동형 (고정 5년 미만 포함)</td><td>3.00%p</td><td>0.75%p</td></tr>
+    <tr><td>혼합형 고정 5~9년</td><td>80% → 2.40%p</td><td>60% → 0.45%p</td></tr>
+    <tr><td>혼합형 고정 9~15년</td><td>60% → 1.80%p</td><td>40% → 0.30%p</td></tr>
+    <tr><td>혼합형 고정 15~21년</td><td>40% → 1.20%p</td><td>20% → 0.15%p</td></tr>
+    <tr><td>주기형 5~9년</td><td>40% → 1.20%p</td><td>30% → 0.225%p</td></tr>
+    <tr><td>주기형 9~15년</td><td>30% → 0.90%p</td><td>20% → 0.15%p</td></tr>
+    <tr><td>주기형 15~21년</td><td>20% → 0.60%p</td><td>10% → 0.075%p</td></tr>
+    <tr><td>고정 21년 이상·순수 고정형</td><td>0%p</td><td>0%p</td></tr>
+  </tbody>
+</table>
+<p>신용대출과 기타대출은 지역과 상관없이 1.5% × 100%가 적용되고, 신용대출은 잔액이 1억 원을 넘을 때만 스트레스 금리가 붙어요. 2027년 1월부터 쓸 값은 12월 말에 발표될 예정이라 아직 정해지지 않았어요.</p>
+
+<h2>연소득별 주담대 최대 한도 (은행, 금리 4%, 30년)</h2>
+<p>기존 대출이 없고 은행 DSR 40%, 원리금균등 30년을 가정해 위 계산기와 같은 방식으로 구한 DSR 기준 한도예요. 실제로는 LTV와 주택가격별 한도 중 작은 금액이 최종 한도가 돼요.</p>
+<table>
+  <thead><tr><th>연소득</th><th>스트레스 없음</th><th>수도권 변동형</th><th>수도권 혼합형(5년)</th><th>수도권 주기형(5년)</th><th>지방 변동형</th></tr></thead>
+  <tbody>
+    <tr><td>3천만 원</td><td>2억 946만 원</td><td>1억 5,030만 원</td><td>1억 5,987만 원</td><td>1억 8,211만 원</td><td>1억 9,170만 원</td></tr>
+    <tr><td>4천만 원</td><td>2억 7,928만 원</td><td>2억 41만 원</td><td>2억 1,316만 원</td><td>2억 4,281만 원</td><td>2억 5,560만 원</td></tr>
+    <tr><td>5천만 원</td><td>3억 4,910만 원</td><td>2억 5,051만 원</td><td>2억 6,645만 원</td><td>3억 352만 원</td><td>3억 1,950만 원</td></tr>
+    <tr><td>6천만 원</td><td>4억 1,892만 원</td><td>3억 61만 원</td><td>3억 1,974만 원</td><td>3억 6,422만 원</td><td>3억 8,340만 원</td></tr>
+    <tr><td>7천만 원</td><td>4억 8,874만 원</td><td>3억 5,071만 원</td><td>3억 7,303만 원</td><td>4억 2,492만 원</td><td>4억 4,730만 원</td></tr>
+    <tr><td>8천만 원</td><td>5억 5,856만 원</td><td>4억 82만 원</td><td>4억 2,632만 원</td><td>4억 8,563만 원</td><td>5억 1,120만 원</td></tr>
+    <tr><td>1억 원</td><td>6억 9,820만 원</td><td>5억 102만 원</td><td>5억 3,290만 원</td><td>6억 704만 원</td><td>6억 3,900만 원</td></tr>
+  </tbody>
+</table>
+
+<h2>DSR 말고 함께 보는 한도: LTV와 주택가격별 한도</h2>
+<p>집을 살 때는 DSR만 통과하면 되는 게 아니라 아래 기준도 함께 적용돼요. 무주택자(또는 기존 집을 처분하는 조건의 1주택자)가 집을 살 때 기준이에요.</p>
+<table>
+  <thead><tr><th>구분</th><th>규제지역</th><th>수도권 비규제</th><th>지방 비규제</th></tr></thead>
+  <tbody>
+    <tr><td>LTV (일반)</td><td>40%</td><td>70%</td><td>70%</td></tr>
+    <tr><td>LTV (생애최초)</td><td>70%</td><td>70%</td><td>80%</td></tr>
+    <tr><td>주택가격별 한도</td><td>시가 15억 이하 6억, 25억 이하 4억, 초과 2억</td><td>규제지역과 같음</td><td>없음</td></tr>
+    <tr><td>최대 만기</td><td>30년</td><td>30년</td><td>30년 제한 대상 아님</td></tr>
+  </tbody>
+</table>
+<p>수도권·규제지역 주택가격별 한도는 2025년 10월 16일부터, 만기 30년 제한과 6억 원 한도는 2025년 6월 28일부터 적용되고 있어요. 수도권·규제지역에서 다주택자는 집을 사기 위한 주담대를 받을 수 없어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>스트레스 금리만큼 이자를 더 내야 하나요?</h3>
+<p>아니요. 스트레스 금리는 대출 한도를 계산할 때만 더하는 가상의 금리예요. 실제로 매달 내는 이자는 은행과 약정한 금리로 계산돼요. 다만 스트레스 금리가 클수록 같은 소득으로 빌릴 수 있는 금액이 줄어들어요.</p>
+<h3>혼합형이나 주기형을 고르면 한도가 늘어나나요?</h3>
+<p>네. 수도권·규제지역에서 변동형은 스트레스 금리 3.0%p가 모두 붙지만, 5년 고정 혼합형은 2.4%p, 5년 주기형은 1.2%p만 붙어요. 연소득 6천만 원, 금리 4%, 30년 기준으로 변동형 한도가 약 3억 61만 원이라면 주기형은 약 3억 6,422만 원까지 늘어나요. 만기까지 금리가 고정되는 상품은 스트레스 금리가 붙지 않아요. 다만 상품마다 금리 자체가 다르니 실제 금리를 넣어 비교해 보세요.</p>
+<h3>지방 주담대는 2027년에도 완화된 기준이 적용되나요?</h3>
+<p>지방(비규제지역) 주담대에 2단계 수준(0.75%p)을 적용하는 조치는 2026년 12월 31일까지로 발표돼 있어요. 2027년 1월부터의 스트레스 금리와 연장 여부는 12월 말에 발표될 예정이라 아직 정해지지 않았어요. 3단계(1.5%p)가 그대로 적용되면 연소득 6천만 원, 금리 4%, 30년 변동형 기준 한도가 약 3억 8,340만 원에서 3억 5,224만 원으로 줄어요.</p>
+<h3>신용대출이나 마이너스통장이 있으면 한도가 얼마나 줄어드나요?</h3>
+<p>DSR에서 신용대출은 실제 만기와 상관없이 5년 동안 나눠 갚는다고 보고, 마이너스통장은 쓴 돈이 아니라 약정 한도 전체로 계산해요. 예를 들어 신용대출 5천만 원(금리 5%)이 있으면 연간 원리금이 1,000만 원 + 250만 원 = 1,250만 원으로 잡혀요. 연소득 1억 원, 수도권 변동형 4%·30년 기준으로 주담대 한도가 약 5억 102만 원에서 3억 4,445만 원으로 줄어요. 주담대 전에 쓰지 않는 마이너스통장을 정리하면 한도가 늘어날 수 있어요.</p>
+<h3>계산기 결과대로 은행에서 대출이 나오나요?</h3>
+<p>계산기는 공개된 규제 기준으로 계산한 참고값이에요. 실제 한도는 은행이 인정하는 소득(증빙 방식), 기존 대출 산정, 적용 금리, 은행별 내부 기준과 총량 관리 상황에 따라 달라질 수 있어요. 대출을 신청하기 전에 거래할 은행에서 정확한 한도를 확인해 주세요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:loan-calculator}}">대출 이자 계산기</a>: 받은 한도로 매달 갚을 원리금과 총이자 계산</li>
+  <li><a href="{{LINK:acquisition-tax-calculator}}">주택 취득세 계산기</a>: 집을 살 때 대출 말고 준비해야 할 취득세 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "스트레스 금리만큼 이자를 더 내야 하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "아니요. 스트레스 금리는 대출 한도를 계산할 때만 더하는 가상의 금리예요. 실제로 매달 내는 이자는 은행과 약정한 금리로 계산돼요. 다만 스트레스 금리가 클수록 같은 소득으로 빌릴 수 있는 금액이 줄어들어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "혼합형이나 주기형을 고르면 한도가 늘어나나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네. 수도권·규제지역에서 변동형은 스트레스 금리 3.0%p가 모두 붙지만, 5년 고정 혼합형은 2.4%p, 5년 주기형은 1.2%p만 붙어요. 연소득 6천만 원, 금리 4%, 30년 기준으로 변동형 한도가 약 3억 61만 원이라면 주기형은 약 3억 6,422만 원까지 늘어나요. 만기까지 금리가 고정되는 상품은 스트레스 금리가 붙지 않아요. 다만 상품마다 금리 자체가 다르니 실제 금리를 넣어 비교해 보세요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "지방 주담대는 2027년에도 완화된 기준이 적용되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "지방(비규제지역) 주담대에 2단계 수준(0.75%p)을 적용하는 조치는 2026년 12월 31일까지로 발표돼 있어요. 2027년 1월부터의 스트레스 금리와 연장 여부는 12월 말에 발표될 예정이라 아직 정해지지 않았어요. 3단계(1.5%p)가 그대로 적용되면 연소득 6천만 원, 금리 4%, 30년 변동형 기준 한도가 약 3억 8,340만 원에서 3억 5,224만 원으로 줄어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "신용대출이나 마이너스통장이 있으면 한도가 얼마나 줄어드나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "DSR에서 신용대출은 실제 만기와 상관없이 5년 동안 나눠 갚는다고 보고, 마이너스통장은 쓴 돈이 아니라 약정 한도 전체로 계산해요. 예를 들어 신용대출 5천만 원(금리 5%)이 있으면 연간 원리금이 1,000만 원 + 250만 원 = 1,250만 원으로 잡혀요. 연소득 1억 원, 수도권 변동형 4%·30년 기준으로 주담대 한도가 약 5억 102만 원에서 3억 4,445만 원으로 줄어요. 주담대 전에 쓰지 않는 마이너스통장을 정리하면 한도가 늘어날 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "계산기 결과대로 은행에서 대출이 나오나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "계산기는 공개된 규제 기준으로 계산한 참고값이에요. 실제 한도는 은행이 인정하는 소득(증빙 방식), 기존 대출 산정, 적용 금리, 은행별 내부 기준과 총량 관리 상황에 따라 달라질 수 있어요. 대출을 신청하기 전에 거래할 은행에서 정확한 한도를 확인해 주세요."
+   }
+  }
+ ]
+}
+</script>

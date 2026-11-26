@@ -67,6 +67,7 @@ tools/
 | 신용카드 소득공제 계산기 (2026년 사용분, 25% 문턱·자녀 한도·다음 1만 원 어디에) | `tools/card-deduction-calculator` | 완성 |
 | 육아 지원금 총액 계산기 (첫만남이용권·부모급여·아동수당·양육수당, 0세~아동수당 종료 월별) | `tools/childcare-benefit-total` | 완성 |
 | 학자금대출 의무상환액 계산기 (취업 후 상환 ICL, 2025·2026 상환기준소득, 월 원천공제·상환 기간) | `tools/student-loan-repayment` | 완성 |
+| 스트레스 DSR 주담대 한도 계산기 (2026 하반기 3단계·수도권 3.0%, 금리 유형별, LTV·6억 한도 비교) | `tools/stress-dsr-calculator` | 완성 |
 
 ## 작업 규칙
 
