@@ -62,6 +62,11 @@ tools/
 | 건강보험 피부양자 자격 확인기 (소득 2천만원·재산 과세표준·형제자매 기준) | `tools/dependent-eligibility-check` | 완성 |
 | 육아기 근로시간 단축 급여 계산기 (주 10시간 100%·회사 월급 합산) | `tools/reduced-hours-pay` | 완성 |
 | 증여세 계산기 (자녀·배우자 공제, 10년 합산, 혼인·출산 1억, 세대생략 할증, 신고 기한) | `tools/gift-tax-calculator` | 완성 |
+| 전세 vs 월세 비교 계산기 (대출이자·기회비용·월세 세액공제·손익분기 전환율) | `tools/jeonse-vs-wolse` | 완성 |
+| 국민연금 추납 보험료 계산기 (2026 9.5% vs 2027 10%, 최대 119개월·60회 분할) | `tools/pension-catchup-payment` | 완성 |
+| 신용카드 소득공제 계산기 (2026년 사용분, 25% 문턱·자녀 한도·다음 1만 원 어디에) | `tools/card-deduction-calculator` | 완성 |
+| 육아 지원금 총액 계산기 (첫만남이용권·부모급여·아동수당·양육수당, 0세~아동수당 종료 월별) | `tools/childcare-benefit-total` | 완성 |
+| 학자금대출 의무상환액 계산기 (취업 후 상환 ICL, 2025·2026 상환기준소득, 월 원천공제·상환 기간) | `tools/student-loan-repayment` | 완성 |
 | 스트레스 DSR 주담대 한도 계산기 (2026 하반기 3단계·수도권 3.0%, 금리 유형별, LTV·6억 한도 비교) | `tools/stress-dsr-calculator` | 완성 |
 
 ## 작업 규칙
