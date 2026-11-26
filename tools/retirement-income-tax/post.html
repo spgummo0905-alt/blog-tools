@@ -1,0 +1,512 @@
+<p><strong>퇴직소득세는 퇴직금에서 근속연수공제를 빼고 1년 치로 환산해 세율을 매긴 뒤 근속연수만큼 다시 나눠 계산해요. 퇴직금 5,000만 원·근속 10년이면 지방소득세까지 748,000원이고, IRP로 옮겨 연금으로 받으면 523,600원으로 줄어요.</strong> 아래 계산기에 퇴직금과 입사일·퇴사일만 넣으면 단계별 계산 과정과 IRP로 받을 때 아끼는 세금을 바로 볼 수 있어요.</p>
+<!-- 퇴직소득세 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="krt" data-krt>
+  <style>
+    .krt{--krt-accent:#3b6ef5;--krt-accent-soft:#eef3ff;--krt-text:#1d2433;--krt-sub:#6b7385;--krt-line:#e3e7ef;--krt-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--krt-line);border-radius:20px;background:var(--krt-bg);
+      color:var(--krt-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .krt [hidden]{display:none!important}
+    .krt *,.krt *::before,.krt *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .krt .krt-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .krt .krt-desc{margin-top:4px;font-size:14px;color:var(--krt-sub)}
+    .krt .krt-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--krt-text)}
+    .krt .krt-label small{font-weight:500;color:var(--krt-sub)}
+    .krt .krt-field{position:relative}
+    .krt .krt-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--krt-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--krt-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .krt .krt-in[type=date]{padding:0 14px;font-size:17px;min-width:0;display:block}
+    .krt .krt-in::placeholder{color:#b3b9c6;font-weight:500}
+    .krt .krt-in:focus{border-color:var(--krt-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .krt .krt-in.krt-bad{border-color:#e0565b}
+    .krt .krt-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--krt-sub);pointer-events:none}
+    .krt .krt-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .krt .krt-chip{height:32px;padding:0 12px;border:1.5px solid var(--krt-line);border-radius:999px;background:#fff;color:var(--krt-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .krt .krt-chip:hover{border-color:#c9d3ea;color:var(--krt-text)}
+    .krt .krt-chip.krt-on{border-color:var(--krt-accent);background:var(--krt-accent-soft);color:var(--krt-accent)}
+    .krt .krt-hint{margin-top:6px;font-size:12.5px;color:var(--krt-sub)}
+    .krt .krt-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .krt .krt-seg-btn{height:44px;border:1.5px solid var(--krt-line);border-radius:12px;background:#f8f9fc;color:var(--krt-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s}
+    .krt .krt-seg-btn:hover{border-color:#c9d3ea}
+    .krt .krt-seg-btn.krt-on{border-color:var(--krt-accent);background:var(--krt-accent);color:#fff}
+    .krt .krt-two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .krt .krt-two .krt-label{margin-top:14px}
+    .krt .krt-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .krt .krt-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .krt .krt-result.krt-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .krt .krt-result-inner{overflow:hidden}
+    .krt .krt-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--krt-accent-soft);text-align:center}
+    .krt .krt-main-label{font-size:14px;color:var(--krt-sub)}
+    .krt .krt-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--krt-accent);line-height:1.2;word-break:keep-all}
+    .krt .krt-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .krt .krt-sub{margin-top:6px;font-size:14px;color:var(--krt-sub)}
+    .krt .krt-main-label,.krt .krt-sub,.krt .krt-note,.krt .krt-desc,.krt .krt-hint,.krt .krt-msg,.krt .krt-card-s,.krt .krt-cmp-s{word-break:keep-all}
+    .krt .krt-nw{white-space:nowrap}
+    .krt .krt-cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .krt .krt-cmp-box{padding:14px;border:1px solid var(--krt-line);border-radius:14px;background:#fff}
+    .krt .krt-cmp-box.krt-irp{border-color:var(--krt-accent);background:#fafcff}
+    .krt .krt-cmp-k{font-size:12.5px;font-weight:600;color:var(--krt-sub)}
+    .krt .krt-cmp-v{margin-top:2px;font-size:19px;font-weight:800;color:var(--krt-text);letter-spacing:-.02em}
+    .krt .krt-irp .krt-cmp-v{color:var(--krt-accent)}
+    .krt .krt-cmp-s{margin-top:2px;font-size:12px;color:var(--krt-sub)}
+    .krt .krt-save{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13.5px;color:var(--krt-text);word-break:keep-all}
+    .krt .krt-save b{color:var(--krt-accent)}
+    .krt .krt-h{margin:18px 0 0;font-size:14px;font-weight:700}
+    .krt .krt-table{width:100%;margin-top:8px;border:1px solid var(--krt-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .krt .krt-table th,.krt .krt-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--krt-line);background:#fff;text-align:left;font-weight:500;color:var(--krt-text);vertical-align:middle}
+    .krt .krt-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .krt .krt-table th small{display:block;font-size:11.5px;color:var(--krt-sub);font-weight:400;word-break:keep-all}
+    .krt .krt-table td small.krt-td-s{display:block;font-size:11.5px;font-weight:500;color:var(--krt-sub)}
+    .krt .krt-table tr:last-child th,.krt .krt-table tr:last-child td{border-bottom:0}
+    .krt .krt-table .krt-strong th,.krt .krt-table .krt-strong td{background:#f8f9fc;font-weight:700}
+    .krt .krt-table .krt-strong td{color:#e0565b}
+    .krt .krt-table .krt-net th,.krt .krt-table .krt-net td{background:var(--krt-accent-soft);font-weight:700}
+    .krt .krt-table .krt-net td{color:var(--krt-accent)}
+    .krt .krt-note{margin-top:12px;font-size:12.5px;color:var(--krt-sub)}
+    .krt .krt-note li{margin-left:16px}
+    .krt .krt-actions{display:flex;gap:8px;margin-top:14px}
+    .krt .krt-btn{flex:1;height:44px;border:1.5px solid var(--krt-line);border-radius:12px;background:#fff;color:var(--krt-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .krt .krt-btn:hover{background:#f4f6fa}
+    .krt .krt-btn:active{transform:scale(.98)}
+    .krt .krt-btn.krt-primary{border-color:var(--krt-accent);background:var(--krt-accent);color:#fff}
+    .krt .krt-btn.krt-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.krt{padding:18px;border-radius:16px}.krt .krt-big{font-size:34px}.krt .krt-in{font-size:17px}.krt .krt-in[type=date]{font-size:15px;padding:0 10px}
+      .krt .krt-table th,.krt .krt-table td{padding:9px 10px}.krt .krt-cmp-v{font-size:17px}.krt .krt-cmp-box{padding:12px}}
+    @media (prefers-reduced-motion:reduce){.krt .krt-result,.krt .krt-in,.krt .krt-btn,.krt .krt-chip,.krt .krt-seg-btn{transition:none}}
+  </style>
+
+  <p class="krt-title">퇴직소득세 계산기 (2026)</p>
+  <p class="krt-desc">퇴직금과 근속기간을 넣으면 세금과 IRP로 받을 때 줄어드는 세금을 바로 계산해요.</p>
+
+  <label class="krt-label" for="krt-pay"><span>퇴직금 <small>(세전 퇴직급여)</small></span></label>
+  <div class="krt-field"><input class="krt-in" id="krt-pay" data-pay inputmode="numeric" placeholder="50,000,000" autocomplete="off"><span class="krt-unit">원</span></div>
+  <div class="krt-chips" data-chips></div>
+  <p class="krt-hint" data-pay-read>원 단위로 넣어요. 위 버튼을 누르면 금액이 바로 들어가요.</p>
+
+  <p class="krt-label">근속기간</p>
+  <div class="krt-seg" role="group" aria-label="근속기간 입력 방식">
+    <button type="button" class="krt-seg-btn krt-on" data-mode="date" aria-pressed="true">입사일·퇴사일</button>
+    <button type="button" class="krt-seg-btn" data-mode="year" aria-pressed="false">근속연수 직접</button>
+  </div>
+
+  <div data-box-date>
+    <div class="krt-two">
+      <div>
+        <label class="krt-label" for="krt-start">입사일</label>
+        <input class="krt-in" id="krt-start" type="date" data-start min="1950-01-01" max="2100-12-31">
+      </div>
+      <div>
+        <label class="krt-label" for="krt-end">퇴사일</label>
+        <input class="krt-in" id="krt-end" type="date" data-end min="1950-01-01" max="2100-12-31">
+      </div>
+    </div>
+    <p class="krt-hint">퇴사일은 마지막으로 근무한 날이에요. 1년이 안 되는 기간은 1년으로 올려서 근속연수를 세요.</p>
+  </div>
+
+  <div data-box-year hidden>
+    <label class="krt-label" for="krt-years">근속연수</label>
+    <div class="krt-field"><input class="krt-in" id="krt-years" data-years inputmode="numeric" maxlength="2" placeholder="10" autocomplete="off"><span class="krt-unit">년</span></div>
+    <p class="krt-hint">퇴직소득 원천징수영수증의 근속연수를 넣으면 가장 정확해요. 9년 2개월이면 10년이에요.</p>
+  </div>
+
+  <p class="krt-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="krt-result" data-result aria-live="polite">
+    <div class="krt-result-inner">
+      <div class="krt-main">
+        <p class="krt-main-label">일시금으로 받을 때 세금 (지방소득세 포함)</p>
+        <p class="krt-big" data-big></p>
+        <p class="krt-sub" data-sub></p>
+      </div>
+
+      <div class="krt-cmp">
+        <div class="krt-cmp-box"><p class="krt-cmp-k">일시금으로 받으면</p><p class="krt-cmp-v" data-lump></p><p class="krt-cmp-s">퇴사할 때 한 번에 떼요</p></div>
+        <div class="krt-cmp-box krt-irp"><p class="krt-cmp-k">IRP 연금으로 받으면</p><p class="krt-cmp-v" data-irp></p><p class="krt-cmp-s">연금 수령 10년 차까지 받는 몫 기준 (70%)</p></div>
+      </div>
+      <p class="krt-save" data-save></p>
+
+      <p class="krt-h">계산 과정</p>
+      <table class="krt-table">
+        <tbody>
+          <tr><th>퇴직소득</th><td data-r="pay"></td></tr>
+          <tr><th>근속연수<small data-r="period"></small></th><td data-r="years"></td></tr>
+          <tr><th>근속연수공제</th><td data-r="yd"></td></tr>
+          <tr><th>환산급여<small>(퇴직소득 − 근속연수공제) × 12 ÷ 근속연수</small></th><td data-r="conv"></td></tr>
+          <tr><th>환산급여공제</th><td data-r="cd"></td></tr>
+          <tr><th>과세표준</th><td data-r="base"></td></tr>
+          <tr><th>환산산출세액<small data-r="rate"></small></th><td data-r="ctax"></td></tr>
+          <tr class="krt-strong"><th>퇴직소득세<small>환산산출세액 ÷ 12 × 근속연수</small></th><td data-r="tax"></td></tr>
+          <tr class="krt-strong"><th>지방소득세<small>퇴직소득세의 10%</small></th><td data-r="local"></td></tr>
+          <tr class="krt-strong"><th>세금 합계</th><td data-r="total"></td></tr>
+          <tr class="krt-net"><th>실수령액 (일시금)</th><td data-r="net"></td></tr>
+        </tbody>
+      </table>
+
+      <p class="krt-h">IRP 연금으로 받을 때 (수령 연차별)</p>
+      <table class="krt-table">
+        <tbody>
+          <tr><th>1~10년 차에 받는 몫<small>퇴직소득세의 70%</small></th><td data-r="p70"></td></tr>
+          <tr><th>11~20년 차에 받는 몫<small>퇴직소득세의 60%</small></th><td data-r="p60"></td></tr>
+          <tr><th>21년 차부터 받는 몫<small>퇴직소득세의 50% (2026년 수령분부터)</small></th><td data-r="p50"></td></tr>
+        </tbody>
+      </table>
+
+      <ul class="krt-note">
+        <li>2026년·2027년 퇴직 모두 같은 기준이에요(2026년 11월 기준 개정 발표 없음). 원천징수처럼 10원 미만은 버렸어요.</li>
+        <li>IRP 세액은 퇴직금 전액을 IRP로 옮기고 연금 수령 한도 안에서 나눠 받을 때의 합계예요. 한도를 넘겨 찾거나 중도에 일시금으로 빼면 100%를 내요.</li>
+        <li>중간정산·임원 퇴직금 한도·비과세 퇴직급여는 반영하지 않았어요.</li>
+      </ul>
+      <div class="krt-actions">
+        <button type="button" class="krt-btn" data-reset>다시 입력</button>
+        <button type="button" class="krt-btn krt-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-krt]');
+    if (!root || root.__krt) return;
+    root.__krt = true;
+
+    // ===== 법령 기준값 (README.md "매년 할 일" 참고) =====
+    // 근속연수공제(소득세법 제48조 제1항 제1호, 2023.1.1 이후 퇴직분): [근속연수 상한, 기본액, 1년당 추가액, 기준 연수]
+    var YEAR_DED = [[5, 0, 1e6, 0], [10, 5e6, 2e6, 5], [20, 15e6, 2.5e6, 10], [Infinity, 40e6, 3e6, 20]];
+    // 환산급여공제(소득세법 제48조 제1항 제2호): [환산급여 상한, 기본액, 초과분 공제율, 기준 금액]
+    var CONV_DED = [[8e6, 0, 1, 0], [70e6, 8e6, .6, 8e6], [1e8, 45.2e6, .55, 70e6], [3e8, 61.7e6, .45, 1e8], [Infinity, 151.7e6, .35, 3e8]];
+    // 기본세율(소득세법 제55조, 2023.1.1 이후): [과세표준 상한, 세율, 누진공제]
+    var RATES = [[14e6, .06, 0], [50e6, .15, 126e4], [88e6, .24, 576e4], [150e6, .35, 1544e4], [3e8, .38, 1994e4], [5e8, .40, 2594e4], [1e9, .42, 3594e4], [Infinity, .45, 6594e4]];
+    // 이연퇴직소득 연금수령 시 원천징수세율(소득세법 제129조 제1항 제5호의2): 연금외수령 세율의 70%(10년 차까지)·60%(20년 차까지)·50%(21년 차부터, 2026.1.1 이후 수령분)
+    var IRP = [.7, .6, .5];
+    // ===== 기준값 끝 =====
+
+    // ENGINE START
+    function f10(n) { return Math.floor(n / 10 + 1e-9) * 10; }
+    function band(T, x) { for (var i = 0; i < T.length; i++) if (x <= T[i][0]) return T[i]; }
+    function yearDeduction(n) { var b = band(YEAR_DED, n); return b[1] + b[2] * (n - b[3]); }
+    function convDeduction(c) { var b = band(CONV_DED, c); return b[1] + (c - b[3]) * b[2]; }
+    function compute(pay, n) {
+      var yd = Math.min(yearDeduction(n), pay); // 퇴직소득금액을 넘지 않아요
+      var conv = Math.floor((pay - yd) * 12 / n);
+      var cd = Math.floor(Math.min(convDeduction(conv), conv));
+      var base = conv - cd;
+      var r = band(RATES, base);
+      var ctax = base > 0 ? Math.floor(base * r[1] - r[2]) : 0;
+      var raw = Math.floor(ctax / 12 * n + 1e-6);
+      var tax = f10(raw), local = f10(tax * 0.1);
+      var irp = IRP.map(function (p) { var t = f10(raw * p); return { tax: t, local: f10(t * 0.1), total: t + f10(t * 0.1) }; });
+      return { pay: pay, n: n, yd: yd, conv: conv, cd: cd, base: base, rate: r[1], prog: r[2], ctax: ctax, raw: raw,
+        tax: tax, local: local, total: tax + local, net: pay - tax - local, irp: irp };
+    }
+    // 근속연수: 입사일부터 퇴사일(마지막 근무일)까지, 1년 미만은 1년으로 올림
+    function addYears(d, k) {
+      var t = new Date(d.getFullYear() + k, d.getMonth(), d.getDate());
+      if (t.getMonth() !== d.getMonth()) t = new Date(d.getFullYear() + k, d.getMonth() + 1, 1); // 2월 29일 → 3월 1일
+      return t;
+    }
+    function serviceYears(s, e) {
+      var end = new Date(e.getFullYear(), e.getMonth(), e.getDate() + 1); // 퇴사일 다음 날
+      var n = end.getFullYear() - s.getFullYear();
+      while (n > 0 && addYears(s, n) > end) n--;
+      var full = n, rest = addYears(s, n) < end;
+      var m = 0;
+      if (rest) { while (m < 11 && addMonths(addYears(s, n), m + 1) <= end) m++; }
+      var from = addMonths(addYears(s, n), m);
+      var days = Math.round((Date.UTC(end.getFullYear(), end.getMonth(), end.getDate()) - Date.UTC(from.getFullYear(), from.getMonth(), from.getDate())) / 864e5);
+      return { years: rest ? full + 1 : full, full: full, months: m, days: days };
+    }
+    function addMonths(d, k) {
+      var t = new Date(d.getFullYear(), d.getMonth() + k, d.getDate());
+      if (t.getDate() !== d.getDate()) t = new Date(d.getFullYear(), d.getMonth() + k + 1, 1);
+      return t;
+    }
+    // ENGINE END
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var payI = $('[data-pay]'), startI = $('[data-start]'), endI = $('[data-end]'), yearsI = $('[data-years]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), payRead = $('[data-pay-read]');
+    var PAY_HINT = payRead.textContent, mode = 'date', lastText = '';
+
+    function comma(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(n) + '원'; }
+    function digits(s) { return String(s).replace(/\D/g, ''); }
+    function korean(n) { // 50,000,000 → 5,000만 원 / 123,456,789 → 1억 2,345만 6,789원
+      var eok = Math.floor(n / 1e8), man = Math.floor(n % 1e8 / 1e4), r = n % 1e4, out = [];
+      if (eok) out.push(comma(eok) + '억');
+      if (man) out.push(comma(man) + '만');
+      if (r) out.push(comma(r));
+      return (out.join(' ') || '0') + '원';
+    }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function parseDate(v) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(v)) return null;
+      var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]);
+      return d.getDate() === +p[2] ? d : null;
+    }
+    function pct(x) { return (Math.round(x * 1000) / 10).toLocaleString('ko-KR') + '%'; }
+
+    [[1e7, '1천만'], [3e7, '3천만'], [5e7, '5천만'], [1e8, '1억'], [2e8, '2억']].forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'krt-chip'; b.dataset.v = c[0]; b.textContent = c[1];
+      b.addEventListener('click', function () { payI.value = comma(c[0]); calc(); });
+      $('[data-chips]').appendChild(b);
+    });
+
+    function hide(text, bad) {
+      result.classList.remove('krt-show');
+      msg.textContent = text || '';
+      $$('.krt-in').forEach(function (i) { i.classList.toggle('krt-bad', !!bad && bad.indexOf(i) >= 0); });
+    }
+
+    function calc() {
+      var pay = +digits(payI.value);
+      $$('.krt-chip').forEach(function (c) { c.classList.toggle('krt-on', +c.dataset.v === pay); });
+      payRead.textContent = pay ? '= ' + korean(pay) : PAY_HINT;
+      if (digits(payI.value).length > 13) return hide('퇴직금이 너무 커요. 금액을 다시 확인해 주세요.', [payI]);
+
+      var n, period = '';
+      if (mode === 'date') {
+        if (!startI.value || !endI.value) return hide('');
+        var s = parseDate(startI.value), e = parseDate(endI.value);
+        if (!s || !e || s.getFullYear() < 1950 || e.getFullYear() > 2100) return hide('날짜를 다시 확인해 주세요.', [startI, endI]);
+        if (e < s) return hide('퇴사일이 입사일보다 앞이에요.', [endI]);
+        var sv = serviceYears(s, e);
+        n = sv.years;
+        if (n > 70) return hide('근속기간이 70년을 넘어요. 날짜를 다시 확인해 주세요.', [startI, endI]);
+        var parts = [];
+        if (sv.full) parts.push(sv.full + '년');
+        if (sv.months) parts.push(sv.months + '개월');
+        if (sv.days) parts.push(sv.days + '일');
+        period = fmt(s) + ' ~ ' + fmt(e) + ' (' + parts.join(' ') + ')';
+      } else {
+        if (!yearsI.value) return hide('');
+        n = +yearsI.value;
+        if (!(n >= 1 && n <= 70)) return hide('근속연수는 1~70년 사이로 넣어 주세요.', [yearsI]);
+      }
+      if (!payI.value) return hide('');
+      if (!pay) return hide('퇴직금을 1원 이상 넣어 주세요.', [payI]);
+
+      var r = compute(pay, n), p70 = r.irp[0];
+      hide('');
+      $('[data-big]').innerHTML = comma(r.total) + '<small>원</small>';
+      $('[data-sub]').innerHTML = '<span class="krt-nw">실수령액 ' + won(r.net) + '</span> · <span class="krt-nw">실효세율 ' + pct(r.total / pay) + '</span>';
+      $('[data-lump]').textContent = won(r.total);
+      $('[data-irp]').textContent = won(p70.total);
+      $('[data-save]').innerHTML = r.total > 0
+        ? 'IRP로 옮겨 연금으로 받으면 10년 차까지 받는 몫 기준 <b>' + won(r.total - p70.total) + '</b> 덜 내요. 11년 차부터 받는 몫은 더 줄어요.'
+        : '근속연수공제·환산급여공제가 퇴직금보다 커서 낼 세금이 없어요.';
+
+      var set = function (k, v) { root.querySelector('[data-r="' + k + '"]').textContent = v; };
+      set('pay', won(pay));
+      set('period', mode === 'date' ? period : '직접 입력');
+      set('years', n + '년');
+      set('yd', '−' + won(r.yd));
+      set('conv', won(r.conv));
+      set('cd', '−' + won(r.cd));
+      set('base', won(r.base));
+      set('rate', r.base > 0 ? '과세표준 × ' + Math.round(r.rate * 100) + '%' + (r.prog ? ' − ' + comma(r.prog) + '원' : '') : '과세표준이 0원');
+      set('ctax', won(r.ctax));
+      set('tax', won(r.tax));
+      set('local', won(r.local));
+      set('total', won(r.total));
+      set('net', won(r.net));
+      ['p70', 'p60', 'p50'].forEach(function (k, i) {
+        var it = r.irp[i];
+        root.querySelector('[data-r="' + k + '"]').innerHTML = won(it.total) + '<small class="krt-td-s">' + won(r.total - it.total) + ' 절감</small>';
+      });
+      result.classList.add('krt-show');
+
+      lastText = '[퇴직소득세 계산 결과]\n퇴직금: ' + won(pay) + '\n근속연수: ' + n + '년' + (mode === 'date' ? ' (' + period + ')' : '') +
+        '\n근속연수공제: ' + won(r.yd) + '\n환산급여: ' + won(r.conv) + '\n환산급여공제: ' + won(r.cd) + '\n과세표준: ' + won(r.base) +
+        '\n퇴직소득세: ' + won(r.tax) + '\n지방소득세: ' + won(r.local) + '\n세금 합계: ' + won(r.total) +
+        '\n실수령액(일시금): ' + won(r.net) + '\n실효세율: ' + pct(r.total / pay) +
+        '\nIRP 연금 수령 시 세금(10년 차까지 70%): ' + won(p70.total) + ' (' + won(r.total - p70.total) + ' 절감)' +
+        '\n11~20년 차 60%: ' + won(r.irp[1].total) + ' / 21년 차부터 50%: ' + won(r.irp[2].total);
+    }
+
+    payI.addEventListener('input', function () {
+      var v = digits(payI.value).slice(0, 14);
+      payI.value = v ? comma(+v) : '';
+      calc();
+    });
+    yearsI.addEventListener('input', function () {
+      var v = digits(yearsI.value).slice(0, 2);
+      if (v !== yearsI.value) yearsI.value = v;
+      calc();
+    });
+    [startI, endI].forEach(function (i) { i.addEventListener('input', calc); i.addEventListener('change', calc); });
+
+    $$('[data-mode]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        mode = b.dataset.mode;
+        $$('[data-mode]').forEach(function (x) { var on = x === b; x.classList.toggle('krt-on', on); x.setAttribute('aria-pressed', on); });
+        $('[data-box-date]').hidden = mode !== 'date';
+        $('[data-box-year]').hidden = mode !== 'year';
+        calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      payI.value = startI.value = endI.value = yearsI.value = '';
+      hide(''); calc(); payI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 퇴직소득세 계산기 위젯 끝 -->
+<h2>퇴직소득세 계산법</h2>
+<p>퇴직소득세는 오래 일해서 한꺼번에 받는 돈이라는 점을 고려해 세금을 크게 줄여 주는 방식(연분연승법)으로 계산해요. 소득세법 제48조(퇴직소득공제)와 제55조(기본세율)에 따라 아래 순서로 구해요.</p>
+<ol>
+  <li><strong>근속연수 세기:</strong> 입사일부터 퇴사일까지 기간이에요. 1년이 안 되는 끝수는 1년으로 올려요. 9년 1일을 일했어도 10년으로 봐요.</li>
+  <li><strong>근속연수공제 빼기:</strong> 퇴직금에서 근속연수에 따른 공제를 빼요(아래 표).</li>
+  <li><strong>환산급여 구하기:</strong> (퇴직금 − 근속연수공제) × 12 ÷ 근속연수. 1년 치 급여처럼 바꾸는 단계예요.</li>
+  <li><strong>환산급여공제 빼기:</strong> 환산급여에서 환산급여공제를 뺀 금액이 과세표준이에요.</li>
+  <li><strong>환산산출세액:</strong> 과세표준에 종합소득세와 같은 기본세율(6~45%)을 곱해요.</li>
+  <li><strong>퇴직소득세:</strong> 환산산출세액 ÷ 12 × 근속연수. 여기에 지방소득세 10%가 더 붙어요.</li>
+</ol>
+<p>예를 들어 퇴직금 5,000만 원을 받고 근속연수가 10년이면 이렇게 계산해요.</p>
+<ul>
+  <li>근속연수공제: 500만 원 + 200만 원 × (10 − 5) = <strong>1,500만 원</strong></li>
+  <li>환산급여: (5,000만 원 − 1,500만 원) × 12 ÷ 10 = <strong>4,200만 원</strong></li>
+  <li>환산급여공제: 800만 원 + (4,200만 원 − 800만 원) × 60% = <strong>2,840만 원</strong></li>
+  <li>과세표준: 4,200만 원 − 2,840만 원 = <strong>1,360만 원</strong></li>
+  <li>환산산출세액: 1,360만 원 × 6% = <strong>816,000원</strong></li>
+  <li>퇴직소득세: 816,000원 ÷ 12 × 10 = <strong>680,000원</strong>, 지방소득세 <strong>68,000원</strong>, 합계 <strong>748,000원</strong> (실효세율 약 1.5%)</li>
+</ul>
+
+<h2>근속연수공제 표</h2>
+<p>2023년 1월 1일 이후 퇴직하는 사람부터 크게 오른 공제액이에요. 2026년 11월 현재까지 바뀐 내용은 없어서 2026년·2027년 퇴직도 같은 표를 써요.</p>
+<table>
+  <thead><tr><th>근속연수</th><th>근속연수공제</th><th>예시</th></tr></thead>
+  <tbody>
+    <tr><td>5년 이하</td><td>100만 원 × 근속연수</td><td>3년: 300만 원</td></tr>
+    <tr><td>5년 초과 10년 이하</td><td>500만 원 + 200만 원 × (근속연수 − 5)</td><td>10년: 1,500만 원</td></tr>
+    <tr><td>10년 초과 20년 이하</td><td>1,500만 원 + 250만 원 × (근속연수 − 10)</td><td>20년: 4,000만 원</td></tr>
+    <tr><td>20년 초과</td><td>4,000만 원 + 300만 원 × (근속연수 − 20)</td><td>30년: 7,000만 원</td></tr>
+  </tbody>
+</table>
+
+<h2>환산급여공제 표</h2>
+<table>
+  <thead><tr><th>환산급여</th><th>환산급여공제</th></tr></thead>
+  <tbody>
+    <tr><td>800만 원 이하</td><td>환산급여 전액</td></tr>
+    <tr><td>800만 원 초과 7,000만 원 이하</td><td>800만 원 + 800만 원 초과분의 60%</td></tr>
+    <tr><td>7,000만 원 초과 1억 원 이하</td><td>4,520만 원 + 7,000만 원 초과분의 55%</td></tr>
+    <tr><td>1억 원 초과 3억 원 이하</td><td>6,170만 원 + 1억 원 초과분의 45%</td></tr>
+    <tr><td>3억 원 초과</td><td>1억 5,170만 원 + 3억 원 초과분의 35%</td></tr>
+  </tbody>
+</table>
+
+<h2>퇴직금·근속연수별 퇴직소득세 (일시금, 지방소득세 포함)</h2>
+<p>위 계산기와 같은 방식으로 구한 금액이에요. 같은 퇴직금이라도 오래 일할수록 세금이 크게 줄어요.</p>
+<table>
+  <thead><tr><th>퇴직금</th><th>5년</th><th>10년</th><th>20년</th><th>30년</th></tr></thead>
+  <tbody>
+    <tr><td>3,000만 원</td><td>852,500원</td><td>220,000원</td><td>0원</td><td>0원</td></tr>
+    <tr><td>5,000만 원</td><td>2,358,120원</td><td>748,000원</td><td>0원</td><td>0원</td></tr>
+    <tr><td>1억 원</td><td>10,360,620원</td><td>4,262,500원</td><td>1,232,000원</td><td>264,000원</td></tr>
+    <tr><td>2억 원</td><td>35,708,750원</td><td>19,662,500원</td><td>7,727,500원</td><td>3,795,000원</td></tr>
+    <tr><td>3억 원</td><td>63,919,160원</td><td>42,889,000원</td><td>19,844,000원</td><td>10,848,750원</td></tr>
+  </tbody>
+</table>
+
+<h2>IRP로 받으면 세금이 얼마나 줄까</h2>
+<p>퇴직금을 개인형 퇴직연금(IRP) 계좌로 받으면 퇴사할 때 퇴직소득세를 떼지 않고(과세이연), 나중에 만 55세 이후 연금으로 나눠 받을 때 세금을 깎아서 내요. 소득세법 제129조에 따라 연금으로 받는 몫에는 원래 퇴직소득세의 아래 비율만 붙어요.</p>
+<table>
+  <thead><tr><th>연금 수령 연차</th><th>내는 세금</th><th>줄어드는 비율</th></tr></thead>
+  <tbody>
+    <tr><td>1~10년 차</td><td>퇴직소득세의 70%</td><td>30% 감면</td></tr>
+    <tr><td>11~20년 차</td><td>퇴직소득세의 60%</td><td>40% 감면</td></tr>
+    <tr><td>21년 차부터</td><td>퇴직소득세의 50%</td><td>50% 감면 (2026년 1월 1일 이후 수령분부터)</td></tr>
+  </tbody>
+</table>
+<p>퇴직금 5,000만 원·근속 10년이라면 일시금 세금은 748,000원이지만, IRP로 옮겨 10년 차까지 연금으로 나눠 받으면 523,600원으로 224,400원 줄어요. 퇴직금 2억 원·근속 15년이면 일시금 11,616,000원이 8,131,200원으로 약 348만 원 줄어요.</p>
+<ul>
+  <li><strong>연금 수령 한도</strong>가 있어요. 1년에 찾을 수 있는 금액은 계좌 평가액 ÷ (11 − 연금 수령 연차) × 120%이고, 넘겨서 찾은 금액은 연금외수령이라 감면 없이 퇴직소득세 100%를 내요.</li>
+  <li>연금 수령 연차는 연금을 처음 받기 시작한 해부터 세요. 만 55세 전이라 바로 연금을 받을 수 없어도 IRP에 넣어 두면 세금은 계속 미뤄져요.</li>
+  <li>회사가 이미 퇴직소득세를 떼고 줬더라도, 받은 날부터 60일 안에 IRP에 넣으면 떼인 세금을 돌려받을 수 있어요.</li>
+  <li>IRP에서 중도에 일시금으로 빼면 미뤄 둔 퇴직소득세를 그대로 내요.</li>
+</ul>
+
+<h2>자주 묻는 질문</h2>
+<h3>퇴직금 5,000만 원이면 세금은 얼마인가요?</h3>
+<p>근속연수에 따라 크게 달라요. 지방소득세까지 합쳐 근속 5년이면 2,358,120원, 10년이면 748,000원이고, 20년 이상이면 공제가 퇴직금보다 커서 세금이 0원이에요. 정확한 금액은 위 계산기에 퇴직금과 입사일·퇴사일을 넣어 확인해 보세요.</p>
+<h3>근속연수는 어떻게 세나요?</h3>
+<p>입사일부터 퇴사일(마지막 근무일)까지의 기간으로 세고, 1년이 안 되는 끝수는 1년으로 올려요. 2016년 3월 2일에 입사해 2026년 3월 1일까지 일하면 딱 10년이고, 하루만 더 일해도 11년으로 봐요. 회사에서 받은 퇴직소득 원천징수영수증에 적힌 근속연수가 있으면 그 값을 넣는 게 가장 정확해요.</p>
+<h3>IRP로 받으면 세금이 얼마나 줄어요?</h3>
+<p>IRP로 옮겨 연금으로 받으면 연금 수령 10년 차까지 받는 몫은 퇴직소득세의 70%, 11~20년 차는 60%, 21년 차부터는 50%만 내요. 즉 30~50%가 줄어요. 다만 1년에 찾을 수 있는 한도를 넘기거나 중도에 일시금으로 빼면 감면 없이 100%를 내요.</p>
+<h3>퇴직금을 이미 세금 떼고 받았는데 IRP로 옮길 수 있나요?</h3>
+<p>네. 퇴직금을 받은 날부터 60일 안에 IRP 계좌에 넣으면 이미 낸 퇴직소득세를 돌려받고 연금으로 받을 때 다시 감면된 세율로 내요. 금융회사에 퇴직소득 원천징수영수증을 내고 과세이연 신청을 하면 돼요.</p>
+<h3>2027년에 퇴직해도 같은 기준인가요?</h3>
+<p>2026년 11월 현재 근속연수공제·환산급여공제·세율을 바꾸는 개정은 발표되지 않아서 2027년 퇴직도 같은 기준으로 계산돼요. IRP 연금 21년 차 50% 감면은 2026년 1월 1일 이후 연금 수령분부터 적용돼요. 연말 세법 개정으로 바뀌는 내용이 있으면 이 계산기도 고칠 예정이에요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:severance-calculator}}">퇴직금 계산기</a>: 입사일·퇴직일과 월급으로 세전 퇴직금 계산</li>
+  <li><a href="{{LINK:after-resignation-checklist}}">퇴사 후 할 일 타임라인</a>: 실업급여·건강보험·국민연금 신청 기한 정리</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "퇴직금 5,000만 원이면 세금은 얼마인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "근속연수에 따라 크게 달라요. 지방소득세까지 합쳐 근속 5년이면 2,358,120원, 10년이면 748,000원이고, 20년 이상이면 공제가 퇴직금보다 커서 세금이 0원이에요. 정확한 금액은 위 계산기에 퇴직금과 입사일·퇴사일을 넣어 확인해 보세요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "근속연수는 어떻게 세나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "입사일부터 퇴사일(마지막 근무일)까지의 기간으로 세고, 1년이 안 되는 끝수는 1년으로 올려요. 2016년 3월 2일에 입사해 2026년 3월 1일까지 일하면 딱 10년이고, 하루만 더 일해도 11년으로 봐요. 회사에서 받은 퇴직소득 원천징수영수증에 적힌 근속연수가 있으면 그 값을 넣는 게 가장 정확해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "IRP로 받으면 세금이 얼마나 줄어요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "IRP로 옮겨 연금으로 받으면 연금 수령 10년 차까지 받는 몫은 퇴직소득세의 70%, 11~20년 차는 60%, 21년 차부터는 50%만 내요. 즉 30~50%가 줄어요. 다만 1년에 찾을 수 있는 한도를 넘기거나 중도에 일시금으로 빼면 감면 없이 100%를 내요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "퇴직금을 이미 세금 떼고 받았는데 IRP로 옮길 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네. 퇴직금을 받은 날부터 60일 안에 IRP 계좌에 넣으면 이미 낸 퇴직소득세를 돌려받고 연금으로 받을 때 다시 감면된 세율로 내요. 금융회사에 퇴직소득 원천징수영수증을 내고 과세이연 신청을 하면 돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 퇴직해도 같은 기준인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2026년 11월 현재 근속연수공제·환산급여공제·세율을 바꾸는 개정은 발표되지 않아서 2027년 퇴직도 같은 기준으로 계산돼요. IRP 연금 21년 차 50% 감면은 2026년 1월 1일 이후 연금 수령분부터 적용돼요. 연말 세법 개정으로 바뀌는 내용이 있으면 이 계산기도 고칠 예정이에요."
+   }
+  }
+ ]
+}
+</script>
