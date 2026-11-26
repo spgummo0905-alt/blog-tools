@@ -53,6 +53,7 @@ tools/
 | 국민연금 수령 나이 계산기 (출생연도별 시작일·조기/연기 수령 손익분기) | `tools/pension-start-age` | 완성 |
 | 전월세 전환율 계산기 (법정 상한 기준금리+2%, 집주인 제안 검사) | `tools/rent-conversion-rate` | 완성 |
 | 퇴직소득세 계산기 (IRP 연금 수령 시 절세액 비교) | `tools/retirement-income-tax` | 완성 |
+| 청약 1순위 자격·예치금 확인기 (지역·면적별 예치금, 가입기간 D-day) | `tools/subscription-first-rank` | 완성 |
 
 ## 작업 규칙
 
