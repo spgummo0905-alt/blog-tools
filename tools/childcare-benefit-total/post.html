@@ -1,0 +1,502 @@
+<p><strong>2026년에 태어난 첫째 아이를 어린이집에 보내지 않고 집에서 키우면, 첫만남이용권 200만원·부모급여 1,800만원·아동수당 1,560만원·가정양육수당 620만원을 더해 아동수당이 끝나는 만 13세 전까지 정부에서 모두 4,180만원을 받아요(둘째 이상은 4,280만원).</strong> 아래 계산기에 출생일(또는 예정일)과 어린이집 보낼 시기만 넣으면 월별 수령액과 지금까지 받은 금액, 앞으로 받을 금액을 바로 보여 드려요.</p>
+<!-- 육아 지원금 총액 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kcb" data-kcb>
+  <style>
+    .kcb{--kcb-accent:#3b6ef5;--kcb-accent-soft:#eef3ff;--kcb-text:#1d2433;--kcb-sub:#6b7385;--kcb-line:#e3e7ef;--kcb-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kcb-line);border-radius:20px;background:var(--kcb-bg);
+      color:var(--kcb-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06);word-break:keep-all}
+    .kcb [hidden]{display:none!important}
+    .kcb *,.kcb *::before,.kcb *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kcb .kcb-title{font-size:20px;font-weight:700;letter-spacing:-.02em;border:0;background:none}
+    .kcb .kcb-desc{margin-top:4px;font-size:14px;color:var(--kcb-sub)}
+    .kcb .kcb-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kcb-text)}
+    .kcb .kcb-row{display:flex;gap:8px}
+    .kcb .kcb-field{position:relative;flex:1;min-width:0}
+    .kcb .kcb-field.kcb-y{flex:1.4}
+    .kcb .kcb-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--kcb-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kcb-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcb .kcb-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kcb .kcb-in:focus{border-color:var(--kcb-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcb .kcb-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kcb-sub);pointer-events:none}
+    .kcb .kcb-small{font-size:13px;font-weight:500;color:var(--kcb-sub)}
+    .kcb .kcb-link{border:0;background:none;color:var(--kcb-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px}
+    .kcb .kcb-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;padding:4px;border-radius:12px;background:#f1f3f8}
+    .kcb .kcb-seg button{height:40px;border:0;border-radius:9px;background:none;color:var(--kcb-sub);font-size:13.5px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s,box-shadow .2s;line-height:1.2}
+    .kcb .kcb-seg button.kcb-on{background:#fff;color:var(--kcb-accent);box-shadow:0 1px 4px rgba(30,45,90,.1)}
+    .kcb .kcb-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kcb .kcb-chip{height:34px;padding:0 12px;border:1.5px solid var(--kcb-line);border-radius:999px;background:#fff;color:var(--kcb-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kcb .kcb-chip:hover{border-color:#c9d3ea;color:var(--kcb-text)}
+    .kcb .kcb-chip.kcb-on{border-color:var(--kcb-accent);background:var(--kcb-accent-soft);color:var(--kcb-accent)}
+    .kcb .kcb-msg{min-height:20px;margin-top:10px;font-size:13px;color:#e0565b;transition:opacity .2s}
+    .kcb .kcb-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kcb .kcb-result.kcb-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kcb .kcb-result-inner{overflow:hidden}
+    .kcb .kcb-info{margin-top:6px;padding:10px 12px;border-radius:12px;background:#fff4e5;font-size:13px;color:#9a5b00}
+    .kcb .kcb-info+.kcb-info{margin-top:6px}
+    .kcb .kcb-main{margin-top:8px;padding:22px 20px;border-radius:16px;background:var(--kcb-accent-soft);text-align:center}
+    .kcb .kcb-main-label{font-size:14px;color:var(--kcb-sub)}
+    .kcb .kcb-big{margin-top:2px;font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--kcb-accent);line-height:1.25}
+    .kcb .kcb-sum{margin-top:4px;font-size:13.5px;color:var(--kcb-sub)}
+    .kcb .kcb-nb{white-space:nowrap}
+    .kcb .kcb-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kcb .kcb-card{padding:14px;border:1px solid var(--kcb-line);border-radius:14px;background:#fff}
+    .kcb .kcb-card-k{font-size:12px;color:var(--kcb-sub)}
+    .kcb .kcb-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kcb-text)}
+    .kcb .kcb-h{margin:18px 0 6px;font-size:15px;font-weight:700}
+    .kcb .kcb-tbl{width:100%;border-collapse:collapse;font-size:13.5px}
+    .kcb .kcb-tbl th,.kcb .kcb-tbl td{padding:8px 4px;border-bottom:1px solid var(--kcb-line);text-align:left;vertical-align:top;font-weight:500}
+    .kcb .kcb-tbl th{font-weight:600}
+    .kcb .kcb-tbl td.kcb-r{text-align:right;white-space:nowrap;font-weight:700}
+    .kcb .kcb-tbl .kcb-sub2{display:block;font-size:12px;color:var(--kcb-sub);font-weight:500}
+    .kcb .kcb-tbl tr.kcb-tot td{border-bottom:0;font-weight:700;color:var(--kcb-accent)}
+    .kcb .kcb-years{margin-top:4px}
+    .kcb .kcb-year{border:1px solid var(--kcb-line);border-radius:12px;background:#fff;margin-top:6px;overflow:hidden}
+    .kcb .kcb-year summary{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:11px 12px;cursor:pointer;list-style:none;font-size:14px;font-weight:600}
+    .kcb .kcb-year summary::-webkit-details-marker{display:none}
+    .kcb .kcb-year summary::after{content:"";width:8px;height:8px;margin-left:4px;border-right:2px solid var(--kcb-sub);border-bottom:2px solid var(--kcb-sub);transform:rotate(45deg);transition:transform .2s;flex:none}
+    .kcb .kcb-year[open] summary::after{transform:rotate(-135deg)}
+    .kcb .kcb-year summary .kcb-ys{margin-left:auto;font-weight:700;color:var(--kcb-accent);white-space:nowrap}
+    .kcb .kcb-year summary small{font-size:12px;font-weight:500;color:var(--kcb-sub)}
+    .kcb .kcb-year.kcb-past summary{background:#fafbfd}
+    .kcb .kcb-months{list-style:none;padding:0 12px 8px}
+    .kcb .kcb-months li{display:flex;justify-content:space-between;gap:8px;padding:7px 0;border-top:1px solid #f0f2f7;font-size:13px}
+    .kcb .kcb-months li.kcb-done{color:var(--kcb-sub)}
+    .kcb .kcb-months .kcb-mm{flex:none;width:72px;font-weight:600;white-space:nowrap}
+    .kcb .kcb-months .kcb-mm small{display:block;font-size:11.5px;font-weight:500;color:var(--kcb-sub)}
+    .kcb .kcb-months .kcb-what{flex:1;color:var(--kcb-sub);font-size:12.5px}
+    .kcb .kcb-months .kcb-amt{flex:none;font-weight:700;white-space:nowrap}
+    .kcb .kcb-tag{display:inline-block;margin-left:4px;padding:0 6px;border-radius:999px;background:#f1f3f8;font-size:11px;font-weight:700;color:var(--kcb-sub);line-height:17px}
+    .kcb .kcb-note{margin-top:12px;font-size:12.5px;color:var(--kcb-sub)}
+    .kcb .kcb-note p+p{margin-top:4px}
+    .kcb .kcb-actions{display:flex;gap:8px;margin-top:14px}
+    .kcb .kcb-btn{flex:1;height:44px;border:1.5px solid var(--kcb-line);border-radius:12px;background:#fff;color:var(--kcb-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kcb .kcb-btn:hover{background:#f4f6fa}
+    .kcb .kcb-btn:active{transform:scale(.98)}
+    .kcb .kcb-btn.kcb-primary{border-color:var(--kcb-accent);background:var(--kcb-accent);color:#fff}
+    .kcb .kcb-btn.kcb-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kcb{padding:18px;border-radius:16px}.kcb .kcb-in{font-size:17px}.kcb .kcb-big{font-size:30px}.kcb .kcb-months .kcb-mm{width:64px}}
+    @media (prefers-reduced-motion:reduce){.kcb .kcb-result,.kcb .kcb-in,.kcb .kcb-btn,.kcb .kcb-chip,.kcb .kcb-seg button,.kcb .kcb-year summary::after{transition:none}}
+  </style>
+
+  <p class="kcb-title">육아 지원금 총액 계산기</p>
+  <p class="kcb-desc">출생일만 넣으면 첫만남이용권·부모급여·아동수당·양육수당을 아동수당이 끝날 때까지 월별로 더해 드려요.</p>
+
+  <label class="kcb-label" for="kcb-y"><span>출생일 <small class="kcb-small">(예정일도 돼요)</small></span><button type="button" class="kcb-link" data-today>오늘로</button></label>
+  <div class="kcb-row">
+    <div class="kcb-field kcb-y"><input class="kcb-in" id="kcb-y" data-y inputmode="numeric" maxlength="4" placeholder="2026" aria-label="출생 연도"><span class="kcb-unit">년</span></div>
+    <div class="kcb-field"><input class="kcb-in" data-m inputmode="numeric" maxlength="2" placeholder="3" aria-label="출생 월"><span class="kcb-unit">월</span></div>
+    <div class="kcb-field"><input class="kcb-in" data-d inputmode="numeric" maxlength="2" placeholder="15" aria-label="출생 일"><span class="kcb-unit">일</span></div>
+  </div>
+
+  <p class="kcb-label">몇째 아이인가요?</p>
+  <div class="kcb-seg" data-order role="group" aria-label="출생 순위">
+    <button type="button" data-v="1" class="kcb-on" aria-pressed="true">첫째</button>
+    <button type="button" data-v="2" aria-pressed="false">둘째 이상</button>
+  </div>
+
+  <p class="kcb-label">어린이집·유치원은 언제부터 다니나요?</p>
+  <div class="kcb-chips" data-care role="group" aria-label="어린이집 이용 시작">
+    <button type="button" class="kcb-chip kcb-on" data-v="-1" aria-pressed="true">안 다님 (집에서)</button>
+    <button type="button" class="kcb-chip" data-v="6" aria-pressed="false">생후 6개월부터</button>
+    <button type="button" class="kcb-chip" data-v="12" aria-pressed="false">만 1세부터</button>
+    <button type="button" class="kcb-chip" data-v="24" aria-pressed="false">만 2세부터</button>
+    <button type="button" class="kcb-chip" data-v="36" aria-pressed="false">만 3세부터</button>
+  </div>
+
+  <p class="kcb-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kcb-result" data-result aria-live="polite">
+    <div class="kcb-result-inner">
+      <div data-infos></div>
+      <div class="kcb-main">
+        <p class="kcb-main-label" data-main-label>아동수당이 끝날 때까지 받는 돈</p>
+        <p class="kcb-big" data-big></p>
+        <p class="kcb-sum" data-sum></p>
+      </div>
+      <div class="kcb-grid">
+        <div class="kcb-card"><p class="kcb-card-k">오늘까지 받은 금액</p><p class="kcb-card-v" data-got></p></div>
+        <div class="kcb-card"><p class="kcb-card-k">앞으로 받을 금액</p><p class="kcb-card-v" data-left></p></div>
+      </div>
+
+      <p class="kcb-h">제도별 합계</p>
+      <table class="kcb-tbl">
+        <thead><tr><th scope="col">제도</th><th scope="col" style="text-align:right">금액</th></tr></thead>
+        <tbody data-by></tbody>
+      </table>
+
+      <p class="kcb-h">연도별 월 수령액 <small class="kcb-small">(눌러서 펼치기)</small></p>
+      <div class="kcb-years" data-years></div>
+
+      <div class="kcb-note">
+        <p>2026년 11월 기준 보건복지부 안내로 계산했어요. 2027년 이후 금액은 지금 금액이 그대로라고 보고 더했고, 아동수당 나이는 아동수당법에 정해진 대로 2027년 만 10세 미만, 2030년부터 만 13세 미만으로 넓혔어요.</p>
+        <p><b>지자체 출산·양육 지원금은 별도예요.</b> 비수도권·인구감소지역 아동수당 추가분, 농어촌·장애아동 양육수당, 어린이집 보육료(만 2세부터)와 유치원 누리과정 지원도 합계에 넣지 않았어요. 정확한 금액은 복지로(129)나 주민센터에서 확인해 주세요.</p>
+      </div>
+      <div class="kcb-actions">
+        <button type="button" class="kcb-btn" data-reset>다시 입력</button>
+        <button type="button" class="kcb-btn kcb-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kcb]');
+    if (!root || root.__kcb) return;
+    root.__kcb = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), mI = $('[data-m]'), dI = $('[data-d]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var lastText = '';
+
+    // ===== 기준 금액 (2026년 11월 기준, 2027년 이후는 같은 값으로 가정) =====
+    var R = {
+      voucher: { 1: 2000000, 2: 3000000 },      // 첫만남이용권 (2024. 1. 1. 이후 출생, 첫째 200만·둘째 이상 300만)
+      pg0: 1000000, pg1: 500000,                 // 부모급여 0세(0~11개월)·1세(12~23개월)
+      allowance: 100000,                         // 아동수당 월 기본액
+      home: 100000,                              // 가정양육수당 24~85개월(86개월 미만)
+      fullFrom: 20240101,                        // 이 날 이후 출생아만 전체 계산(지금 제도가 처음부터 적용)
+      partialFrom: 20170101,                     // 2017~2023년생은 앞으로 받을 금액만
+      newSystem: 20270701                        // 아이맞이지원금 개편안 적용 예정 출생일(국회 심의 중)
+    };
+    // 0세반 보육료(부모보육료) 지원단가: 어린이집 이용 시 부모급여에서 이 금액을 뺀 차액만 현금
+    function fee0(y, m) {
+      var k = y * 100 + m;
+      if (k < 202507) return 540000;
+      if (k < 202601) return 567000;
+      return 584000;
+    }
+    // 아동수당 대상 나이(개월 미만). 생일이 속한 달의 전달까지 받음
+    function capMonths(y, m, birthY) {
+      if (y < 2026) return 96;                   // ~2025: 만 8세 미만
+      if (birthY === 2017) return 156;            // 2017년생 특례: 만 13세 전까지 끊김 없이
+      if (y === 2026) return 108;                // 2026: 만 9세 미만 (1월분부터 소급)
+      if (y === 2027) return 120;                // 2027: 만 10세 미만
+      if (y === 2028) return 132;
+      if (y === 2029) return 144;
+      return 156;                                // 2030~: 만 13세 미만
+    }
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function ym(y, m) { return y + '. ' + m + '.'; }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) {
+      if (n === 0) return '0원';
+      var man = Math.floor(n / 10000), rest = n % 10000;
+      if (!man) return comma(rest) + '원';
+      return comma(man) + '만' + (rest ? ' ' + comma(rest) + '원' : '원');
+    }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function ageText(i) {
+      if (i < 24) return i + '개월';
+      return '만 ' + Math.floor(i / 12) + '세';
+    }
+
+    var opt = { order: 1, care: -1 };
+
+    function simulate(birth, order, care, now) {
+      var by = birth.getFullYear(), bm = birth.getMonth() + 1;
+      var key = by * 10000 + bm * 100 + birth.getDate();
+      var full = key >= R.fullFrom;
+      var months = [], by_ = { voucher: 0, pgCash: 0, pgCare: 0, allowance: 0, home: 0 };
+      var got = 0, left = 0, cash = 0, card = 0;
+      var nowKey = now.getFullYear() * 10000 + (now.getMonth() + 1) * 100 + now.getDate();
+      for (var i = 0; i < 160; i++) {
+        var y = by + Math.floor((bm - 1 + i) / 12), m = (bm - 1 + i) % 12 + 1;
+        var pay = y * 10000 + m * 100 + 25;                  // 매월 25일 지급 기준
+        if (i === 0 && key > pay) pay = (m === 12 ? (y + 1) * 10000 + 125 : pay + 100); // 25일 뒤 출생은 다음 달 25일에 소급
+        var paid = key <= nowKey && pay <= nowKey;
+        if (!full && paid) continue;                         // 2023년 이전 출생: 앞으로 받을 달만
+        var items = [], sum = 0;
+        var inCare = care >= 0 && i >= care;
+        if (full && i === 0) {
+          var v = R.voucher[order];
+          items.push({ k: 'voucher', t: '첫만남이용권', a: v }); by_.voucher += v; card += v; sum += v;
+        }
+        if (full && i < 24) {
+          var pg = i < 12 ? R.pg0 : R.pg1, c = pg, b = 0;
+          if (inCare) { b = i < 12 ? Math.min(pg, fee0(y, m)) : pg; c = pg - b; }
+          if (c) { items.push({ k: 'pgCash', t: '부모급여' + (b ? '(차액)' : ''), a: c }); by_.pgCash += c; cash += c; }
+          if (b) { items.push({ k: 'pgCare', t: '부모급여→보육료', a: b }); by_.pgCare += b; card += b; }
+          sum += pg;
+        }
+        if (i < capMonths(y, m, by)) {
+          items.push({ k: 'allowance', t: '아동수당', a: R.allowance }); by_.allowance += R.allowance; cash += R.allowance; sum += R.allowance;
+        }
+        if (!inCare && i >= 24 && i < 86) {
+          items.push({ k: 'home', t: '양육수당', a: R.home }); by_.home += R.home; cash += R.home; sum += R.home;
+        }
+        if (!sum) continue;
+        // 첫만남이용권은 출생일에 받는다고 보고, 나머지는 그달 25일
+        if (paid) got += sum;
+        else if (full && i === 0 && key <= nowKey) { got += R.voucher[order]; left += sum - R.voucher[order]; }
+        else left += sum;
+        months.push({ i: i, y: y, m: m, items: items, sum: sum, paid: paid });
+      }
+      return { full: full, key: key, months: months, by: by_, got: got, left: left, total: got + left, cash: cash, card: card };
+    }
+
+    function hide(text) {
+      result.classList.remove('kcb-show');
+      msg.textContent = text || '';
+    }
+
+    function calc() {
+      var y = +yI.value, m = +mI.value, d = +dI.value;
+      if (yI.value.length < 4 || !mI.value || !dI.value) return hide('');
+      var birth = new Date(y, m - 1, d);
+      if (m < 1 || m > 12 || birth.getMonth() !== m - 1 || birth.getDate() !== d || y < 1900) return hide('날짜를 다시 확인해 주세요.');
+      var now = today();
+      if ((birth - now) / 864e5 > 300) return hide('출산 예정일은 오늘부터 300일 안의 날짜로 넣어 주세요.');
+      var key = y * 10000 + m * 100 + d;
+      if (key < R.partialFrom) return hide('2016년 이전에 태어난 아이는 아동수당 대상 나이(2026년 만 9세 미만)를 지나 남은 지원금이 없어요.');
+
+      var r = simulate(birth, opt.order, opt.care, now);
+      if (!r.months.length) return hide('앞으로 받을 아동수당·양육수당이 없어요. 아동수당 대상 나이를 지났어요.');
+      msg.textContent = '';
+
+      var infos = [];
+      if (!r.full) infos.push('2023년 이전에 태어난 아이는 그때 제도(부모급여 금액 등)가 지금과 달라, <b>이번 달부터 앞으로 받을 아동수당·양육수당만</b> 계산했어요.' + (y === 2017 ? ' 2017년생은 특례로 만 13세 전까지 끊김 없이 받아요.' : ''));
+      if (key >= R.newSystem) infos.push('2027. 7. 1. 이후 태어나는 아이는 정부가 추진 중인 <b>아이맞이지원금·아동기본수당</b>(2027년 예산안, 국회 심의 중)으로 바뀔 수 있어요. 아래는 지금 제도로 계산한 금액이에요.');
+      $('[data-infos]').innerHTML = infos.map(function (t) { return '<p class="kcb-info">' + t + '</p>'; }).join('');
+
+      var first = r.months[0], last = r.months[r.months.length - 1];
+      $('[data-main-label]').textContent = r.full ? '아동수당이 끝날 때까지 받는 돈' : '이번 달부터 앞으로 받을 돈';
+      $('[data-big]').textContent = won(r.total);
+      $('[data-sum]').innerHTML = '<span class="kcb-nb">' + ym(first.y, first.m) + '</span> ~ <span class="kcb-nb">' + ym(last.y, last.m) + '</span> · 현금 ' +
+        '<span class="kcb-nb">' + won(r.cash) + '</span>' + (r.card ? ' + 이용권·보육료 <span class="kcb-nb">' + won(r.card) + '</span>' : '');
+      $('[data-got]').textContent = r.full ? won(r.got) : '계산 안 함';
+      $('[data-left]').textContent = won(r.left);
+
+      // 제도별 합계
+      function span(k) {
+        var a = null, b = null;
+        r.months.forEach(function (mo) { mo.items.forEach(function (it) { if (it.k === k) { if (!a) a = mo; b = mo; } }); });
+        if (!a) return '';
+        return a === b ? ym(a.y, a.m) : ym(a.y, a.m) + ' ~ ' + ym(b.y, b.m) + ' (' + r.months.filter(function (mo) { return mo.items.some(function (it) { return it.k === k; }); }).length + '개월)';
+      }
+      var rows = [
+        ['voucher', '첫만남이용권', (opt.order === 1 ? '첫째' : '둘째 이상') + ', 국민행복카드 이용권'],
+        ['pgCash', '부모급여 (현금)', '0세 월 100만원, 1세 월 50만원' + (opt.care >= 0 && opt.care < 24 ? ', 어린이집 다니는 달은 차액만' : '')],
+        ['pgCare', '부모급여 → 보육료', '어린이집 다니는 달은 보육료 바우처로 대신 받아요'],
+        ['allowance', '아동수당', '월 10만원, 생일 달의 전달까지'],
+        ['home', '가정양육수당', '24~85개월, 어린이집·유치원 안 다닐 때 월 10만원']
+      ];
+      var copyRows = [];
+      $('[data-by]').innerHTML = rows.filter(function (x) { return r.by[x[0]] > 0; }).map(function (x) {
+        copyRows.push('- ' + x[1] + ': ' + won(r.by[x[0]]) + ' (' + span(x[0]) + ')');
+        return '<tr><td>' + x[1] + '<span class="kcb-sub2">' + esc(span(x[0])) + '</span><span class="kcb-sub2">' + x[2] + '</span></td><td class="kcb-r">' + won(r.by[x[0]]) + '</td></tr>';
+      }).join('') + '<tr class="kcb-tot"><td>합계</td><td class="kcb-r">' + won(r.total) + '</td></tr>';
+
+      // 연도별 접기
+      var years = {}, order = [];
+      r.months.forEach(function (mo) { if (!years[mo.y]) { years[mo.y] = []; order.push(mo.y); } years[mo.y].push(mo); });
+      var nowY = now.getFullYear(), copyYears = [];
+      $('[data-years]').innerHTML = order.map(function (yy) {
+        var list = years[yy], tot = 0, allPaid = true;
+        list.forEach(function (mo) { tot += mo.sum; if (!mo.paid) allPaid = false; });
+        copyYears.push('- ' + yy + '년: ' + won(tot));
+        var open = yy === Math.max(nowY, order[0]) ? ' open' : '';
+        var a0 = list[0].i, a1 = list[list.length - 1].i;
+        var ageRange = ageText(a0) === ageText(a1) ? ageText(a0) : ageText(a0) + '~' + ageText(a1).replace('만 ', '');
+        return '<details class="kcb-year' + (allPaid ? ' kcb-past' : '') + '"' + open + '><summary><span>' + yy + '년 <small>' + ageRange + '</small></span><span class="kcb-ys">' + won(tot) + '</span></summary><ul class="kcb-months">' +
+          list.map(function (mo) {
+            return '<li' + (mo.paid ? ' class="kcb-done"' : '') + '><span class="kcb-mm">' + mo.m + '월<small>' + ageText(mo.i) + '</small></span><span class="kcb-what">' +
+              mo.items.map(function (it) { return it.t + ' ' + won(it.a); }).join(' · ') + (mo.paid ? '<span class="kcb-tag">받음</span>' : '') +
+              '</span><span class="kcb-amt">' + won(mo.sum) + '</span></li>';
+          }).join('') + '</ul></details>';
+      }).join('');
+
+      result.classList.add('kcb-show');
+      var careTxt = { '-1': '안 다님', '6': '생후 6개월부터', '12': '만 1세부터', '24': '만 2세부터', '36': '만 3세부터' }[String(opt.care)];
+      lastText = '[육아 지원금 총액 계산 결과]\n출생일: ' + fmt(birth) + ' · ' + (opt.order === 1 ? '첫째' : '둘째 이상') + ' · 어린이집 ' + careTxt +
+        '\n' + (r.full ? '총액(아동수당 끝날 때까지): ' : '이번 달부터 앞으로 받을 금액: ') + won(r.total) + ' (' + ym(first.y, first.m) + ' ~ ' + ym(last.y, last.m) + ')' +
+        (r.full ? '\n오늘까지 받은 금액: ' + won(r.got) + '\n앞으로 받을 금액: ' + won(r.left) : '') +
+        '\n\n[제도별]\n' + copyRows.join('\n') + '\n\n[연도별]\n' + copyYears.join('\n') +
+        '\n\n※ ' + fmt(now) + ' 기준, 2027년 이후는 현재 금액 유지 가정. 지자체 지원금·지역 추가분 별도.';
+    }
+
+    function bind(input, next, len) {
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/\D/g, '').slice(0, len);
+        if (v !== input.value) input.value = v;
+        if (next && v.length === len) next.focus();
+        if (next === dI && len === 2 && v.length === 1 && +v > 1) dI.focus();
+        if (input === dI && v.length === 1 && +v > 3) dI.blur();
+        calc();
+      });
+    }
+    bind(yI, mI, 4); bind(mI, dI, 2); bind(dI, null, 2);
+    [mI, dI].forEach(function (inp, i) {
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !inp.value) { e.preventDefault(); (i === 0 ? yI : mI).focus(); }
+      });
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length === 8) { e.preventDefault(); yI.value = t.slice(0, 4); mI.value = String(+t.slice(4, 6)); dI.value = String(+t.slice(6, 8)); calc(); }
+    });
+
+    $('[data-today]').addEventListener('click', function () {
+      var t = today();
+      yI.value = t.getFullYear(); mI.value = t.getMonth() + 1; dI.value = t.getDate();
+      calc();
+    });
+
+    function group(sel, key, cls) {
+      $$(sel + ' button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          $$(sel + ' button').forEach(function (x) { x.classList.remove(cls); x.setAttribute('aria-pressed', 'false'); });
+          b.classList.add(cls); b.setAttribute('aria-pressed', 'true');
+          opt[key] = +b.getAttribute('data-v');
+          calc();
+        });
+      });
+    }
+    group('[data-order]', 'order', 'kcb-on');
+    group('[data-care]', 'care', 'kcb-on');
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = mI.value = dI.value = '';
+      hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (!result.classList.contains('kcb-show')) { msg.textContent = '먼저 출생일을 입력해 주세요.'; return; }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 육아 지원금 총액 계산기 위젯 끝 -->
+<h2>육아 지원금 총액 계산법</h2>
+<p>정부 육아 지원금은 아이가 태어난 달을 <strong>0개월</strong>로 세고, 달마다 나이(개월 수)에 맞는 금액을 더하면 돼요. 부모급여·아동수당·양육수당은 매월 25일에 그달 치가 들어와요.</p>
+<ul>
+  <li><strong>첫만남이용권</strong> = 첫째 200만원, 둘째 이상 300만원 (한 번, 국민행복카드 이용권)</li>
+  <li><strong>부모급여</strong> = 0~11개월 월 100만원 × 12 + 12~23개월 월 50만원 × 12 = 1,800만원</li>
+  <li><strong>아동수당</strong> = 월 10만원 × 받는 개월 수 (2024년 이후 출생아는 만 13세 생일이 있는 달의 전달까지 156개월 = 1,560만원)</li>
+  <li><strong>가정양육수당</strong> = 24~85개월에 어린이집·유치원을 안 다니는 달 × 월 10만원 (최대 62개월 = 620만원)</li>
+</ul>
+<p>예를 들어 <strong>2026년 3월 15일에 태어난 첫째</strong>를 만 1세(2027년 3월)부터 어린이집에 보낸다면 이렇게 계산해요.</p>
+<ul>
+  <li>첫만남이용권 200만원</li>
+  <li>부모급여 0세: 100만원 × 12개월 = 1,200만원 (현금)</li>
+  <li>부모급여 1세: 50만원 × 12개월 = 600만원 → 어린이집 보육료(1세반 51만 5천원)가 더 많아 <strong>현금 대신 보육료 바우처</strong>로 받아요</li>
+  <li>아동수당: 10만원 × 156개월(2026년 3월 ~ 2039년 2월) = 1,560만원</li>
+  <li>가정양육수당: 어린이집을 다니므로 0원</li>
+  <li><strong>합계 3,560만원</strong> (현금 2,760만원 + 이용권·보육료 800만원). 집에서 키울 때(4,180만원)보다 620만원 적게 보이지만, 그만큼 만 2세 이후 어린이집 보육료를 나라가 따로 내 줘요.</li>
+</ul>
+
+<h2>제도별 금액과 받는 기간 (2026년 11월 기준)</h2>
+<table>
+  <thead><tr><th>제도</th><th>금액</th><th>받는 기간</th><th>어린이집 다니면</th></tr></thead>
+  <tbody>
+    <tr><td>첫만남이용권</td><td>첫째 200만원, 둘째 이상 300만원</td><td>출생 시 1번 (출생일부터 2년 안에 사용)</td><td>상관없음</td></tr>
+    <tr><td>부모급여 0세</td><td>월 100만원</td><td>0~11개월</td><td>0세반 보육료(58만 4천원)를 뺀 41만 6천원만 현금</td></tr>
+    <tr><td>부모급여 1세</td><td>월 50만원</td><td>12~23개월</td><td>보육료 바우처로 대신 받음(현금 없음)</td></tr>
+    <tr><td>아동수당</td><td>월 10만원 (비수도권·인구감소지역 추가)</td><td>2026년 만 9세 미만 → 2027년 10세 → 2030년부터 13세 미만</td><td>상관없음</td></tr>
+    <tr><td>가정양육수당</td><td>월 10만원</td><td>24~85개월 (86개월 미만, 취학 전)</td><td>받지 않음 (보육료·누리과정 지원으로 바뀜)</td></tr>
+  </tbody>
+</table>
+<p>아동수당은 2026년 3월 아동수당법 개정으로 지급 나이가 해마다 1세씩 늘어나요. 그래서 <strong>2024년 이후 태어난 아이는 모두 만 13세 전까지 156개월</strong>을 받아요. 2018~2023년생도 해마다 대상 나이가 올라가 끊기지 않고 만 13세 전까지 받고, 2017년생은 중간에 끊기지 않도록 특례로 만 13세 전까지 받아요.</p>
+
+<h2>아동수당 대상 나이가 해마다 바뀌는 방식</h2>
+<table>
+  <thead><tr><th>연도</th><th>대상 나이</th><th>예: 2018년 6월생</th></tr></thead>
+  <tbody>
+    <tr><td>2025년</td><td>만 8세 미만</td><td>받음 (만 7세)</td></tr>
+    <tr><td>2026년</td><td>만 9세 미만 (1월분부터 소급)</td><td>받음 (만 8세)</td></tr>
+    <tr><td>2027년</td><td>만 10세 미만</td><td>받음 (만 8~9세)</td></tr>
+    <tr><td>2028년</td><td>만 11세 미만</td><td>받음</td></tr>
+    <tr><td>2029년</td><td>만 12세 미만</td><td>받음</td></tr>
+    <tr><td>2030년 이후</td><td>만 13세 미만</td><td>2031년 5월분까지 (6월에 만 13세)</td></tr>
+  </tbody>
+</table>
+<p>계산기는 달마다 그해 기준 나이를 적용해 아동수당을 셌어요. 만 나이는 생일이 있는 달부터 바뀐 것으로 보고, <strong>생일이 있는 달의 전달까지</strong> 받는다고 계산했어요.</p>
+
+<h2>2027년 7월 이후 출생아는 바뀔 수 있어요</h2>
+<p>정부는 첫만남이용권·부모급여·아동수당을 <strong>아이맞이지원금</strong>(출생 후 1년 동안 첫째 1,000만원·둘째 1,200만원·셋째 이상 1,500만원)과 <strong>아동기본수당</strong>으로 바꾸는 안을 2027년 예산안에 담았어요. 2027년 7월 1일 이후 출생아부터 적용하겠다는 계획이지만, 2026년 11월 현재 국회 심의 중이고 법 개정도 필요해 금액·시기가 확정되지 않았어요. 그래서 계산기는 모든 출생일을 지금 제도로 계산하고, 2027년 7월 1일 이후 출생일을 넣으면 안내 문구를 함께 보여 줘요.</p>
+<p>또 2027년 1월 21일부터는 아동수당·부모급여·첫만남이용권을 따로 신청하지 않아도 정부가 가진 정보로 지급하는 제도가 시행돼요. 그 전에 태어난 아이는 출생일 포함 60일 안에 신청해야 출생한 달부터 받을 수 있어요.</p>
+
+<h2>지자체 지원금은 따로 더하세요</h2>
+<p>이 계산기는 <strong>전국 공통으로 나라에서 주는 돈</strong>만 더했어요. 시·도와 시·군·구의 출산축하금·양육지원금, 비수도권·인구감소지역 아동수당 추가분(월 최대 2만원 범위), 농어촌·장애아동 양육수당 차등액, 만 2세 이후 어린이집 보육료와 유치원 누리과정 지원은 합계에 넣지 않았어요. 사는 곳의 지원금은 주민센터나 복지로(129)에서 확인해 주세요. 2027년 이후 금액은 지금 금액이 그대로 유지된다고 가정했으니, 매년 발표되는 금액을 다시 확인해 주세요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>아이 한 명당 육아 지원금은 모두 얼마인가요?</h3>
+<p>2024년 이후 태어나 어린이집에 다니지 않는 첫째라면 첫만남이용권 200만원, 부모급여 1,800만원, 아동수당 1,560만원, 가정양육수당 620만원으로 모두 4,180만원이에요. 둘째 이상은 첫만남이용권이 300만원이라 4,280만원이에요. 어린이집을 다니면 양육수당 대신 보육료 지원을 받아 현금으로 받는 금액이 줄어요. 지자체 지원금은 지역마다 달라 따로 더해야 해요.</p>
+<h3>어린이집에 보내면 부모급여는 어떻게 되나요?</h3>
+<p>만 0세가 어린이집을 다니면 부모급여 100만원 중 0세반 보육료 58만 4천원은 보육료 바우처로 어린이집에 가고, 차액 41만 6천원만 현금으로 받아요. 만 1세는 보육료(51만 5천원)가 부모급여 50만원보다 많아서 현금 없이 보육료 바우처로 받아요. 아동수당은 어린이집을 다녀도 그대로 받아요.</p>
+<h3>아동수당은 몇 살까지 받나요?</h3>
+<p>2026년에는 만 9세 미만이 대상이고, 아동수당법에 따라 2027년 만 10세 미만, 2028년 11세, 2029년 12세, 2030년부터 만 13세 미만으로 해마다 1세씩 늘어나요. 2024년 이후 태어난 아이는 만 13세 생일이 있는 달의 전달까지 모두 156개월, 1,560만원을 받아요.</p>
+<h3>가정양육수당은 누가 받나요?</h3>
+<p>생후 24개월부터 86개월 미만(취학 전)까지 어린이집·유치원 등을 이용하지 않고 집에서 키우는 아이가 받아요. 일반 아동은 월 10만원이고, 농어촌·장애아동은 금액이 달라요. 0~23개월은 부모급여를 받으므로 양육수당이 없고, 24개월이 되면 따로 신청해야 해요.</p>
+<h3>2027년에 태어나면 지원금이 달라지나요?</h3>
+<p>2027년 6월 30일까지 태어난 아이는 지금 제도(첫만남이용권·부모급여·아동수당)가 그대로 적용될 예정이에요. 정부는 2027년 7월 1일 이후 출생아부터 아이맞이지원금과 아동기본수당으로 바꾸는 안을 추진하고 있지만, 2026년 11월 현재 국회 심의 중이라 확정되지 않았어요. 확정되면 계산기와 이 글을 고칠게요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:after-birth-checklist}}">출산 후 신청할 것 타임라인</a>: 출생신고·부모급여·첫만남이용권 기한 한눈에</li>
+  <li><a href="{{LINK:parental-leave-pay}}">육아휴직 급여 계산기</a>: 월별 지급액과 6+6 부모육아휴직제 한 번에</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "아이 한 명당 육아 지원금은 모두 얼마인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2024년 이후 태어나 어린이집에 다니지 않는 첫째라면 첫만남이용권 200만원, 부모급여 1,800만원, 아동수당 1,560만원, 가정양육수당 620만원으로 모두 4,180만원이에요. 둘째 이상은 첫만남이용권이 300만원이라 4,280만원이에요. 어린이집을 다니면 양육수당 대신 보육료 지원을 받아 현금으로 받는 금액이 줄어요. 지자체 지원금은 지역마다 달라 따로 더해야 해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "어린이집에 보내면 부모급여는 어떻게 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "만 0세가 어린이집을 다니면 부모급여 100만원 중 0세반 보육료 58만 4천원은 보육료 바우처로 어린이집에 가고, 차액 41만 6천원만 현금으로 받아요. 만 1세는 보육료(51만 5천원)가 부모급여 50만원보다 많아서 현금 없이 보육료 바우처로 받아요. 아동수당은 어린이집을 다녀도 그대로 받아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "아동수당은 몇 살까지 받나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2026년에는 만 9세 미만이 대상이고, 아동수당법에 따라 2027년 만 10세 미만, 2028년 11세, 2029년 12세, 2030년부터 만 13세 미만으로 해마다 1세씩 늘어나요. 2024년 이후 태어난 아이는 만 13세 생일이 있는 달의 전달까지 모두 156개월, 1,560만원을 받아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "가정양육수당은 누가 받나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "생후 24개월부터 86개월 미만(취학 전)까지 어린이집·유치원 등을 이용하지 않고 집에서 키우는 아이가 받아요. 일반 아동은 월 10만원이고, 농어촌·장애아동은 금액이 달라요. 0~23개월은 부모급여를 받으므로 양육수당이 없고, 24개월이 되면 따로 신청해야 해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "2027년에 태어나면 지원금이 달라지나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년 6월 30일까지 태어난 아이는 지금 제도(첫만남이용권·부모급여·아동수당)가 그대로 적용될 예정이에요. 정부는 2027년 7월 1일 이후 출생아부터 아이맞이지원금과 아동기본수당으로 바꾸는 안을 추진하고 있지만, 2026년 11월 현재 국회 심의 중이라 확정되지 않았어요. 확정되면 계산기와 이 글을 고칠게요."
+   }
+  }
+ ]
+}
+</script>

@@ -65,6 +65,7 @@ tools/
 | 전세 vs 월세 비교 계산기 (대출이자·기회비용·월세 세액공제·손익분기 전환율) | `tools/jeonse-vs-wolse` | 완성 |
 | 국민연금 추납 보험료 계산기 (2026 9.5% vs 2027 10%, 최대 119개월·60회 분할) | `tools/pension-catchup-payment` | 완성 |
 | 신용카드 소득공제 계산기 (2026년 사용분, 25% 문턱·자녀 한도·다음 1만 원 어디에) | `tools/card-deduction-calculator` | 완성 |
+| 육아 지원금 총액 계산기 (첫만남이용권·부모급여·아동수당·양육수당, 0세~아동수당 종료 월별) | `tools/childcare-benefit-total` | 완성 |
 
 ## 작업 규칙
 
