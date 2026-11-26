@@ -1,0 +1,418 @@
+<!-- 전월세 전환율 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kcv" data-kcv>
+  <style>
+    .kcv{--kcv-accent:#3b6ef5;--kcv-accent-soft:#eef3ff;--kcv-text:#1d2433;--kcv-sub:#6b7385;--kcv-line:#e3e7ef;--kcv-bg:#fff;--kcv-bad:#e0565b;--kcv-bad-soft:#fdeeee;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kcv-line);border-radius:20px;background:var(--kcv-bg);
+      color:var(--kcv-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kcv [hidden]{display:none!important}
+    .kcv *,.kcv *::before,.kcv *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kcv .kcv-title{font-size:20px;font-weight:700;letter-spacing:-.02em;word-break:keep-all}
+    .kcv .kcv-desc{margin-top:4px;font-size:14px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:16px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kcv .kcv-tab{min-height:44px;padding:4px 2px;border:0;border-radius:10px;background:none;color:var(--kcv-sub);font-size:14px;font-weight:600;line-height:1.25;cursor:pointer;
+      word-break:keep-all;transition:background .2s,color .2s,box-shadow .2s}
+    .kcv .kcv-tab:hover{color:var(--kcv-text)}
+    .kcv .kcv-tab.kcv-on{background:#fff;color:var(--kcv-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kcv .kcv-rate{margin-top:16px;padding:12px 14px;border-radius:14px;background:var(--kcv-accent-soft)}
+    .kcv .kcv-rate-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .kcv .kcv-rate-row label{font-size:14px;font-weight:600;word-break:keep-all}
+    .kcv .kcv-rate .kcv-field{width:120px;flex:none}
+    .kcv .kcv-rate .kcv-in{height:44px;font-size:17px;padding-right:34px;background:#fff;text-align:right}
+    .kcv .kcv-rate-cap{margin-top:6px;font-size:13.5px;font-weight:600;color:var(--kcv-accent);word-break:keep-all}
+    .kcv .kcv-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kcv-text);word-break:keep-all}
+    .kcv .kcv-label small{font-weight:500;color:var(--kcv-sub)}
+    .kcv .kcv-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .kcv .kcv-pair .kcv-label{margin-top:14px}
+    .kcv .kcv-group{margin-top:20px;font-size:13px;font-weight:700;color:var(--kcv-accent);word-break:keep-all}
+    .kcv .kcv-group + .kcv-pair .kcv-label{margin-top:6px}
+    .kcv .kcv-field{position:relative}
+    .kcv .kcv-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kcv-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kcv-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kcv .kcv-pair .kcv-in{padding-right:44px;font-size:17px}
+    .kcv .kcv-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kcv .kcv-in:focus{border-color:var(--kcv-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kcv .kcv-in.kcv-bad{border-color:var(--kcv-bad)}
+    .kcv .kcv-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kcv-sub);pointer-events:none}
+    .kcv .kcv-pair .kcv-unit{right:10px;font-size:13px}
+    .kcv .kcv-hint{margin-top:6px;font-size:12.5px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-hint b{color:var(--kcv-accent);font-weight:700}
+    .kcv .kcv-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kcv-bad);word-break:keep-all}
+    .kcv .kcv-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kcv .kcv-result.kcv-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kcv .kcv-result-inner{overflow:hidden}
+    .kcv .kcv-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kcv-accent-soft);text-align:center}
+    .kcv .kcv-main.kcv-no{background:var(--kcv-bad-soft)}
+    .kcv .kcv-main.kcv-na{background:#f4f6fa}
+    .kcv .kcv-main-label{font-size:14px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--kcv-accent);line-height:1.25;word-break:keep-all}
+    .kcv .kcv-main.kcv-no .kcv-big{color:var(--kcv-bad)}
+    .kcv .kcv-main.kcv-na .kcv-big{font-size:24px;color:var(--kcv-text)}
+    .kcv .kcv-sub{margin-top:6px;font-size:14px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kcv .kcv-card{padding:14px;border:1px solid var(--kcv-line);border-radius:14px;background:#fff}
+    .kcv .kcv-card-k{font-size:12px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kcv-text);word-break:keep-all}
+    .kcv .kcv-card-v.kcv-red{color:var(--kcv-bad)}
+    .kcv .kcv-card-s{margin-top:2px;font-size:12px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kcv-text);word-break:keep-all}
+    .kcv .kcv-formula p+p{margin-top:2px}
+    .kcv .kcv-note{margin-top:12px;font-size:12.5px;color:var(--kcv-sub);word-break:keep-all}
+    .kcv .kcv-note li{margin-left:16px}
+    .kcv .kcv-note li+li{margin-top:2px}
+    .kcv .kcv-nowrap{white-space:nowrap}
+    .kcv .kcv-actions{display:flex;gap:8px;margin-top:14px}
+    .kcv .kcv-btn{flex:1;height:44px;border:1.5px solid var(--kcv-line);border-radius:12px;background:#fff;color:var(--kcv-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kcv .kcv-btn:hover{background:#f4f6fa}
+    .kcv .kcv-btn:active{transform:scale(.98)}
+    .kcv .kcv-btn.kcv-primary{border-color:var(--kcv-accent);background:var(--kcv-accent);color:#fff}
+    .kcv .kcv-btn.kcv-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kcv{padding:18px;border-radius:16px}.kcv .kcv-big{font-size:30px}.kcv .kcv-in{font-size:17px}
+      .kcv .kcv-tab{font-size:13px}.kcv .kcv-pair .kcv-in{font-size:16px;padding-left:12px}}
+    @media (prefers-reduced-motion:reduce){.kcv .kcv-result,.kcv .kcv-in,.kcv .kcv-btn,.kcv .kcv-tab{transition:none}}
+  </style>
+
+  <p class="kcv-title">전월세 전환율 계산기</p>
+  <p class="kcv-desc">주택임대차보호법의 법정 상한 전환율(기준금리 + 연 2%)로 전세와 월세를 바로 환산해요.</p>
+
+  <div class="kcv-tabs" role="tablist" aria-label="계산 방식">
+    <button type="button" class="kcv-tab kcv-on" role="tab" aria-selected="true" data-mode="j2w">전세 → 월세</button>
+    <button type="button" class="kcv-tab" role="tab" aria-selected="false" data-mode="w2j">월세 → 전세</button>
+    <button type="button" class="kcv-tab" role="tab" aria-selected="false" data-mode="chk">집주인 제안<br>검사</button>
+  </div>
+
+  <div class="kcv-rate">
+    <div class="kcv-rate-row">
+      <label for="kcv-base">한국은행 기준금리</label>
+      <div class="kcv-field"><input class="kcv-in" id="kcv-base" data-base inputmode="decimal" autocomplete="off"><span class="kcv-unit">%</span></div>
+    </div>
+    <p class="kcv-rate-cap" data-cap-line></p>
+    <p class="kcv-hint" data-base-hint></p>
+  </div>
+
+  <div data-panel="j2w">
+    <label class="kcv-label" for="kcv-a-old">지금 보증금 <small>(전세금)</small></label>
+    <div class="kcv-field"><input class="kcv-in" id="kcv-a-old" data-in="aOld" inputmode="numeric" placeholder="40,000" autocomplete="off"><span class="kcv-unit">만원</span></div>
+    <p class="kcv-hint" data-read="aOld"></p>
+    <label class="kcv-label" for="kcv-a-new">바꿀 보증금 <small>(월세로 돌린 뒤)</small></label>
+    <div class="kcv-field"><input class="kcv-in" id="kcv-a-new" data-in="aNew" inputmode="numeric" placeholder="20,000" autocomplete="off"><span class="kcv-unit">만원</span></div>
+    <p class="kcv-hint" data-read="aNew"></p>
+  </div>
+
+  <div data-panel="w2j" hidden>
+    <label class="kcv-label" for="kcv-b-dep">보증금</label>
+    <div class="kcv-field"><input class="kcv-in" id="kcv-b-dep" data-in="bDep" inputmode="numeric" placeholder="10,000" autocomplete="off"><span class="kcv-unit">만원</span></div>
+    <p class="kcv-hint" data-read="bDep"></p>
+    <label class="kcv-label" for="kcv-b-rent">월세</label>
+    <div class="kcv-field"><input class="kcv-in" id="kcv-b-rent" data-in="bRent" inputmode="numeric" placeholder="100" autocomplete="off"><span class="kcv-unit">만원</span></div>
+    <p class="kcv-hint" data-read="bRent"></p>
+    <label class="kcv-label" for="kcv-b-rate"><span>적용 전환율 <small>(비우면 법정 상한)</small></span></label>
+    <div class="kcv-field"><input class="kcv-in" id="kcv-b-rate" data-b-rate inputmode="decimal" autocomplete="off"><span class="kcv-unit">%</span></div>
+    <p class="kcv-hint">월세를 보증금으로 바꾸는 쪽은 법정 상한이 없어 서로 정한 비율을 써요. 동네 시세 전환율을 알면 넣어 보세요.</p>
+  </div>
+
+  <div data-panel="chk" hidden>
+    <p class="kcv-group">지금 조건</p>
+    <div class="kcv-pair">
+      <div>
+        <label class="kcv-label" for="kcv-c-dep0">보증금</label>
+        <div class="kcv-field"><input class="kcv-in" id="kcv-c-dep0" data-in="cDep0" inputmode="numeric" placeholder="40,000" autocomplete="off"><span class="kcv-unit">만원</span></div>
+      </div>
+      <div>
+        <label class="kcv-label" for="kcv-c-rent0">월세</label>
+        <div class="kcv-field"><input class="kcv-in" id="kcv-c-rent0" data-in="cRent0" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kcv-unit">만원</span></div>
+      </div>
+    </div>
+    <p class="kcv-hint" data-read="c0"></p>
+    <p class="kcv-group">집주인이 제안한 조건</p>
+    <div class="kcv-pair">
+      <div>
+        <label class="kcv-label" for="kcv-c-dep1">보증금</label>
+        <div class="kcv-field"><input class="kcv-in" id="kcv-c-dep1" data-in="cDep1" inputmode="numeric" placeholder="20,000" autocomplete="off"><span class="kcv-unit">만원</span></div>
+      </div>
+      <div>
+        <label class="kcv-label" for="kcv-c-rent1">월세</label>
+        <div class="kcv-field"><input class="kcv-in" id="kcv-c-rent1" data-in="cRent1" inputmode="numeric" placeholder="100" autocomplete="off"><span class="kcv-unit">만원</span></div>
+      </div>
+    </div>
+    <p class="kcv-hint" data-read="c1"></p>
+  </div>
+
+  <p class="kcv-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kcv-result" data-result aria-live="polite">
+    <div class="kcv-result-inner">
+      <div class="kcv-main" data-main>
+        <p class="kcv-main-label" data-big-label></p>
+        <p class="kcv-big" data-big></p>
+        <p class="kcv-sub" data-sub></p>
+      </div>
+      <div class="kcv-grid" data-grid>
+        <div class="kcv-card"><p class="kcv-card-k" data-k1></p><p class="kcv-card-v" data-v1></p><p class="kcv-card-s" data-s1></p></div>
+        <div class="kcv-card"><p class="kcv-card-k" data-k2></p><p class="kcv-card-v" data-v2></p><p class="kcv-card-s" data-s2></p></div>
+        <div class="kcv-card"><p class="kcv-card-k" data-k3></p><p class="kcv-card-v" data-v3></p><p class="kcv-card-s" data-s3></p></div>
+        <div class="kcv-card"><p class="kcv-card-k" data-k4></p><p class="kcv-card-v" data-v4></p><p class="kcv-card-s" data-s4></p></div>
+      </div>
+      <div class="kcv-formula" data-formula></div>
+      <ul class="kcv-note">
+        <li>법정 상한은 <strong>계약 기간 중이나 갱신할 때</strong> 보증금을 월세로 돌리는 경우에 적용돼요. 새로 맺는 신규 계약은 양쪽이 자유롭게 정해요.</li>
+        <li>한국부동산원이 매달 발표하는 지역별 전월세전환율은 실제 거래로 계산한 <strong>시장 통계</strong>라 법정 상한과 달라요.</li>
+        <li>갱신요구권으로 갱신할 때는 이와 별도로 임대료 증액이 5% 이내여야 해요.</li>
+      </ul>
+      <div class="kcv-actions">
+        <button type="button" class="kcv-btn" data-reset>다시 입력</button>
+        <button type="button" class="kcv-btn kcv-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kcv]');
+    if (!root || root.__kcv) return;
+    root.__kcv = true;
+
+    // 주택임대차보호법 제7조의2, 시행령 제9조 (2020. 9. 29. 시행): 상한 = min(연 10%, 기준금리 + 연 2%)
+    var BASE = { rate: '3.25', decided: '2026. 11. 26.', next: '2027. 1. 14.' }; // 한국은행 기준금리(%), 결정일, 다음 금통위 결정일
+    var CAP_BP = 1000;   // 시행령 제9조 제1항: 연 1할 (bp = 0.01%p)
+    var ADD_BP = 200;    // 시행령 제9조 제2항: 연 2퍼센트
+    var MAX = 9999999;   // 만원
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var inp = {}; $$('[data-in]').forEach(function (i) { inp[i.getAttribute('data-in')] = i; });
+    var baseI = $('[data-base]'), bRateI = $('[data-b-rate]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var mode = 'j2w', lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function num(s) { return s === '' ? NaN : +String(s).replace(/,/g, ''); }
+    // 만원 정수 → "3억 5,000만원"
+    function man(m) {
+      if (m <= 0) return '0원';
+      var eok = Math.floor(m / 10000), rest = m % 10000;
+      if (!eok) return comma(rest) + '만원';
+      return comma(eok) + '억' + (rest ? ' ' + comma(rest) + '만원' : '원');
+    }
+    function josa(w, a, b) { var c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c < 11172 && c % 28 ? a : b; }
+    function won(w) { return comma(w) + '원'; }
+    // 원 → "43만 7,500원"
+    function wonK(w) {
+      if (w < 10000) return comma(w) + '원';
+      var m = Math.floor(w / 10000), r = w % 10000;
+      return man(m).replace(/원$/, '') + (r ? ' ' + comma(r) + '원' : '원');
+    }
+    function bpTxt(bp) { return (bp / 100).toFixed(2).replace(/\.?0+$/, '') + '%'; }
+    // "3.25" → 325 (bp). 소수 둘째 자리까지
+    function toBp(s) {
+      if (!/^\d{1,2}(\.\d{0,2})?$/.test(s)) return NaN;
+      var p = s.split('.'); return +p[0] * 100 + +((p[1] || '') + '00').slice(0, 2);
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('kcv-show');
+      msg.textContent = text || '';
+      $$('.kcv-in').forEach(function (i) { i.classList.toggle('kcv-bad', !!bad && i === bad); });
+    }
+
+    function capInfo() {
+      var b = toBp(baseI.value);
+      if (!(b >= 0) || b > 2000) return null;
+      var cap = Math.min(CAP_BP, b + ADD_BP);
+      return { base: b, cap: cap, by10: b + ADD_BP > CAP_BP };
+    }
+    function capFormula(c) { return 'min(연 10%, ' + bpTxt(c.base) + ' + 2%) = ' + bpTxt(c.cap); }
+
+    function readOne(el, v, empty) {
+      if (v > 0) el.innerHTML = '= <b>' + man(v) + '</b>';
+      else el.textContent = empty;
+    }
+    function readAll() {
+      readOne($('[data-read="aOld"]'), num(inp.aOld.value), '만원 단위로 입력하세요. 4억원이면 40,000');
+      readOne($('[data-read="aNew"]'), num(inp.aNew.value), '전부 월세로 바꾸면 0을 넣으세요.');
+      readOne($('[data-read="bDep"]'), num(inp.bDep.value), '만원 단위로 입력하세요. 1억원이면 10,000');
+      var r = num(inp.bRent.value);
+      $('[data-read="bRent"]').textContent = r > 0 ? '= 월 ' + man(r) : '만원 단위로 입력하세요. 월 100만원이면 100';
+      var d0 = num(inp.cDep0.value), r0 = num(inp.cRent0.value) || 0, d1 = num(inp.cDep1.value), r1 = num(inp.cRent1.value) || 0;
+      $('[data-read="c0"]').textContent = d0 > 0 ? '= 보증금 ' + man(d0) + ' / 월세 ' + (r0 ? man(r0) : '없음') : '전세라면 월세는 비워 두세요. 금액은 모두 만원 단위예요.';
+      $('[data-read="c1"]').textContent = d1 >= 0 && inp.cDep1.value !== '' ? '= 보증금 ' + man(d1) + ' / 월세 ' + (r1 ? man(r1) : '없음') : '집주인이 말한 새 보증금과 월세를 넣으세요.';
+      var c = capInfo();
+      $('[data-cap-line]').textContent = c ? '법정 상한 전환율 = ' + capFormula(c) : '기준금리를 0~20% 사이로 입력해 주세요';
+      bRateI.placeholder = c ? bpTxt(c.cap).replace('%', '') : '';
+    }
+
+    function setCards(list) {
+      list.forEach(function (c, i) {
+        $('[data-k' + (i + 1) + ']').textContent = c[0];
+        var v = $('[data-v' + (i + 1) + ']'); v.textContent = c[1]; v.classList.toggle('kcv-red', !!c[3]);
+        $('[data-s' + (i + 1) + ']').textContent = c[2] || '';
+      });
+    }
+    function setFormula(lines) {
+      var f = $('[data-formula]'); f.innerHTML = '';
+      lines.forEach(function (s) { var el = document.createElement('p'); el.textContent = s; f.appendChild(el); });
+    }
+    function show(state, label, big, sub) {
+      var main = $('[data-main]');
+      main.classList.toggle('kcv-no', state === 'no');
+      main.classList.toggle('kcv-na', state === 'na');
+      $('[data-grid]').hidden = state === 'na';
+      $('[data-big-label]').textContent = label;
+      $('[data-big]').textContent = big;
+      $('[data-sub]').textContent = sub;
+      result.classList.add('kcv-show');
+    }
+    function money(i, name, allowZero, empty0) {
+      if (i.value === '') return empty0 ? 0 : null;
+      var v = num(i.value);
+      if (!(allowZero ? v >= 0 : v > 0)) return { err: name + josa(name, '을', '를') + (allowZero ? ' 0 이상으로' : ' 1만원 이상으로') + ' 입력해 주세요.', el: i };
+      if (v > MAX) return { err: name + josa(name, '이', '가') + ' 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', el: i };
+      return v;
+    }
+
+    function calc() {
+      readAll();
+      var c = capInfo();
+      if (baseI.value === '') return hide('기준금리를 입력해 주세요.', baseI);
+      if (!c) return hide('기준금리를 0~20% 사이, 소수 둘째 자리까지 입력해 주세요.', baseI);
+      var head = '기준금리 ' + bpTxt(c.base) + ' (' + (baseI.value === BASE.rate ? BASE.decided + ' 결정' : '직접 입력') + ')';
+      var capLine = '법정 상한 전환율: ' + capFormula(c);
+      var vals = [], k, v;
+
+      if (mode === 'j2w') {
+        if (inp.aOld.value === '' || inp.aNew.value === '') return hide('');
+        var a0 = money(inp.aOld, '지금 보증금'), a1 = money(inp.aNew, '바꿀 보증금', true);
+        for (k = 0, vals = [a0, a1]; k < 2; k++) if (vals[k] && vals[k].err) return hide(vals[k].err, vals[k].el);
+        if (a1 >= a0) return hide('바꿀 보증금은 지금 보증금보다 적어야 해요. 보증금을 줄인 만큼 월세로 바뀌어요.', inp.aNew);
+        hide('');
+        var d = a0 - a1, rentW = Math.floor(d * c.cap / 12); // 만원 × bp ÷ 12 = 원
+        show('ok', '법정 상한 월세', '월 ' + wonK(rentW), '보증금 ' + man(d) + '을 월세로 바꾸면 이 금액까지만 받을 수 있어요');
+        setCards([
+          ['월세로 바꾸는 보증금', man(d), man(a0) + ' → ' + man(a1)],
+          ['법정 상한 전환율', bpTxt(c.cap), c.by10 ? '연 10% 상한 적용' : '기준금리 ' + bpTxt(c.base) + ' + 2%'],
+          ['적용 전환율', bpTxt(c.cap), '법정 상한으로 계산'],
+          ['1년 월세 합계', wonK(rentW * 12), '월 ' + won(rentW) + ' × 12']
+        ]);
+        setFormula([capLine, '월세 = ' + man(d) + ' × ' + bpTxt(c.cap) + ' ÷ 12 = ' + won(rentW) + ' (원 미만 버림)', '바뀐 조건: 보증금 ' + man(a1) + ' / 월세 ' + wonK(rentW) + ' 이하']);
+        lastText = '[전월세 전환율 계산: 전세 → 월세]\n' + head + '\n' + capLine + '\n' +
+          '보증금 ' + man(a0) + ' → ' + man(a1) + ' (전환 금액 ' + man(d) + ')\n' +
+          '법정 상한 월세: 월 ' + won(rentW) + '\n' + '※ 계약 기간 중·갱신 시 적용, 신규 계약은 자율';
+        return;
+      }
+
+      if (mode === 'w2j') {
+        if (inp.bDep.value === '' && inp.bRent.value === '') return hide('');
+        var dep = money(inp.bDep, '보증금', true, true), rent = money(inp.bRent, '월세');
+        if (rent === null) return hide('');
+        for (k = 0, vals = [dep, rent]; k < 2; k++) if (vals[k] && vals[k].err) return hide(vals[k].err, vals[k].el);
+        var rb = c.cap, own = bRateI.value !== '';
+        if (own) {
+          rb = toBp(bRateI.value);
+          if (!(rb > 0) || rb > 3000) return hide('적용 전환율을 0.01~30% 사이로 입력해 주세요.', bRateI);
+        }
+        hide('');
+        var addW = Math.floor(rent * 12e8 / rb); // 월세(만원)×10,000×12 ÷ (bp/10,000)
+        var totalW = dep * 10000 + addW, totalMan = Math.floor(totalW / 10000);
+        show('ok', '전세로 환산한 보증금', man(totalMan), '보증금 ' + man(dep) + ' + 월세 ' + man(rent) + josa(man(rent), '을', '를') + ' 전환율 ' + bpTxt(rb) + '로 환산했어요');
+        setCards([
+          ['월세를 보증금으로 바꾼 금액', man(Math.floor(addW / 10000)), '월 ' + man(rent) + ' × 12 ÷ ' + bpTxt(rb)],
+          ['법정 상한 전환율', bpTxt(c.cap), c.by10 ? '연 10% 상한 적용' : '기준금리 ' + bpTxt(c.base) + ' + 2%'],
+          ['적용 전환율', bpTxt(rb), own ? '직접 입력한 비율' : '법정 상한으로 계산'],
+          ['1년 월세 합계', man(rent * 12), '월 ' + man(rent) + ' × 12']
+        ]);
+        setFormula([capLine, '환산 보증금 = ' + man(dep) + ' + (' + man(rent) + ' × 12 ÷ ' + bpTxt(rb) + ') = ' + man(totalMan) + ' (만원 미만 버림)',
+          '전환율이 낮을수록 환산 보증금이 커져요. 이 방향(월세 → 보증금)은 법정 상한이 없어요.']);
+        lastText = '[전월세 전환율 계산: 월세 → 전세]\n' + head + '\n' + capLine + '\n' +
+          '보증금 ' + man(dep) + ' / 월세 ' + man(rent) + '\n' + '적용 전환율 ' + bpTxt(rb) + (own ? ' (직접 입력)' : ' (법정 상한)') + '\n' +
+          '전세 환산 보증금: ' + man(totalMan);
+        return;
+      }
+
+      // 집주인 제안 검사
+      if (inp.cDep0.value === '' || inp.cDep1.value === '' || inp.cRent1.value === '') return hide('');
+      var p0 = money(inp.cDep0, '지금 보증금'), m0 = money(inp.cRent0, '지금 월세', true, true),
+          p1 = money(inp.cDep1, '제안 보증금', true), m1 = money(inp.cRent1, '제안 월세', true);
+      for (k = 0, vals = [p0, m0, p1, m1]; k < 4; k++) if (vals[k] && vals[k].err) return hide(vals[k].err, vals[k].el);
+      hide('');
+      var cond = '지금 보증금 ' + man(p0) + ' / 월세 ' + (m0 ? man(m0) : '없음') + ' → 제안 보증금 ' + man(p1) + ' / 월세 ' + (m1 ? man(m1) : '없음');
+      if (p1 >= p0) {
+        var why = p1 === p0
+          ? (m1 > m0 ? '보증금은 그대로 두고 월세만 ' + man(m1 - m0) + ' 올린 제안이에요. 전환이 아니라 임대료 증액이라, 갱신이라면 5% 이내인지 따져 봐야 해요.' : '보증금과 월세가 늘지 않았어요. 세입자에게 불리한 전환이 아니에요.')
+          : (m1 < m0 ? '월세를 줄이고 보증금을 늘리는 제안이에요. 이 방향(월세 → 보증금)은 법정 상한이 없어 서로 합의해 정해요.' : '보증금이 늘어난 제안이라 보증금을 월세로 바꾸는 경우가 아니에요. 갱신이라면 증액 5% 상한을 확인하세요.');
+        show('na', '전환율 상한 검사', '전환율 상한 대상이 아니에요', why);
+        setFormula([cond, capLine]);
+        lastText = '[전월세 전환율 검사: 집주인 제안]\n' + head + '\n' + cond + '\n' + '결과: 전환율 상한 대상 아님. ' + why;
+        return;
+      }
+      var dA = p0 - p1, dM = m1 - m0;
+      var capRentW = m0 * 10000 + Math.floor(dA * c.cap / 12);
+      var over = dM * 120000 > dA * c.cap;          // 적용 전환율(bp) = dM×12×10,000 ÷ dA
+      var rate = dM * 1200 / dA, rateTxt = dM <= 0 ? '0%' : (Math.round(rate * 100) / 100) + '%';
+      if (over && Math.round(rate * 100) <= c.cap) rateTxt = (Math.floor(rate * 1000) / 1000) + '%';
+      var offerW = m1 * 10000, exW = offerW - capRentW;
+      if (over) show('no', '집주인 제안 전환율', rateTxt + ' · 상한 초과', '법정 상한 ' + bpTxt(c.cap) + '를 넘어요. 월세는 ' + wonK(capRentW) + '까지만 받을 수 있어요');
+      else show('ok', '집주인 제안 전환율', rateTxt + ' · 상한 이내', '법정 상한 ' + bpTxt(c.cap) + ' 안이에요' + (dM > 0 ? '. 상한까지 받으면 월 ' + wonK(capRentW) : ''));
+      setCards([
+        ['적용 전환율 (제안)', rateTxt, '늘어난 월세 × 12 ÷ 줄어든 보증금', over],
+        ['법정 상한 전환율', bpTxt(c.cap), c.by10 ? '연 10% 상한 적용' : '기준금리 ' + bpTxt(c.base) + ' + 2%'],
+        ['상한 기준 월세', '월 ' + wonK(capRentW), (m0 ? '지금 월세 ' + man(m0) + ' + ' : '') + '전환분 ' + won(capRentW - m0 * 10000)],
+        [over ? '월 초과액' : '상한까지 여유', over ? '월 ' + wonK(exW) : '월 ' + wonK(Math.max(0, -exW)), over ? '1년 ' + wonK(exW * 12) + ' 더 내는 셈' : '제안 월세 ' + man(m1), over]
+      ]);
+      setFormula([cond, capLine,
+        '제안 전환율 = ' + man(Math.max(dM, 0)) + ' × 12 ÷ ' + man(dA) + ' = ' + rateTxt,
+        '상한 월세 = ' + (m0 ? man(m0) + ' + ' : '') + man(dA) + ' × ' + bpTxt(c.cap) + ' ÷ 12 = ' + won(capRentW)]);
+      lastText = '[전월세 전환율 검사: 집주인 제안]\n' + head + '\n' + cond + '\n' + capLine + '\n' +
+        '제안 전환율: ' + rateTxt + (over ? ' (법정 상한 초과)' : ' (법정 상한 이내)') + '\n' +
+        '법정 상한 월세: 월 ' + won(capRentW) + (over ? '\n초과액: 월 ' + won(exW) : '') + '\n' + '※ 계약 기간 중·갱신 시 적용, 신규 계약은 자율';
+    }
+
+    function setMode(m) {
+      mode = m;
+      $$('[data-mode]').forEach(function (b) { var on = b.getAttribute('data-mode') === m; b.classList.toggle('kcv-on', on); b.setAttribute('aria-selected', on); });
+      $$('[data-panel]').forEach(function (p) { p.hidden = p.getAttribute('data-panel') !== m; });
+      calc();
+    }
+    $$('[data-mode]').forEach(function (b) { b.addEventListener('click', function () { setMode(b.getAttribute('data-mode')); }); });
+
+    Object.keys(inp).forEach(function (key) {
+      var i = inp[key];
+      i.addEventListener('input', function () {
+        var v = i.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 7);
+        i.value = v === '' ? '' : comma(v);
+        calc();
+      });
+    });
+    [baseI, bRateI].forEach(function (i) {
+      i.addEventListener('input', function () {
+        var v = i.value.replace(/[^\d.]/g, ''), p = v.split('.');
+        if (p.length > 1) v = p[0].slice(0, 2) + '.' + p.slice(1).join('').slice(0, 2); else v = v.slice(0, 2);
+        i.value = v;
+        calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      Object.keys(inp).forEach(function (key) { inp[key].value = ''; });
+      bRateI.value = ''; baseI.value = BASE.rate;
+      calc();
+      var first = root.querySelector('[data-panel="' + mode + '"] .kcv-in'); if (first) first.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    baseI.value = BASE.rate;
+    $('[data-base-hint]').innerHTML = '<span class="kcv-nowrap">' + BASE.decided + '</span> 금융통화위원회 결정값이에요. 다음 결정일은 <span class="kcv-nowrap">' + BASE.next + '</span>이에요. 금리가 바뀌면 직접 고쳐 넣으세요.';
+    calc();
+  })();
+  </script>
+</div>
+<!-- 전월세 전환율 계산기 위젯 끝 -->
