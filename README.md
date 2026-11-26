@@ -58,6 +58,7 @@ tools/
 | 계약갱신청구권 기간·5% 인상 상한 계산기 (갱신 요구 D-day·전월세 상한) | `tools/lease-renewal-calculator` | 완성 |
 | 법정상속분 계산기 (배우자·자녀 비율, 대습상속, 유류분) | `tools/inheritance-share-calculator` | 완성 |
 | 기준중위소득 % 계산기 (2026·2027 가구원수별 기준표·급여별 선정기준) | `tools/median-income-percent` | 완성 |
+| 양육비 계산기 (2021 양육비 산정기준표·자녀 나이·부모 소득별 분담액) | `tools/child-support-calculator` | 완성 |
 
 ## 작업 규칙
 
