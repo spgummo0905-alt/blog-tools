@@ -56,6 +56,7 @@ tools/
 | 퇴직소득세 계산기 (IRP 연금 수령 시 절세액 비교) | `tools/retirement-income-tax` | 완성 |
 | 청약 1순위 자격·예치금 확인기 (지역·면적별 예치금, 가입기간 D-day) | `tools/subscription-first-rank` | 완성 |
 | 계약갱신청구권 기간·5% 인상 상한 계산기 (갱신 요구 D-day·전월세 상한) | `tools/lease-renewal-calculator` | 완성 |
+| 증여세 계산기 (자녀·배우자 공제, 10년 합산, 혼인·출산 1억, 세대생략 할증, 신고 기한) | `tools/gift-tax-calculator` | 완성 |
 
 ## 작업 규칙
 

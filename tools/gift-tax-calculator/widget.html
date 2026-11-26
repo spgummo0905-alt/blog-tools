@@ -1,0 +1,473 @@
+<!-- 증여세 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kgt" data-kgt>
+  <style>
+    .kgt{--kgt-accent:#3b6ef5;--kgt-accent-soft:#eef3ff;--kgt-text:#1d2433;--kgt-sub:#6b7385;--kgt-line:#e3e7ef;--kgt-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kgt-line);border-radius:20px;background:var(--kgt-bg);
+      color:var(--kgt-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kgt [hidden]{display:none!important}
+    .kgt *,.kgt *::before,.kgt *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kgt .kgt-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kgt .kgt-desc{margin-top:4px;font-size:14px;color:var(--kgt-sub)}
+    .kgt .kgt-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kgt-text)}
+    .kgt .kgt-label small{font-weight:500;color:var(--kgt-sub)}
+    .kgt .kgt-field{position:relative}
+    .kgt .kgt-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--kgt-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kgt-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kgt .kgt-in[type=date]{padding:0 14px;font-size:17px;min-width:0;display:block}
+    .kgt .kgt-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kgt .kgt-in:focus{border-color:var(--kgt-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kgt .kgt-in.kgt-bad{border-color:#e0565b}
+    .kgt .kgt-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kgt-sub);pointer-events:none}
+    .kgt .kgt-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kgt .kgt-chip{height:32px;padding:0 12px;border:1.5px solid var(--kgt-line);border-radius:999px;background:#fff;color:var(--kgt-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kgt .kgt-chip:hover{border-color:#c9d3ea;color:var(--kgt-text)}
+    .kgt .kgt-chip.kgt-on{border-color:var(--kgt-accent);background:var(--kgt-accent-soft);color:var(--kgt-accent)}
+    .kgt .kgt-hint{margin-top:6px;font-size:12.5px;color:var(--kgt-sub)}
+    .kgt .kgt-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kgt .kgt-seg.kgt-seg3{grid-template-columns:1fr 1fr 1fr}
+    .kgt .kgt-seg-btn{min-height:44px;padding:4px 6px;border:1.5px solid var(--kgt-line);border-radius:12px;background:#f8f9fc;color:var(--kgt-text);
+      font-size:14px;font-weight:600;line-height:1.3;cursor:pointer;transition:all .2s;word-break:keep-all}
+    .kgt .kgt-seg-btn small{display:block;font-size:11.5px;font-weight:500;opacity:.8}
+    .kgt .kgt-seg-btn:hover{border-color:#c9d3ea}
+    .kgt .kgt-seg-btn.kgt-on{border-color:var(--kgt-accent);background:var(--kgt-accent);color:#fff}
+    .kgt .kgt-box{margin-top:12px;padding:2px 14px 14px;border:1px solid var(--kgt-line);border-radius:16px;background:#fbfcfe}
+    .kgt .kgt-box .kgt-label{margin-top:14px}
+    .kgt .kgt-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kgt .kgt-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kgt .kgt-result.kgt-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kgt .kgt-result-inner{overflow:hidden}
+    .kgt .kgt-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kgt-accent-soft);text-align:center}
+    .kgt .kgt-main-label{font-size:14px;color:var(--kgt-sub)}
+    .kgt .kgt-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kgt-accent);line-height:1.2;word-break:keep-all}
+    .kgt .kgt-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kgt .kgt-sub{margin-top:6px;font-size:14px;color:var(--kgt-sub)}
+    .kgt .kgt-main-label,.kgt .kgt-sub,.kgt .kgt-note,.kgt .kgt-desc,.kgt .kgt-hint,.kgt .kgt-msg,.kgt .kgt-info,.kgt .kgt-formula,.kgt .kgt-table th{word-break:keep-all}
+    .kgt .kgt-nw{white-space:nowrap}
+    .kgt .kgt-info{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13.5px;color:var(--kgt-text)}
+    .kgt .kgt-info b{color:var(--kgt-accent)}
+    .kgt .kgt-info.kgt-warn b{color:#e0565b}
+    .kgt .kgt-h{margin:18px 0 0;font-size:14px;font-weight:700}
+    .kgt .kgt-table{width:100%;margin-top:8px;border:1px solid var(--kgt-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .kgt .kgt-table th,.kgt .kgt-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--kgt-line);background:#fff;text-align:left;font-weight:500;color:var(--kgt-text);vertical-align:middle}
+    .kgt .kgt-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .kgt .kgt-table th small{display:block;font-size:11.5px;color:var(--kgt-sub);font-weight:400}
+    .kgt .kgt-table tr:last-child th,.kgt .kgt-table tr:last-child td{border-bottom:0}
+    .kgt .kgt-table .kgt-strong th,.kgt .kgt-table .kgt-strong td{background:#f8f9fc;font-weight:700}
+    .kgt .kgt-table .kgt-net th,.kgt .kgt-table .kgt-net td{background:var(--kgt-accent-soft);font-weight:700}
+    .kgt .kgt-table .kgt-net td{color:var(--kgt-accent)}
+    .kgt .kgt-formula{margin-top:8px;padding:12px 14px;border:1px dashed var(--kgt-line);border-radius:12px;font-size:13px;color:var(--kgt-text)}
+    .kgt .kgt-formula p+p{margin-top:4px}
+    .kgt .kgt-note{margin-top:12px;font-size:12.5px;color:var(--kgt-sub)}
+    .kgt .kgt-note li{margin-left:16px}
+    .kgt .kgt-note li+li{margin-top:2px}
+    .kgt .kgt-actions{display:flex;gap:8px;margin-top:14px}
+    .kgt .kgt-btn{flex:1;height:44px;border:1.5px solid var(--kgt-line);border-radius:12px;background:#fff;color:var(--kgt-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kgt .kgt-btn:hover{background:#f4f6fa}
+    .kgt .kgt-btn:active{transform:scale(.98)}
+    .kgt .kgt-btn.kgt-primary{border-color:var(--kgt-accent);background:var(--kgt-accent);color:#fff}
+    .kgt .kgt-btn.kgt-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kgt{padding:18px;border-radius:16px}.kgt .kgt-big{font-size:34px}.kgt .kgt-in{font-size:17px}.kgt .kgt-in[type=date]{font-size:15px;padding:0 10px}
+      .kgt .kgt-table th,.kgt .kgt-table td{padding:9px 10px}.kgt .kgt-seg-btn{font-size:13.5px}.kgt .kgt-box{padding:2px 12px 12px}}
+    @media (prefers-reduced-motion:reduce){.kgt .kgt-result,.kgt .kgt-in,.kgt .kgt-btn,.kgt .kgt-chip,.kgt .kgt-seg-btn{transition:none}}
+  </style>
+
+  <p class="kgt-title">증여세 계산기 (2026)</p>
+  <p class="kgt-desc">가족에게 현금을 받을 때 낼 증여세를 10년 합산·혼인·출산 공제까지 넣어 바로 계산해요.</p>
+
+  <p class="kgt-label">누구에게 받나요? <small>받는 사람 기준</small></p>
+  <div class="kgt-seg kgt-seg3" role="group" aria-label="증여자와의 관계">
+    <button type="button" class="kgt-seg-btn kgt-on" data-rel="asc" aria-pressed="true">부모·조부모<small>직계존속</small></button>
+    <button type="button" class="kgt-seg-btn" data-rel="spouse" aria-pressed="false">배우자<small>법률혼</small></button>
+    <button type="button" class="kgt-seg-btn" data-rel="desc" aria-pressed="false">자녀·손주<small>직계비속</small></button>
+    <button type="button" class="kgt-seg-btn" data-rel="kin" aria-pressed="false">기타 친족<small>형제·삼촌 등</small></button>
+    <button type="button" class="kgt-seg-btn" data-rel="none" aria-pressed="false">친족 아님<small>지인 등</small></button>
+  </div>
+  <p class="kgt-hint" data-rel-hint></p>
+
+  <div data-asc-box>
+    <p class="kgt-label">받는 사람 나이 <small>증여일 기준 만 19세</small></p>
+    <div class="kgt-seg" role="group" aria-label="수증자 성년 여부">
+      <button type="button" class="kgt-seg-btn kgt-on" data-adult="1" aria-pressed="true">성년 (만 19세 이상)</button>
+      <button type="button" class="kgt-seg-btn" data-adult="0" aria-pressed="false">미성년</button>
+    </div>
+    <p class="kgt-label">주는 사람 <small>세대생략 할증</small></p>
+    <div class="kgt-seg" role="group" aria-label="세대생략 여부">
+      <button type="button" class="kgt-seg-btn kgt-on" data-skip="0" aria-pressed="true">부모</button>
+      <button type="button" class="kgt-seg-btn" data-skip="1" aria-pressed="false">조부모 (손주가 받음)</button>
+    </div>
+    <p class="kgt-hint">조부모가 손주에게 바로 주면 세금이 30% 더 붙어요. 부모가 먼저 돌아가셨다면 할증이 없으니 ‘부모’를 고르세요.</p>
+  </div>
+
+  <label class="kgt-label" for="kgt-amt"><span>이번에 받는 돈</span></label>
+  <div class="kgt-field"><input class="kgt-in" id="kgt-amt" data-amt inputmode="numeric" placeholder="100,000,000" autocomplete="off"><span class="kgt-unit">원</span></div>
+  <div class="kgt-chips" data-chips></div>
+  <p class="kgt-hint" data-amt-read>원 단위로 넣어요. 위 버튼을 누르면 금액이 바로 들어가요.</p>
+
+  <label class="kgt-label" for="kgt-date"><span>증여일 <small>돈을 받은 날</small></span></label>
+  <input class="kgt-in" id="kgt-date" type="date" data-date min="2000-01-01" max="2100-12-31">
+
+  <div data-mar-box>
+    <p class="kgt-label">혼인·출산 증여재산공제 <small>평생 1억 원 추가</small></p>
+    <div class="kgt-seg kgt-seg3" role="group" aria-label="혼인·출산 공제">
+      <button type="button" class="kgt-seg-btn kgt-on" data-mar="none" aria-pressed="true">해당 없음</button>
+      <button type="button" class="kgt-seg-btn" data-mar="wed" aria-pressed="false">혼인<small>신고 전후 2년</small></button>
+      <button type="button" class="kgt-seg-btn" data-mar="birth" aria-pressed="false">출산<small>출생 후 2년</small></button>
+    </div>
+    <div data-mar-used-box hidden>
+      <label class="kgt-label" for="kgt-mused"><span>이미 받은 혼인·출산 공제 <small>없으면 0</small></span></label>
+      <div class="kgt-field"><input class="kgt-in" id="kgt-mused" data-mused inputmode="numeric" placeholder="0" autocomplete="off"><span class="kgt-unit">원</span></div>
+      <p class="kgt-hint">혼인·출산 공제는 둘을 합쳐 평생 1억 원까지예요. 양가 부모에게 따로 받아도 받는 사람 한 명당 1억 원이에요.</p>
+    </div>
+  </div>
+
+  <p class="kgt-label">10년 안에 같은 사람에게 받은 적이 있나요?</p>
+  <div class="kgt-seg" role="group" aria-label="10년 합산 증여 여부">
+    <button type="button" class="kgt-seg-btn kgt-on" data-prev="0" aria-pressed="true">없어요</button>
+    <button type="button" class="kgt-seg-btn" data-prev="1" aria-pressed="false">있어요</button>
+  </div>
+  <div class="kgt-box" data-prev-box hidden>
+    <label class="kgt-label" for="kgt-pamt"><span>그때 받은 돈 <small>10년 안 합계</small></span></label>
+    <div class="kgt-field"><input class="kgt-in" id="kgt-pamt" data-pamt inputmode="numeric" placeholder="30,000,000" autocomplete="off"><span class="kgt-unit">원</span></div>
+    <p class="kgt-hint" data-same-hint></p>
+    <label class="kgt-label" for="kgt-pded"><span>그때 쓴 증여재산공제</span></label>
+    <div class="kgt-field"><input class="kgt-in" id="kgt-pded" data-pded inputmode="numeric" placeholder="30,000,000" autocomplete="off"><span class="kgt-unit">원</span></div>
+    <p class="kgt-hint" data-pded-hint>신고했다면 신고서의 증여재산공제 금액이에요. 혼인·출산 공제는 빼고 넣어요.</p>
+    <label class="kgt-label" for="kgt-ptax"><span>그때 낸 증여세 <small>산출세액, 모르면 비워 두기</small></span></label>
+    <div class="kgt-field"><input class="kgt-in" id="kgt-ptax" data-ptax inputmode="numeric" placeholder="자동 계산" autocomplete="off"><span class="kgt-unit">원</span></div>
+    <p class="kgt-hint">비워 두면 같은 세율로 계산한 값을 써요. 신고세액공제를 빼기 전 금액이에요.</p>
+  </div>
+
+  <p class="kgt-label">신고 기한 안에 신고하나요?</p>
+  <div class="kgt-seg" role="group" aria-label="기한 내 신고 여부">
+    <button type="button" class="kgt-seg-btn kgt-on" data-ontime="1" aria-pressed="true">기한 안에 신고</button>
+    <button type="button" class="kgt-seg-btn" data-ontime="0" aria-pressed="false">기한 넘김</button>
+  </div>
+
+  <p class="kgt-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kgt-result" data-result aria-live="polite">
+    <div class="kgt-result-inner">
+      <div class="kgt-main">
+        <p class="kgt-main-label" data-big-label>내야 할 증여세</p>
+        <p class="kgt-big" data-big></p>
+        <p class="kgt-sub" data-sub></p>
+      </div>
+      <p class="kgt-info" data-free></p>
+      <p class="kgt-info" data-due></p>
+
+      <p class="kgt-h">계산 과정</p>
+      <table class="kgt-table">
+        <tbody>
+          <tr><th>이번 증여재산</th><td data-r="amt"></td></tr>
+          <tr data-row="prev"><th>10년 안 합산 증여재산<small>같은 사람(부모는 배우자 포함)</small></th><td data-r="pamt"></td></tr>
+          <tr><th>증여세 과세가액</th><td data-r="total"></td></tr>
+          <tr><th>증여재산공제<small data-r="dedlab"></small></th><td data-r="ded"></td></tr>
+          <tr data-row="mar"><th>혼인·출산 증여재산공제</th><td data-r="mar"></td></tr>
+          <tr class="kgt-strong"><th>과세표준</th><td data-r="base"></td></tr>
+          <tr><th>산출세액<small data-r="rate"></small></th><td data-r="tax"></td></tr>
+          <tr data-row="skip"><th>세대생략 할증<small data-r="skiplab"></small></th><td data-r="skip"></td></tr>
+          <tr data-row="paid"><th>기납부세액공제<small data-r="paidlab"></small></th><td data-r="paid"></td></tr>
+          <tr><th>신고세액공제<small data-r="credlab"></small></th><td data-r="cred"></td></tr>
+          <tr class="kgt-net"><th>납부할 증여세</th><td data-r="pay"></td></tr>
+        </tbody>
+      </table>
+      <div class="kgt-formula" data-formula></div>
+
+      <ul class="kgt-note">
+        <li>상속세 및 증여세법 2026년 현행 기준이에요. 2026년 11월 현재 국회에 낸 정부 개정안에 증여세 세율·증여재산공제 변경은 없어 2027년 증여도 같은 값으로 계산해요(국회 처리 전).</li>
+        <li>현금 증여를 기준으로 했어요. 부동산·주식 평가, 부담부증여, 창업자금·가업승계 특례, 다른 사람에게 받은 증여의 공제 배분은 반영하지 않았어요.</li>
+        <li>이 결과는 참고용 계산이며 법률·세무 자문이 아니에요. 개별 사정에 따라 세금이 달라질 수 있으니 신고 전에 국세청 상담센터(126), 세무사, 대한법률구조공단(132)과 상담해 주세요.</li>
+      </ul>
+      <div class="kgt-actions">
+        <button type="button" class="kgt-btn" data-reset>다시 입력</button>
+        <button type="button" class="kgt-btn kgt-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kgt]');
+    if (!root || root.__kgt) return;
+    root.__kgt = true;
+
+    // ===== 법령 기준값 (README.md "매년 할 일" 참고) =====
+    // 증여세 세율(상속세 및 증여세법 제56조 → 제26조): [과세표준 상한, 세율, 누진공제]
+    var RATES = [[1e8, .1, 0], [5e8, .2, 1e7], [1e9, .3, 6e7], [3e9, .4, 1.6e8], [Infinity, .5, 4.6e8]];
+    // 증여재산공제(제53조, 10년 합산 한도): 배우자 6억, 직계존속→성년 5천만(미성년 2천만), 직계비속→부모 5천만, 기타 친족 1천만
+    var CAP = { spouse: 6e8, asc: 5e7, ascMinor: 2e7, desc: 5e7, kin: 1e7, none: 0 };
+    var MARRIAGE_CAP = 1e8;    // 혼인·출산 증여재산공제(제53조의2), 둘 합쳐 평생 1억
+    var SKIP = .3, SKIP_MINOR = .4, SKIP_MINOR_OVER = 2e9; // 세대생략 할증(제57조): 30%, 미성년자·증여재산 20억 초과 40%
+    var REPORT_CREDIT = .03;  // 신고세액공제(제69조 제2항)
+    var MIN_BASE = 5e5;       // 과세최저한(제55조 제2항): 과세표준 50만 원 미만이면 부과하지 않음
+    // 기한 계산용 공휴일(국세기본법 제5조: 기한이 토·일·공휴일이면 다음 날). 2026~2028년 반영
+    var FIXED = ['1-1', '3-1', '5-1', '5-5', '6-6', '7-17', '8-15', '10-3', '10-9', '12-25'];
+    var EXTRA = {
+      2026: ['2-16', '2-17', '2-18', '3-2', '5-25', '6-3', '8-17', '9-24', '9-25', '9-26', '10-5'],
+      2027: ['2-6', '2-7', '2-8', '2-9', '5-3', '5-13', '7-19', '8-16', '9-14', '9-15', '9-16', '10-4', '10-11', '12-27']
+    };
+    // ===== 기준값 끝 =====
+
+    // ENGINE START
+    function band(x) { for (var i = 0; i < RATES.length; i++) if (x <= RATES[i][0]) return RATES[i]; }
+    function taxOf(base) { if (base < MIN_BASE) return 0; var b = band(base); return Math.floor(base * b[1] - b[2]); }
+    function skipRate(adult, value) { return !adult && value > SKIP_MINOR_OVER ? SKIP_MINOR : SKIP; }
+    // o: { rel, adult, skip, amt, mar(none|wed|birth), mused, prev(bool), pamt, pded, ptax(null=자동), ontime }
+    function compute(o) {
+      var cap = o.rel === 'asc' ? (o.adult ? CAP.asc : CAP.ascMinor) : CAP[o.rel];
+      var pamt = o.prev ? o.pamt : 0, pded = o.prev ? o.pded : 0;
+      var total = o.amt + pamt;
+      var dPrev = Math.min(pded, pamt);                  // 합산하는 이전 증여에서 쓴 공제
+      var dNew = Math.min(Math.max(cap - pded, 0), o.amt); // 남은 한도 안에서 이번 증여에 쓰는 공제
+      var ded = dPrev + dNew;
+      var marOk = o.rel === 'asc' && o.mar !== 'none';
+      var mar = marOk ? Math.min(Math.max(MARRIAGE_CAP - o.mused, 0), o.amt - dNew) : 0;
+      var base = Math.max(total - ded - mar, 0);
+      var tax = taxOf(base), r = band(base);
+      var skipOn = o.rel === 'asc' && o.skip;
+      var sr = skipOn ? skipRate(o.adult, total) : 0;
+      var skip = Math.floor(tax * sr);
+      var paid = 0, paidAuto = false, pBase = 0, paidRaw = 0;
+      if (o.prev && pamt > 0) {
+        pBase = Math.max(pamt - dPrev, 0);
+        if (o.ptax == null) { var pt = taxOf(pBase); paidRaw = pt + (skipOn ? Math.floor(pt * skipRate(o.adult, pamt)) : 0); paidAuto = true; }
+        else paidRaw = o.ptax;
+        // 기납부세액공제 한도(시행령 제47조 제2항): 산출세액 × 이전 증여 과세표준 ÷ 합계 과세표준
+        var lim = base > 0 ? Math.floor((tax + skip) * Math.min(pBase / base, 1)) : 0;
+        paid = Math.min(paidRaw, lim, tax + skip);
+      }
+      var after = tax + skip - paid;
+      var cred = o.ontime ? Math.floor(after * REPORT_CREDIT) : 0;
+      var pay = after - cred;
+      // 이번에 세금 없이 받을 수 있었던 금액(남은 공제 + 과세최저한 직전)
+      var freeLeft = Math.max(cap - pded, 0) + (marOk ? Math.max(MARRIAGE_CAP - o.mused, 0) : 0);
+      return { cap: cap, total: total, pamt: pamt, dPrev: dPrev, dNew: dNew, ded: ded, mar: mar, marOk: marOk, base: base,
+        rate: base >= MIN_BASE ? r[1] : 0, prog: base >= MIN_BASE ? r[2] : 0, tax: tax, sr: sr, skip: skip,
+        paid: paid, paidRaw: paidRaw, paidAuto: paidAuto, pBase: pBase, after: after, cred: cred, pay: pay, freeLeft: freeLeft };
+    }
+    // 신고 기한(제68조): 증여받은 날이 속하는 달의 말일부터 3개월 → 3개월 뒤 달의 말일, 휴일이면 다음 날
+    function isHoliday(d) {
+      var y = d.getFullYear(), k = (d.getMonth() + 1) + '-' + d.getDate();
+      if (d.getDay() === 0 || d.getDay() === 6) return true;
+      if (FIXED.indexOf(k) >= 0 && (y >= 2026 || (k !== '5-1' && k !== '7-17'))) return true;
+      return !!(EXTRA[y] && EXTRA[y].indexOf(k) >= 0);
+    }
+    function deadline(d) {
+      var raw = new Date(d.getFullYear(), d.getMonth() + 4, 0), r = new Date(raw);
+      while (isHoliday(r)) r.setDate(r.getDate() + 1);
+      return { raw: raw, date: r, moved: r.getTime() !== raw.getTime() };
+    }
+    // ENGINE END
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var amtI = $('[data-amt]'), dateI = $('[data-date]'), musedI = $('[data-mused]'), pamtI = $('[data-pamt]'), pdedI = $('[data-pded]'), ptaxI = $('[data-ptax]');
+    var msg = $('[data-msg]'), result = $('[data-result]'), amtRead = $('[data-amt-read]');
+    var AMT_HINT = amtRead.textContent, lastText = '';
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    var st = { rel: 'asc', adult: true, skip: false, mar: 'none', prev: false, ontime: true };
+    var REL_NAME = { asc: '부모·조부모(직계존속)', spouse: '배우자', desc: '자녀·손주(직계비속)', kin: '기타 친족', none: '친족 아님' };
+    var REL_HINT = {
+      asc: '부모·조부모 등 직계존속 전체가 10년 동안 공제 한도 하나를 같이 써요. 아버지와 어머니에게 받은 돈은 한 사람에게 받은 것으로 보고 합쳐요.',
+      spouse: '혼인신고를 한 배우자만 해당돼요. 사실혼 배우자는 공제를 받을 수 없어요.',
+      desc: '자녀나 손주가 부모·조부모에게 주는 경우예요. 공제는 5천만 원(받는 사람이 미성년이어도 같음)이에요.',
+      kin: '6촌 이내 혈족(형제·삼촌·사촌 등)과 4촌 이내 인척(사위·며느리·처부모 등)이에요.',
+      none: '친족이 아니면 증여재산공제가 없어서 받은 돈 전체에 세금이 붙어요(50만 원 미만 과세표준은 부과하지 않음).'
+    };
+
+    function comma(n) { return String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(n) + '원'; }
+    function digits(s) { return String(s).replace(/\D/g, ''); }
+    function korean(n) {
+      var eok = Math.floor(n / 1e8), man = Math.floor(n % 1e8 / 1e4), r = n % 1e4, out = [];
+      if (eok) out.push(comma(eok) + '억');
+      if (man) out.push(comma(man) + '만');
+      if (r) out.push(comma(r));
+      return (out.join(' ') || '0') + '원';
+    }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.(' + WD[d.getDay()] + ')'; }
+    function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
+    function parseDate(v) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(v || '')) return null;
+      var p = v.split('-'), d = new Date(+p[0], +p[1] - 1, +p[2]);
+      return d.getDate() === +p[2] ? d : null;
+    }
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function pct(x) { return Math.round(x * 100) + '%'; }
+    dateI.value = iso(today());
+
+    [[2e7, '2천만'], [5e7, '5천만'], [1e8, '1억'], [1.5e8, '1억 5천'], [3e8, '3억'], [6e8, '6억']].forEach(function (c) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kgt-chip'; b.dataset.v = c[0]; b.textContent = c[1];
+      b.addEventListener('click', function () { amtI.value = comma(c[0]); calc(); });
+      $('[data-chips]').appendChild(b);
+    });
+
+    function sync() {
+      $$('[data-rel]').forEach(function (b) { var on = b.dataset.rel === st.rel; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-adult]').forEach(function (b) { var on = (b.dataset.adult === '1') === st.adult; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-skip]').forEach(function (b) { var on = (b.dataset.skip === '1') === st.skip; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-mar]').forEach(function (b) { var on = b.dataset.mar === st.mar; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-prev]').forEach(function (b) { var on = (b.dataset.prev === '1') === st.prev; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      $$('[data-ontime]').forEach(function (b) { var on = (b.dataset.ontime === '1') === st.ontime; b.classList.toggle('kgt-on', on); b.setAttribute('aria-pressed', on); });
+      var asc = st.rel === 'asc';
+      $('[data-asc-box]').hidden = !asc;
+      $('[data-mar-box]').hidden = !asc;
+      $('[data-mar-used-box]').hidden = !asc || st.mar === 'none';
+      $('[data-prev-box]').hidden = !st.prev;
+      $('[data-rel-hint]').textContent = REL_HINT[st.rel];
+      $('[data-same-hint]').textContent = asc
+        ? '이번에 주는 분과 그 배우자(예: 아버지와 어머니)에게 10년 안에 받은 돈을 합쳐 넣어요.'
+        : '이번에 주는 바로 그 사람에게 10년 안에 받은 돈만 넣어요.';
+      $('[data-pded-hint]').textContent = asc
+        ? '신고서의 증여재산공제 금액이에요(혼인·출산 공제는 빼고). 조부모 등 다른 직계존속에게 받으며 쓴 공제도 더해 넣어요. 한도를 같이 쓰기 때문이에요.'
+        : '신고했다면 신고서의 증여재산공제 금액이에요. 같은 관계의 다른 친족에게 받으며 쓴 공제도 더해 넣어요.';
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('kgt-show');
+      msg.textContent = text || '';
+      $$('.kgt-in').forEach(function (i) { i.classList.toggle('kgt-bad', !!bad && bad.indexOf(i) >= 0); });
+    }
+
+    function calc() {
+      sync();
+      var amt = +digits(amtI.value);
+      $$('.kgt-chip').forEach(function (c) { c.classList.toggle('kgt-on', +c.dataset.v === amt); });
+      amtRead.textContent = amt ? '= ' + korean(amt) : AMT_HINT;
+      if (digits(amtI.value).length > 13) return hide('금액이 너무 커요. 다시 확인해 주세요.', [amtI]);
+      if (!amtI.value) return hide('');
+      if (!amt) return hide('이번에 받는 돈을 1원 이상 넣어 주세요.', [amtI]);
+      var d = parseDate(dateI.value);
+      if (!dateI.value) return hide('증여일을 넣어 주세요.', [dateI]);
+      if (!d || d.getFullYear() < 2000 || d.getFullYear() > 2100) return hide('증여일을 다시 확인해 주세요.', [dateI]);
+
+      var mused = 0;
+      if (st.rel === 'asc' && st.mar !== 'none') {
+        mused = +digits(musedI.value);
+        if (mused > MARRIAGE_CAP) return hide('혼인·출산 공제는 평생 1억 원까지라 그보다 많이 받을 수 없어요.', [musedI]);
+      }
+      var pamt = 0, pded = 0, ptax = null;
+      if (st.prev) {
+        pamt = +digits(pamtI.value); pded = +digits(pdedI.value);
+        if (digits(pamtI.value).length > 13) return hide('이전에 받은 돈이 너무 커요. 다시 확인해 주세요.', [pamtI]);
+        if (!pamtI.value) return hide('10년 안에 같은 사람에게 받은 돈을 넣어 주세요. 없으면 ‘없어요’를 눌러요.', [pamtI]);
+        // 그때 쓴 공제 > 그때 받은 돈: 다른 직계존속 등에게 쓴 공제가 섞인 경우라 허용(한도만 확인)
+        var cap = st.rel === 'asc' ? (st.adult ? CAP.asc : CAP.ascMinor) : CAP[st.rel];
+        if (pded > cap) return hide('그때 쓴 공제가 공제 한도(' + korean(cap) + ')보다 커요. 다시 확인해 주세요.', [pdedI]);
+        if (ptaxI.value !== '') {
+          ptax = +digits(ptaxI.value);
+          if (ptax > pamt) return hide('그때 낸 증여세가 받은 돈보다 커요. 다시 확인해 주세요.', [ptaxI]);
+        }
+      }
+
+      var o = { rel: st.rel, adult: st.adult, skip: st.skip, amt: amt, mar: st.mar, mused: mused, prev: st.prev, pamt: pamt, pded: pded, ptax: ptax, ontime: st.ontime };
+      var r = compute(o), dl = deadline(d);
+      hide('');
+
+      $('[data-big]').innerHTML = comma(r.pay) + '<small>원</small>';
+      $('[data-big-label]').textContent = st.ontime ? '내야 할 증여세 (기한 내 신고)' : '내야 할 증여세 (가산세 별도)';
+      $('[data-sub]').innerHTML = '<span class="kgt-nw">과세표준 ' + won(r.base) + '</span> · <span class="kgt-nw">이번 증여액의 ' +
+        (Math.round(r.pay / amt * 1000) / 10).toLocaleString('ko-KR') + '%</span>';
+
+      var free = $('[data-free]');
+      free.classList.remove('kgt-warn');
+      if (r.pay === 0 && r.base < MIN_BASE && r.base > 0) {
+        free.innerHTML = '과세표준이 50만 원 미만이라 증여세를 매기지 않아요(과세최저한). 그래도 신고해 두면 나중에 자금 출처를 설명하기 쉬워요.';
+      } else if (r.pay === 0) {
+        free.innerHTML = '공제 안에 들어가서 <b>낼 세금이 없어요.</b> 세금이 없어도 신고해 두면 나중에 자금 출처를 설명하기 쉽고, 10년 공제를 쓴 기록이 남아요.';
+      } else {
+        free.innerHTML = '이번 증여에 쓸 수 있는 공제는 <b>' + won(r.dNew + r.mar) + '</b>이었어요. 공제를 넘는 금액에 세금이 붙어요.';
+      }
+      var due = $('[data-due]');
+      due.innerHTML = '신고·납부 기한: <b class="kgt-nw">' + fmt(dl.date) + '</b>까지' +
+        (dl.moved ? ' <span class="kgt-nw">(원래 ' + fmt(dl.raw) + ', 휴일이라 다음 날)</span>' : '') +
+        '. 증여일이 속한 달의 말일부터 3개월 안에 주소지 세무서나 홈택스로 신고해요.' +
+        (r.pay > 1e7 ? ' 납부할 세금이 1천만 원을 넘으면 2개월 안에 나눠 낼 수 있어요(분납).' : '') +
+        (!st.ontime ? ' <b>기한을 넘기면 신고세액공제 3%가 없고, 무신고가산세(20%)와 납부지연가산세(하루 0.022%)가 더 붙어요.</b>' : '');
+      due.classList.toggle('kgt-warn', !st.ontime);
+
+      var set = function (k, v) { root.querySelector('[data-r="' + k + '"]').textContent = v; };
+      var row = function (k, show) { root.querySelector('[data-row="' + k + '"]').hidden = !show; };
+      set('amt', won(amt));
+      row('prev', st.prev); set('pamt', '+' + won(r.pamt));
+      set('total', won(r.total));
+      var capName = { asc: st.adult ? '직계존속 → 성년 자녀 5천만 원' : '직계존속 → 미성년 자녀 2천만 원', spouse: '배우자 6억 원', desc: '직계비속 → 부모 5천만 원', kin: '기타 친족 1천만 원', none: '친족 아님 0원' }[st.rel];
+      set('dedlab', '10년 한도 ' + capName + (st.prev ? ' (이전 ' + comma(r.dPrev) + ' + 이번 ' + comma(r.dNew) + ')' : ''));
+      set('ded', '−' + won(r.ded));
+      row('mar', r.marOk); set('mar', '−' + won(r.mar));
+      set('base', won(r.base));
+      set('rate', r.base < MIN_BASE ? '과세표준 50만 원 미만 → 0원' : '과세표준 × ' + pct(r.rate) + (r.prog ? ' − ' + korean(r.prog).replace('원', ' 원') : ''));
+      set('tax', won(r.tax));
+      row('skip', st.rel === 'asc' && st.skip); set('skiplab', '산출세액 × ' + pct(r.sr || SKIP)); set('skip', '+' + won(r.skip));
+      row('paid', st.prev);
+      set('paidlab', (r.paidAuto ? '이전 증여 세액 자동 계산 ' : '입력한 세액 ') + comma(r.paidRaw) + '원' + (r.paid < r.paidRaw ? ', 한도 적용' : ''));
+      set('paid', '−' + won(r.paid));
+      set('credlab', st.ontime ? '(산출세액 + 할증 − 기납부세액) × 3%' : '기한 넘김 → 0원');
+      set('cred', '−' + won(r.cred));
+      set('pay', won(r.pay));
+
+      var f = [];
+      f.push('과세표준 = ' + comma(r.total) + ' − ' + comma(r.ded) + (r.marOk ? ' − ' + comma(r.mar) : '') + ' = <b>' + comma(r.base) + '원</b>');
+      if (r.base >= MIN_BASE) f.push('산출세액 = ' + comma(r.base) + ' × ' + pct(r.rate) + (r.prog ? ' − ' + comma(r.prog) : '') + ' = ' + comma(r.tax) + '원');
+      if (r.skip) f.push('할증 = ' + comma(r.tax) + ' × ' + pct(r.sr) + ' = ' + comma(r.skip) + '원');
+      f.push('납부세액 = ' + comma(r.tax) + (r.skip ? ' + ' + comma(r.skip) : '') + (st.prev ? ' − ' + comma(r.paid) : '') + ' − ' + comma(r.cred) + ' = <b>' + comma(r.pay) + '원</b>');
+      $('[data-formula]').innerHTML = f.map(function (x) { return '<p>' + x + '</p>'; }).join('');
+
+      result.classList.add('kgt-show');
+
+      lastText = '[증여세 계산 결과]\n관계: ' + REL_NAME[st.rel] + (st.rel === 'asc' ? ' / ' + (st.adult ? '성년' : '미성년') + ' / ' + (st.skip ? '조부모(세대생략)' : '부모') : '') +
+        '\n이번 증여재산: ' + won(amt) + '\n증여일: ' + fmt(d) +
+        (st.prev ? '\n10년 합산 증여재산: ' + won(r.pamt) : '') +
+        '\n증여세 과세가액: ' + won(r.total) + '\n증여재산공제: ' + won(r.ded) +
+        (r.marOk ? '\n혼인·출산 공제: ' + won(r.mar) : '') +
+        '\n과세표준: ' + won(r.base) + '\n산출세액: ' + won(r.tax) +
+        (r.skip ? '\n세대생략 할증(' + pct(r.sr) + '): ' + won(r.skip) : '') +
+        (st.prev ? '\n기납부세액공제: ' + won(r.paid) : '') +
+        '\n신고세액공제: ' + won(r.cred) + '\n납부할 증여세: ' + won(r.pay) +
+        '\n신고·납부 기한: ' + fmt(dl.date) + (st.ontime ? '' : ' (기한 넘김, 가산세 별도)') +
+        '\n※ 참고용 계산이며 세무 자문이 아니에요.';
+    }
+
+    function money(i, max) {
+      i.addEventListener('input', function () {
+        var v = digits(i.value).slice(0, max || 14);
+        i.value = v ? comma(+v) : '';
+        calc();
+      });
+    }
+    [amtI, musedI, pamtI, pdedI, ptaxI].forEach(function (i) { money(i); });
+    dateI.addEventListener('input', calc); dateI.addEventListener('change', calc);
+
+    $$('[data-rel]').forEach(function (b) { b.addEventListener('click', function () { st.rel = b.dataset.rel; calc(); }); });
+    $$('[data-adult]').forEach(function (b) { b.addEventListener('click', function () { st.adult = b.dataset.adult === '1'; calc(); }); });
+    $$('[data-skip]').forEach(function (b) { b.addEventListener('click', function () { st.skip = b.dataset.skip === '1'; calc(); }); });
+    $$('[data-mar]').forEach(function (b) { b.addEventListener('click', function () { st.mar = b.dataset.mar; calc(); }); });
+    $$('[data-prev]').forEach(function (b) { b.addEventListener('click', function () { st.prev = b.dataset.prev === '1'; calc(); }); });
+    $$('[data-ontime]').forEach(function (b) { b.addEventListener('click', function () { st.ontime = b.dataset.ontime === '1'; calc(); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      amtI.value = musedI.value = pamtI.value = pdedI.value = ptaxI.value = '';
+      dateI.value = iso(today());
+      st = { rel: 'asc', adult: true, skip: false, mar: 'none', prev: false, ontime: true };
+      hide(''); calc(); amtI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    calc();
+  })();
+  </script>
+</div>
+<!-- 증여세 계산기 위젯 끝 -->
