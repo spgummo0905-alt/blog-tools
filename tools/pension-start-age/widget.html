@@ -1,0 +1,334 @@
+<!-- 국민연금 수령 나이·조기/연기 수령 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="knp" data-knp>
+  <style>
+    .knp{--knp-accent:#3b6ef5;--knp-accent-soft:#eef3ff;--knp-text:#1d2433;--knp-sub:#6b7385;--knp-line:#e3e7ef;--knp-bg:#fff;--knp-bad:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--knp-line);border-radius:20px;background:var(--knp-bg);
+      color:var(--knp-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .knp [hidden]{display:none!important}
+    .knp *,.knp *::before,.knp *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .knp .knp-title{font-size:20px;font-weight:700;letter-spacing:-.02em;word-break:keep-all}
+    .knp .knp-desc{margin-top:4px;font-size:14px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--knp-text);word-break:keep-all}
+    .knp .knp-label small{font-weight:500;color:var(--knp-sub)}
+    .knp .knp-row{display:flex;gap:8px}
+    .knp .knp-field{position:relative;flex:1}
+    .knp .knp-field.knp-y{flex:1.4}
+    .knp .knp-in{width:100%;height:52px;padding:0 34px 0 14px;border:1.5px solid var(--knp-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--knp-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .knp .knp-in.knp-money{padding-right:40px}
+    .knp .knp-in::placeholder{color:#b3b9c6;font-weight:500}
+    .knp .knp-in:focus{border-color:var(--knp-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .knp .knp-in.knp-bad{border-color:var(--knp-bad)}
+    .knp .knp-unit{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--knp-sub);pointer-events:none}
+    .knp .knp-hint{margin-top:6px;font-size:12.5px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-group{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .knp .knp-group-k{flex:0 0 34px;font-size:12.5px;font-weight:600;color:var(--knp-sub)}
+    .knp .knp-chips{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;flex:1}
+    .knp .knp-chip{height:36px;padding:0 4px;border:1.5px solid var(--knp-line);border-radius:999px;background:#fff;color:var(--knp-sub);
+      font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+    .knp .knp-chip:hover{border-color:#c9d3ea;color:var(--knp-text)}
+    .knp .knp-chip.knp-on{border-color:var(--knp-accent);background:var(--knp-accent-soft);color:var(--knp-accent)}
+    .knp .knp-chip.knp-wide{grid-column:1/-1}
+    .knp .knp-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--knp-bad);word-break:keep-all}
+    .knp .knp-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .knp .knp-result.knp-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .knp .knp-result-inner{overflow:hidden}
+    .knp .knp-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--knp-accent-soft);text-align:center}
+    .knp .knp-main-label{font-size:14px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-big{margin-top:2px;font-size:36px;font-weight:800;letter-spacing:-.03em;color:var(--knp-accent);line-height:1.25;word-break:keep-all}
+    .knp .knp-sub{margin-top:6px;font-size:14px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-dday{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#fff;font-size:13px;font-weight:700;color:var(--knp-accent)}
+    .knp .knp-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .knp .knp-card{padding:14px;border:1px solid var(--knp-line);border-radius:14px;background:#fff}
+    .knp .knp-card-k{font-size:12px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--knp-text);word-break:keep-all}
+    .knp .knp-card-v.knp-down{color:var(--knp-bad)}
+    .knp .knp-card-v.knp-up{color:var(--knp-accent)}
+    .knp .knp-card-s{margin-top:2px;font-size:12px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-be{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13.5px;word-break:keep-all}
+    .knp .knp-be b{color:var(--knp-accent)}
+    .knp .knp-tbl-k{margin-top:16px;font-size:13px;font-weight:700}
+    .knp .knp-table{width:100%;margin-top:6px;border:1px solid var(--knp-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13px}
+    .knp .knp-table th,.knp .knp-table td{padding:8px 8px;border:0;border-bottom:1px solid var(--knp-line);background:#fff;text-align:center;color:var(--knp-text);white-space:nowrap}
+    .knp .knp-table thead th{background:#f8f9fc;font-size:12px;font-weight:600;color:var(--knp-sub)}
+    .knp .knp-table tbody th{font-weight:600}
+    .knp .knp-table tr:last-child th,.knp .knp-table tr:last-child td{border-bottom:0}
+    .knp .knp-table tr.knp-sel th,.knp .knp-table tr.knp-sel td{background:var(--knp-accent-soft);color:var(--knp-accent);font-weight:700}
+    .knp .knp-table tr.knp-past th,.knp .knp-table tr.knp-past td{color:#a3a9b6}
+    .knp .knp-note{margin-top:12px;font-size:12.5px;color:var(--knp-sub);word-break:keep-all}
+    .knp .knp-note li{margin-left:16px}
+    .knp .knp-note li+li{margin-top:2px}
+    .knp .knp-nowrap{white-space:nowrap}
+    .knp .knp-actions{display:flex;gap:8px;margin-top:14px}
+    .knp .knp-btn{flex:1;height:44px;border:1.5px solid var(--knp-line);border-radius:12px;background:#fff;color:var(--knp-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .knp .knp-btn:hover{background:#f4f6fa}
+    .knp .knp-btn:active{transform:scale(.98)}
+    .knp .knp-btn.knp-primary{border-color:var(--knp-accent);background:var(--knp-accent);color:#fff}
+    .knp .knp-btn.knp-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.knp{padding:18px;border-radius:16px}.knp .knp-big{font-size:31px}.knp .knp-in{font-size:17px}
+      .knp .knp-chip{font-size:12.5px}.knp .knp-table{font-size:12.5px}.knp .knp-table th,.knp .knp-table td{padding:8px 5px}}
+    @media (prefers-reduced-motion:reduce){.knp .knp-result,.knp .knp-in,.knp .knp-btn,.knp .knp-chip{transition:none}}
+  </style>
+
+  <p class="knp-title">국민연금 수령 나이·조기/연기 수령 계산기</p>
+  <p class="knp-desc">생년월일을 넣으면 노령연금을 받기 시작하는 달과, 앞당기거나 늦출 때 달라지는 금액·손익분기 나이를 바로 보여 줘요.</p>
+
+  <label class="knp-label" for="knp-y">생년월일</label>
+  <div class="knp-row">
+    <div class="knp-field knp-y"><input class="knp-in" id="knp-y" data-y inputmode="numeric" maxlength="4" placeholder="1966" autocomplete="bday-year" aria-label="태어난 연도"><span class="knp-unit">년</span></div>
+    <div class="knp-field"><input class="knp-in" data-m inputmode="numeric" maxlength="2" placeholder="5" autocomplete="bday-month" aria-label="태어난 월"><span class="knp-unit">월</span></div>
+    <div class="knp-field"><input class="knp-in" data-d inputmode="numeric" maxlength="2" placeholder="20" autocomplete="bday-day" aria-label="태어난 일"><span class="knp-unit">일</span></div>
+  </div>
+
+  <label class="knp-label" for="knp-amt">예상 월 연금액 <small>선택</small></label>
+  <div class="knp-field"><input class="knp-in knp-money" id="knp-amt" data-amt inputmode="numeric" maxlength="11" placeholder="1,000,000" aria-label="예상 월 연금액(원)"><span class="knp-unit">원</span></div>
+  <p class="knp-hint">국민연금공단 ‘내 연금 알아보기’의 예상 노령연금 월액(정상 수령 기준)을 넣으면 시점별 월 수령액도 계산해요.</p>
+
+  <p class="knp-label">언제부터 받을까요?</p>
+  <div data-choices>
+    <div class="knp-group"><span class="knp-group-k">조기</span><div class="knp-chips">
+      <button type="button" class="knp-chip" data-k="-5">5년</button><button type="button" class="knp-chip" data-k="-4">4년</button><button type="button" class="knp-chip" data-k="-3">3년</button><button type="button" class="knp-chip" data-k="-2">2년</button><button type="button" class="knp-chip" data-k="-1">1년</button>
+    </div></div>
+    <div class="knp-group"><span class="knp-group-k">정상</span><div class="knp-chips">
+      <button type="button" class="knp-chip knp-wide knp-on" data-k="0">출생연도별 정상 수령 나이에 받기</button>
+    </div></div>
+    <div class="knp-group"><span class="knp-group-k">연기</span><div class="knp-chips">
+      <button type="button" class="knp-chip" data-k="1">1년</button><button type="button" class="knp-chip" data-k="2">2년</button><button type="button" class="knp-chip" data-k="3">3년</button><button type="button" class="knp-chip" data-k="4">4년</button><button type="button" class="knp-chip" data-k="5">5년</button>
+    </div></div>
+  </div>
+
+  <p class="knp-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="knp-result" data-result aria-live="polite">
+    <div class="knp-result-inner">
+      <div class="knp-main">
+        <p class="knp-main-label" data-main-label>정상 수령 시작</p>
+        <p class="knp-big" data-big></p>
+        <p class="knp-sub" data-main-sub></p>
+        <span class="knp-dday" data-dday></span>
+      </div>
+      <div class="knp-grid">
+        <div class="knp-card"><p class="knp-card-k">선택한 시점 시작</p><p class="knp-card-v" data-sel-start></p><p class="knp-card-s" data-sel-age></p></div>
+        <div class="knp-card"><p class="knp-card-k">지급률</p><p class="knp-card-v" data-sel-rate></p><p class="knp-card-s" data-sel-rate-s></p></div>
+        <div class="knp-card"><p class="knp-card-k">월 수령액 (선택 시점)</p><p class="knp-card-v" data-sel-amt></p><p class="knp-card-s" data-sel-amt-s></p></div>
+        <div class="knp-card"><p class="knp-card-k">손익분기 (정상 수령과 비교)</p><p class="knp-card-v" data-sel-be></p><p class="knp-card-s" data-sel-be-s></p></div>
+      </div>
+      <p class="knp-be" data-be-text></p>
+      <p class="knp-tbl-k">시점별 한눈에 보기</p>
+      <table class="knp-table">
+        <thead><tr><th scope="col">받는 시점</th><th scope="col">시작 연월</th><th scope="col">지급률</th><th scope="col" data-col-amt>월 수령액</th><th scope="col">손익분기</th></tr></thead>
+        <tbody data-tbody></tbody>
+      </table>
+      <ul class="knp-note">
+        <li>연금은 수령 나이가 되는 생일이 속한 달의 <b>다음 달분부터</b>, 매월 25일(토·공휴일이면 그 전날)에 들어와요. 직접 청구해야 지급돼요.</li>
+        <li>조기 수령은 가입기간 10년 이상이고 소득이 A값(2026년 월 3,193,511원) 이하일 때만 가능하고, 1년당 6%씩 깎인 금액을 평생 받아요.</li>
+        <li>손익분기는 물가·이자·세금·건강보험료를 빼고 매달 받는 금액만 단순히 더해 비교한 값이에요. 부양가족연금액은 실제로 감액·가산에서 빠져 금액이 조금 다를 수 있어요.</li>
+      </ul>
+      <div class="knp-actions">
+        <button type="button" class="knp-btn" data-reset>다시 입력</button>
+        <button type="button" class="knp-btn knp-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-knp]');
+    if (!root || root.__knp) return;
+    root.__knp = true;
+
+    // 국민연금법 부칙(법률 제8541호) 제8조: 출생연도별 노령연금 수급 개시 연령
+    var AGE_TABLE = [[1952, 60], [1956, 61], [1960, 62], [1964, 63], [1968, 64], [9999, 65]];
+    var EARLY_PER_YEAR = 60;  // 조기노령연금: 1년당 1천분의 60(6%) 감액, 최대 5년
+    var DEFER_PER_YEAR = 72;  // 연기연금: 1개월당 1천분의 6(연 7.2%) 가산, 최대 5년
+    var PAY_DAY = 25;         // 매월 25일 지급
+    var MIN_YEAR = 1930;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var yI = $('[data-y]'), mI = $('[data-m]'), dI = $('[data-d]'), amtI = $('[data-amt]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var choice = 0, lastText = '';
+
+    function today() { var n = new Date(); return new Date(n.getFullYear(), n.getMonth(), n.getDate()); }
+    function isLeap(y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function fmt(d) { return d.getFullYear() + '. ' + (d.getMonth() + 1) + '. ' + d.getDate() + '.'; }
+    function ym(i) { return Math.floor(i / 12) + '년 ' + (i % 12 + 1) + '월'; }
+    function ymShort(i) { return Math.floor(i / 12) + '. ' + (i % 12 + 1) + '.'; }
+    function dayDiff(a, b) { return Math.round((Date.UTC(b.getFullYear(), b.getMonth(), b.getDate()) - Date.UTC(a.getFullYear(), a.getMonth(), a.getDate())) / 864e5); }
+    function birthdayIn(year, m, d) {
+      if (m === 2 && d === 29 && !isLeap(year)) return new Date(year, 2, 1); // 2월 29일생은 평년엔 3월 1일에 나이가 바뀜
+      return new Date(year, m - 1, d);
+    }
+    function normalAge(y) { for (var i = 0; i < AGE_TABLE.length; i++) if (y <= AGE_TABLE[i][0]) return AGE_TABLE[i][1]; return 65; }
+    // 해당 나이가 되는 생일이 속한 달의 다음 달 (월 인덱스 = 연*12 + 월-1)
+    function startIndex(y, m, d, age) { var b = birthdayIn(y + age, m, d); return b.getFullYear() * 12 + b.getMonth() + 1; }
+    function rate(k) { return k < 0 ? 1000 + EARLY_PER_YEAR * k : 1000 + DEFER_PER_YEAR * k; } // 천분율
+    function rateText(k) {
+      if (k === 0) return '100%';
+      var p = (Math.abs(rate(k) - 1000) / 10).toFixed(1).replace(/\.0$/, '');
+      return (k < 0 ? '−' : '+') + p + '%';
+    }
+    function label(k) { return k === 0 ? '정상' : (k < 0 ? '조기 ' + (-k) + '년' : '연기 ' + k + '년'); }
+    // 만 나이(개월까지) : 해당 월 25일 기준
+    function ageAt(idx, y, m, d) {
+      var t = new Date(Math.floor(idx / 12), idx % 12, PAY_DAY);
+      var years = t.getFullYear() - y; if (t < birthdayIn(t.getFullYear(), m, d)) years--;
+      var last = birthdayIn(y + years, m, d);
+      var months = (t.getFullYear() - last.getFullYear()) * 12 + t.getMonth() - last.getMonth();
+      if (t.getDate() < last.getDate()) months--;
+      return { y: years, m: months };
+    }
+    function ageText(a) { return '만 ' + a.y + '세' + (a.m ? ' ' + a.m + '개월' : ''); }
+
+    // 손익분기: 늦게 시작한 쪽의 누적액이 일찍 시작한 쪽 누적액 이상이 되는 첫 달
+    function breakEven(s1, r1, s2, r2) {
+      for (var m = s2; m < s2 + 1200; m++) {
+        if ((m - s2 + 1) * r2 >= (m - s1 + 1) * r1) return m;
+      }
+      return null;
+    }
+
+    function hide(text) { result.classList.remove('knp-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var y = +yI.value, m = +mI.value, d = +dI.value;
+      var amtRaw = amtI.value.replace(/\D/g, ''), amt = amtRaw ? +amtRaw : 0;
+      amtI.classList.remove('knp-bad');
+      if (yI.value.length < 4 || !mI.value || !dI.value) return hide('');
+      var birth = new Date(y, m - 1, d);
+      if (m < 1 || m > 12 || birth.getMonth() !== m - 1 || birth.getDate() !== d) return hide('날짜를 다시 확인해 주세요.');
+      if (y < MIN_YEAR) return hide(MIN_YEAR + '년 이후 생년월일을 넣어 주세요.');
+      var now = today();
+      if (birth > now) return hide('생년월일이 오늘보다 뒤예요.');
+      if (amtRaw && (amt < 1000 || amt > 99999999)) { amtI.classList.add('knp-bad'); return hide('예상 월 연금액은 1,000원 ~ 9,999만원 사이로 넣어 주세요.'); }
+
+      var A = normalAge(y);
+      var N = startIndex(y, m, d, A);
+      var rows = [];
+      for (var k = -5; k <= 5; k++) {
+        var s = k < 0 ? startIndex(y, m, d, A + k) : N + 12 * k;
+        var r = rate(k), be = null;
+        if (k < 0) be = breakEven(s, r, N, 1000);
+        if (k > 0) be = breakEven(N, 1000, s, r);
+        rows.push({ k: k, s: s, r: r, be: be });
+      }
+      var sel = rows[choice + 5];
+      var nowIdx = now.getFullYear() * 12 + now.getMonth();
+
+      // 정상 수령 시작
+      var payDate = new Date(Math.floor(N / 12), N % 12, PAY_DAY);
+      var left = dayDiff(now, payDate);
+      $('[data-big]').textContent = ym(N) + '분부터';
+      $('[data-main-sub]').textContent = y + '년생 수령 나이 만 ' + A + '세 · 첫 지급 ' + fmt(payDate);
+      $('[data-dday]').textContent = left > 0 ? 'D-' + comma(left) : (left === 0 ? '오늘 첫 지급일이에요' : '이미 수령 시작 시기가 지났어요');
+
+      // 선택한 시점
+      var selAge = ageAt(sel.s, y, m, d);
+      $('[data-sel-start]').textContent = ym(sel.s);
+      $('[data-sel-age]').textContent = label(sel.k) + ' · ' + ageText(selAge) + (sel.s < nowIdx ? ' (이미 지남)' : '');
+      var rateEl = $('[data-sel-rate]');
+      rateEl.textContent = (sel.r / 10).toFixed(1).replace(/\.0$/, '') + '%';
+      rateEl.className = 'knp-card-v' + (sel.k < 0 ? ' knp-down' : (sel.k > 0 ? ' knp-up' : ''));
+      $('[data-sel-rate-s]').textContent = sel.k === 0 ? '감액·증액 없음' : (sel.k < 0 ? rateText(sel.k) + ' 평생 감액' : rateText(sel.k) + ' 평생 증액');
+      var selAmt = amt ? Math.floor(amt * sel.r / 1000) : 0;
+      $('[data-sel-amt]').textContent = amt ? comma(selAmt) + '원' : '금액 입력 시 표시';
+      $('[data-sel-amt]').style.fontSize = amt ? '' : '14px';
+      $('[data-sel-amt-s]').textContent = amt ? (sel.k === 0 ? '정상 수령 기준 금액' : '정상 ' + comma(amt) + '원 대비 ' + (selAmt - amt >= 0 ? '+' : '−') + comma(Math.abs(selAmt - amt)) + '원') : '오늘 가치 기준';
+
+      var beText = '', beEl = $('[data-be-text]');
+      if (sel.k === 0) {
+        $('[data-sel-be]').textContent = '정상 수령';
+        $('[data-sel-be-s]').textContent = '아래 표에서 시점별 비교';
+        var e1 = rows[4], d1 = rows[6];
+        beText = '1년 앞당기면 <b>' + ageText(ageAt(e1.be, y, m, d)) + '</b>(' + ym(e1.be) + ')까지는 조기 수령이 더 많고, 그 뒤로는 정상 수령이 앞서요. 1년 늦추면 <b>' + ageText(ageAt(d1.be, y, m, d)) + '</b>(' + ym(d1.be) + ')부터 연기 수령이 앞서요.';
+      } else {
+        var beAge = ageAt(sel.be, y, m, d);
+        $('[data-sel-be]').textContent = ageText(beAge);
+        $('[data-sel-be-s]').textContent = ym(sel.be) + ' 무렵';
+        beText = sel.k < 0
+          ? (-sel.k) + '년 앞당기면 <b>' + ageText(beAge) + '</b>(' + ym(sel.be) + ')까지 받은 돈의 합계가 정상 수령보다 많고, 그보다 오래 받으면 정상 수령이 유리해요.'
+          : sel.k + '년 늦추면 <b>' + ageText(beAge) + '</b>(' + ym(sel.be) + ')부터 받은 돈의 합계가 정상 수령을 넘어서요. 그보다 오래 받을수록 연기가 유리해요.';
+      }
+      beEl.innerHTML = beText + ' (물가 반영 없는 단순 누적 비교)';
+
+      // 표
+      var tb = $('[data-tbody]'), html = '';
+      $('[data-col-amt]').hidden = !amt;
+      rows.forEach(function (r) {
+        var cls = (r.k === choice ? 'knp-sel' : '') + (r.s < nowIdx ? ' knp-past' : '');
+        html += '<tr class="' + cls + '"><th scope="row">' + label(r.k) + '</th><td>' + ymShort(r.s) + '</td><td>' + rateText(r.k) + '</td>' +
+          (amt ? '<td>' + comma(Math.floor(amt * r.r / 1000)) + '</td>' : '') +
+          '<td>' + (r.be === null ? '기준' : '만 ' + ageAt(r.be, y, m, d).y + '세') + '</td></tr>';
+      });
+      tb.innerHTML = html;
+
+      msg.textContent = '';
+      result.classList.add('knp-show');
+
+      var lines = ['[국민연금 수령 나이 계산 결과]', '생년월일: ' + fmt(birth) + ' (' + y + '년생, 수령 나이 만 ' + A + '세)',
+        '정상 수령 시작: ' + ym(N) + '분부터 (첫 지급 ' + fmt(payDate) + (left > 0 ? ', D-' + comma(left) : '') + ')',
+        '선택: ' + label(sel.k) + ' → ' + ym(sel.s) + '분부터, 지급률 ' + (sel.r / 10).toFixed(1).replace(/\.0$/, '') + '%'];
+      if (amt) lines.push('월 수령액: ' + comma(selAmt) + '원 (정상 ' + comma(amt) + '원 기준)');
+      if (sel.k !== 0) lines.push('손익분기: ' + ageText(ageAt(sel.be, y, m, d)) + ' (' + ym(sel.be) + ', 물가 반영 없는 단순 누적 비교)');
+      lines.push('', '시점별: ' + rows.map(function (r) { return label(r.k) + ' ' + ymShort(r.s) + ' ' + rateText(r.k); }).join(' / '));
+      lastText = lines.join('\n');
+    }
+
+    function bind(input, next, len) {
+      input.addEventListener('input', function () {
+        var v = input.value.replace(/\D/g, '').slice(0, len);
+        if (v !== input.value) input.value = v;
+        if (next && v.length === len) next.focus();
+        if (input === mI && v.length === 1 && +v > 1) dI.focus();
+        if (input === dI && v.length === 1 && +v > 3) dI.blur();
+        calc();
+      });
+    }
+    bind(yI, mI, 4); bind(mI, dI, 2); bind(dI, null, 2);
+    [mI, dI].forEach(function (inp, i) {
+      inp.addEventListener('keydown', function (e) {
+        if (e.key === 'Backspace' && !inp.value) { e.preventDefault(); (i === 0 ? yI : mI).focus(); }
+      });
+    });
+    yI.addEventListener('paste', function (e) {
+      var t = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '');
+      if (t.length === 8) { e.preventDefault(); yI.value = t.slice(0, 4); mI.value = String(+t.slice(4, 6)); dI.value = String(+t.slice(6, 8)); calc(); }
+    });
+    amtI.addEventListener('input', function () {
+      var v = amtI.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 8);
+      amtI.value = v ? comma(v) : '';
+      calc();
+    });
+
+    $$('[data-k]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        choice = +b.getAttribute('data-k');
+        $$('[data-k]').forEach(function (c) { c.classList.toggle('knp-on', c === b); });
+        calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      yI.value = mI.value = dI.value = amtI.value = '';
+      choice = 0;
+      $$('[data-k]').forEach(function (c) { c.classList.toggle('knp-on', c.getAttribute('data-k') === '0'); });
+      hide(''); yI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 국민연금 수령 나이·조기/연기 수령 계산기 위젯 끝 -->
