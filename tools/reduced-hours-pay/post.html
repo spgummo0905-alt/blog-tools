@@ -1,0 +1,417 @@
+<p><strong>육아기 근로시간 단축 급여는 2026년 기준으로 매주 줄인 시간 중 처음 10시간분은 월 통상임금의 100%(상한 250만원), 나머지는 통상임금의 80%(상한 160만원)를 시간 비율만큼 받아요.</strong> 주 40시간에서 30시간으로 줄이면 최대 월 62만 5천원, 20시간으로 줄이면 최대 월 102만 5천원이에요. 아래 계산기에 월 통상임금과 줄일 근무시간을 넣으면 회사 월급과 단축급여를 합쳐 한 달에 얼마인지 바로 확인할 수 있어요.</p>
+<!-- 육아기 근로시간 단축 급여 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="krh" data-krh>
+  <style>
+    .krh{--krh-accent:#3b6ef5;--krh-accent-soft:#eef3ff;--krh-text:#1d2433;--krh-sub:#6b7385;--krh-line:#e3e7ef;--krh-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--krh-line);border-radius:20px;background:var(--krh-bg);
+      color:var(--krh-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .krh [hidden]{display:none!important}
+    .krh *,.krh *::before,.krh *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .krh .krh-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .krh .krh-desc{margin-top:4px;font-size:14px;color:var(--krh-sub)}
+    .krh .krh-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--krh-text)}
+    .krh .krh-label small{font-weight:500;color:var(--krh-sub)}
+    .krh .krh-row{display:flex;gap:8px}
+    .krh .krh-col{flex:1;min-width:0}
+    .krh .krh-col .krh-label{margin-top:16px}
+    .krh .krh-field{position:relative;flex:1;min-width:0}
+    .krh .krh-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--krh-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--krh-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .krh .krh-in::placeholder{color:#b3b9c6;font-weight:500}
+    .krh .krh-in:focus{border-color:var(--krh-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .krh .krh-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--krh-sub);pointer-events:none}
+    .krh .krh-hint{margin-top:6px;font-size:12.5px;color:var(--krh-sub)}
+    .krh .krh-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-top:14px;padding:4px;border-radius:12px;background:#f1f3f8}
+    .krh .krh-seg button{height:36px;border:0;border-radius:9px;background:none;color:var(--krh-sub);font-size:13.5px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s,box-shadow .2s;word-break:keep-all;line-height:1.2}
+    .krh .krh-seg button.krh-on{background:#fff;color:var(--krh-accent);box-shadow:0 1px 4px rgba(30,45,90,.1)}
+    .krh .krh-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .krh .krh-chip{height:32px;padding:0 12px;border:1.5px solid var(--krh-line);border-radius:999px;background:#fff;color:var(--krh-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .krh .krh-chip:hover{border-color:#c9d3ea;color:var(--krh-text)}
+    .krh .krh-chip.krh-on{border-color:var(--krh-accent);background:var(--krh-accent-soft);color:var(--krh-accent)}
+    .krh .krh-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .krh .krh-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .krh .krh-result.krh-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .krh .krh-result-inner{overflow:hidden}
+    .krh .krh-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--krh-accent-soft);text-align:center}
+    .krh .krh-main-label{font-size:14px;color:var(--krh-sub)}
+    .krh .krh-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--krh-accent);line-height:1.2;word-break:keep-all}
+    .krh .krh-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .krh .krh-badge{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#fff;color:var(--krh-accent);font-size:12.5px;font-weight:700}
+    .krh .krh-sub{margin-top:6px;font-size:14px;color:var(--krh-sub)}
+    .krh .krh-main-label,.krh .krh-sub,.krh .krh-note,.krh .krh-desc,.krh .krh-hint,.krh .krh-formula,.krh .krh-warn{word-break:keep-all}
+    .krh .krh-warn{margin-top:10px;padding:10px 12px;border-radius:12px;background:#fff7e8;color:#8a5a00;font-size:12.5px}
+    .krh .krh-sec{margin-top:16px;font-size:14px;font-weight:700}
+    .krh .krh-table{width:100%;margin-top:8px;border:1px solid var(--krh-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13.5px}
+    .krh .krh-table th,.krh .krh-table td{padding:9px 10px;border:0;border-bottom:1px solid var(--krh-line);background:#fff;text-align:left;font-weight:500;color:var(--krh-text);vertical-align:middle}
+    .krh .krh-table td{text-align:right;font-weight:700;white-space:nowrap}
+    .krh .krh-table th small,.krh .krh-table td small{display:block;font-size:11.5px;color:var(--krh-sub);font-weight:500;word-break:keep-all}
+    .krh .krh-table td small.krh-cap{color:#e0565b}
+    .krh .krh-table .krh-indent th{padding-left:22px;color:var(--krh-sub)}
+    .krh .krh-table .krh-indent td{font-weight:600;color:var(--krh-sub)}
+    .krh .krh-table tr:last-child th,.krh .krh-table tr:last-child td{border-bottom:0}
+    .krh .krh-table .krh-total th,.krh .krh-table .krh-total td{background:#f8f9fc;font-weight:700}
+    .krh .krh-table .krh-total td{color:var(--krh-accent)}
+    .krh .krh-formula{margin-top:8px;padding:14px;border:1px solid var(--krh-line);border-radius:14px;background:#f8f9fc;font-size:13px;color:var(--krh-text)}
+    .krh .krh-formula p+p{margin-top:6px}
+    .krh .krh-note{margin-top:12px;font-size:12.5px;color:var(--krh-sub)}
+    .krh .krh-note li{margin-left:16px}
+    .krh .krh-note li+li{margin-top:2px}
+    .krh .krh-nowrap{white-space:nowrap}
+    .krh .krh-actions{display:flex;gap:8px;margin-top:14px}
+    .krh .krh-btn{flex:1;height:44px;border:1.5px solid var(--krh-line);border-radius:12px;background:#fff;color:var(--krh-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .krh .krh-btn:hover{background:#f4f6fa}
+    .krh .krh-btn:active{transform:scale(.98)}
+    .krh .krh-btn.krh-primary{border-color:var(--krh-accent);background:var(--krh-accent);color:#fff}
+    .krh .krh-btn.krh-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.krh{padding:18px;border-radius:16px}.krh .krh-big{font-size:34px}.krh .krh-in{font-size:17px}
+      .krh .krh-table th,.krh .krh-table td{padding:8px 8px}.krh .krh-chip{padding:0 10px}}
+    @media (prefers-reduced-motion:reduce){.krh .krh-result,.krh .krh-in,.krh .krh-btn,.krh .krh-chip,.krh .krh-seg button{transition:none}}
+  </style>
+
+  <p class="krh-title">육아기 근로시간 단축 급여 계산기</p>
+  <p class="krh-desc">월 통상임금과 줄일 근무시간을 넣으면 회사 월급과 정부 단축급여, 합쳐서 한 달에 얼마인지 바로 계산돼요. <span class="krh-nowrap" data-basis>2026년 기준</span></p>
+
+  <div class="krh-seg" role="group" aria-label="기준 연도">
+    <button type="button" class="krh-on" data-year="2026" aria-pressed="true">2026년</button>
+    <button type="button" data-year="2027" aria-pressed="false">2027년</button>
+  </div>
+  <p class="krh-warn" data-year-note hidden></p>
+
+  <label class="krh-label" for="krh-wage"><span>월 통상임금 <small>(세전, 단축 전)</small></span></label>
+  <div class="krh-field"><input class="krh-in" id="krh-wage" data-wage inputmode="numeric" placeholder="3,000,000"><span class="krh-unit">원</span></div>
+  <p class="krh-hint">기본급과 매달 고정으로 받는 수당을 더한 금액이에요. 단축 시작일 기준이에요.</p>
+
+  <div class="krh-row">
+    <div class="krh-col">
+      <label class="krh-label" for="krh-before"><span>단축 전 주 근로시간</span></label>
+      <div class="krh-field"><input class="krh-in" id="krh-before" data-before inputmode="decimal" maxlength="4" value="40" placeholder="40"><span class="krh-unit">시간</span></div>
+    </div>
+    <div class="krh-col">
+      <label class="krh-label" for="krh-after"><span>단축 후 주 근로시간</span></label>
+      <div class="krh-field"><input class="krh-in" id="krh-after" data-after inputmode="decimal" maxlength="4" placeholder="30"><span class="krh-unit">시간</span></div>
+    </div>
+  </div>
+  <div class="krh-chips" data-after-chips>
+    <button type="button" class="krh-chip" data-a="35">주 35시간 (하루 1시간↓)</button>
+    <button type="button" class="krh-chip" data-a="30">주 30시간 (하루 2시간↓)</button>
+    <button type="button" class="krh-chip" data-a="25">주 25시간</button>
+    <button type="button" class="krh-chip" data-a="20">주 20시간 (하루 4시간)</button>
+    <button type="button" class="krh-chip" data-a="15">주 15시간</button>
+  </div>
+  <p class="krh-hint">단축 후에는 주 15시간 이상 35시간 이하로 일해야 해요. 단축 전 시간은 근로계약서의 주 소정근로시간이에요.</p>
+
+  <label class="krh-label" for="krh-months"><span>단축 기간</span><small>1~36개월</small></label>
+  <div class="krh-field"><input class="krh-in" id="krh-months" data-months inputmode="numeric" maxlength="2" value="12" placeholder="12"><span class="krh-unit">개월</span></div>
+  <div class="krh-chips" data-month-chips>
+    <button type="button" class="krh-chip" data-m="3">3개월</button>
+    <button type="button" class="krh-chip" data-m="6">6개월</button>
+    <button type="button" class="krh-chip" data-m="12">1년</button>
+    <button type="button" class="krh-chip" data-m="24">2년</button>
+    <button type="button" class="krh-chip" data-m="36">3년</button>
+  </div>
+
+  <p class="krh-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="krh-result" data-result aria-live="polite">
+    <div class="krh-result-inner">
+      <div class="krh-main">
+        <p class="krh-main-label" data-main-label></p>
+        <p class="krh-big" data-big></p>
+        <p class="krh-badge" data-badge></p>
+        <p class="krh-sub" data-sub></p>
+      </div>
+      <p class="krh-sec">한 달 예상 수입</p>
+      <table class="krh-table"><tbody data-rows></tbody></table>
+      <div class="krh-formula" data-formula></div>
+      <ul class="krh-note">
+        <li>단축급여는 고용보험에서 주고 세금이 붙지 않아요. 회사 월급은 통상임금을 근로시간 비율대로 줄인 참고값이라 실제 급여명세서와 다를 수 있어요.</li>
+        <li data-long-note hidden>단축은 기본 1년이고, 쓰지 않은 육아휴직 기간의 2배를 더해 최대 3년까지 쓸 수 있어요.</li>
+        <li>고용보험 피보험단위기간 180일 이상이 필요해요. 정확한 금액은 고용24나 고용센터에서 확인하세요.</li>
+        <li>회사도 고용24에서 사업주 지원금(대체인력·업무분담 지원금 등)을 신청할 수 있으니 회사에 함께 알려 주세요.</li>
+      </ul>
+      <div class="krh-actions">
+        <button type="button" class="krh-btn" data-reset>다시 입력</button>
+        <button type="button" class="krh-btn krh-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-krh]');
+    if (!root || root.__krh) return;
+    root.__krh = true;
+
+    // ===== 바뀔 수 있는 값: 제도가 바뀌면 여기만 고치면 돼요 (README.md "매년 할 일" 참고) =====
+    // 고용보험법 시행령 제104조의2 (대통령령 제35934호, 2026.1.1 시행). 2026.11.26 현재 2027년 변경 발표 없음.
+    var R = {
+      '2026': { basis: '2026년 기준', full: 10, cap1: 2500000, cap2: 1600000, rate2: 0.8, floor: 500000, note: '' },
+      '2027': { basis: '2027년 (발표 전, 2026년 값)', full: 10, cap1: 2500000, cap2: 1600000, rate2: 0.8, floor: 500000,
+                note: '2027년 단축급여 상한 변경은 2026년 11월 26일 현재 발표 전이라 2026년 값으로 계산해요. 바뀌면 고쳐 둘게요.' }
+    };
+    // ===== 바뀔 수 있는 값 끝 =====
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var wageI = $('[data-wage]'), beforeI = $('[data-before]'), afterI = $('[data-after]'), monthsI = $('[data-months]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var year = '2026', lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(Math.floor(n)) + '원'; }
+    function man(n) { return (n % 10000 ? comma(n) + '원' : comma(n / 10000) + '만원'); }
+    function hrs(h) { return (Math.round(h * 10) / 10) + '시간'; }
+    function num(inp) { return +String(inp.value).replace(/\D/g, '') || 0; }
+    function dec(inp) { var v = String(inp.value).trim(); return /^\d{1,2}(\.\d)?$/.test(v) ? +v : NaN; }
+    function hide(text) { result.classList.remove('krh-show'); msg.textContent = text || ''; }
+    function clamp(v, lo, hi) { return Math.min(Math.max(v, lo), hi); }
+
+    function calc() {
+      var c = R[year];
+      var wRaw = wageI.value, bRaw = beforeI.value.trim(), aRaw = afterI.value.trim(), mRaw = monthsI.value;
+      if (!wRaw && !aRaw) return hide('');
+      var wage = num(wageI), before = dec(beforeI), after = dec(afterI), months = +mRaw;
+      if (wRaw && !wage) return hide('월 통상임금을 입력해 주세요.');
+      if (wage > 100000000) return hide('월 통상임금을 다시 확인해 주세요.');
+      if (bRaw && (isNaN(before) || before <= 0 || before > 40)) return hide('단축 전 주 근로시간은 40시간 이하로 넣어 주세요 (소수점은 한 자리까지).');
+      if (aRaw && (isNaN(after) || after < 15 || after > 35)) return hide('단축 후 근로시간은 주 15시간 이상 35시간 이하여야 해요.');
+      if (bRaw && aRaw && after >= before) return hide('단축 후 근로시간이 단축 전보다 짧아야 해요.');
+      if (mRaw && (months < 1 || months > 36)) return hide('단축 기간은 1~36개월 사이로 넣어 주세요.');
+      if (wage && aRaw && !bRaw) return hide('단축 전 주 근로시간을 넣어 주세요.');
+      if (!wage || !bRaw || !aRaw) return hide('');
+      msg.textContent = '';
+
+      var cut = Math.round((before - after) * 10) / 10;
+      var h1 = Math.min(cut, c.full), h2 = Math.round((cut - h1) * 10) / 10;
+      var base1 = clamp(wage, c.floor, c.cap1);
+      var base2 = clamp(Math.floor(wage * c.rate2 + 1e-6), c.floor, c.cap2);
+      var p1 = Math.floor(base1 * h1 / before + 1e-6);
+      var p2 = h2 > 0 ? Math.floor(base2 * h2 / before + 1e-6) : 0;
+      var gov = p1 + p2;
+      var company = Math.floor(wage * after / before + 1e-6);
+      var sum = company + gov;
+      var ratio = Math.round(sum / wage * 1000) / 10;
+      var capped = wage > c.cap1 || (h2 > 0 && wage * c.rate2 > c.cap2);
+
+      var tb = $('[data-rows]');
+      tb.innerHTML = '';
+      function row(label, sub, amt, note, cls, capNote) {
+        var tr = document.createElement('tr'); if (cls) tr.className = cls;
+        var th = document.createElement('th'); th.textContent = label;
+        if (sub) { var s = document.createElement('small'); s.textContent = sub; th.appendChild(s); }
+        var td = document.createElement('td'); td.textContent = amt;
+        if (note) { var s2 = document.createElement('small'); s2.textContent = note; if (capNote) s2.className = 'krh-cap'; td.appendChild(s2); }
+        tr.appendChild(th); tr.appendChild(td); tb.appendChild(tr);
+      }
+      row('회사 월급 (참고)', '통상임금 × ' + hrs(after) + ' ÷ ' + hrs(before), won(company), '');
+      row('정부 단축급여', '고용보험, 세금 없음', won(gov), '');
+      row('최초 ' + hrs(h1) + ' 단축분', '통상임금 100%', won(p1), wage > c.cap1 ? '상한 ' + man(c.cap1) + ' 적용' : wage < c.floor ? '하한 ' + man(c.floor) + ' 적용' : '', 'krh-indent', wage > c.cap1);
+      if (h2 > 0) row('나머지 ' + hrs(h2) + ' 단축분', '통상임금 80%', won(p2), wage * c.rate2 > c.cap2 ? '상한 ' + man(c.cap2) + ' 적용' : wage * c.rate2 < c.floor ? '하한 ' + man(c.floor) + ' 적용' : '', 'krh-indent', wage * c.rate2 > c.cap2);
+      row('합계 예상 수입', '단축 전 ' + won(wage) + '의 ' + ratio + '%', won(sum), '', 'krh-total');
+      if (months) row(months + '개월 단축급여 총액', '정부 지원분만', won(gov * months), '', 'krh-total');
+
+      $('[data-main-label]').textContent = '주 ' + hrs(before) + ' → ' + hrs(after) + ' · 한 달 정부 단축급여';
+      $('[data-big]').innerHTML = comma(gov) + '<small>원</small>';
+      $('[data-badge]').textContent = h2 > 0 ? '10시간 100% + ' + hrs(h2) + ' 80%' : '줄인 ' + hrs(h1) + ' 모두 100%';
+      $('[data-sub]').textContent = '회사 월급과 합쳐 월 ' + won(sum) + ' (단축 전의 ' + ratio + '%) · ' + c.basis;
+
+      var lines = [
+        '단축 시간 = ' + hrs(before) + ' − ' + hrs(after) + ' = 주 ' + hrs(cut) + (h2 > 0 ? ' (최초 10시간 + 나머지 ' + hrs(h2) + ')' : ' (10시간 이하라 모두 100%)'),
+        '최초 ' + hrs(h1) + '분 = ' + man(base1) + (wage !== base1 ? '(' + (wage > base1 ? '상한' : '하한') + ')' : '') + ' × ' + h1 + ' ÷ ' + before + ' = ' + won(p1)
+      ];
+      if (h2 > 0) lines.push('나머지 ' + hrs(h2) + '분 = ' + man(base2) + (Math.floor(wage * c.rate2 + 1e-6) !== base2 ? '(' + (base2 === c.cap2 ? '상한' : '하한') + ')' : '(통상임금 80%)') + ' × ' + h2 + ' ÷ ' + before + ' = ' + won(p2));
+      lines.push('회사 월급(참고) = ' + won(wage) + ' × ' + after + ' ÷ ' + before + ' = ' + won(company));
+      lines.push('기준금액 상한: 최초 10시간분 ' + man(c.cap1) + ', 나머지 ' + man(c.cap2) + ' · 하한 ' + man(c.floor) + (capped ? ' (상한 적용됨)' : ''));
+      var box = $('[data-formula]');
+      box.innerHTML = '';
+      lines.forEach(function (t) { var p = document.createElement('p'); p.textContent = t; box.appendChild(p); });
+      $('[data-long-note]').hidden = !(months > 12);
+
+      lastText = '[육아기 근로시간 단축 급여 계산 결과] ' + c.basis + '\n월 통상임금: ' + won(wage) + '\n근로시간: 주 ' + hrs(before) + ' → ' + hrs(after) + ' (주 ' + hrs(cut) + ' 단축)' +
+        '\n회사 월급(참고): ' + won(company) + '\n정부 단축급여: 월 ' + won(gov) + ' (최초 ' + hrs(h1) + '분 ' + won(p1) + (h2 > 0 ? ' + 나머지 ' + hrs(h2) + '분 ' + won(p2) : '') + ')' +
+        '\n합계 예상 수입: 월 ' + won(sum) + ' (단축 전의 ' + ratio + '%)' + (months ? '\n' + months + '개월 단축급여 총액: ' + won(gov * months) : '');
+      result.classList.add('krh-show');
+    }
+
+    wageI.addEventListener('input', function () {
+      var v = wageI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 10);
+      wageI.value = v ? comma(v) : '';
+      calc();
+    });
+    [beforeI, afterI].forEach(function (inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').slice(0, 4);
+        if (v !== inp.value) inp.value = v;
+        syncChips(); calc();
+      });
+    });
+    monthsI.addEventListener('input', function () {
+      var v = monthsI.value.replace(/\D/g, '').slice(0, 2);
+      if (v !== monthsI.value) monthsI.value = v;
+      syncChips(); calc();
+    });
+
+    function syncChips() {
+      $$('[data-a]').forEach(function (b) { b.classList.toggle('krh-on', b.getAttribute('data-a') === afterI.value); });
+      $$('[data-m]').forEach(function (b) { b.classList.toggle('krh-on', b.getAttribute('data-m') === monthsI.value); });
+    }
+    $$('[data-a]').forEach(function (b) { b.addEventListener('click', function () { afterI.value = b.getAttribute('data-a'); syncChips(); calc(); }); });
+    $$('[data-m]').forEach(function (b) { b.addEventListener('click', function () { monthsI.value = b.getAttribute('data-m'); syncChips(); calc(); }); });
+
+    function setYear(y) {
+      year = y;
+      $$('[data-year]').forEach(function (b) { var on = b.getAttribute('data-year') === y; b.classList.toggle('krh-on', on); b.setAttribute('aria-pressed', on); });
+      $('[data-basis]').textContent = R[y].basis;
+      var n = $('[data-year-note]'); n.textContent = R[y].note; n.hidden = !R[y].note;
+      calc();
+    }
+    $$('[data-year]').forEach(function (b) { b.addEventListener('click', function () { setYear(b.getAttribute('data-year')); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      wageI.value = afterI.value = '';
+      beforeI.value = '40'; monthsI.value = '12';
+      syncChips(); setYear('2026');
+      hide(''); wageI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    syncChips();
+    setYear('2026');
+  })();
+  </script>
+</div>
+<!-- 육아기 근로시간 단축 급여 계산기 위젯 끝 -->
+
+<h2>육아기 근로시간 단축 급여 계산법</h2>
+<p>단축급여는 줄인 시간만큼의 임금을 고용보험에서 채워 주는 돈이에요. 매주 줄인 시간 중 <strong>처음 10시간</strong>은 통상임금의 100%로, <strong>10시간을 넘는 부분</strong>은 통상임금의 80%로 계산해요.</p>
+<ol>
+  <li><strong>최초 10시간 단축분</strong> = 월 통상임금(상한 250만원, 하한 50만원) × 줄인 시간(최대 10시간) ÷ 단축 전 주 소정근로시간</li>
+  <li><strong>나머지 단축분</strong> = 월 통상임금의 80%(상한 160만원, 하한 50만원) × (줄인 시간 − 10시간) ÷ 단축 전 주 소정근로시간</li>
+  <li><strong>한 달 단축급여</strong> = 1 + 2</li>
+</ol>
+<p>상한·하한은 시간 비율을 곱하기 <strong>전의 기준금액</strong>에 적용돼요. 그래서 단축급여 자체가 월 50만원 이상이라는 뜻은 아니에요.</p>
+<p>예를 들어 월 통상임금이 250만원인 사람이 주 40시간에서 주 20시간으로 줄이면(주 20시간 단축) 이렇게 계산해요.</p>
+<ul>
+  <li>최초 10시간분: 250만원 × 10 ÷ 40 = <strong>625,000원</strong></li>
+  <li>나머지 10시간분: 250만원 × 80% = 200만원이지만 상한 160만원 → 160만원 × 10 ÷ 40 = <strong>400,000원</strong></li>
+  <li>정부 단축급여: 625,000원 + 400,000원 = <strong>월 1,025,000원</strong></li>
+  <li>회사 월급(근로시간 비례): 250만원 × 20 ÷ 40 = 1,250,000원 → 합치면 <strong>월 2,275,000원</strong>, 단축 전의 약 91%예요.</li>
+</ul>
+
+<h2>주 근로시간별 한 달 단축급여 (주 40시간 기준)</h2>
+<p>단축 전 주 40시간인 경우, 월 통상임금과 단축 후 근로시간에 따라 받는 정부 단축급여예요. 회사 월급은 빼고 고용보험에서 받는 금액만 적었어요.</p>
+<table>
+  <thead><tr><th>단축 후 근로시간</th><th>통상임금 200만원</th><th>통상임금 250만원</th><th>통상임금 300만원 이상</th></tr></thead>
+  <tbody>
+    <tr><td>주 35시간 (5시간 단축)</td><td>250,000원</td><td>312,500원</td><td>312,500원</td></tr>
+    <tr><td>주 30시간 (10시간 단축)</td><td>500,000원</td><td>625,000원</td><td>625,000원</td></tr>
+    <tr><td>주 25시간 (15시간 단축)</td><td>700,000원</td><td>825,000원</td><td>825,000원</td></tr>
+    <tr><td>주 20시간 (20시간 단축)</td><td>900,000원</td><td>1,025,000원</td><td>1,025,000원</td></tr>
+    <tr><td>주 15시간 (25시간 단축)</td><td>1,100,000원</td><td>1,225,000원</td><td>1,225,000원</td></tr>
+  </tbody>
+</table>
+<p>통상임금이 250만원을 넘으면 상한 때문에 단축급여는 더 늘지 않아요. 대신 회사 월급이 그만큼 많아서 합계 수입은 통상임금이 높을수록 커요.</p>
+
+<h2>2026년에 바뀐 단축급여 상한액</h2>
+<p>2026년 1월 1일부터 고용보험법 시행령이 바뀌어 단축급여 계산에 쓰는 기준금액 상한이 올랐어요.</p>
+<table>
+  <thead><tr><th>구분</th><th>2025년</th><th>2026년</th></tr></thead>
+  <tbody>
+    <tr><td>최초 주 10시간 단축분 (통상임금 100%)</td><td>상한 220만원</td><td>상한 250만원</td></tr>
+    <tr><td>나머지 단축분 (통상임금 80%)</td><td>상한 150만원</td><td>상한 160만원</td></tr>
+    <tr><td>하한</td><td>50만원</td><td>50만원</td></tr>
+    <tr><td>최대 한 달 단축급여 (주 40→15시간)</td><td>1,112,500원</td><td>1,225,000원</td></tr>
+  </tbody>
+</table>
+<p>2027년에 상한을 다시 바꾼다는 발표는 2026년 11월 26일 현재 없어요. 계산기의 2027년 칩도 2026년 값으로 계산하고, 바뀌면 고쳐 둘게요.</p>
+
+<h2>누가, 얼마나 쓸 수 있나요</h2>
+<ul>
+  <li><strong>대상 자녀:</strong> 만 12세 이하 또는 초등학교 6학년 이하 자녀를 키우는 근로자(2025년 2월 23일부터 확대).</li>
+  <li><strong>단축 후 근로시간:</strong> 주 15시간 이상 35시간 이하.</li>
+  <li><strong>기간:</strong> 기본 1년에, 쓰지 않은 육아휴직 기간의 2배를 더해요. 육아휴직을 전혀 쓰지 않았다면 최대 3년까지 쓸 수 있어요.</li>
+  <li><strong>나눠 쓰기:</strong> 여러 번 나눠 쓸 수 있고, 한 번 쓸 때는 1개월 이상이어야 해요.</li>
+  <li><strong>급여 요건:</strong> 단축 시작 전까지 고용보험 피보험단위기간이 180일 이상이어야 해요.</li>
+</ul>
+<p>회사는 단축 근로자의 일을 나눠 맡은 동료나 대체인력이 있으면 고용24에서 대체인력 지원금·업무분담 지원금 같은 사업주 지원금을 신청할 수 있어요. 금액과 요건은 해마다 바뀌니 회사 담당자가 고용24 사업주 지원금 안내에서 확인하면 돼요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>육아기 근로시간 단축 급여는 얼마나 받나요?</h3>
+<p>2026년 기준으로 매주 줄인 시간 중 처음 10시간은 월 통상임금(상한 250만원)의 100%, 나머지는 통상임금의 80%(상한 160만원)를 단축 전 주 소정근로시간으로 나눠 시간 비율만큼 받아요. 주 40시간에서 30시간으로 줄이면 최대 월 62만 5천원, 주 20시간으로 줄이면 최대 월 102만 5천원이에요.</p>
+<h3>주 10시간까지 100% 지원은 무슨 뜻인가요?</h3>
+<p>매주 줄인 근로시간 중 처음 10시간분은 통상임금을 100% 기준으로 계산해 준다는 뜻이에요. 하루 2시간씩 주 10시간을 줄이면 줄어든 월급을 통상임금 250만원까지는 전부 단축급여로 받아서, 단축 전과 거의 같은 수입을 유지할 수 있어요. 10시간을 넘게 줄인 부분은 통상임금의 80%로 계산해요.</p>
+<h3>육아휴직을 다 쓰면 근로시간 단축은 못 쓰나요?</h3>
+<p>아니에요. 육아휴직과 별개로 근로시간 단축은 기본 1년을 쓸 수 있어요. 여기에 쓰지 않은 육아휴직 기간이 있으면 그 2배를 더해 주는 방식이라, 육아휴직을 1년 모두 썼다면 단축은 1년, 전혀 쓰지 않았다면 최대 3년까지 쓸 수 있어요.</p>
+<h3>단축급여에도 세금이 붙나요?</h3>
+<p>고용보험에서 받는 육아기 근로시간 단축 급여는 비과세라 소득세가 붙지 않아요. 다만 회사에서 받는 단축 후 월급은 평소처럼 세금과 4대보험료가 빠져요. 회사가 줄어든 시간에 대해 따로 돈을 주면 단축급여가 줄어들 수 있어요.</p>
+<h3>육아기 근로시간 단축 급여는 어떻게 신청하나요?</h3>
+<p>먼저 단축을 시작하려는 날 30일 전까지 회사에 신청하고, 회사가 고용센터에 확인서를 내요. 단축을 시작하고 1개월이 지난 뒤부터 매달 고용24 누리집이나 관할 고용센터에 급여를 신청하면 되고, 단축이 끝난 날부터 12개월 안에 신청해야 받을 수 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:parental-leave-pay}}">육아휴직 급여 계산기</a>: 휴직하면 달마다 얼마 받는지, 6+6 부모육아휴직제까지</li>
+  <li><a href="{{LINK:after-birth-checklist}}">출산 후 신청할 것 타임라인</a>: 출생신고·부모급여·육아휴직 신청 기한 한눈에</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "육아기 근로시간 단축 급여는 얼마나 받나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2026년 기준으로 매주 줄인 시간 중 처음 10시간은 월 통상임금(상한 250만원)의 100%, 나머지는 통상임금의 80%(상한 160만원)를 단축 전 주 소정근로시간으로 나눠 시간 비율만큼 받아요. 주 40시간에서 30시간으로 줄이면 최대 월 62만 5천원, 주 20시간으로 줄이면 최대 월 102만 5천원이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "주 10시간까지 100% 지원은 무슨 뜻인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "매주 줄인 근로시간 중 처음 10시간분은 통상임금을 100% 기준으로 계산해 준다는 뜻이에요. 하루 2시간씩 주 10시간을 줄이면 줄어든 월급을 통상임금 250만원까지는 전부 단축급여로 받아서, 단축 전과 거의 같은 수입을 유지할 수 있어요. 10시간을 넘게 줄인 부분은 통상임금의 80%로 계산해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "육아휴직을 다 쓰면 근로시간 단축은 못 쓰나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "아니에요. 육아휴직과 별개로 근로시간 단축은 기본 1년을 쓸 수 있어요. 여기에 쓰지 않은 육아휴직 기간이 있으면 그 2배를 더해 주는 방식이라, 육아휴직을 1년 모두 썼다면 단축은 1년, 전혀 쓰지 않았다면 최대 3년까지 쓸 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "단축급여에도 세금이 붙나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "고용보험에서 받는 육아기 근로시간 단축 급여는 비과세라 소득세가 붙지 않아요. 다만 회사에서 받는 단축 후 월급은 평소처럼 세금과 4대보험료가 빠져요. 회사가 줄어든 시간에 대해 따로 돈을 주면 단축급여가 줄어들 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "육아기 근로시간 단축 급여는 어떻게 신청하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "먼저 단축을 시작하려는 날 30일 전까지 회사에 신청하고, 회사가 고용센터에 확인서를 내요. 단축을 시작하고 1개월이 지난 뒤부터 매달 고용24 누리집이나 관할 고용센터에 급여를 신청하면 되고, 단축이 끝난 날부터 12개월 안에 신청해야 받을 수 있어요."
+   }
+  }
+ ]
+}
+</script>

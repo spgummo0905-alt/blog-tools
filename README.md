@@ -60,6 +60,7 @@ tools/
 | 기준중위소득 % 계산기 (2026·2027 가구원수별 기준표·급여별 선정기준) | `tools/median-income-percent` | 완성 |
 | 양육비 계산기 (2021 양육비 산정기준표·자녀 나이·부모 소득별 분담액) | `tools/child-support-calculator` | 완성 |
 | 건강보험 피부양자 자격 확인기 (소득 2천만원·재산 과세표준·형제자매 기준) | `tools/dependent-eligibility-check` | 완성 |
+| 육아기 근로시간 단축 급여 계산기 (주 10시간 100%·회사 월급 합산) | `tools/reduced-hours-pay` | 완성 |
 
 ## 작업 규칙
 
