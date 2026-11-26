@@ -1,0 +1,532 @@
+<p><strong>2027년 기준중위소득은 4인 가구 월 6,929,885원, 1인 가구 월 2,736,042원으로 2026년보다 6.70% 올라요. 우리 집 소득이 몇 %인지는 "가구 소득 ÷ 가구원 수별 기준중위소득 × 100"으로 구하고, 예를 들어 4인 가구 월 350만원이면 2027년 기준 약 50.5%예요.</strong> 아래 계산기에 가구원 수와 월 소득만 넣으면 기준중위소득 대비 %와 30~180% 기준 금액 표에서 내 위치, 생계·의료·주거·교육급여와 차상위계층 같은 대표 제도의 기준선 안에 드는지 바로 확인할 수 있어요. 2026년 기준으로 바꿔 비교해 볼 수도 있어요.</p>
+<!-- 기준중위소득 % 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kmi" data-kmi>
+  <style>
+    .kmi{--kmi-accent:#3b6ef5;--kmi-accent-soft:#eef3ff;--kmi-text:#1d2433;--kmi-sub:#6b7385;--kmi-line:#e3e7ef;--kmi-bg:#fff;--kmi-ok:#1f9d6b;--kmi-no:#e0565b;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kmi-line);border-radius:20px;background:var(--kmi-bg);
+      color:var(--kmi-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kmi [hidden]{display:none!important}
+    .kmi *,.kmi *::before,.kmi *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kmi .kmi-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kmi .kmi-desc{margin-top:4px;font-size:14px;color:var(--kmi-sub)}
+    .kmi .kmi-label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kmi-text)}
+    .kmi .kmi-aside{font-size:12.5px;font-weight:500;color:var(--kmi-sub)}
+    .kmi .kmi-field{position:relative}
+    .kmi .kmi-in{width:100%;height:52px;padding:0 40px 0 14px;border:1.5px solid var(--kmi-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kmi-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kmi .kmi-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kmi .kmi-in:focus{border-color:var(--kmi-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kmi .kmi-in.kmi-bad{border-color:var(--kmi-no)}
+    .kmi .kmi-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kmi-sub);pointer-events:none}
+    .kmi .kmi-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kmi .kmi-chip{height:32px;padding:0 12px;border:1.5px solid var(--kmi-line);border-radius:999px;background:#fff;color:var(--kmi-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kmi .kmi-chip:hover{border-color:#c9d3ea;color:var(--kmi-text)}
+    .kmi .kmi-chip.kmi-on{border-color:var(--kmi-accent);background:var(--kmi-accent-soft);color:var(--kmi-accent)}
+    .kmi .kmi-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kmi .kmi-seg.kmi-4{grid-template-columns:repeat(4,1fr)}
+    .kmi .kmi-seg-btn{height:44px;padding:0 4px;border:1.5px solid var(--kmi-line);border-radius:12px;background:#f8f9fc;color:var(--kmi-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .kmi .kmi-seg-btn:hover{border-color:#c9d3ea}
+    .kmi .kmi-seg-btn.kmi-on{border-color:var(--kmi-accent);background:var(--kmi-accent);color:#fff}
+    .kmi .kmi-big-row{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .kmi .kmi-big-row .kmi-field{flex:1}
+    .kmi .kmi-hint{margin-top:6px;font-size:12.5px;color:var(--kmi-sub)}
+    .kmi .kmi-hint b{color:var(--kmi-text);font-weight:600}
+    .kmi .kmi-base{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:6px;font-size:12.5px;color:var(--kmi-sub)}
+    .kmi .kmi-link{border:0;background:none;color:var(--kmi-accent);font-size:13px;font-weight:600;cursor:pointer;padding:4px 2px;white-space:nowrap}
+    .kmi .kmi-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kmi-no)}
+    .kmi .kmi-sub,.kmi .kmi-note,.kmi .kmi-desc,.kmi .kmi-hint,.kmi .kmi-msg,.kmi .kmi-p-d,.kmi .kmi-base,.kmi .kmi-warn{word-break:keep-all}
+    .kmi .kmi-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kmi .kmi-result.kmi-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kmi .kmi-result-inner{overflow:hidden}
+    .kmi .kmi-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kmi-accent-soft);text-align:center}
+    .kmi .kmi-main-label{font-size:14px;color:var(--kmi-sub);word-break:keep-all}
+    .kmi .kmi-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kmi-accent);line-height:1.2}
+    .kmi .kmi-big small{font-size:22px;font-weight:700;margin-left:2px}
+    .kmi .kmi-sub{margin-top:6px;font-size:14px;color:var(--kmi-sub)}
+    .kmi .kmi-bar{position:relative;height:10px;margin:14px 4px 4px;border-radius:999px;background:#fff;overflow:hidden}
+    .kmi .kmi-bar i{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--kmi-accent);transition:width .4s ease}
+    .kmi .kmi-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kmi .kmi-card{padding:14px;border:1px solid var(--kmi-line);border-radius:14px;background:#fff}
+    .kmi .kmi-card-k{font-size:12px;color:var(--kmi-sub);word-break:keep-all}
+    .kmi .kmi-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kmi-text);word-break:keep-all}
+    .kmi .kmi-h{margin:18px 0 6px;font-size:15px;font-weight:700}
+    .kmi .kmi-table{width:100%;border:1px solid var(--kmi-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .kmi .kmi-table th,.kmi .kmi-table td{padding:9px 12px;border:0;border-bottom:1px solid var(--kmi-line);background:#fff;text-align:left;font-weight:500;color:var(--kmi-text)}
+    .kmi .kmi-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .kmi .kmi-table th small{display:block;font-size:11.5px;color:var(--kmi-sub);font-weight:400;word-break:keep-all}
+    .kmi .kmi-table tr:last-child th,.kmi .kmi-table tr:last-child td{border-bottom:0}
+    .kmi .kmi-table .kmi-in-range th,.kmi .kmi-table .kmi-in-range td{color:var(--kmi-text)}
+    .kmi .kmi-table .kmi-out th,.kmi .kmi-table .kmi-out td{color:#a3aaba}
+    .kmi .kmi-table .kmi-me th,.kmi .kmi-table .kmi-me td{background:var(--kmi-accent);color:#fff;font-weight:700}
+    .kmi .kmi-table .kmi-me th small{color:rgba(255,255,255,.85)}
+    .kmi .kmi-progs{list-style:none;display:grid;gap:8px}
+    .kmi .kmi-p{padding:12px 14px;border:1px solid var(--kmi-line);border-radius:14px;background:#fff}
+    .kmi .kmi-p.kmi-p-no{background:#fafbfd}
+    .kmi .kmi-p-top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+    .kmi .kmi-p-n{font-size:15px;font-weight:700}
+    .kmi .kmi-p-n small{display:block;font-size:12px;font-weight:500;color:var(--kmi-sub)}
+    .kmi .kmi-badge{flex:none;padding:3px 10px;border-radius:999px;font-size:12px;font-weight:700;background:#e8f7f0;color:var(--kmi-ok);white-space:nowrap}
+    .kmi .kmi-badge.kmi-b-no{background:#f1f3f7;color:var(--kmi-sub)}
+    .kmi .kmi-p-d{margin-top:4px;font-size:13px;color:var(--kmi-sub)}
+    .kmi .kmi-p-d b{color:var(--kmi-text);font-weight:600}
+    .kmi .kmi-warn{margin-top:14px;padding:12px 14px;border-radius:12px;background:#fff7e8;font-size:13px;color:#7a5a12}
+    .kmi .kmi-note{margin-top:10px;font-size:12.5px;color:var(--kmi-sub)}
+    .kmi .kmi-note li{margin-left:16px}
+    .kmi .kmi-actions{display:flex;gap:8px;margin-top:14px}
+    .kmi .kmi-btn{flex:1;height:44px;border:1.5px solid var(--kmi-line);border-radius:12px;background:#fff;color:var(--kmi-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kmi .kmi-btn:hover{background:#f4f6fa}
+    .kmi .kmi-btn:active{transform:scale(.98)}
+    .kmi .kmi-btn.kmi-primary{border-color:var(--kmi-accent);background:var(--kmi-accent);color:#fff}
+    .kmi .kmi-btn.kmi-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kmi{padding:18px;border-radius:16px}.kmi .kmi-big{font-size:38px}.kmi .kmi-in{font-size:17px}
+      .kmi .kmi-seg-btn{font-size:13px}.kmi .kmi-table th,.kmi .kmi-table td{padding:8px 10px}}
+    @media (prefers-reduced-motion:reduce){.kmi .kmi-result,.kmi .kmi-in,.kmi .kmi-btn,.kmi .kmi-chip,.kmi .kmi-seg-btn,.kmi .kmi-bar i{transition:none}}
+  </style>
+
+  <p class="kmi-title">기준중위소득 % 계산기</p>
+  <p class="kmi-desc">가구원 수와 월 소득을 넣으면 우리 집 소득이 기준중위소득의 몇 %인지, 어떤 복지 기준선 안에 드는지 바로 보여 줘요.</p>
+
+  <p class="kmi-label">기준 연도 <span class="kmi-aside">2027년 값은 2027. 1. 1.부터 적용</span></p>
+  <div class="kmi-seg" role="group" aria-label="기준 연도">
+    <button type="button" class="kmi-seg-btn" data-year="2026" aria-pressed="false">2026년</button>
+    <button type="button" class="kmi-seg-btn kmi-on" data-year="2027" aria-pressed="true">2027년</button>
+  </div>
+
+  <p class="kmi-label">가구원 수 <span class="kmi-aside">주민등록상 같은 가구 기준</span></p>
+  <div class="kmi-seg kmi-4" role="group" aria-label="가구원 수">
+    <button type="button" class="kmi-seg-btn" data-size="1" aria-pressed="false">1인</button>
+    <button type="button" class="kmi-seg-btn" data-size="2" aria-pressed="false">2인</button>
+    <button type="button" class="kmi-seg-btn" data-size="3" aria-pressed="false">3인</button>
+    <button type="button" class="kmi-seg-btn kmi-on" data-size="4" aria-pressed="true">4인</button>
+    <button type="button" class="kmi-seg-btn" data-size="5" aria-pressed="false">5인</button>
+    <button type="button" class="kmi-seg-btn" data-size="6" aria-pressed="false">6인</button>
+    <button type="button" class="kmi-seg-btn" data-size="7" aria-pressed="false">7인</button>
+    <button type="button" class="kmi-seg-btn" data-size="8" aria-pressed="false">8인 이상</button>
+  </div>
+  <div data-many-box hidden>
+    <div class="kmi-big-row">
+      <div class="kmi-field"><input class="kmi-in" data-many inputmode="numeric" maxlength="2" value="8" aria-label="가구원 수 (8인 이상)" autocomplete="off"><span class="kmi-unit">인</span></div>
+    </div>
+    <p class="kmi-hint">8인 이상은 고시 산식대로 7인 금액에 (7인 − 6인) 차액을 1명마다 더해 계산해요.</p>
+  </div>
+
+  <p class="kmi-label">소득 기준</p>
+  <div class="kmi-seg" role="group" aria-label="소득 기준">
+    <button type="button" class="kmi-seg-btn kmi-on" data-mode="simple" aria-pressed="true">간단 (월 소득)</button>
+    <button type="button" class="kmi-seg-btn" data-mode="exact" aria-pressed="false">소득인정액 입력</button>
+  </div>
+  <p class="kmi-hint" data-mode-hint></p>
+
+  <p class="kmi-label"><label for="kmi-inc" data-inc-label>가구 월 소득</label><span class="kmi-aside" data-inc-aside>세전, 가구원 전체 합계</span></p>
+  <div class="kmi-field"><input class="kmi-in" id="kmi-inc" data-inc inputmode="numeric" placeholder="3,500,000" autocomplete="off"><span class="kmi-unit">원</span></div>
+  <div class="kmi-chips" data-chips></div>
+  <div class="kmi-base">
+    <span data-period-text>한 달 금액으로 넣어 주세요</span>
+    <button type="button" class="kmi-link" data-period>연 소득으로 입력</button>
+  </div>
+
+  <p class="kmi-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kmi-result" data-result aria-live="polite">
+    <div class="kmi-result-inner">
+      <div class="kmi-main">
+        <p class="kmi-main-label" data-main-label></p>
+        <p class="kmi-big"><span data-big></span><small>%</small></p>
+        <div class="kmi-bar" aria-hidden="true"><i data-bar></i></div>
+        <p class="kmi-sub" data-sub></p>
+      </div>
+      <div class="kmi-grid">
+        <div class="kmi-card"><p class="kmi-card-k">기준중위소득 (100%)</p><p class="kmi-card-v" data-median></p></div>
+        <div class="kmi-card"><p class="kmi-card-k" data-near-k></p><p class="kmi-card-v" data-near-v></p></div>
+      </div>
+
+      <p class="kmi-h" data-table-h></p>
+      <table class="kmi-table"><tbody data-rows></tbody></table>
+
+      <p class="kmi-h">해당 가능성이 있는 대표 제도</p>
+      <ul class="kmi-progs" data-progs></ul>
+
+      <p class="kmi-warn" data-warn></p>
+      <ul class="kmi-note" data-notes></ul>
+      <div class="kmi-actions">
+        <button type="button" class="kmi-btn" data-reset>다시 입력</button>
+        <button type="button" class="kmi-btn kmi-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kmi]');
+    if (!root || root.__kmi) return;
+    root.__kmi = true;
+
+    // ===== 연도별 값: 바뀌면 여기만 고치세요 (README.md "매년 할 일" 참고) =====
+    // 기준 중위소득 (보건복지부 고시, 중앙생활보장위원회 의결) 1~7인 가구, 월 원
+    var R = {
+      median: {
+        2026: [2564238, 4199292, 5359036, 6494738, 7556719, 8555952, 9515150], // 제77차 중생보위(2025. 7. 31.)
+        2027: [2736042, 4480645, 5718091, 6929885, 8063019, 9129201, 10152665] // 제80차 중생보위(2026. 7. 28.), 6.70% 인상
+      },
+      // 표에 보여 줄 비율(%)과 이름표
+      steps: [[30, ''], [32, '생계급여'], [40, '의료급여'], [48, '주거급여'], [50, '교육급여·차상위'], [60, '청년월세(청년가구)'],
+        [100, '기준중위소득'], [120, ''], [150, ''], [180, '']],
+      // 대표 제도. pct: 연도별 기준 비율, ok: 2027년 비율이 확정(발표)됐는지
+      progs: [
+        { name: '생계급여', pct: { 2026: 32, 2027: 32 }, ok: { 2026: 1, 2027: 1 }, where: '기초생활보장 · 주민센터·복지로',
+          d: '기준액에서 소득인정액을 뺀 만큼 매달 받아요. 부양의무자 기준이 일부 남아 있어요.', gap: 1 },
+        { name: '의료급여', pct: { 2026: 40, 2027: 40 }, ok: { 2026: 1, 2027: 1 }, where: '기초생활보장 · 주민센터·복지로',
+          d: '병원비 본인부담이 크게 줄어요. 부양의무자 기준을 함께 봐요.' },
+        { name: '주거급여', pct: { 2026: 48, 2027: 48 }, ok: { 2026: 1, 2027: 1 }, where: '기초생활보장 · 주민센터·복지로',
+          d: '임차가구는 월세(지역별 기준임대료 한도), 자가가구는 집수리를 지원해요. 부양의무자 기준이 없어요.' },
+        { name: '교육급여', pct: { 2026: 50, 2027: 50 }, ok: { 2026: 1, 2027: 1 }, where: '기초생활보장 · 주민센터·복지로',
+          d: '초·중·고 자녀의 교육활동지원비를 받아요. 부양의무자 기준이 없어요.' },
+        { name: '차상위계층', pct: { 2026: 50, 2027: 50 }, ok: { 2026: 1, 2027: 1 }, where: '주민센터',
+          d: '기초생활수급자가 아닌 저소득 가구예요. 차상위 본인부담경감, 자활사업 등과 이어져요.' },
+        { name: '한부모가족 아동양육비', pct: { 2026: 65, 2027: 65 }, ok: { 2026: 1, 2027: 0 }, where: '한부모가족 · 주민센터·복지로',
+          d: '18세 미만 자녀를 키우는 한부모가족에게 자녀 1명당 월 23만원(2026년)을 지원해요.' },
+        { name: '청년월세 지원', pct: { 2026: 60, 2027: 60 }, ok: { 2026: 1, 2027: 0 }, where: '청년 · 복지로·정부24',
+          d: '19~34세 무주택 독립 청년이 대상이에요. 청년가구 60% 이하, 부모 등 원가구 100% 이하 조건을 함께 봐요.' }
+      ]
+    };
+    var CHIPS = [['100만', 1000000], ['200만', 2000000], ['300만', 3000000], ['400만', 4000000], ['500만', 5000000], ['700만', 7000000]];
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var incI = $('[data-inc]'), manyI = $('[data-many]'), msg = $('[data-msg]'), result = $('[data-result]');
+    var st = { year: 2027, size: 4, mode: 'simple', yearly: false }, lastText = '';
+
+    function c(n) { return Math.round(n).toLocaleString('ko-KR'); }
+    function won(n) { return c(n) + '원'; }
+    function man(n) {
+      var m = Math.floor(n / 10000), e = Math.floor(m / 10000), r = m % 10000;
+      if (m < 1) return won(n);
+      return (n % 10000 ? '약 ' : '') + (e ? e + '억' + (r ? ' ' : '') : '') + (r ? c(r) + '만' : '') + '원';
+    }
+    function num(el) { return +el.value.replace(/\D/g, '') || 0; }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
+    function pctText(x) { var v = Math.floor(x * 10 + 1e-7) / 10; return v.toLocaleString('ko-KR', { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
+
+    // 가구원 수별 기준 중위소득. 8인 이상: 7인 + (7인 − 6인) × (가구원 수 − 7)
+    function median(year, n) {
+      var t = R.median[year];
+      if (n <= 7) return t[n - 1];
+      return t[6] + (t[6] - t[5]) * (n - 7);
+    }
+    function line(year, n, p) { return Math.round(median(year, n) * p / 100); }
+
+    var chipBox = $('[data-chips]');
+    CHIPS.forEach(function (ch) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kmi-chip'; b.setAttribute('data-p', ch[1]); b.textContent = ch[0];
+      chipBox.appendChild(b);
+    });
+
+    function seg(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) { var on = b.getAttribute(attr) === String(val); b.classList.toggle('kmi-on', on); b.setAttribute('aria-pressed', on); });
+    }
+    function syncChips() {
+      var v = num(incI);
+      $$('[data-p]').forEach(function (b) { var p = +b.getAttribute('data-p'); b.classList.toggle('kmi-on', (st.yearly ? p * 12 : p) === v); });
+    }
+    function syncLabels() {
+      $('[data-many-box]').hidden = st.size < 8;
+      var exact = st.mode === 'exact';
+      $('[data-inc-label]').textContent = (exact ? '가구 소득인정액' : '가구 소득') + (st.yearly ? ' (1년)' : ' (월)');
+      $('[data-inc-aside]').textContent = exact ? '복지로 모의계산 결과 등' : '세전, 가구원 전체 합계';
+      $('[data-mode-hint]').innerHTML = exact
+        ? '소득인정액 = <b>소득평가액 + 재산의 소득환산액</b>이에요. 복지로 모의계산이나 주민센터 조사 결과를 알고 있다면 그 금액을 넣으세요.'
+        : '가구원 모두의 <b>세전</b> 근로·사업소득 등을 더해 넣으세요. 실제 심사는 재산까지 소득으로 환산한 <b>소득인정액</b>으로 해서 결과가 달라질 수 있어요.';
+      $('[data-period-text]').textContent = st.yearly ? '연 소득을 12로 나눠 계산해요' : '한 달 금액으로 넣어 주세요';
+      $('[data-period]').textContent = st.yearly ? '월 소득으로 입력' : '연 소득으로 입력';
+      incI.placeholder = st.yearly ? '42,000,000' : '3,500,000';
+      $$('[data-p]').forEach(function (b) { var p = +b.getAttribute('data-p'); b.textContent = st.yearly ? c(p * 12 / 10000) + '만' : c(p / 10000) + '만'; });
+      syncChips();
+    }
+    function hide(text) { result.classList.remove('kmi-show'); msg.textContent = text || ''; }
+
+    function size() {
+      if (st.size < 8) return st.size;
+      var n = num(manyI);
+      return manyI.value && n >= 8 && n <= 20 ? n : 0;
+    }
+
+    function calc() {
+      var y = st.year, exact = st.mode === 'exact';
+      incI.classList.remove('kmi-bad'); manyI.classList.remove('kmi-bad');
+      var n = size();
+      if (!n) { manyI.classList.add('kmi-bad'); return hide('가구원 수는 8~20인 사이로 넣어 주세요.'); }
+      if (!incI.value) return hide('');
+      var raw = num(incI);
+      var inc = st.yearly ? Math.round(raw / 12) : raw;
+      if (inc > 1000000000) { incI.classList.add('kmi-bad'); return hide('금액이 너무 커요. 월 10억원 이하로 넣어 주세요.'); }
+      msg.textContent = '';
+
+      var med = median(y, n), ratio = inc / med * 100;
+      var who = y + '년 ' + n + '인 가구';
+      $('[data-main-label]').textContent = who + ' 기준중위소득 대비 ' + (exact ? '소득인정액' : '소득');
+      $('[data-big]').textContent = pctText(ratio);
+      $('[data-bar]').style.width = Math.min(ratio / 180 * 100, 100) + '%';
+      $('[data-sub]').textContent = (st.yearly ? '연 ' + man(raw) + ' ÷ 12 = ' : '') + '월 ' + won(inc) + ' ÷ ' + won(med);
+      $('[data-median]').textContent = won(med);
+
+      // 가장 가까운 기준선: 내 소득이 들어가는 가장 낮은 비율, 없으면 180% 초과
+      var steps = R.steps, inside = null;
+      for (var i = 0; i < steps.length; i++) { if (inc <= line(y, n, steps[i][0])) { inside = steps[i]; break; } }
+      if (inside) {
+        $('[data-near-k]').textContent = '중위 ' + inside[0] + '% 기준까지';
+        var left = line(y, n, inside[0]) - inc;
+        $('[data-near-v]').textContent = left ? won(left) + ' 여유' : '기준선과 같아요';
+      } else {
+        $('[data-near-k]').textContent = '중위 180% 기준보다';
+        $('[data-near-v]').textContent = won(inc - line(y, n, 180)) + ' 많음';
+      }
+
+      // 비율별 기준 금액 표 + 내 위치
+      $('[data-table-h]').textContent = who + ' 비율별 기준 금액';
+      var rows = [], placed = false;
+      function meRow() { rows.push('<tr class="kmi-me"><th>내 ' + (exact ? '소득인정액' : '소득') + '<small>' + pctText(ratio) + '%</small></th><td>' + won(inc) + '</td></tr>'); placed = true; }
+      steps.forEach(function (s) {
+        var amt = line(y, n, s[0]);
+        if (!placed && inc <= amt) meRow();
+        rows.push('<tr class="' + (inc <= amt ? 'kmi-in-range' : 'kmi-out') + '"><th>중위 ' + s[0] + '%' + (s[1] ? '<small>' + esc(s[1]) + '</small>' : '') + '</th><td>' + won(amt) + '</td></tr>');
+      });
+      if (!placed) meRow();
+      $('[data-rows]').innerHTML = rows.join('');
+
+      // 대표 제도
+      var items = [], txProgs = [];
+      R.progs.forEach(function (p) {
+        var pc = p.pct[y], amt = line(y, n, pc), ok = inc <= amt;
+        var d = '<b>중위 ' + pc + '% = ' + won(amt) + '</b>' + (ok ? ' 이하예요. ' : '보다 ' + won(inc - amt) + ' 많아요. ');
+        if (p.gap && ok) d += '생계급여 최대 <b>월 ' + won(amt - inc) + '</b> (기준액 − 소득인정액). ';
+        d += esc(p.d);
+        if (!p.ok[y]) d += ' <b>2027년 기준은 발표 전이라 2026년 비율로 보여 줘요.</b>';
+        items.push('<li class="kmi-p' + (ok ? '' : ' kmi-p-no') + '"><div class="kmi-p-top"><p class="kmi-p-n">' + esc(p.name) + '<small>' + esc(p.where) + '</small></p>' +
+          '<span class="kmi-badge' + (ok ? '' : ' kmi-b-no') + '">' + (ok ? '기준 이내' : '기준 초과') + '</span></div><p class="kmi-p-d">' + d + '</p></li>');
+        txProgs.push('- ' + p.name + ' (중위 ' + pc + '% ' + won(amt) + (p.ok[y] ? '' : ', 2026년 비율') + '): ' + (ok ? '기준 이내' : '기준 초과'));
+      });
+      $('[data-progs]').innerHTML = items.join('');
+
+      $('[data-warn]').textContent = exact
+        ? '선정 여부는 소득인정액 외에도 가구원 범위, 부양의무자, 재산 기준 등을 함께 심사해요. 정확한 결과는 주민센터 상담이나 복지로 모의계산으로 확인하세요.'
+        : '실제 심사는 월 소득이 아니라 소득인정액(소득평가액 + 재산의 소득환산액)으로 해요. 집·예금·자동차가 있으면 실제보다 높게, 공제 항목이 많으면 낮게 나올 수 있으니 복지로 "복지서비스 모의계산"으로 꼭 확인하세요.';
+      var notes = [];
+      if (y === 2027 && new Date() < new Date(2027, 0, 1)) notes.push('2027년 기준은 2027. 1. 1.부터 적용돼요. 2026년 12월까지 신청하면 2026년 기준으로 심사해요.');
+      if (n >= 8) notes.push(n + '인 가구 기준중위소득은 7인 ' + won(R.median[y][6]) + ' + (7인 − 6인 차액 ' + won(R.median[y][6] - R.median[y][5]) + ') × ' + (n - 7) + '로 계산했어요.');
+      notes.push('제도마다 가구원 범위, 나이, 재산, 신청 시기 같은 조건이 따로 있어요. 궁금한 점은 보건복지상담센터(국번 없이 129)나 주민센터에 물어보세요.');
+      $('[data-notes]').innerHTML = notes.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('');
+      result.classList.add('kmi-show');
+
+      lastText = ['[' + who + ' 기준중위소득 % 계산 결과]',
+        (exact ? '소득인정액' : '월 소득(세전)') + ': ' + won(inc) + (st.yearly ? ' (연 ' + won(raw) + ' ÷ 12)' : ''),
+        '기준중위소득(100%): ' + won(med),
+        '기준중위소득 대비: ' + pctText(ratio) + '%',
+        '대표 제도 기준(해당 가능성):'].concat(txProgs,
+        ['※ 실제 선정은 소득인정액(재산 환산 포함)과 제도별 조건으로 판단. 복지로 모의계산·주민센터 확인 권장']).join('\n');
+    }
+
+    incI.addEventListener('input', function () {
+      var v = incI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 13);
+      incI.value = v ? (+v).toLocaleString('ko-KR') : '';
+      syncChips(); calc();
+    });
+    manyI.addEventListener('input', function () {
+      var v = manyI.value.replace(/\D/g, '').slice(0, 2);
+      if (v !== manyI.value) manyI.value = v;
+      calc();
+    });
+    $$('[data-p]').forEach(function (b) {
+      b.addEventListener('click', function () { var p = +b.getAttribute('data-p'); incI.value = c(st.yearly ? p * 12 : p); syncChips(); calc(); });
+    });
+
+    function bind(attr, key, numeric) {
+      $$('[' + attr + ']').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute(attr); st[key] = numeric ? +v : v; seg(attr, v); syncLabels(); calc();
+          if (attr === 'data-size' && st.size === 8) manyI.focus();
+        });
+      });
+    }
+    bind('data-year', 'year', true); bind('data-size', 'size', true); bind('data-mode', 'mode');
+
+    $('[data-period]').addEventListener('click', function () {
+      var v = num(incI);
+      st.yearly = !st.yearly;
+      if (incI.value) incI.value = c(st.yearly ? v * 12 : Math.round(v / 12));
+      syncLabels(); calc(); incI.focus();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      incI.value = ''; syncChips(); hide(''); incI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    syncLabels();
+  })();
+  </script>
+</div>
+<!-- 기준중위소득 % 계산기 위젯 끝 -->
+<h2>기준중위소득 % 계산법</h2>
+<p>기준중위소득은 보건복지부 장관이 중앙생활보장위원회 심의·의결을 거쳐 매년 고시하는 국민 가구소득의 중위값이에요. 기초생활보장 급여를 비롯해 여러 부처의 복지사업이 "기준중위소득의 ○% 이하"라는 방식으로 대상을 정하기 때문에, 내 소득이 몇 %인지 알면 어떤 제도를 알아볼지 가늠할 수 있어요.</p>
+<p><strong>기준중위소득 대비 % = 가구 월 소득(소득인정액) ÷ 가구원 수별 기준중위소득 × 100</strong></p>
+<ul>
+  <li><strong>가구 월 소득:</strong> 주민등록상 함께 사는 가구원 모두의 소득을 더한 세전 금액이에요. 실제 복지 심사에서는 여기에 재산을 소득으로 환산한 금액까지 더한 <strong>소득인정액</strong>을 써요.</li>
+  <li><strong>가구원 수별 기준중위소득:</strong> 1~7인 가구는 고시된 금액을 쓰고, 8인 이상은 7인 가구 금액에 (7인 − 6인 금액 차이)를 1명 늘 때마다 더해요.</li>
+  <li><strong>비율별 기준 금액:</strong> 기준중위소득 × 비율. 예를 들어 생계급여 선정기준은 기준중위소득 × 32%예요.</li>
+</ul>
+<p><strong>계산 예시:</strong> 2027년, 4인 가구, 가구 월 소득 350만원인 경우</p>
+<ol>
+  <li>2027년 4인 가구 기준중위소득: 6,929,885원</li>
+  <li>3,500,000원 ÷ 6,929,885원 × 100 = <strong>약 50.5%</strong></li>
+  <li>교육급여·차상위계층 기준(50%, 3,464,943원)보다 35,057원 많고, 중위 60% 기준(4,157,931원)보다는 657,931원 적어요.</li>
+</ol>
+<p>8인 가구라면 2027년 기준 10,152,665원 + (10,152,665원 − 9,129,201원) = 11,176,129원이 100% 금액이에요.</p>
+
+<h2>2026·2027년 가구원 수별 기준중위소득표</h2>
+<p>월 금액이에요. 2027년 금액은 2026년 7월 28일 제80차 중앙생활보장위원회에서 의결됐고 2027년 1월 1일부터 적용돼요. 2026년 12월까지 신청하는 복지사업은 2026년 금액으로 심사해요.</p>
+<table>
+  <thead><tr><th>가구원 수</th><th>2026년</th><th>2027년</th><th>인상액</th></tr></thead>
+  <tbody>
+    <tr><td>1인</td><td>2,564,238원</td><td>2,736,042원</td><td>171,804원</td></tr>
+    <tr><td>2인</td><td>4,199,292원</td><td>4,480,645원</td><td>281,353원</td></tr>
+    <tr><td>3인</td><td>5,359,036원</td><td>5,718,091원</td><td>359,055원</td></tr>
+    <tr><td>4인</td><td>6,494,738원</td><td>6,929,885원</td><td>435,147원</td></tr>
+    <tr><td>5인</td><td>7,556,719원</td><td>8,063,019원</td><td>506,300원</td></tr>
+    <tr><td>6인</td><td>8,555,952원</td><td>9,129,201원</td><td>573,249원</td></tr>
+    <tr><td>7인</td><td>9,515,150원</td><td>10,152,665원</td><td>637,515원</td></tr>
+    <tr><td>8인</td><td>10,474,348원</td><td>11,176,129원</td><td>701,781원</td></tr>
+  </tbody>
+</table>
+<p>2027년 인상률 6.70%는 기초생활보장제도가 생긴 이후 가장 큰 폭이에요. 9인 이상은 8인 금액에 1명마다 2026년 959,198원, 2027년 1,023,464원씩 더하면 돼요.</p>
+
+<h2>2027년 기초생활보장 급여별 선정기준표</h2>
+<p>가구의 소득인정액이 아래 금액 이하이면 해당 급여의 소득 기준을 충족해요. 급여별 비율(생계 32%, 의료 40%, 주거 48%, 교육 50%)은 2026년과 같아요.</p>
+<table>
+  <thead><tr><th>가구원 수</th><th>생계급여 (32%)</th><th>의료급여 (40%)</th><th>주거급여 (48%)</th><th>교육급여 (50%)</th></tr></thead>
+  <tbody>
+    <tr><td>1인</td><td>875,533원</td><td>1,094,417원</td><td>1,313,300원</td><td>1,368,021원</td></tr>
+    <tr><td>2인</td><td>1,433,806원</td><td>1,792,258원</td><td>2,150,710원</td><td>2,240,323원</td></tr>
+    <tr><td>3인</td><td>1,829,789원</td><td>2,287,236원</td><td>2,744,684원</td><td>2,859,046원</td></tr>
+    <tr><td>4인</td><td>2,217,563원</td><td>2,771,954원</td><td>3,326,345원</td><td>3,464,943원</td></tr>
+    <tr><td>5인</td><td>2,580,166원</td><td>3,225,208원</td><td>3,870,249원</td><td>4,031,510원</td></tr>
+    <tr><td>6인</td><td>2,921,344원</td><td>3,651,680원</td><td>4,382,016원</td><td>4,564,601원</td></tr>
+    <tr><td>7인</td><td>3,248,853원</td><td>4,061,066원</td><td>4,873,279원</td><td>5,076,333원</td></tr>
+  </tbody>
+</table>
+<p>생계급여 선정기준은 곧 최대 지급액이기도 해요. 생계급여는 "선정기준 − 소득인정액"만큼 지급하기 때문에, 소득인정액이 0원인 1인 가구는 2027년에 월 최대 875,533원을 받아요.</p>
+
+<h2>2026년 기초생활보장 급여별 선정기준표</h2>
+<p>2026년 12월 31일까지 적용되는 금액이에요.</p>
+<table>
+  <thead><tr><th>가구원 수</th><th>생계급여 (32%)</th><th>의료급여 (40%)</th><th>주거급여 (48%)</th><th>교육급여 (50%)</th></tr></thead>
+  <tbody>
+    <tr><td>1인</td><td>820,556원</td><td>1,025,695원</td><td>1,230,834원</td><td>1,282,119원</td></tr>
+    <tr><td>2인</td><td>1,343,773원</td><td>1,679,717원</td><td>2,015,660원</td><td>2,099,646원</td></tr>
+    <tr><td>3인</td><td>1,714,892원</td><td>2,143,614원</td><td>2,572,337원</td><td>2,679,518원</td></tr>
+    <tr><td>4인</td><td>2,078,316원</td><td>2,597,895원</td><td>3,117,474원</td><td>3,247,369원</td></tr>
+    <tr><td>5인</td><td>2,418,150원</td><td>3,022,688원</td><td>3,627,225원</td><td>3,778,360원</td></tr>
+    <tr><td>6인</td><td>2,737,905원</td><td>3,422,381원</td><td>4,106,857원</td><td>4,277,976원</td></tr>
+    <tr><td>7인</td><td>3,044,848원</td><td>3,806,060원</td><td>4,567,272원</td><td>4,757,575원</td></tr>
+  </tbody>
+</table>
+
+<h2>기준중위소득 비율별 대표 제도</h2>
+<table>
+  <thead><tr><th>기준</th><th>제도</th><th>함께 보는 조건</th></tr></thead>
+  <tbody>
+    <tr><td>32% 이하</td><td>생계급여</td><td>부양의무자 기준 일부 적용 (고소득·고재산 부양의무자)</td></tr>
+    <tr><td>40% 이하</td><td>의료급여</td><td>부양의무자 기준 적용</td></tr>
+    <tr><td>48% 이하</td><td>주거급여</td><td>부양의무자 기준 없음, 임차료는 지역별 기준임대료 한도</td></tr>
+    <tr><td>50% 이하</td><td>교육급여</td><td>초·중·고 자녀, 부양의무자 기준 없음</td></tr>
+    <tr><td>50% 이하</td><td>차상위계층 (본인부담경감·자활사업 등)</td><td>기초생활수급자가 아닌 저소득 가구</td></tr>
+    <tr><td>60% 이하</td><td>청년월세 지원 (청년가구)</td><td>19~34세 무주택 독립 청년, 원가구 100% 이하, 재산 기준 (2026년 사업 기준)</td></tr>
+    <tr><td>65% 이하</td><td>한부모가족 아동양육비</td><td>18세 미만 자녀, 자녀 1명당 월 23만원 (2026년 기준, 2027년 기준은 발표 전)</td></tr>
+  </tbody>
+</table>
+<p>이 밖에도 지자체 사업과 바우처 사업이 기준중위소득 100%, 120%, 150%, 180% 같은 기준을 많이 써요. 같은 % 기준이라도 사업마다 소득을 보는 방식(소득인정액, 건강보험료 등)이 달라서 공고문의 산정 방법을 함께 확인해야 해요.</p>
+
+<h2>월 소득과 소득인정액이 다른 이유</h2>
+<p>기초생활보장 급여나 차상위계층은 월급만 보지 않고 <strong>소득인정액 = 소득평가액 + 재산의 소득환산액</strong>으로 심사해요. 소득평가액은 실제 소득에서 근로소득 공제 같은 항목을 뺀 금액이고, 재산의 소득환산액은 집·토지·예금·자동차 같은 재산에서 기본재산액과 부채를 뺀 뒤 재산 종류별 환산율을 곱해 월 소득처럼 바꾼 금액이에요. 그래서 월 소득이 적어도 재산이 많으면 소득인정액이 크게 올라가고, 반대로 공제 항목이 많으면 월 소득보다 낮아질 수 있어요.</p>
+<p>계산기의 "간단" 모드는 월 소득을 그대로 넣어 대략적인 위치를 보는 용도예요. 정확한 소득인정액은 복지로(www.bokjiro.go.kr)의 "복지서비스 모의계산"에서 재산·부채까지 넣어 확인하거나, 주민센터에서 상담받는 것이 가장 정확해요. 소득인정액을 알고 있다면 "소득인정액 입력" 모드를 골라 그 금액을 넣어 보세요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>2027년 기준중위소득은 얼마인가요?</h3>
+<p>2027년 기준중위소득은 1인 가구 월 2,736,042원, 2인 4,480,645원, 3인 5,718,091원, 4인 6,929,885원, 5인 8,063,019원, 6인 9,129,201원, 7인 10,152,665원이에요. 2026년보다 6.70% 올랐고 2027년 1월 1일부터 적용돼요.</p>
+<h3>기준중위소득 50%는 4인 가구 기준 얼마인가요?</h3>
+<p>2027년 4인 가구 기준중위소득 50%는 월 3,464,943원이고, 2026년에는 3,247,369원이에요. 교육급여와 차상위계층의 소득 기준이 50%라서, 소득인정액이 이 금액 이하이면 소득 기준을 충족해요.</p>
+<h3>기준중위소득은 세전인가요, 세후인가요?</h3>
+<p>세전 소득을 기준으로 봐요. 다만 기초생활보장 급여 같은 제도는 월급 그대로가 아니라 근로소득 공제 등을 반영한 소득평가액에 재산의 소득환산액을 더한 소득인정액으로 심사하기 때문에, 실제 결과는 단순 계산과 다를 수 있어요. 복지로의 복지서비스 모의계산으로 확인하는 것이 가장 정확해요.</p>
+<h3>8인 이상 가구의 기준중위소득은 어떻게 계산하나요?</h3>
+<p>7인 가구 금액에 7인과 6인 가구 금액의 차이를 1명 늘 때마다 더해요. 2027년 기준으로 7인 10,152,665원과 6인 9,129,201원의 차이가 1,023,464원이라서 8인 가구는 11,176,129원, 9인 가구는 12,199,593원이에요.</p>
+<h3>기준중위소득 % 안에 들면 바로 지원받을 수 있나요?</h3>
+<p>아니에요. 소득 기준은 여러 조건 중 하나라서 가구원 범위, 재산 기준, 부양의무자 기준, 나이, 신청 기간 같은 조건을 함께 충족해야 해요. 기준 안에 든다면 주민센터나 복지로에서 신청해 조사를 받아야 하고, 궁금한 점은 보건복지상담센터(국번 없이 129)에 물어볼 수 있어요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:support-calendar-2027}}">2027 정부 지원금 신청 일정·지원금 찾기</a>: 기준중위소득 기준을 쓰는 지원금의 신청 시기 한눈에 보기</li>
+  <li><a href="{{LINK:changes-2027}}">2027년 달라지는 것 총정리</a>: 기준중위소득 인상과 함께 바뀌는 제도를 내 상황별로 확인</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "2027년 기준중위소득은 얼마인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년 기준중위소득은 1인 가구 월 2,736,042원, 2인 4,480,645원, 3인 5,718,091원, 4인 6,929,885원, 5인 8,063,019원, 6인 9,129,201원, 7인 10,152,665원이에요. 2026년보다 6.70% 올랐고 2027년 1월 1일부터 적용돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "기준중위소득 50%는 4인 가구 기준 얼마인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2027년 4인 가구 기준중위소득 50%는 월 3,464,943원이고, 2026년에는 3,247,369원이에요. 교육급여와 차상위계층의 소득 기준이 50%라서, 소득인정액이 이 금액 이하이면 소득 기준을 충족해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "기준중위소득은 세전인가요, 세후인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "세전 소득을 기준으로 봐요. 다만 기초생활보장 급여 같은 제도는 월급 그대로가 아니라 근로소득 공제 등을 반영한 소득평가액에 재산의 소득환산액을 더한 소득인정액으로 심사하기 때문에, 실제 결과는 단순 계산과 다를 수 있어요. 복지로의 복지서비스 모의계산으로 확인하는 것이 가장 정확해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "8인 이상 가구의 기준중위소득은 어떻게 계산하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "7인 가구 금액에 7인과 6인 가구 금액의 차이를 1명 늘 때마다 더해요. 2027년 기준으로 7인 10,152,665원과 6인 9,129,201원의 차이가 1,023,464원이라서 8인 가구는 11,176,129원, 9인 가구는 12,199,593원이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "기준중위소득 % 안에 들면 바로 지원받을 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "아니에요. 소득 기준은 여러 조건 중 하나라서 가구원 범위, 재산 기준, 부양의무자 기준, 나이, 신청 기간 같은 조건을 함께 충족해야 해요. 기준 안에 든다면 주민센터나 복지로에서 신청해 조사를 받아야 하고, 궁금한 점은 보건복지상담센터(국번 없이 129)에 물어볼 수 있어요."
+   }
+  }
+ ]
+}
+</script>
