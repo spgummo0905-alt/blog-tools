@@ -1,0 +1,574 @@
+<p><strong>건강보험 피부양자로 남으려면 연금·이자·근로·사업소득 등을 합한 연 소득이 2,000만원 이하이고, 재산세 과세표준이 5억 4천만원 이하여야 해요. 과세표준이 5억 4천만원을 넘고 9억원 이하라면 연 소득이 1,000만원 이하일 때만 남을 수 있고, 9억원을 넘으면 소득과 관계없이 탈락해요.</strong> 아래 확인기에 관계와 소득 항목별 금액, 재산세 과세표준을 넣으면 피부양자 유지 가능 여부와 걸리는 기준을 항목별로 바로 보여 줘요.</p>
+<!-- 건강보험 피부양자 자격 확인기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kde" data-kde>
+  <style>
+    .kde{--kde-accent:#3b6ef5;--kde-accent-soft:#eef3ff;--kde-text:#1d2433;--kde-sub:#6b7385;--kde-line:#e3e7ef;--kde-bg:#fff;--kde-bad:#e0565b;--kde-bad-soft:#fdeeee;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kde-line);border-radius:20px;background:var(--kde-bg);
+      color:var(--kde-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kde [hidden]{display:none!important}
+    .kde *,.kde *::before,.kde *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kde .kde-title{font-size:20px;font-weight:700;letter-spacing:-.02em;word-break:keep-all}
+    .kde .kde-desc{margin-top:4px;font-size:14px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-tabs{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-top:8px;padding:4px;border-radius:14px;background:#f1f3f8}
+    .kde .kde-tab{min-height:44px;padding:4px 2px;border:0;border-radius:10px;background:none;color:var(--kde-sub);font-size:14px;font-weight:600;line-height:1.25;cursor:pointer;
+      word-break:keep-all;transition:background .2s,color .2s,box-shadow .2s}
+    .kde .kde-tab:hover{color:var(--kde-text)}
+    .kde .kde-tab.kde-on{background:#fff;color:var(--kde-accent);box-shadow:0 1px 4px rgba(30,45,90,.12)}
+    .kde .kde-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kde-text);word-break:keep-all}
+    .kde .kde-label small{font-weight:500;color:var(--kde-sub)}
+    .kde .kde-sec{margin-top:24px;padding-top:4px;border-top:1px dashed var(--kde-line);font-size:15px;font-weight:700;word-break:keep-all}
+    .kde .kde-sec small{font-size:12.5px;font-weight:500;color:var(--kde-sub)}
+    .kde .kde-sec+.kde-label{margin-top:12px}
+    .kde .kde-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kde .kde-seg.kde-three{grid-template-columns:1fr 1fr 1fr}
+    .kde .kde-opt{min-height:44px;padding:6px 8px;border:1.5px solid var(--kde-line);border-radius:12px;background:#f8f9fc;color:var(--kde-text);
+      font-size:14px;font-weight:600;line-height:1.3;cursor:pointer;word-break:keep-all;transition:all .2s}
+    .kde .kde-opt:hover{border-color:#c9d3ea}
+    .kde .kde-opt.kde-on{border-color:var(--kde-accent);background:var(--kde-accent-soft);color:var(--kde-accent)}
+    .kde .kde-opt small{display:block;font-size:11.5px;font-weight:500;color:var(--kde-sub)}
+    .kde .kde-field{position:relative}
+    .kde .kde-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kde-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kde-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kde .kde-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kde .kde-in:focus{border-color:var(--kde-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kde .kde-in.kde-bad{border-color:var(--kde-bad)}
+    .kde .kde-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kde-sub);pointer-events:none}
+    .kde .kde-hint{margin-top:6px;font-size:12.5px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-hint b{color:var(--kde-accent);font-weight:700}
+    .kde .kde-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kde-bad);word-break:keep-all}
+    .kde .kde-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kde .kde-result.kde-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kde .kde-result-inner{overflow:hidden}
+    .kde .kde-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kde-accent-soft);text-align:center}
+    .kde .kde-main.kde-no{background:var(--kde-bad-soft)}
+    .kde .kde-main-label{font-size:14px;color:var(--kde-sub)}
+    .kde .kde-big{margin-top:2px;font-size:30px;font-weight:800;letter-spacing:-.03em;color:var(--kde-accent);line-height:1.25;word-break:keep-all}
+    .kde .kde-main.kde-no .kde-big{color:var(--kde-bad)}
+    .kde .kde-sub{margin-top:6px;font-size:14px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kde .kde-card{padding:14px;border:1px solid var(--kde-line);border-radius:14px;background:#fff}
+    .kde .kde-card-k{font-size:12px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kde-text);word-break:keep-all}
+    .kde .kde-card-s{margin-top:2px;font-size:12px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-checks{margin-top:8px;padding:12px 14px;border:1px solid var(--kde-line);border-radius:14px;list-style:none}
+    .kde .kde-checks li{position:relative;padding-left:24px;font-size:13.5px;word-break:keep-all}
+    .kde .kde-checks li+li{margin-top:6px}
+    .kde .kde-checks li::before{position:absolute;left:0;top:0;width:18px;text-align:center;font-weight:800}
+    .kde .kde-checks li.kde-ok::before{content:"✓";color:var(--kde-accent)}
+    .kde .kde-checks li.kde-x::before{content:"✕";color:var(--kde-bad)}
+    .kde .kde-checks li.kde-x{color:var(--kde-bad)}
+    .kde .kde-box{margin-top:8px;padding:12px 14px;border-radius:12px;font-size:13.5px;word-break:keep-all}
+    .kde .kde-box.kde-r0{background:#f8f9fc;color:var(--kde-text)}
+    .kde .kde-box.kde-r1{background:#fff7e8;color:#8a5a00}
+    .kde .kde-box.kde-r2{background:var(--kde-bad-soft);color:#b23a3f}
+    .kde .kde-box p+p{margin-top:4px}
+    .kde .kde-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kde-text);word-break:keep-all}
+    .kde .kde-formula p+p{margin-top:2px}
+    .kde .kde-note{margin-top:12px;font-size:12.5px;color:var(--kde-sub);word-break:keep-all}
+    .kde .kde-note li{margin-left:16px}
+    .kde .kde-note li+li{margin-top:2px}
+    .kde .kde-nowrap{white-space:nowrap}
+    .kde .kde-actions{display:flex;gap:8px;margin-top:14px}
+    .kde .kde-btn{flex:1;height:44px;border:1.5px solid var(--kde-line);border-radius:12px;background:#fff;color:var(--kde-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kde .kde-btn:hover{background:#f4f6fa}
+    .kde .kde-btn:active{transform:scale(.98)}
+    .kde .kde-btn.kde-primary{border-color:var(--kde-accent);background:var(--kde-accent);color:#fff}
+    .kde .kde-btn.kde-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kde{padding:18px;border-radius:16px}.kde .kde-big{font-size:26px}.kde .kde-in{font-size:17px}
+      .kde .kde-tab{font-size:12.5px}.kde .kde-opt{font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kde .kde-result,.kde .kde-in,.kde .kde-btn,.kde .kde-tab,.kde .kde-opt{transition:none}}
+  </style>
+
+  <p class="kde-title">건강보험 피부양자 자격 확인기</p>
+  <p class="kde-desc">소득 항목별 금액과 재산세 과세표준을 넣으면 피부양자로 남을 수 있는지, 걸리는 기준이 무엇인지 바로 보여 줘요.</p>
+
+  <p class="kde-label">직장가입자와의 관계 <small>(피부양자가 될 사람 기준)</small></p>
+  <div class="kde-tabs" role="tablist" aria-label="직장가입자와의 관계">
+    <button type="button" class="kde-tab" role="tab" aria-selected="false" data-rel="spouse">배우자</button>
+    <button type="button" class="kde-tab kde-on" role="tab" aria-selected="true" data-rel="parent">부모·<br>조부모</button>
+    <button type="button" class="kde-tab" role="tab" aria-selected="false" data-rel="child">자녀·<br>손자녀</button>
+    <button type="button" class="kde-tab" role="tab" aria-selected="false" data-rel="sibling">형제·<br>자매</button>
+  </div>
+  <p class="kde-hint" data-rel-hint></p>
+
+  <div data-sib-box hidden>
+    <label class="kde-label" for="kde-age">형제·자매의 만 나이</label>
+    <div class="kde-field"><input class="kde-in" id="kde-age" data-age inputmode="numeric" placeholder="67" autocomplete="off"><span class="kde-unit">세</span></div>
+    <p class="kde-hint">30세 미만이거나 65세 이상이어야 해요(장애인·상이자는 나이와 관계없이 가능).</p>
+    <p class="kde-label">혼인 상태</p>
+    <div class="kde-seg" role="group" aria-label="형제·자매 혼인 상태">
+      <button type="button" class="kde-opt kde-on" data-single="yes" aria-pressed="true">미혼<small>이혼·사별 포함</small></button>
+      <button type="button" class="kde-opt" data-single="no" aria-pressed="false">기혼<small>배우자 있음</small></button>
+    </div>
+  </div>
+
+  <p class="kde-label">장애·상이 등록 여부</p>
+  <div class="kde-seg" role="group" aria-label="장애·상이 등록 여부">
+    <button type="button" class="kde-opt kde-on" data-dis="no" aria-pressed="true">해당 없음</button>
+    <button type="button" class="kde-opt" data-dis="yes" aria-pressed="false">등록 장애인·상이자<small>국가유공·보훈보상 상이등급</small></button>
+  </div>
+
+  <p class="kde-sec">1년 소득 <small>(없으면 비워 두세요)</small></p>
+
+  <label class="kde-label" for="kde-pen"><span>공적연금 <small>(국민·공무원·사학·군인연금)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-pen" data-amt="pen" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="pen">1년 동안 받은 연금 총액이에요. 월 150만원이면 1,800</p>
+
+  <label class="kde-label" for="kde-wage"><span>근로소득 <small>(비과세 뺀 총급여)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-wage" data-amt="wage" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="wage">일용근로소득은 지금 기준에서 빠져요.</p>
+
+  <label class="kde-label" for="kde-fin"><span>이자·배당 합계 <small>(금융소득)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-fin" data-amt="fin" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="fin">합계 1,000만원 이하면 빼고, 넘으면 전액 더해요.</p>
+
+  <label class="kde-label" for="kde-biz"><span>사업소득 <small>(수입 − 필요경비)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-biz" data-amt="biz" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="biz">프리랜서(3.3%)·임대소득도 사업소득이에요. 종합소득세 신고서의 소득금액을 넣으세요.</p>
+  <div data-biz-box hidden>
+    <p class="kde-label">사업자등록</p>
+    <div class="kde-seg kde-three" role="group" aria-label="사업자등록 여부">
+      <button type="button" class="kde-opt kde-on" data-btype="unreg" aria-pressed="true">미등록<small>프리랜서 등</small></button>
+      <button type="button" class="kde-opt" data-btype="reg" aria-pressed="false">등록<small>개인사업자</small></button>
+      <button type="button" class="kde-opt" data-btype="rent" aria-pressed="false">주택임대<small>소득 있음</small></button>
+    </div>
+  </div>
+
+  <label class="kde-label" for="kde-etc"><span>기타소득 <small>(필요경비 뺀 금액)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-etc" data-amt="etc" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="etc">강연료·원고료 같은 일시 소득이에요. 연금저축·IRP 같은 사적연금은 넣지 않아요.</p>
+
+  <div data-sp-box>
+    <p class="kde-label">피부양자가 될 사람의 배우자</p>
+    <div class="kde-seg" role="group" aria-label="배우자 유무">
+      <button type="button" class="kde-opt kde-on" data-sp="no" aria-pressed="true">없음<small>미혼·이혼·사별</small></button>
+      <button type="button" class="kde-opt" data-sp="yes" aria-pressed="false">있음<small>부부 모두 소득요건 확인</small></button>
+    </div>
+    <div data-sp-detail hidden>
+      <label class="kde-label" for="kde-spinc"><span>배우자의 1년 합산소득</span></label>
+      <div class="kde-field"><input class="kde-in" id="kde-spinc" data-amt="spinc" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+      <p class="kde-hint" data-read="spinc">위와 같은 방식으로 더한 금액이에요(금융소득 1,000만원 이하는 빼고).</p>
+      <p class="kde-label">배우자의 사업소득</p>
+      <div class="kde-seg" role="group" aria-label="배우자 사업소득">
+        <button type="button" class="kde-opt kde-on" data-spbiz="ok" aria-pressed="true">없음<small>또는 미등록 500만원 이하</small></button>
+        <button type="button" class="kde-opt" data-spbiz="bad" aria-pressed="false">있음<small>등록 사업·주택임대·500만원 초과</small></button>
+      </div>
+    </div>
+  </div>
+
+  <p class="kde-sec">재산</p>
+  <label class="kde-label" for="kde-prop"><span>재산세 과세표준 합계 <small>(본인 명의)</small></span></label>
+  <div class="kde-field"><input class="kde-in" id="kde-prop" data-amt="prop" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kde-unit">만원</span></div>
+  <p class="kde-hint" data-read="prop">공시가격이 아니라 재산세 고지서의 과세표준이에요. 집·땅·건물을 모두 더하고, 전월세 보증금은 넣지 않아요.</p>
+
+  <p class="kde-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kde-result" data-result aria-live="polite">
+    <div class="kde-result-inner">
+      <div class="kde-main" data-main>
+        <p class="kde-main-label">국민건강보험 피부양자 기준 판정</p>
+        <p class="kde-big" data-big></p>
+        <p class="kde-sub" data-sub></p>
+      </div>
+      <div class="kde-grid">
+        <div class="kde-card"><p class="kde-card-k">기준에 들어가는 연 소득</p><p class="kde-card-v" data-v-inc></p><p class="kde-card-s" data-s-inc></p></div>
+        <div class="kde-card"><p class="kde-card-k">재산세 과세표준</p><p class="kde-card-v" data-v-prop></p><p class="kde-card-s" data-s-prop></p></div>
+      </div>
+      <ul class="kde-checks" data-checks></ul>
+      <div class="kde-box" data-box></div>
+      <div class="kde-formula" data-formula></div>
+      <ul class="kde-note">
+        <li>2026. 11. 기준 국민건강보험법 시행규칙 별표 1·별표 1의2로 계산한 <strong>참고용 결과</strong>예요. 최종 판정은 국민건강보험공단(1577-1000)이 해요.</li>
+        <li>같이 사는지, 다른 가족에게 소득이 있는지 같은 부양요건과 국내 거주 요건은 따로 확인해요.</li>
+        <li>매년 11월에 전년도 소득과 그해 6월 1일 기준 재산세 과세표준으로 다시 확인해요.</li>
+      </ul>
+      <div class="kde-actions">
+        <button type="button" class="kde-btn" data-reset>다시 입력</button>
+        <button type="button" class="kde-btn kde-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kde]');
+    if (!root || root.__kde) return;
+    root.__kde = true;
+
+    // 국민건강보험법 시행규칙 별표 1(부양요건)·별표 1의2(소득·재산요건), 2026. 11. 26. 확인 (단위: 만원)
+    var INC_MAX = 2000;      // 소득 합계 연 2,000만원 이하
+    var FIN_FREE = 1000;     // 이자·배당 합계 1,000만원 이하면 합산하지 않음(초과하면 전액 합산)
+    var BIZ_FREE = 500;      // 사업자 미등록(주택임대 제외)·장애인 등: 사업소득 연 500만원 이하면 "사업소득 없음"으로 봄
+    var PROP_BASE = 54000;   // 재산세 과세표준 5억 4천만원 이하
+    var PROP_TOP = 90000;    // 5억 4천만원 초과 ~ 9억원 이하면 연 소득 1,000만원 이하여야 함
+    var PROP_MID_INC = 1000;
+    var PROP_SIB = 18000;    // 형제·자매: 재산세 과세표준 1억 8천만원 이하
+    var SIB_YOUNG = 30, SIB_OLD = 65; // 형제·자매: 30세 미만 또는 65세 이상(장애인·상이자는 나이 무관)
+    var MAX = 9999999;
+
+    var REL = {
+      spouse: { name: '배우자', hint: '직장가입자의 배우자예요. 부부 사이라 "배우자의 소득" 칸은 따로 없어요.' },
+      parent: { name: '부모·조부모', hint: '직장가입자와 배우자의 부모·조부모(직계존속)예요. 부모님 두 분이 부부면 두 분 모두 소득요건을 채워야 해요.' },
+      child: { name: '자녀·손자녀', hint: '직장가입자와 배우자의 자녀·손자녀(직계비속)와 그 배우자예요.' },
+      sibling: { name: '형제·자매', hint: '형제·자매는 나이·혼인 조건이 붙고 재산 기준이 1억 8천만원으로 더 엄격해요.' }
+    };
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var ageI = $('[data-age]');
+    var amt = {};
+    $$('[data-amt]').forEach(function (i) { amt[i.getAttribute('data-amt')] = i; });
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var st = { rel: 'parent', single: 'yes', dis: 'no', btype: 'unreg', sp: 'no', spbiz: 'ok' };
+    var lastText = '';
+
+    var READ = {
+      pen: '1년 동안 받은 연금 총액이에요. 월 150만원이면 1,800',
+      wage: '일용근로소득은 지금 기준에서 빠져요.',
+      fin: '합계 1,000만원 이하면 빼고, 넘으면 전액 더해요.',
+      biz: '프리랜서(3.3%)·임대소득도 사업소득이에요. 종합소득세 신고서의 소득금액을 넣으세요.',
+      etc: '강연료·원고료 같은 일시 소득이에요. 연금저축·IRP 같은 사적연금은 넣지 않아요.',
+      spinc: '위와 같은 방식으로 더한 금액이에요(금융소득 1,000만원 이하는 빼고).',
+      prop: '공시가격이 아니라 재산세 고지서의 과세표준이에요. 집·땅·건물을 모두 더하고, 전월세 보증금은 넣지 않아요.'
+    };
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function num(s) { return s === '' ? 0 : +String(s).replace(/,/g, ''); }
+    function man(m) {
+      if (m <= 0) return '0원';
+      var eok = Math.floor(m / 10000), rest = m % 10000;
+      if (!eok) return comma(rest) + '만원';
+      return comma(eok) + '억' + (rest ? ' ' + comma(rest) + '만원' : '원');
+    }
+
+    function select(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) {
+        var on = b.getAttribute(attr) === val;
+        b.classList.toggle('kde-on', on);
+        b.setAttribute(b.getAttribute('role') === 'tab' ? 'aria-selected' : 'aria-pressed', on);
+      });
+    }
+
+    function readAll() {
+      Object.keys(amt).forEach(function (k) {
+        var v = num(amt[k].value), el = $('[data-read="' + k + '"]');
+        if (v > 0) el.innerHTML = '= <b>' + man(v) + '</b>' + (k === 'pen' ? ' (월 약 ' + man(Math.round(v / 12)) + ')' : '');
+        else el.textContent = READ[k];
+      });
+    }
+
+    function applyRel() {
+      $('[data-rel-hint]').textContent = REL[st.rel].hint;
+      $('[data-sib-box]').hidden = st.rel !== 'sibling';
+      // 배우자 관계면 그 배우자가 곧 직장가입자 / 기혼 형제·자매는 대상이 아니라 배우자 칸 불필요
+      $('[data-sp-box]').hidden = st.rel === 'spouse' || st.rel === 'sibling';
+      $('[data-sp-detail]').hidden = st.sp !== 'yes';
+      $('[data-biz-box]').hidden = !(num(amt.biz.value) > 0);
+    }
+
+    function anyInput() {
+      if (st.rel === 'sibling' && ageI.value !== '') return true;
+      return Object.keys(amt).some(function (k) { return amt[k].value !== ''; });
+    }
+
+    function hide(text, bad) {
+      result.classList.remove('kde-show');
+      msg.textContent = text || '';
+      $$('.kde-in').forEach(function (i) { i.classList.toggle('kde-bad', !!bad && i === bad); });
+    }
+
+    function calc() {
+      applyRel();
+      if (!anyInput()) return hide('');
+      var sib = st.rel === 'sibling', dis = st.dis === 'yes';
+      var age = NaN;
+      if (sib) {
+        if (ageI.value === '') return hide('형제·자매의 만 나이를 넣어 주세요.', ageI);
+        age = +ageI.value;
+        if (!(age >= 0 && age <= 120)) return hide('만 나이는 0~120 사이로 넣어 주세요.', ageI);
+      }
+      var keys = ['pen', 'wage', 'fin', 'biz', 'etc', 'spinc', 'prop'];
+      for (var i = 0; i < keys.length; i++) {
+        if (num(amt[keys[i]].value) > MAX) return hide('금액이 너무 커요. 만원 단위로 넣었는지 확인해 주세요.', amt[keys[i]]);
+      }
+      hide('');
+
+      var pen = num(amt.pen.value), wage = num(amt.wage.value), fin = num(amt.fin.value),
+        biz = num(amt.biz.value), etc = num(amt.etc.value), prop = num(amt.prop.value);
+      var finIn = fin > FIN_FREE ? fin : 0;
+      var inc = pen + wage + finIn + biz + etc;
+      var married = !sib && st.rel !== 'spouse' && st.sp === 'yes';
+      var spinc = married ? num(amt.spinc.value) : 0;
+
+      var checks = [], reasons = [];
+      function add(ok, text, why) { checks.push({ ok: ok, text: text }); if (!ok && why) reasons.push(why); return ok; }
+
+      // 1) 부양요건 중 형제·자매 조건
+      var okSib = true;
+      if (sib) {
+        var okAge = dis || age < SIB_YOUNG || age >= SIB_OLD;
+        okSib = add(okAge, '형제·자매 나이: 만 ' + age + '세' + (dis ? ' (장애인·상이자라 나이 무관)' : okAge ? ' (30세 미만 또는 65세 이상)' : ' (30~64세는 대상 아님)'),
+          '형제·자매는 30세 미만·65세 이상·장애인만 돼요') && okSib;
+        okSib = add(st.single === 'yes', '형제·자매 혼인 상태: ' + (st.single === 'yes' ? '미혼(이혼·사별 포함)' : '기혼이라 대상 아님'),
+          '기혼 형제·자매는 대상이 아니에요') && okSib;
+      }
+
+      // 2) 소득 합계
+      var okInc = add(inc <= INC_MAX, '연 소득 합계: ' + man(inc) + (inc <= INC_MAX ? ' ≤ ' : ' > ') + '2,000만원',
+        '연 소득 합계가 2,000만원을 ' + man(inc - INC_MAX) + ' 넘어요');
+
+      // 3) 사업소득
+      var okBiz = true, bizText;
+      if (biz <= 0) bizText = '사업소득: 없음';
+      else if (dis) { okBiz = biz <= BIZ_FREE; bizText = '사업소득(장애인·상이자 예외): ' + man(biz) + (okBiz ? ' ≤ ' : ' > ') + '500만원'; }
+      else if (st.btype === 'unreg') { okBiz = biz <= BIZ_FREE; bizText = '사업소득(사업자 미등록): ' + man(biz) + (okBiz ? ' ≤ ' : ' > ') + '500만원'; }
+      else { okBiz = false; bizText = '사업소득: ' + (st.btype === 'rent' ? '주택임대소득이 있으면 등록 여부와 관계없이' : '사업자등록이 있으면') + ' 1원만 있어도 안 돼요'; }
+      add(okBiz, bizText, st.btype === 'unreg' || dis ? '사업소득이 500만원을 넘어요' : (st.btype === 'rent' ? '주택임대소득이 있어요' : '사업자등록된 사업소득이 있어요'));
+
+      // 4) 배우자 소득요건 (부부 모두 충족)
+      var okSp = true;
+      if (married) {
+        var a = add(spinc <= INC_MAX, '배우자 연 소득 합계: ' + man(spinc) + (spinc <= INC_MAX ? ' ≤ ' : ' > ') + '2,000만원', '배우자 소득이 2,000만원을 넘어 부부가 함께 탈락해요');
+        var b = add(st.spbiz === 'ok', '배우자 사업소득: ' + (st.spbiz === 'ok' ? '요건 충족' : '등록 사업·주택임대·500만원 초과'), '배우자의 사업소득 때문에 부부가 함께 탈락해요');
+        okSp = a && b;
+      }
+
+      // 5) 재산
+      var okProp, propText, propZone;
+      if (sib) {
+        okProp = prop <= PROP_SIB; propZone = okProp ? '1억 8천만원 이하' : '1억 8천만원 초과';
+        propText = '재산(형제·자매): ' + man(prop) + (okProp ? ' ≤ ' : ' > ') + '1억 8천만원';
+        add(okProp, propText, '형제·자매 재산 기준 1억 8천만원을 넘어요');
+      } else if (prop <= PROP_BASE) {
+        okProp = true; propZone = '5억 4천만원 이하 구간';
+        add(true, '재산: ' + man(prop) + ' ≤ 5억 4천만원');
+      } else if (prop <= PROP_TOP) {
+        okProp = inc <= PROP_MID_INC; propZone = '5억 4천만원 초과 ~ 9억원 구간';
+        add(okProp, '재산 ' + man(prop) + '(5.4억~9억 구간): 연 소득 ' + man(inc) + (okProp ? ' ≤ ' : ' > ') + '1,000만원',
+          '재산이 5억 4천만원을 넘어 소득이 1,000만원 이하여야 하는데 ' + man(inc) + '이에요');
+      } else {
+        okProp = false; propZone = '9억원 초과';
+        add(false, '재산: ' + man(prop) + ' > 9억원 (소득과 관계없이 대상 아님)', '재산세 과세표준이 9억원을 넘어요');
+      }
+
+      var ok = okSib && okInc && okBiz && okSp && okProp;
+      var main = $('[data-main]');
+      main.classList.toggle('kde-no', !ok);
+      $('[data-big]').textContent = ok ? '피부양자 가능해 보여요' : '피부양자 기준에 걸려요';
+      $('[data-sub]').textContent = ok ? '입력한 소득·재산으로는 기준 안이에요' : reasons.join(' · ');
+
+      $('[data-v-inc]').textContent = man(inc);
+      $('[data-s-inc]').textContent = fin > 0 ? (finIn ? '금융소득 ' + man(fin) + ' 전액 포함' : '금융소득 ' + man(fin) + '은 1,000만원 이하라 제외') : '사적연금·일용근로소득 제외';
+      $('[data-v-prop]').textContent = man(prop);
+      $('[data-s-prop]').textContent = propZone;
+
+      var box = $('[data-checks]'); box.innerHTML = '';
+      checks.forEach(function (c) { var el = document.createElement('li'); el.className = c.ok ? 'kde-ok' : 'kde-x'; el.textContent = c.text; box.appendChild(el); });
+
+      // 안내
+      var tips = [], lvl;
+      if (ok) {
+        var limit = prop > PROP_BASE && !sib ? PROP_MID_INC : INC_MAX;
+        var room = limit - inc;
+        if (room <= limit * 0.1) {
+          lvl = 1;
+          tips.push('여유가 ' + man(room) + '뿐이에요. ' + (pen > 0 ? '공적연금은 매년 1월 물가상승률만큼 오르니 내년 11월 재확인 때 넘을 수 있어요. ' : '') + '소득이 조금만 늘어도 탈락할 수 있어요.');
+        } else {
+          lvl = 0;
+          tips.push('기준까지 소득 여유는 ' + man(room) + '이에요.');
+        }
+        if (fin > 0 && fin <= FIN_FREE && fin > FIN_FREE * 0.8) tips.push('금융소득이 1,000만원을 1원이라도 넘으면 ' + man(fin) + ' 전액이 더해져요.');
+        tips.push('피부양자 등록은 직장가입자가 회사(사업장)나 공단에 신고해요. 자격을 얻은 날부터 90일 안에 신고하면 그날로 소급돼요.');
+      } else {
+        lvl = 2;
+        tips.push('탈락하면 지역가입자로 바뀌어 본인 소득·재산 기준으로 건강보험료가 따로 나와요.');
+        if (!okSp && okInc && okBiz) tips.push('본인은 기준 안이지만 배우자 때문에 함께 빠지는 "동반 탈락"이에요. 부부 모두 소득요건을 채워야 해요.');
+        if (!okInc || !okBiz) tips.push('퇴직·폐업으로 소득이 줄었다면 증빙(해촉증명서, 폐업사실증명 등)을 갖춰 공단에 보험료 조정과 피부양자 재검토를 문의하세요.');
+        tips.push('2022년 9월 기준 강화 때 탈락한 사람에게 주던 한시 보험료 경감은 2026년 8월분으로 끝났어요.');
+      }
+      var bx = $('[data-box]'); bx.className = 'kde-box kde-r' + lvl; bx.innerHTML = '';
+      tips.forEach(function (t) { var p = document.createElement('p'); p.textContent = t; bx.appendChild(p); });
+
+      var parts = [];
+      if (pen) parts.push('연금 ' + comma(pen));
+      if (wage) parts.push('근로 ' + comma(wage));
+      if (finIn) parts.push('금융 ' + comma(finIn));
+      if (biz) parts.push('사업 ' + comma(biz));
+      if (etc) parts.push('기타 ' + comma(etc));
+      var lines = ['연 소득 = ' + (parts.length ? parts.join(' + ') + ' = ' + comma(inc) + '만원' : '0원')];
+      if (fin > 0 && !finIn) lines.push('이자·배당 ' + comma(fin) + '만원 ≤ 1,000만원 → 합산 안 함');
+      lines.push(sib ? '재산 기준: 과세표준 1억 8천만원 이하'
+        : '재산 기준: 5억 4천만원 이하 → 소득 2,000만원 이하 / 9억원 이하 → 소득 1,000만원 이하 / 9억원 초과 → 불가');
+      var f = $('[data-formula]'); f.innerHTML = '';
+      lines.forEach(function (s) { var el = document.createElement('p'); el.textContent = s; f.appendChild(el); });
+
+      result.classList.add('kde-show');
+
+      lastText = '[건강보험 피부양자 자격 확인]\n' +
+        '관계: ' + REL[st.rel].name + (sib ? ' (만 ' + age + '세, ' + (st.single === 'yes' ? '미혼' : '기혼') + ')' : '') + (dis ? ' / 장애인·상이자' : '') + '\n' +
+        '연 소득 합계: ' + man(inc) + ' / 재산세 과세표준: ' + man(prop) + '\n' +
+        '판정: ' + (ok ? '피부양자 가능해 보여요' : '피부양자 기준에 걸려요') + '\n' +
+        checks.map(function (c) { return (c.ok ? '✓ ' : '✕ ') + c.text; }).join('\n') + '\n' +
+        '※ 2026. 11. 기준 참고용. 최종 판정은 국민건강보험공단(1577-1000).';
+    }
+
+    $$('[data-rel]').forEach(function (b) { b.addEventListener('click', function () { st.rel = b.getAttribute('data-rel'); select('data-rel', st.rel); calc(); }); });
+    ['single', 'dis', 'btype', 'sp', 'spbiz'].forEach(function (k) {
+      $$('[data-' + k + ']').forEach(function (b) {
+        b.addEventListener('click', function () { st[k] = b.getAttribute('data-' + k); select('data-' + k, st[k]); calc(); });
+      });
+    });
+
+    Object.keys(amt).forEach(function (k) {
+      var inp = amt[k];
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 8);
+        inp.value = v === '' ? '' : comma(v);
+        readAll(); calc();
+      });
+    });
+    ageI.addEventListener('input', function () {
+      ageI.value = ageI.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 3);
+      calc();
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      Object.keys(amt).forEach(function (k) { amt[k].value = ''; });
+      ageI.value = '';
+      readAll(); hide(''); applyRel(); amt.pen.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    applyRel(); readAll();
+  })();
+  </script>
+</div>
+<!-- 건강보험 피부양자 자격 확인기 위젯 끝 -->
+<h2>피부양자 자격 판정 방법</h2>
+<p>피부양자가 되려면 <strong>부양요건(관계)</strong>, <strong>소득요건</strong>, <strong>재산요건</strong>을 모두 채워야 해요. 계산기는 이 중 관계 조건(형제·자매의 나이·혼인)과 소득·재산요건을 국민건강보험법 시행규칙 별표 1·별표 1의2 기준으로 따져요.</p>
+<ul>
+  <li><strong>연 소득 합계</strong> = 공적연금 + 근로소득 + 사업소득 + 기타소득 + 이자·배당(합계 1,000만원 초과 시 전액, 이하면 0)</li>
+  <li><strong>소득요건</strong>: 연 소득 합계 ≤ 2,000만원 그리고 사업소득 없음(사업자 미등록이면 500만원 이하까지 인정, 주택임대소득은 예외 없음)</li>
+  <li><strong>재산요건</strong>: 재산세 과세표준 합계 ≤ 5억 4천만원, 또는 5억 4천만원 초과 ~ 9억원 이하이면서 연 소득 합계 ≤ 1,000만원</li>
+  <li><strong>기혼자</strong>: 피부양자가 될 사람에게 배우자가 있으면 부부 모두 소득요건을 채워야 해요</li>
+</ul>
+<p><strong>예시:</strong> 직장인 자녀의 피부양자인 어머니가 국민연금 연 1,500만원, 예금 이자 800만원을 받고, 집의 재산세 과세표준이 6억원이라고 해 볼게요.</p>
+<ul>
+  <li>이자 800만원은 1,000만원 이하라서 빠지고, 연 소득 합계는 1,500만원이에요. 2,000만원 이하라 소득요건은 통과해요.</li>
+  <li>그런데 재산 과세표준이 5억 4천만원을 넘는 6억원이라, 소득이 1,000만원 이하여야 해요. 1,500만원이라 <strong>재산요건에서 탈락</strong>해요.</li>
+  <li>같은 집이라도 과세표준이 5억 4천만원 이하였다면 피부양자로 남을 수 있어요.</li>
+</ul>
+
+<h2>소득 종류별 반영 방법</h2>
+<table>
+  <thead><tr><th>소득 종류</th><th>피부양자 판정에 넣는 방법</th></tr></thead>
+  <tbody>
+    <tr><td>공적연금 (국민·공무원·사학·군인연금)</td><td>1년 받은 금액 전액</td></tr>
+    <tr><td>근로소득</td><td>비과세를 뺀 총급여 전액 (일용근로소득은 현재 제외)</td></tr>
+    <tr><td>이자·배당 (금융소득)</td><td>합계 1,000만원 이하면 0, 넘으면 전액</td></tr>
+    <tr><td>사업소득 (프리랜서·임대 포함)</td><td>수입에서 필요경비를 뺀 소득금액. 사업자등록이 있거나 주택임대소득이 있으면 1원만 있어도 탈락, 미등록이면 500만원까지 인정</td></tr>
+    <tr><td>기타소득</td><td>필요경비를 뺀 기타소득금액</td></tr>
+    <tr><td>사적연금 (연금저축·IRP·퇴직연금)</td><td>넣지 않음</td></tr>
+  </tbody>
+</table>
+
+<h2>재산 기준과 관계별 조건</h2>
+<table>
+  <thead><tr><th>재산세 과세표준 합계</th><th>배우자·부모·자녀 등</th><th>형제·자매</th></tr></thead>
+  <tbody>
+    <tr><td>1억 8천만원 이하</td><td>소득 2,000만원 이하면 가능</td><td>소득 2,000만원 이하면 가능</td></tr>
+    <tr><td>1억 8천만원 초과 ~ 5억 4천만원</td><td>소득 2,000만원 이하면 가능</td><td>불가</td></tr>
+    <tr><td>5억 4천만원 초과 ~ 9억원</td><td>소득 1,000만원 이하일 때만 가능</td><td>불가</td></tr>
+    <tr><td>9억원 초과</td><td>소득과 관계없이 불가</td><td>불가</td></tr>
+  </tbody>
+</table>
+<p>피부양자가 될 수 있는 가족은 직장가입자의 배우자, 직계존속(배우자의 부모·조부모 포함), 직계비속(배우자의 자녀 포함)과 그 배우자, 형제·자매예요. 형제·자매는 미혼(이혼·사별 포함)이면서 30세 미만, 65세 이상, 등록 장애인, 국가유공·보훈보상 상이자 중 하나여야 해요. 같이 사는지, 다른 가족에게 소득이 있는지에 따라 부양요건이 달라지는 경우도 있으니 따로 사는 가족이라면 공단에 한 번 확인해 보세요.</p>
+
+<h2>언제 다시 확인하고, 탈락하면 어떻게 되나요</h2>
+<p>국민건강보험공단은 매년 11월에 국세청에서 넘겨받은 전년도 소득과 그해 6월 1일 기준 재산세 과세표준으로 피부양자 자격을 다시 확인해요. 2026년 11월에는 2025년에 번 소득과 2026년 재산세 과세표준이 반영돼요.</p>
+<ul>
+  <li>기준을 넘으면 피부양자에서 빠지고 <strong>지역가입자</strong>로 바뀌어 본인 소득·재산으로 계산한 건강보험료가 따로 나와요.</li>
+  <li>배우자 중 한 명의 소득이 기준을 넘으면 다른 한 명도 같이 빠지는 <strong>동반 탈락</strong>이 생겨요. 재산요건은 각자 따로 봐요.</li>
+  <li>2022년 9월 기준이 강화될 때 탈락한 사람에게 주던 한시 보험료 경감은 2026년 8월분으로 끝났어요.</li>
+  <li>2026년 7월 정부가 연 2,000만원을 넘는 일용근로소득도 건강보험료에 반영하는 개편안을 보고했어요. 확정되면 일용근로소득 때문에 피부양자에서 빠지는 사람이 생길 수 있지만, 2026. 11. 26. 기준 시행 시기는 정해지지 않았어요.</li>
+</ul>
+<p>공적연금은 매년 1월 물가상승률만큼 오르기 때문에 올해 연금이 2,000만원에 가깝다면 다음 해에 넘을 수 있어요. 국민연금 연기 수령이나 추후 납부로 연금액이 늘어날 때도 피부양자 기준을 같이 따져 보는 게 좋아요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>국민연금을 얼마까지 받아야 피부양자로 남을 수 있나요?</h3>
+<p>다른 소득이 없고 재산세 과세표준이 5억 4천만원 이하라면 공적연금을 연 2,000만원(월 약 166만원)까지 받아도 피부양자로 남을 수 있어요. 재산 과세표준이 5억 4천만원을 넘고 9억원 이하라면 연 1,000만원(월 약 83만원) 이하여야 해요. 연금저축·IRP 같은 사적연금은 계산에 넣지 않아요.</p>
+<h3>예금 이자가 있으면 피부양자에서 탈락하나요?</h3>
+<p>이자와 배당을 합한 금융소득이 연 1,000만원 이하면 소득 합계에 넣지 않아요. 하지만 1,000만원을 넘으면 넘은 부분이 아니라 전액이 더해져서, 다른 소득과 합쳐 2,000만원을 넘으면 탈락해요.</p>
+<h3>재산 기준은 공시가격으로 보나요?</h3>
+<p>아니에요. 재산세 고지서에 나오는 과세표준으로 봐요. 주택 과세표준은 공시가격에 공정시장가액비율을 곱한 금액이라 공시가격보다 낮아요. 본인 명의의 주택·토지·건축물 과세표준을 모두 더하고, 전월세 보증금은 넣지 않아요.</p>
+<h3>프리랜서 소득이 조금 있어도 피부양자가 될 수 있나요?</h3>
+<p>사업자등록이 없는 프리랜서라면 사업소득금액(수입에서 필요경비를 뺀 금액)이 연 500만원 이하일 때 사업소득이 없는 것으로 봐요. 사업자등록이 있으면 사업소득이 조금이라도 있으면 안 되고, 주택임대소득은 사업자등록이 없어도 예외가 적용되지 않아요. 등록 장애인과 상이등급을 받은 국가유공자·보훈보상대상자는 사업소득 500만원까지 인정돼요.</p>
+<h3>피부양자에서 탈락하면 다시 등록할 수 있나요?</h3>
+<p>퇴직이나 폐업 등으로 소득이 줄어 기준 안으로 들어오면 다시 피부양자로 등록할 수 있어요. 소득이 줄었다는 증빙을 갖춰 국민건강보험공단(1577-1000)에 문의하면 되고, 다음 해 11월 정기 확인 때 바뀐 소득이 반영되기도 해요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:pension-start-age}}">국민연금 수령 나이 계산기</a>: 출생연도별 연금 시작일과 조기·연기 수령 비교</li>
+  <li><a href="{{LINK:after-resignation-checklist}}">퇴사 후 할 일 타임라인</a>: 피부양자 등록·실업급여·국민연금 기한 정리</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "국민연금을 얼마까지 받아야 피부양자로 남을 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "다른 소득이 없고 재산세 과세표준이 5억 4천만원 이하라면 공적연금을 연 2,000만원(월 약 166만원)까지 받아도 피부양자로 남을 수 있어요. 재산 과세표준이 5억 4천만원을 넘고 9억원 이하라면 연 1,000만원(월 약 83만원) 이하여야 해요. 연금저축·IRP 같은 사적연금은 계산에 넣지 않아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "예금 이자가 있으면 피부양자에서 탈락하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "이자와 배당을 합한 금융소득이 연 1,000만원 이하면 소득 합계에 넣지 않아요. 하지만 1,000만원을 넘으면 넘은 부분이 아니라 전액이 더해져서, 다른 소득과 합쳐 2,000만원을 넘으면 탈락해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "재산 기준은 공시가격으로 보나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "아니에요. 재산세 고지서에 나오는 과세표준으로 봐요. 주택 과세표준은 공시가격에 공정시장가액비율을 곱한 금액이라 공시가격보다 낮아요. 본인 명의의 주택·토지·건축물 과세표준을 모두 더하고, 전월세 보증금은 넣지 않아요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "프리랜서 소득이 조금 있어도 피부양자가 될 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "사업자등록이 없는 프리랜서라면 사업소득금액(수입에서 필요경비를 뺀 금액)이 연 500만원 이하일 때 사업소득이 없는 것으로 봐요. 사업자등록이 있으면 사업소득이 조금이라도 있으면 안 되고, 주택임대소득은 사업자등록이 없어도 예외가 적용되지 않아요. 등록 장애인과 상이등급을 받은 국가유공자·보훈보상대상자는 사업소득 500만원까지 인정돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "피부양자에서 탈락하면 다시 등록할 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "퇴직이나 폐업 등으로 소득이 줄어 기준 안으로 들어오면 다시 피부양자로 등록할 수 있어요. 소득이 줄었다는 증빙을 갖춰 국민건강보험공단(1577-1000)에 문의하면 되고, 다음 해 11월 정기 확인 때 바뀐 소득이 반영되기도 해요."
+   }
+  }
+ ]
+}
+</script>
