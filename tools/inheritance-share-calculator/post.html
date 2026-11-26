@@ -1,0 +1,514 @@
+<p><strong>배우자와 자녀 2명이 상속하면 배우자 3/7, 자녀 1명당 2/7씩</strong>이에요. 민법은 같은 순위 상속인끼리 똑같이 나누되 배우자에게는 1.5배를 주기 때문이에요. 아래 계산기에 가족 구성을 넣으면 상속인별 분수·비율·금액과 유류분을 한 번에 확인할 수 있어요.</p>
+<!-- 법정상속분 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kih" data-kih>
+  <style>
+    .kih{--kih-accent:#3b6ef5;--kih-accent-soft:#eef3ff;--kih-text:#1d2433;--kih-sub:#6b7385;--kih-line:#e3e7ef;--kih-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kih-line);border-radius:20px;background:var(--kih-bg);
+      color:var(--kih-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kih [hidden]{display:none!important}
+    .kih *,.kih *::before,.kih *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kih .kih-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kih .kih-desc{margin-top:4px;font-size:14px;color:var(--kih-sub)}
+    .kih .kih-label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kih-text)}
+    .kih .kih-aside{font-size:12.5px;font-weight:500;color:var(--kih-sub);text-align:right}
+    .kih .kih-row{display:flex;gap:8px}
+    .kih .kih-field{position:relative;flex:1}
+    .kih .kih-in{width:100%;height:52px;padding:0 40px 0 14px;border:1.5px solid var(--kih-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kih-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kih .kih-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kih .kih-in:focus{border-color:var(--kih-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kih .kih-in.kih-bad{border-color:#e0565b}
+    .kih .kih-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kih-sub);pointer-events:none}
+    .kih .kih-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kih .kih-seg.kih-3{grid-template-columns:repeat(3,1fr)}
+    .kih .kih-seg-btn{height:44px;padding:0 4px;border:1.5px solid var(--kih-line);border-radius:12px;background:#f8f9fc;color:var(--kih-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .kih .kih-seg-btn:hover{border-color:#c9d3ea}
+    .kih .kih-seg-btn.kih-on{border-color:var(--kih-accent);background:var(--kih-accent);color:#fff}
+    .kih .kih-chip{height:32px;padding:0 12px;border:1.5px solid var(--kih-line);border-radius:999px;background:#fff;color:var(--kih-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .kih .kih-chip:hover{border-color:#c9d3ea;color:var(--kih-text)}
+    .kih .kih-chip.kih-on{border-color:var(--kih-accent);background:var(--kih-accent-soft);color:var(--kih-accent)}
+    .kih .kih-sub-box{margin-top:8px;padding:12px;border:1px solid var(--kih-line);border-radius:14px;background:#fbfcfe}
+    .kih .kih-line{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:8px 0;border-bottom:1px dashed var(--kih-line)}
+    .kih .kih-line:last-child{border-bottom:0}
+    .kih .kih-line-k{flex:1 1 100%;font-size:13px;font-weight:600}
+    .kih .kih-line .kih-field{flex:0 0 120px}
+    .kih .kih-line .kih-in{height:40px;font-size:16px;padding-right:34px}
+    .kih .kih-hint{margin-top:6px;font-size:12.5px;color:var(--kih-sub)}
+    .kih .kih-hint b{color:var(--kih-text);font-weight:600}
+    .kih .kih-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kih .kih-sub,.kih .kih-note,.kih .kih-desc,.kih .kih-hint,.kih .kih-msg,.kih .kih-formula,.kih .kih-warn,.kih .kih-card-k,.kih .kih-rank{word-break:keep-all}
+    .kih .kih-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kih .kih-result.kih-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kih .kih-result-inner{overflow:hidden}
+    .kih .kih-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kih-accent-soft);text-align:center}
+    .kih .kih-rank{display:inline-block;padding:2px 10px;border-radius:999px;background:#fff;font-size:12.5px;font-weight:600;color:var(--kih-accent)}
+    .kih .kih-main-label{margin-top:8px;font-size:14px;color:var(--kih-sub)}
+    .kih .kih-big{margin-top:2px;font-size:44px;font-weight:800;letter-spacing:-.03em;color:var(--kih-accent);line-height:1.2}
+    .kih .kih-sub{margin-top:6px;font-size:14px;color:var(--kih-sub)}
+    .kih .kih-cards{display:grid;gap:8px;margin-top:8px}
+    .kih .kih-card{padding:14px;border:1px solid var(--kih-line);border-radius:14px;background:#fff}
+    .kih .kih-card-h{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+    .kih .kih-card-k{font-size:14px;font-weight:600;color:var(--kih-text)}
+    .kih .kih-card-k small{display:block;font-size:12px;font-weight:500;color:var(--kih-sub)}
+    .kih .kih-card-v{font-size:22px;font-weight:800;color:var(--kih-accent);white-space:nowrap}
+    .kih .kih-kv{display:flex;justify-content:space-between;gap:8px;margin-top:6px;font-size:13px;color:var(--kih-sub)}
+    .kih .kih-kv b{font-weight:600;color:var(--kih-text);white-space:nowrap;text-align:right}
+    .kih .kih-kv .kih-minus{color:#e0565b}
+    .kih .kih-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kih-text)}
+    .kih .kih-formula p+p{margin-top:4px}
+    .kih .kih-formula-t{font-weight:700;margin-bottom:4px}
+    .kih .kih-warn{margin-top:8px;padding:12px 14px;border:1px solid #f3c7c9;border-radius:12px;background:#fff6f6;font-size:13px;color:#a23a3e}
+    .kih .kih-note{margin-top:12px;font-size:12.5px;color:var(--kih-sub)}
+    .kih .kih-note li{margin-left:16px}
+    .kih .kih-note li+li{margin-top:3px}
+    .kih .kih-actions{display:flex;gap:8px;margin-top:14px}
+    .kih .kih-btn{flex:1;height:44px;border:1.5px solid var(--kih-line);border-radius:12px;background:#fff;color:var(--kih-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kih .kih-btn:hover{background:#f4f6fa}
+    .kih .kih-btn:active{transform:scale(.98)}
+    .kih .kih-btn.kih-primary{border-color:var(--kih-accent);background:var(--kih-accent);color:#fff}
+    .kih .kih-btn.kih-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kih{padding:18px;border-radius:16px}.kih .kih-big{font-size:38px}.kih .kih-in{font-size:17px}.kih .kih-seg-btn{font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kih .kih-result,.kih .kih-in,.kih .kih-btn,.kih .kih-chip,.kih .kih-seg-btn{transition:none}}
+  </style>
+
+  <p class="kih-title">법정상속분 계산기</p>
+  <p class="kih-desc">가족 구성을 입력하면 민법에 따른 상속인별 몫(분수·비율·금액)과 유류분을 바로 계산해요. 유언이 없는 경우의 기준이에요.</p>
+
+  <p class="kih-label">고인의 배우자 <span class="kih-aside">혼인신고 한 배우자</span></p>
+  <div class="kih-seg" role="group" aria-label="배우자">
+    <button type="button" class="kih-seg-btn" data-sp="1" aria-pressed="false">있음</button>
+    <button type="button" class="kih-seg-btn" data-sp="0" aria-pressed="false">없음</button>
+  </div>
+
+  <p class="kih-label"><label for="kih-kids">살아 있는 자녀 수</label><span class="kih-aside">1순위 · 없으면 0</span></p>
+  <div class="kih-field"><input class="kih-in" id="kih-kids" data-kids inputmode="numeric" maxlength="2" placeholder="2" autocomplete="off"><span class="kih-unit">명</span></div>
+  <p class="kih-hint">혼인 중·혼인 외 자녀, 양자, 결혼한 딸·아들 모두 같은 몫이에요. 상속을 포기한 자녀는 빼고 세 주세요. 자녀가 모두 상속을 포기했다면 결과가 달라질 수 있어 전문가 확인이 필요해요.</p>
+
+  <p class="kih-label"><label for="kih-dead">고인보다 먼저 사망한 자녀 수</label><span class="kih-aside">대습상속</span></p>
+  <div class="kih-field"><input class="kih-in" id="kih-dead" data-dead inputmode="numeric" maxlength="1" placeholder="0" autocomplete="off"><span class="kih-unit">명</span></div>
+  <div class="kih-sub-box" data-dead-box hidden></div>
+
+  <div data-asc-box hidden>
+    <p class="kih-label">고인의 부모님 <span class="kih-aside">2순위 · 자녀가 없을 때</span></p>
+    <div class="kih-seg kih-3" role="group" aria-label="부모님 생존">
+      <button type="button" class="kih-seg-btn" data-par="2" aria-pressed="false">두 분</button>
+      <button type="button" class="kih-seg-btn" data-par="1" aria-pressed="false">한 분</button>
+      <button type="button" class="kih-seg-btn" data-par="0" aria-pressed="false">안 계심</button>
+    </div>
+    <div data-gp-box hidden>
+      <p class="kih-label"><label for="kih-gp">살아 계신 조부모님 수</label><span class="kih-aside">친가·외가 모두</span></p>
+      <div class="kih-field"><input class="kih-in" id="kih-gp" data-gp inputmode="numeric" maxlength="1" placeholder="0" autocomplete="off"><span class="kih-unit">분</span></div>
+    </div>
+  </div>
+
+  <div data-sib-box hidden>
+    <p class="kih-label"><label for="kih-sib">고인의 형제자매 수</label><span class="kih-aside">3순위</span></p>
+    <div class="kih-field"><input class="kih-in" id="kih-sib" data-sib inputmode="numeric" maxlength="2" placeholder="0" autocomplete="off"><span class="kih-unit">명</span></div>
+    <div data-col-box hidden>
+      <p class="kih-label"><label for="kih-col">가장 가까운 4촌 이내 친척 수</label><span class="kih-aside">4순위</span></p>
+      <div class="kih-field"><input class="kih-in" id="kih-col" data-col inputmode="numeric" maxlength="2" placeholder="0" autocomplete="off"><span class="kih-unit">명</span></div>
+      <p class="kih-hint">3촌(삼촌·고모·이모·조카)이 있으면 3촌끼리, 없으면 4촌(사촌)끼리 똑같이 나눠요.</p>
+    </div>
+  </div>
+
+  <p class="kih-label"><label for="kih-asset">상속재산</label><span class="kih-aside">선택 · 예금·부동산 등 합계</span></p>
+  <div class="kih-field"><input class="kih-in" id="kih-asset" data-asset inputmode="numeric" placeholder="비워 두면 비율만 계산" autocomplete="off"><span class="kih-unit">원</span></div>
+  <p class="kih-hint" data-asset-hint></p>
+  <p class="kih-label"><label for="kih-debt">고인의 빚</label><span class="kih-aside">선택 · 대출·카드값 등</span></p>
+  <div class="kih-field"><input class="kih-in" id="kih-debt" data-debt inputmode="numeric" placeholder="없으면 비워 두기" autocomplete="off"><span class="kih-unit">원</span></div>
+  <p class="kih-hint" data-debt-hint></p>
+
+  <p class="kih-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kih-result" data-result aria-live="polite">
+    <div class="kih-result-inner">
+      <div class="kih-main">
+        <p class="kih-rank" data-rank></p>
+        <p class="kih-main-label" data-main-label></p>
+        <p class="kih-big" data-big></p>
+        <p class="kih-sub" data-sub></p>
+      </div>
+      <div class="kih-warn" data-warn hidden></div>
+      <div class="kih-cards" data-cards></div>
+      <div class="kih-formula" data-formula></div>
+      <ul class="kih-note">
+        <li>유류분은 유언이나 생전 증여로 몫을 거의 받지 못했을 때 법이 보장하는 최소한의 몫이에요. 자녀·배우자는 법정상속분의 1/2, 부모는 1/3이고, 형제자매는 2024. 4. 25. 헌법재판소 위헌 결정으로 유류분이 없어요.</li>
+        <li>생전 증여(특별수익), 기여분, 상속세는 반영하지 않았어요. 실제 몫은 상속인끼리 협의(상속재산분할협의)로 달리 정할 수 있어요.</li>
+        <li>빚이 많다면 상속이 시작된 것을 안 날부터 3개월 안에 상속포기나 한정승인을 검토해 주세요.</li>
+        <li>이 계산은 법률·세무 자문이 아니며 개별 사정에 따라 달라질 수 있어요. 대한법률구조공단(국번 없이 132), 변호사·세무사, 가정법원 상담을 함께 받아 보세요.</li>
+      </ul>
+      <div class="kih-actions">
+        <button type="button" class="kih-btn" data-reset>다시 입력</button>
+        <button type="button" class="kih-btn kih-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kih]');
+    if (!root || root.__kih) return;
+    root.__kih = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var kidsI = $('[data-kids]'), deadI = $('[data-dead]'), gpI = $('[data-gp]'), sibI = $('[data-sib]'), colI = $('[data-col]');
+    var assetI = $('[data-asset]'), debtI = $('[data-debt]');
+    var deadBox = $('[data-dead-box]'), ascBox = $('[data-asc-box]'), gpBox = $('[data-gp-box]'), sibBox = $('[data-sib-box]'), colBox = $('[data-col-box]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var st = { sp: null, par: null }, dead = [], lastText = '';
+    var MAX_MONEY = 1e13;
+
+    function gcd(a, b) { while (b) { var t = a % b; a = b; b = t; } return a; }
+    function F(n, d) { var g = gcd(n, d); return { n: n / g, d: d / g }; }
+    function mul(a, b) { return F(a.n * b.n, a.d * b.d); }
+    function fs(f) { return f.n === 0 ? '0' : (f.d === 1 ? String(f.n) : f.n + '/' + f.d); }
+    function pct(f) { var v = Math.round(f.n / f.d * 10000) / 100; return String(v) + '%'; }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(v) { return comma(Math.round(v)) + '원'; }
+    function half(w) { return w % 2 ? String((w - 1) / 2) + '.5' : String(w / 2); }
+    function kor(v) {
+      if (!v) return '';
+      var jo = Math.floor(v / 1e12), eok = Math.floor(v % 1e12 / 1e8), man = Math.floor(v % 1e8 / 1e4), rest = v % 1e4, s = [];
+      if (jo) s.push(comma(jo) + '조'); if (eok) s.push(comma(eok) + '억'); if (man) s.push(comma(man) + '만'); if (rest) s.push(comma(rest));
+      return s.join(' ') + ' 원';
+    }
+    function num(inp) { var v = inp.value.replace(/\D/g, ''); return v === '' ? null : +v; }
+
+    function seg(attr, v) {
+      $$('[' + attr + ']').forEach(function (b) {
+        var on = b.getAttribute(attr) === String(v);
+        b.classList.toggle('kih-on', on); b.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+
+    // 먼저 사망한 자녀별 대습상속인 입력 줄
+    function renderDead() {
+      var n = Math.min(num(deadI) || 0, 9);
+      while (dead.length < n) dead.push({ sp: false, kids: '' });
+      dead.length = n;
+      deadBox.hidden = n === 0;
+      deadBox.innerHTML = '';
+      dead.forEach(function (d, i) {
+        var line = document.createElement('div'); line.className = 'kih-line';
+        line.innerHTML = '<p class="kih-line-k">먼저 사망한 자녀 ' + (i + 1) + '의 대습상속인</p>' +
+          '<button type="button" class="kih-chip" aria-pressed="false">배우자(며느리·사위) 있음</button>' +
+          '<div class="kih-field"><input class="kih-in" inputmode="numeric" maxlength="2" placeholder="0" aria-label="먼저 사망한 자녀 ' + (i + 1) + '의 자녀 수"><span class="kih-unit">명</span></div>' +
+          '<span class="kih-hint" style="margin:0">자녀(손주) 수</span>';
+        var chip = line.querySelector('.kih-chip'), inp = line.querySelector('.kih-in');
+        chip.classList.toggle('kih-on', d.sp); chip.setAttribute('aria-pressed', d.sp ? 'true' : 'false');
+        inp.value = d.kids;
+        chip.addEventListener('click', function () { d.sp = !d.sp; chip.classList.toggle('kih-on', d.sp); chip.setAttribute('aria-pressed', d.sp ? 'true' : 'false'); calc(); });
+        inp.addEventListener('input', function () { var v = inp.value.replace(/\D/g, '').slice(0, 2); if (v !== inp.value) inp.value = v; d.kids = v; calc(); });
+        deadBox.appendChild(line);
+      });
+      var hint = document.createElement('p'); hint.className = 'kih-hint';
+      hint.innerHTML = '먼저 사망한 자녀의 몫은 그 배우자와 자녀가 대신 받아요(대습상속). 배우자는 재혼하지 않은 경우만 해당하고, 배우자·자녀가 모두 없으면 그 자녀 몫은 다른 상속인에게 돌아가요.';
+      deadBox.appendChild(hint);
+    }
+
+    function hide(t) { result.classList.remove('kih-show'); msg.textContent = t || ''; }
+
+    function calc() {
+      var kids = num(kidsI), deadN = num(deadI) || 0;
+      [kidsI, deadI, gpI, sibI, colI, assetI, debtI].forEach(function (i) { i.classList.remove('kih-bad'); });
+      var asset = num(assetI), debt = num(debtI);
+      $('[data-asset-hint]').textContent = asset ? kor(asset) : '';
+      $('[data-debt-hint]').textContent = debt ? kor(debt) : '';
+
+      if (kids !== null && kids > 30) { kidsI.classList.add('kih-bad'); return hide('자녀 수는 30명 이하로 입력해 주세요.'); }
+      if (deadN > 9) { deadI.classList.add('kih-bad'); return hide('먼저 사망한 자녀 수는 9명 이하로 입력해 주세요.'); }
+      if (asset !== null && asset > MAX_MONEY) { assetI.classList.add('kih-bad'); return hide('상속재산 금액을 다시 확인해 주세요. (1경 원 미만)'); }
+      if (debt !== null && debt > MAX_MONEY) { debtI.classList.add('kih-bad'); return hide('빚 금액을 다시 확인해 주세요. (1경 원 미만)'); }
+
+      var lines = dead.map(function (d, i) { return { i: i + 1, sp: d.sp, k: d.kids === '' ? 0 : +d.kids }; });
+      for (var x = 0; x < lines.length; x++) if (lines[x].k > 30) return hide('손주 수는 30명 이하로 입력해 주세요.');
+      var valid = lines.filter(function (l) { return l.sp || l.k > 0; });
+      var hasDesc = (kids || 0) > 0 || valid.length > 0;
+
+      ascBox.hidden = hasDesc || kids === null;
+      gpBox.hidden = ascBox.hidden || st.par !== 0;
+      var gp = num(gpI) || 0;
+      if (!gpBox.hidden && gp > 4) { gpI.classList.add('kih-bad'); return hide('조부모님은 최대 네 분이에요.'); }
+      var asc = hasDesc ? 0 : (st.par === null ? null : (st.par > 0 ? st.par : gp));
+      sibBox.hidden = ascBox.hidden || st.sp !== 0 || asc === null || asc > 0;
+      var sib = num(sibI) || 0;
+      colBox.hidden = sibBox.hidden || sib > 0;
+      var col = num(colI) || 0;
+      if (sib > 30) { sibI.classList.add('kih-bad'); return hide('형제자매 수는 30명 이하로 입력해 주세요.'); }
+      if (col > 99) { colI.classList.add('kih-bad'); return hide('친척 수를 다시 확인해 주세요.'); }
+
+      if (st.sp === null || kids === null) return hide('');
+      if (!hasDesc && asc === null) return hide('');
+
+      // 가중치는 0.5 단위를 정수로 다루기 위해 2배 (배우자 3, 그 밖의 상속인 2)
+      var groups = [], formula = [], rank, rankText, sp = st.sp === 1;
+      var HALF = F(1, 2), THIRD = F(1, 3), NONE = F(0, 1);
+      if (hasDesc) {
+        rank = 1; rankText = sp ? '1순위 · 배우자와 자녀가 함께 상속' : '1순위 · 자녀(직계비속)가 상속';
+        var units = (kids || 0) + valid.length, total = (sp ? 3 : 0) + 2 * units;
+        var parts = [];
+        if (sp) { groups.push({ k: '배우자', n: 1, f: F(3, total), r: HALF }); parts.push('배우자 1.5'); }
+        if (kids) { groups.push({ k: '자녀', n: kids, f: F(2, total), r: HALF }); parts.push('자녀 1 × ' + kids + '명'); }
+        if (valid.length) parts.push('먼저 사망한 자녀 1 × ' + valid.length + '명');
+        formula.push(parts.join(' + ') + ' = ' + half(total));
+        if (sp) formula.push('배우자: 1.5 ÷ ' + half(total) + ' = ' + fs(F(3, total)));
+        formula.push((kids ? '자녀 1명' : '먼저 사망한 자녀 1명의 몫') + ': 1 ÷ ' + half(total) + ' = ' + fs(F(2, total)));
+        valid.forEach(function (l) {
+          var lf = F(2, total), lt = (l.sp ? 3 : 0) + 2 * l.k, sub = [];
+          if (l.sp) { groups.push({ k: '먼저 사망한 자녀 ' + l.i + '의 배우자', s: '대습상속', n: 1, f: mul(lf, F(3, lt)), r: HALF }); sub.push('배우자 1.5'); }
+          if (l.k) { groups.push({ k: '먼저 사망한 자녀 ' + l.i + '의 자녀(손주)', s: '대습상속', n: l.k, f: mul(lf, F(2, lt)), r: HALF }); sub.push('손주 1 × ' + l.k + '명'); }
+          var t = '먼저 사망한 자녀 ' + l.i + '의 몫 ' + fs(lf) + '을 ' + sub.join(' + ');
+          if (l.sp && l.k) t += ' (= ' + half(lt) + ')로 나눠요 → 배우자 ' + fs(mul(lf, F(3, lt))) + ', 손주 각 ' + fs(mul(lf, F(2, lt)));
+          else if (l.sp) t += '가 모두 받아요 → ' + fs(lf);
+          else t += '으로 똑같이 나눠요 → 각 ' + fs(mul(lf, F(2, lt)));
+          formula.push(t);
+        });
+      } else if (asc > 0) {
+        rank = 2; rankText = sp ? '2순위 · 배우자와 ' + (st.par > 0 ? '부모님' : '조부모님') + '이 함께 상속' : '2순위 · ' + (st.par > 0 ? '부모님' : '조부모님') + '(직계존속)이 상속';
+        var ak = st.par > 0 ? '부모님' : '조부모님', at = (sp ? 3 : 0) + 2 * asc;
+        if (sp) groups.push({ k: '배우자', n: 1, f: F(3, at), r: HALF });
+        groups.push({ k: ak, n: asc, f: F(2, at), r: THIRD, unit: '분' });
+        formula.push((sp ? '배우자 1.5 + ' : '') + ak + ' 1 × ' + asc + '분 = ' + half(at));
+        if (sp) formula.push('배우자: 1.5 ÷ ' + half(at) + ' = ' + fs(F(3, at)));
+        formula.push(ak + ' 한 분: 1 ÷ ' + half(at) + ' = ' + fs(F(2, at)));
+      } else if (sp) {
+        rank = 0; rankText = '배우자 단독 상속';
+        groups.push({ k: '배우자', n: 1, f: F(1, 1), r: HALF });
+        formula.push('자녀(손주 포함)와 부모님(조부모님 포함)이 없으면 배우자가 전부 상속해요. 형제자매는 상속받지 못해요.');
+      } else if (sib > 0) {
+        rank = 3; rankText = '3순위 · 형제자매가 상속';
+        groups.push({ k: '형제자매', n: sib, f: F(1, sib), r: NONE });
+        formula.push('형제자매 ' + sib + '명이 똑같이 나눠요: 1 ÷ ' + sib + ' = ' + fs(F(1, sib)));
+      } else if (col > 0) {
+        rank = 4; rankText = '4순위 · 4촌 이내 방계혈족이 상속';
+        groups.push({ k: '4촌 이내 친척', s: '가장 가까운 촌수', n: col, f: F(1, col), r: NONE });
+        formula.push('가장 가까운 촌수의 친척 ' + col + '명이 똑같이 나눠요: 1 ÷ ' + col + ' = ' + fs(F(1, col)));
+      } else {
+        rank = -1;
+      }
+
+      msg.textContent = '';
+      var warn = $('[data-warn]'), cards = $('[data-cards]');
+      cards.innerHTML = ''; warn.hidden = true;
+      var hasMoney = asset !== null || debt !== null, A = asset || 0, D = debt || 0, net = A - D;
+      var copy = ['[법정상속분 계산 결과]'];
+
+      if (rank === -1) {
+        $('[data-rank]').textContent = '상속인 없음';
+        $('[data-main-label]').textContent = '민법상 상속인이 없어요';
+        $('[data-big]').textContent = '-';
+        $('[data-sub]').textContent = '특별연고자 분여 후 국가에 귀속';
+        $('[data-formula]').innerHTML = '<p class="kih-formula-t">안내</p><p>상속인이 없으면 법원이 상속재산관리인을 선임하고, 고인과 생계를 같이했거나 요양·간호한 특별연고자가 청구하면 재산의 전부 또는 일부를 나눠 줄 수 있어요(민법 제1057조의2). 남은 재산은 국가에 귀속돼요(제1058조).</p>';
+        copy.push('상속인 없음: 특별연고자 분여 후 국가 귀속 (민법 제1057조의2, 제1058조)');
+        lastText = copy.join('\n');
+        result.classList.add('kih-show');
+        return;
+      }
+
+      var first = groups[0];
+      $('[data-rank]').textContent = rankText;
+      $('[data-main-label]').textContent = first.k + (first.n > 1 ? ' 1명' : '') + '의 법정상속분';
+      $('[data-big]').textContent = fs(first.f);
+      $('[data-sub]').textContent = pct(first.f) + (groups.length === 2 ? ' · ' + groups.slice(1).map(function (g) { return g.k + ' ' + (g.n > 1 ? '각 ' : '') + fs(g.f); }).join(' · ') : '') +
+        (hasMoney && A ? ' · ' + won(A * first.f.n / first.f.d) : '');
+      copy.push('상속 순위: ' + rankText);
+
+      groups.forEach(function (g) {
+        var each = g.n > 1, fv = g.f.n / g.f.d, rf = mul(g.f, g.r.n ? g.r : F(0, 1));
+        var html = '<div class="kih-card-h"><p class="kih-card-k">' + g.k + (each ? ' ' + g.n + (g.unit || '명') + ' (1' + (g.unit || '명') + '당)' : '') +
+          (g.s ? '<small>' + g.s + '</small>' : '') + '</p><p class="kih-card-v">' + fs(g.f) + '</p></div>';
+        html += '<p class="kih-kv"><span>비율</span><b>' + pct(g.f) + '</b></p>';
+        var line = '- ' + g.k + (each ? ' ' + g.n + (g.unit || '명') + ' 각' : '') + ': ' + fs(g.f) + ' (' + pct(g.f) + ')';
+        if (asset !== null) { html += '<p class="kih-kv"><span>받는 재산</span><b>' + won(A * fv) + '</b></p>'; line += ', 재산 ' + won(A * fv); }
+        if (debt) { html += '<p class="kih-kv"><span>나눠 갚을 빚</span><b class="kih-minus">−' + won(D * fv) + '</b></p>'; line += ', 빚 ' + won(D * fv); }
+        if (asset !== null && debt) { html += '<p class="kih-kv"><span>재산 − 빚</span><b' + (net < 0 ? ' class="kih-minus"' : '') + '>' + (net < 0 ? '−' : '') + won(Math.abs(net) * fv) + '</b></p>'; }
+        if (g.r.n) {
+          var yv = hasMoney && net > 0 ? ' · ' + won(net * rf.n / rf.d) : '';
+          html += '<p class="kih-kv"><span>유류분 (몫의 ' + fs(g.r) + ')</span><b>' + fs(rf) + yv + '</b></p>';
+          line += ', 유류분 ' + fs(rf) + yv.replace(' · ', ' ');
+        } else {
+          html += '<p class="kih-kv"><span>유류분</span><b>없음</b></p>';
+          line += ', 유류분 없음';
+        }
+        var c = document.createElement('div'); c.className = 'kih-card'; c.innerHTML = html; cards.appendChild(c);
+        copy.push(line);
+      });
+
+      if (hasMoney) copy.splice(2, 0, '상속재산 ' + won(A) + (debt ? ', 빚 ' + won(D) : ''));
+      if (debt && net < 0) {
+        warn.hidden = false;
+        warn.textContent = '빚이 재산보다 ' + won(-net) + ' 많아요. 상속인은 법정상속분만큼 빚도 이어받기 때문에, 상속이 시작된 것을 안 날부터 3개월 안에 가정법원에 상속포기나 한정승인을 신고하는 것을 검토해 주세요(민법 제1019조). 이 경우 유류분은 생기지 않아요.';
+        copy.push('주의: 빚이 재산보다 많음 → 3개월 안에 상속포기·한정승인 검토');
+      }
+
+      var fh = '<p class="kih-formula-t">계산식</p>' + formula.map(function (t) { return '<p>' + t + '</p>'; }).join('');
+      if (groups.some(function (g) { return g.r.n; })) fh += '<p>유류분 = 법정상속분 × ' + (rank === 2 ? (sp ? '1/2(배우자), 1/3(직계존속)' : '1/3') : '1/2') + (hasMoney ? ' × (상속재산 − 빚)' : '') + '</p>';
+      $('[data-formula]').innerHTML = fh;
+      copy.push('※ 법률 자문이 아니며 생전 증여·기여분·상속세는 반영하지 않음. 상담: 대한법률구조공단 132');
+      lastText = copy.join('\n');
+      result.classList.add('kih-show');
+    }
+
+    function money(inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 17);
+        var c = v ? comma(v) : '';
+        if (c !== inp.value) inp.value = c;
+        calc();
+      });
+    }
+    money(assetI); money(debtI);
+    [[kidsI, 2], [gpI, 1], [sibI, 2], [colI, 2]].forEach(function (p) {
+      p[0].addEventListener('input', function () { var v = p[0].value.replace(/\D/g, '').slice(0, p[1]); if (v !== p[0].value) p[0].value = v; calc(); });
+    });
+    deadI.addEventListener('input', function () { var v = deadI.value.replace(/\D/g, '').slice(0, 1); if (v !== deadI.value) deadI.value = v; renderDead(); calc(); });
+
+    $$('[data-sp]').forEach(function (b) { b.addEventListener('click', function () { st.sp = +b.getAttribute('data-sp'); seg('data-sp', st.sp); calc(); }); });
+    $$('[data-par]').forEach(function (b) { b.addEventListener('click', function () { st.par = +b.getAttribute('data-par'); seg('data-par', st.par); calc(); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      [kidsI, deadI, gpI, sibI, colI, assetI, debtI].forEach(function (i) { i.value = ''; });
+      st.sp = null; st.par = null; seg('data-sp', ''); seg('data-par', ''); dead = []; renderDead(); calc(); hide('');
+      $$('[data-sp]')[0].focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 법정상속분 계산기 위젯 끝 -->
+
+<h2>법정상속분 계산법</h2>
+<p>유언이 없으면 민법이 정한 비율(법정상속분)로 상속재산을 나눠요. 같은 순위 상속인은 똑같이 나누고, 배우자는 함께 상속하는 직계비속(자녀)이나 직계존속(부모)의 몫에 5할을 더해요(민법 제1009조).</p>
+<ul>
+  <li><strong>공식:</strong> 내 몫 = 내 가중치 ÷ 모든 상속인의 가중치 합 (배우자 1.5, 그 밖의 상속인 1)</li>
+  <li><strong>예시:</strong> 배우자와 자녀 3명이 상속재산 9억 원을 나누면 가중치 합은 1.5 + 1 + 1 + 1 = 4.5예요. 배우자는 1.5 ÷ 4.5 = 3/9(1/3)로 3억 원, 자녀는 1명당 1 ÷ 4.5 = 2/9로 2억 원씩 받아요.</li>
+</ul>
+<p>고인의 빚도 같은 비율로 이어받아요. 위 예시에서 빚이 1억 8천만 원이었다면 배우자는 6천만 원, 자녀는 1명당 4천만 원을 나눠 갚게 돼요.</p>
+
+<h2>상속 순위와 유류분 한눈에 보기</h2>
+<p>앞 순위 상속인이 한 명이라도 있으면 뒤 순위는 상속받지 못해요(민법 제1000조). 같은 순위에 여러 명이 있으면 촌수가 가장 가까운 사람이 먼저이고, 촌수가 같으면 함께 상속해요.</p>
+<table>
+  <thead><tr><th>순위</th><th>상속인</th><th>배우자</th><th>유류분</th></tr></thead>
+  <tbody>
+    <tr><td>1순위</td><td>직계비속 (자녀, 자녀가 먼저 사망했으면 손주)</td><td>함께 상속, 자녀 몫의 1.5배</td><td>법정상속분의 1/2</td></tr>
+    <tr><td>2순위</td><td>직계존속 (부모, 부모가 안 계시면 조부모)</td><td>함께 상속, 부모 몫의 1.5배</td><td>법정상속분의 1/3</td></tr>
+    <tr><td>단독</td><td>배우자 (1·2순위가 없을 때)</td><td>전부 상속</td><td>법정상속분의 1/2</td></tr>
+    <tr><td>3순위</td><td>형제자매</td><td>배우자가 있으면 상속 못 함</td><td>없음 (2024. 4. 25. 위헌 결정)</td></tr>
+    <tr><td>4순위</td><td>4촌 이내 방계혈족 (삼촌·고모·이모·조카, 사촌)</td><td>배우자가 있으면 상속 못 함</td><td>없음</td></tr>
+  </tbody>
+</table>
+
+<h2>가족 구성별 법정상속분</h2>
+<table>
+  <thead><tr><th>상속인</th><th>배우자</th><th>그 밖의 상속인 1명당</th></tr></thead>
+  <tbody>
+    <tr><td>배우자 + 자녀 1명</td><td>3/5 (60%)</td><td>2/5 (40%)</td></tr>
+    <tr><td>배우자 + 자녀 2명</td><td>3/7 (약 42.9%)</td><td>2/7 (약 28.6%)</td></tr>
+    <tr><td>배우자 + 자녀 3명</td><td>3/9 (약 33.3%)</td><td>2/9 (약 22.2%)</td></tr>
+    <tr><td>배우자 + 자녀 4명</td><td>3/11 (약 27.3%)</td><td>2/11 (약 18.2%)</td></tr>
+    <tr><td>배우자 + 부모 두 분</td><td>3/7 (약 42.9%)</td><td>2/7 (약 28.6%)</td></tr>
+    <tr><td>배우자 + 부모 한 분</td><td>3/5 (60%)</td><td>2/5 (40%)</td></tr>
+    <tr><td>자녀만 3명</td><td>-</td><td>1/3 (약 33.3%)</td></tr>
+    <tr><td>배우자만 (자녀·부모 없음)</td><td>1 (100%)</td><td>-</td></tr>
+  </tbody>
+</table>
+
+<h2>자녀가 먼저 세상을 떠났다면: 대습상속</h2>
+<p>상속인이 될 자녀가 고인보다 먼저 사망했다면, 그 자녀의 배우자(며느리·사위)와 자녀(손주)가 그 몫을 대신 받아요(민법 제1001조, 제1003조 제2항). 이것을 대습상속이라고 해요. 대신 받는 몫 안에서도 배우자는 1.5, 손주는 1의 비율로 나눠요.</p>
+<p>예를 들어 배우자, 살아 있는 자녀 1명, 먼저 사망한 자녀 1명(그 배우자와 손주 2명)이 있다면 배우자 3/7, 자녀 2/7이고, 먼저 사망한 자녀의 몫 2/7을 며느리(또는 사위) 6/49, 손주 각 4/49로 나눠요. 며느리·사위가 재혼했다면 대습상속인이 되지 않아요.</p>
+
+<h2>유류분: 2024년 위헌 결정과 2026년 개정 민법</h2>
+<p>유류분은 고인이 유언이나 생전 증여로 재산을 다른 사람에게 몰아줬을 때, 상속인이 최소한으로 돌려받을 수 있는 몫이에요(민법 제1112조). 자녀와 배우자는 법정상속분의 1/2, 부모는 1/3이에요.</p>
+<ul>
+  <li><strong>형제자매 유류분 폐지:</strong> 헌법재판소는 2024. 4. 25. 형제자매의 유류분을 정한 민법 제1112조 제4호를 위헌으로 결정했어요. 그래서 형제자매는 상속인이 되더라도 유류분을 주장할 수 없어요.</li>
+  <li><strong>2026년 개정 민법:</strong> 헌법재판소가 함께 지적한 부분(패륜적인 상속인의 유류분, 기여분 반영)을 고친 민법 개정안이 2026. 2. 12. 국회를 통과해 2026. 3. 17.부터 시행됐어요. 부양의무를 크게 저버린 상속인 등은 유류분을 잃을 수 있고, 2026. 3. 17. 이후 개시된 상속은 원칙적으로 돈(가액)으로 돌려받아요. 자녀·배우자 1/2, 부모 1/3이라는 비율은 그대로예요.</li>
+  <li><strong>계산 방법:</strong> 유류분 = (상속재산 + 산입되는 생전 증여 − 빚) × 법정상속분 × 1/2(또는 1/3). 계산기는 생전 증여를 넣지 않고 상속재산에서 빚을 뺀 금액으로 어림해요.</li>
+</ul>
+<p>또 2026. 1. 1.부터는 미성년 자녀에 대한 부양의무를 크게 저버린 부모 등에 대해 가정법원이 상속권 상실을 선고할 수 있는 제도(민법 제1004조의2, 이른바 구하라법)도 시행되고 있어요.</p>
+
+<h2>빚이 더 많다면: 상속포기와 한정승인</h2>
+<p>상속인은 재산뿐 아니라 빚도 법정상속분만큼 이어받아요. 빚이 더 많거나 얼마인지 알 수 없다면 상속이 시작된 것을 안 날부터 3개월 안에 가정법원에 상속포기(재산·빚 모두 받지 않음)나 한정승인(받은 재산 한도에서만 빚을 갚음)을 신고할 수 있어요(민법 제1019조). 한 사람이 포기하면 그 몫은 다른 상속인에게 넘어가기 때문에, 가족이 함께 상의해 순서를 정하는 것이 좋아요. 사망신고부터 상속포기·상속세 신고까지 기한은 <a href="{{LINK:after-death-checklist}}">가족 사망 후 할 일 타임라인</a>에서 날짜별로 확인할 수 있어요.</p>
+<p>이 계산기는 상속세를 계산하지 않아요. 상속세는 상속재산 전체에 대해 공제를 거쳐 매기는 세금이라 법정상속분과 별개로 세무사와 확인해 주세요.</p>
+<p>이 글과 계산기는 민법의 일반 원칙을 정리한 것이며 법률·세무 자문이 아니에요. 생전 증여, 기여분, 유언, 상속인 중 미성년자나 해외 거주자가 있는지 등 개별 사정에 따라 결과가 달라질 수 있어요. 결정하기 전에 대한법률구조공단(국번 없이 132), 변호사·세무사, 가정법원 상담을 받아 보세요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>배우자와 자녀 1명이면 몇 대 몇인가요?</h3>
+<p>배우자 1.5, 자녀 1의 비율이라 배우자 3/5(60%), 자녀 2/5(40%)예요. 자녀가 2명이면 배우자 3/7, 자녀 1명당 2/7, 3명이면 배우자 3/9, 자녀 1명당 2/9로 자녀가 늘수록 배우자 비율은 줄어들어요.</p>
+<h3>자녀가 없으면 배우자가 전부 상속하나요?</h3>
+<p>고인의 부모님(부모님이 안 계시면 조부모님)이 살아 계시면 배우자와 함께 2순위로 상속해요. 이때도 배우자는 1.5, 부모 한 분은 1의 비율이에요. 자녀와 부모·조부모가 모두 없을 때만 배우자가 단독으로 상속하고, 이 경우 형제자매는 상속받지 못해요.</p>
+<h3>형제자매도 유류분을 청구할 수 있나요?</h3>
+<p>청구할 수 없어요. 헌법재판소가 2024. 4. 25. 형제자매의 유류분을 정한 조항을 위헌으로 결정했기 때문이에요. 지금은 자녀·배우자(법정상속분의 1/2)와 부모(1/3)만 유류분이 있어요.</p>
+<h3>자녀들이 모두 상속을 포기하면 어떻게 되나요?</h3>
+<p>대법원은 2023. 3. 23. 전원합의체 결정(2020그42)에서 배우자와 자녀가 있는데 자녀 전원이 상속을 포기하면 손주가 아니라 배우자가 단독으로 상속한다고 판단했어요. 빚 때문에 포기하는 경우라면 배우자도 함께 포기하거나 한정승인을 해야 하는지 전문가와 상의해 주세요.</p>
+<h3>법정상속분과 다르게 나눠도 되나요?</h3>
+<p>상속인 전원이 합의하면 법정상속분과 다른 비율로 재산을 나눌 수 있어요(상속재산분할협의). 다만 빚은 합의와 관계없이 채권자에게는 법정상속분대로 책임을 지는 것이 원칙이라, 빚을 한 사람이 떠안기로 했다면 채권자의 동의 등 절차를 따로 확인해야 해요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:after-death-checklist}}">가족 사망 후 할 일 타임라인</a>: 사망신고·상속포기·상속세 신고 기한 정리</li>
+  <li><a href="{{LINK:gift-tax-calculator}}">증여세 계산기</a>: 생전에 미리 증여할 때 내는 세금 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "배우자와 자녀 1명이면 몇 대 몇인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "배우자 1.5, 자녀 1의 비율이라 배우자 3/5(60%), 자녀 2/5(40%)예요. 자녀가 2명이면 배우자 3/7, 자녀 1명당 2/7, 3명이면 배우자 3/9, 자녀 1명당 2/9로 자녀가 늘수록 배우자 비율은 줄어들어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "자녀가 없으면 배우자가 전부 상속하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "고인의 부모님(부모님이 안 계시면 조부모님)이 살아 계시면 배우자와 함께 2순위로 상속해요. 이때도 배우자는 1.5, 부모 한 분은 1의 비율이에요. 자녀와 부모·조부모가 모두 없을 때만 배우자가 단독으로 상속하고, 이 경우 형제자매는 상속받지 못해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "형제자매도 유류분을 청구할 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "청구할 수 없어요. 헌법재판소가 2024. 4. 25. 형제자매의 유류분을 정한 조항을 위헌으로 결정했기 때문이에요. 지금은 자녀·배우자(법정상속분의 1/2)와 부모(1/3)만 유류분이 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "자녀들이 모두 상속을 포기하면 어떻게 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "대법원은 2023. 3. 23. 전원합의체 결정(2020그42)에서 배우자와 자녀가 있는데 자녀 전원이 상속을 포기하면 손주가 아니라 배우자가 단독으로 상속한다고 판단했어요. 빚 때문에 포기하는 경우라면 배우자도 함께 포기하거나 한정승인을 해야 하는지 전문가와 상의해 주세요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "법정상속분과 다르게 나눠도 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "상속인 전원이 합의하면 법정상속분과 다른 비율로 재산을 나눌 수 있어요(상속재산분할협의). 다만 빚은 합의와 관계없이 채권자에게는 법정상속분대로 책임을 지는 것이 원칙이라, 빚을 한 사람이 떠안기로 했다면 채권자의 동의 등 절차를 따로 확인해야 해요."
+   }
+  }
+ ]
+}
+</script>
