@@ -1,0 +1,460 @@
+<p><strong>취업 후 상환 학자금대출의 의무상환액은 1년 소득금액에서 상환기준소득을 뺀 금액의 20%(대학원 대출은 25%)예요. 2026년 소득분 상환기준소득은 소득금액 2,056만원(총급여 약 3,037만원)이라, 연봉(총급여) 3,500만원이면 1년에 788,000원, 한 달에 약 6만 6천원씩 월급에서 빠져요.</strong> 아래 계산기에 연봉과 남은 대출 잔액을 넣으면 1년 의무상환액, 월 원천공제액, 다 갚기까지 걸리는 기간을 바로 확인할 수 있어요.</p>
+<!-- 학자금대출 의무상환액 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kst" data-kst>
+  <style>
+    .kst{--kst-accent:#3b6ef5;--kst-accent-soft:#eef3ff;--kst-text:#1d2433;--kst-sub:#6b7385;--kst-line:#e3e7ef;--kst-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kst-line);border-radius:20px;background:var(--kst-bg);
+      color:var(--kst-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kst [hidden]{display:none!important}
+    .kst *,.kst *::before,.kst *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kst .kst-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kst .kst-desc{margin-top:4px;font-size:14px;color:var(--kst-sub)}
+    .kst .kst-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kst-text)}
+    .kst .kst-label small{font-weight:500;color:var(--kst-sub)}
+    .kst .kst-field{position:relative;flex:1;min-width:0}
+    .kst .kst-in{width:100%;height:52px;padding:0 44px 0 14px;border:1.5px solid var(--kst-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kst-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kst .kst-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kst .kst-in:focus{border-color:var(--kst-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kst .kst-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kst-sub);pointer-events:none}
+    .kst .kst-hint{margin-top:6px;font-size:12.5px;color:var(--kst-sub)}
+    .kst .kst-seg{display:grid;grid-template-columns:repeat(2,1fr);gap:4px;margin-top:14px;padding:4px;border-radius:12px;background:#f1f3f8}
+    .kst .kst-seg button{min-height:36px;padding:4px 6px;border:0;border-radius:9px;background:none;color:var(--kst-sub);font-size:13.5px;font-weight:600;cursor:pointer;
+      transition:background .2s,color .2s,box-shadow .2s;word-break:keep-all;line-height:1.25}
+    .kst .kst-seg button small{display:block;font-size:11px;font-weight:500}
+    .kst .kst-seg button.kst-on{background:#fff;color:var(--kst-accent);box-shadow:0 1px 4px rgba(30,45,90,.1)}
+    .kst .kst-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kst .kst-chip{height:32px;padding:0 12px;border:1.5px solid var(--kst-line);border-radius:999px;background:#fff;color:var(--kst-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kst .kst-chip:hover{border-color:#c9d3ea;color:var(--kst-text)}
+    .kst .kst-chip.kst-on{border-color:var(--kst-accent);background:var(--kst-accent-soft);color:var(--kst-accent)}
+    .kst .kst-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b;word-break:keep-all}
+    .kst .kst-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kst .kst-result.kst-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kst .kst-result-inner{overflow:hidden}
+    .kst .kst-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kst-accent-soft);text-align:center}
+    .kst .kst-main-label{font-size:14px;color:var(--kst-sub)}
+    .kst .kst-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kst-accent);line-height:1.2;word-break:keep-all}
+    .kst .kst-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kst .kst-badge{display:inline-block;margin-top:8px;padding:3px 10px;border-radius:999px;background:#fff;color:var(--kst-accent);font-size:12.5px;font-weight:700}
+    .kst .kst-sub{margin-top:6px;font-size:14px;color:var(--kst-sub)}
+    .kst .kst-main-label,.kst .kst-sub,.kst .kst-note,.kst .kst-desc,.kst .kst-hint,.kst .kst-formula,.kst .kst-warn{word-break:keep-all}
+    .kst .kst-warn{margin-top:10px;padding:10px 12px;border-radius:12px;background:#fff7e8;color:#8a5a00;font-size:12.5px}
+    .kst .kst-sec{margin-top:16px;font-size:14px;font-weight:700}
+    .kst .kst-table{width:100%;margin-top:8px;border:1px solid var(--kst-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:13.5px}
+    .kst .kst-table th,.kst .kst-table td{padding:9px 10px;border:0;border-bottom:1px solid var(--kst-line);background:#fff;text-align:left;font-weight:500;color:var(--kst-text);vertical-align:middle}
+    .kst .kst-table td{text-align:right;font-weight:700;white-space:nowrap}
+    .kst .kst-table th small,.kst .kst-table td small{display:block;font-size:11.5px;color:var(--kst-sub);font-weight:500;word-break:keep-all;white-space:normal}
+    .kst .kst-table tr:last-child th,.kst .kst-table tr:last-child td{border-bottom:0}
+    .kst .kst-table .kst-total th,.kst .kst-table .kst-total td{background:#f8f9fc;font-weight:700}
+    .kst .kst-table .kst-total td{color:var(--kst-accent)}
+    .kst .kst-formula{margin-top:8px;padding:14px;border:1px solid var(--kst-line);border-radius:14px;background:#f8f9fc;font-size:13px;color:var(--kst-text)}
+    .kst .kst-formula p+p{margin-top:6px}
+    .kst .kst-note{margin-top:12px;font-size:12.5px;color:var(--kst-sub)}
+    .kst .kst-note li{margin-left:16px}
+    .kst .kst-note li+li{margin-top:2px}
+    .kst .kst-nowrap{white-space:nowrap}
+    .kst .kst-actions{display:flex;gap:8px;margin-top:14px}
+    .kst .kst-btn{flex:1;height:44px;border:1.5px solid var(--kst-line);border-radius:12px;background:#fff;color:var(--kst-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kst .kst-btn:hover{background:#f4f6fa}
+    .kst .kst-btn:active{transform:scale(.98)}
+    .kst .kst-btn.kst-primary{border-color:var(--kst-accent);background:var(--kst-accent);color:#fff}
+    .kst .kst-btn.kst-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kst{padding:18px;border-radius:16px}.kst .kst-big{font-size:34px}.kst .kst-in{font-size:17px}
+      .kst .kst-table th,.kst .kst-table td{padding:8px 8px}.kst .kst-chip{padding:0 10px}}
+    @media (prefers-reduced-motion:reduce){.kst .kst-result,.kst .kst-in,.kst .kst-btn,.kst .kst-chip,.kst .kst-seg button{transition:none}}
+  </style>
+
+  <p class="kst-title">학자금대출 의무상환액 계산기</p>
+  <p class="kst-desc">취업 후 상환 학자금대출(ICL)을 받았다면 연봉과 대출 잔액만 넣으세요. 1년에 갚아야 할 의무상환액과 월급에서 빠지는 금액이 바로 계산돼요.</p>
+
+  <div class="kst-seg" role="group" aria-label="소득 연도">
+    <button type="button" data-year="2025" aria-pressed="false">2025년 소득분<small>2026.7.~2027.6. 공제</small></button>
+    <button type="button" class="kst-on" data-year="2026" aria-pressed="true">2026년 소득분<small>2027.7.부터 공제</small></button>
+  </div>
+  <p class="kst-hint" data-year-hint></p>
+
+  <div class="kst-seg" role="group" aria-label="소득 유형">
+    <button type="button" class="kst-on" data-type="w" aria-pressed="true">근로소득자<small>연봉(총급여)으로 계산</small></button>
+    <button type="button" data-type="g" aria-pressed="false">종합소득자<small>소득금액 직접 입력</small></button>
+  </div>
+
+  <label class="kst-label" for="kst-inc"><span data-inc-label>연 총급여 <small>(세전, 비과세 제외)</small></span></label>
+  <div class="kst-field"><input class="kst-in" id="kst-inc" data-inc inputmode="numeric" placeholder="35,000,000"><span class="kst-unit">원</span></div>
+  <p class="kst-hint" data-inc-hint>연봉에서 식대 같은 비과세 수당을 뺀 금액이에요. 근로소득공제를 자동으로 빼서 소득금액을 구해요.</p>
+
+  <label class="kst-label" for="kst-bal"><span>남은 대출 잔액 <small>(원리금)</small></span><small>선택</small></label>
+  <div class="kst-field"><input class="kst-in" id="kst-bal" data-bal inputmode="numeric" placeholder="15,000,000"><span class="kst-unit">원</span></div>
+  <p class="kst-hint">한국장학재단 누리집·앱의 대출 현황에서 볼 수 있어요. 넣으면 다 갚기까지 걸리는 기간도 계산해요.</p>
+
+  <label class="kst-label" for="kst-rate"><span>대출 금리</span><small>연 %</small></label>
+  <div class="kst-field"><input class="kst-in" id="kst-rate" data-rate inputmode="decimal" maxlength="4" value="1.7" placeholder="1.7"><span class="kst-unit">%</span></div>
+  <div class="kst-chips">
+    <button type="button" class="kst-chip" data-r="1.7">연 1.7% (2026년 금리)</button>
+    <button type="button" class="kst-chip" data-r="0">이자 면제 (0%)</button>
+  </div>
+
+  <label class="kst-label"><span>상환율</span></label>
+  <div class="kst-chips" style="margin-top:0">
+    <button type="button" class="kst-chip kst-on" data-pct="20">학부 대출 20%</button>
+    <button type="button" class="kst-chip" data-pct="25">대학원 대출 25%</button>
+  </div>
+
+  <p class="kst-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kst-result" data-result aria-live="polite">
+    <div class="kst-result-inner">
+      <div class="kst-main">
+        <p class="kst-main-label" data-main-label></p>
+        <p class="kst-big" data-big></p>
+        <p class="kst-badge" data-badge></p>
+        <p class="kst-sub" data-sub></p>
+      </div>
+      <p class="kst-warn" data-warn hidden></p>
+      <p class="kst-sec">계산 내역</p>
+      <table class="kst-table"><tbody data-rows></tbody></table>
+      <div class="kst-formula" data-formula></div>
+      <ul class="kst-note">
+        <li>국세청이 전년도 소득으로 의무상환액을 정해 4월쯤 통지하고, 근로소득자는 그해 7월부터 다음 해 6월까지 월급에서 12분의 1씩 빠져요.</li>
+        <li>상환 완료 기간은 소득과 금리가 지금처럼 그대로라는 단순 가정이에요. 자발적 상환을 더 하면 줄어들어요.</li>
+        <li>근로소득 말고 다른 소득(사업·이자·연금 등)이 있거나 상환 유예를 받았다면 실제 금액이 달라요. 정확한 금액은 국세청 취업 후 학자금 상환 누리집이나 국세상담센터(126)에서 확인하세요.</li>
+      </ul>
+      <div class="kst-actions">
+        <button type="button" class="kst-btn" data-reset>다시 입력</button>
+        <button type="button" class="kst-btn kst-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kst]');
+    if (!root || root.__kst) return;
+    root.__kst = true;
+
+    // ===== 바뀔 수 있는 값: 매년 교육부 고시가 나오면 여기만 고치면 돼요 (README.md "매년 할 일" 참고) =====
+    // 상환기준소득(연간 소득금액). 괄호는 총급여 환산액. 2026.11.26 현재 2027년 소득분 고시는 발표 전.
+    var R = {
+      '2025': { base: 18980000, gross: 28510000, hint: '2025년 소득분 상환기준소득: 소득금액 1,898만원 (총급여 약 2,851만원). 2026년 4월 통지, 2026년 7월~2027년 6월 원천공제.' },
+      '2026': { base: 20560000, gross: 30370000, hint: '2026년 소득분 상환기준소득: 소득금액 2,056만원 (총급여 약 3,037만원). 2027년 4월쯤 통지, 2027년 7월부터 원천공제.' }
+    };
+    var MIN_WITHHOLD = 360000; // 의무상환액이 36만원 미만이면 원천공제 없이 통지서로 직접 납부
+    // ===== 바뀔 수 있는 값 끝 =====
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var incI = $('[data-inc]'), balI = $('[data-bal]'), rateI = $('[data-rate]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var year = '2026', type = 'w', pct = 20, lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(n) { return comma(Math.floor(n)) + '원'; }
+    function man(n) { return n % 10000 ? comma(n) + '원' : comma(n / 10000) + '만원'; }
+    function num(inp) { return +String(inp.value).replace(/\D/g, '') || 0; }
+    function hide(text) { result.classList.remove('kst-show'); msg.textContent = text || ''; }
+
+    // 근로소득공제 (소득세법 제47조, 한도 2,000만원)
+    function earnedDeduction(g) {
+      var d;
+      if (g <= 5e6) d = g * 0.7;
+      else if (g <= 15e6) d = 3.5e6 + (g - 5e6) * 0.4;
+      else if (g <= 45e6) d = 7.5e6 + (g - 15e6) * 0.15;
+      else if (g <= 1e8) d = 12e6 + (g - 45e6) * 0.05;
+      else d = Math.min(14.75e6 + (g - 1e8) * 0.02, 2e7);
+      return Math.floor(d + 1e-6);
+    }
+
+    // 해마다: 잔액에 1년 이자를 더한 뒤 의무상환액만큼 갚는다 (소득·금리 고정 가정)
+    function payoff(bal, pay, rate) {
+      if (pay <= 0) return null;
+      if (pay >= bal) return { years: 1, paid: bal };
+      if (rate > 0 && pay <= Math.floor(bal * rate + 1e-6)) return { never: true };
+      var b = bal, years = 0, paid = 0;
+      while (b > 0 && years < 60) {
+        b = Math.floor(b * (1 + rate) + 1e-6);
+        var p = Math.min(pay, b);
+        b -= p; paid += p; years++;
+      }
+      if (b > 0) return { never: true };
+      return { years: years, paid: paid };
+    }
+
+    function calc() {
+      var c = R[year];
+      var incRaw = incI.value, balRaw = balI.value, rRaw = String(rateI.value).trim();
+      if (!incRaw) return hide('');
+      var inc = num(incI), bal = num(balI);
+      if (!inc) return hide(type === 'w' ? '연 총급여를 입력해 주세요.' : '연간 소득금액을 입력해 주세요.');
+      if (inc > 10000000000) return hide('금액을 다시 확인해 주세요.');
+      if (balRaw && !bal) return hide('대출 잔액을 다시 확인해 주세요. 다 갚았다면 칸을 비워 두세요.');
+      if (bal > 1000000000) return hide('대출 잔액을 다시 확인해 주세요.');
+      if (rRaw === '' || !/^\d{1,2}(\.\d{1,2})?$/.test(rRaw) || +rRaw > 20) return hide('금리는 0~20 사이 숫자로 넣어 주세요 (예: 1.7).');
+      var rate = +rRaw / 100;
+      msg.textContent = '';
+
+      var ded = type === 'w' ? earnedDeduction(inc) : 0;
+      var income = inc - ded;
+      var over = Math.max(income - c.base, 0);
+      var raw = Math.floor(over * pct / 100 + 1e-6);
+      var capped = bal > 0 && raw > bal;
+      var annual = capped ? bal : raw;
+      var monthly = Math.floor(annual / 12);
+
+      var tb = $('[data-rows]');
+      tb.innerHTML = '';
+      function row(label, sub, amt, note, cls) {
+        var tr = document.createElement('tr'); if (cls) tr.className = cls;
+        var th = document.createElement('th'); th.textContent = label;
+        if (sub) { var s = document.createElement('small'); s.textContent = sub; th.appendChild(s); }
+        var td = document.createElement('td'); td.textContent = amt;
+        if (note) { var s2 = document.createElement('small'); s2.textContent = note; td.appendChild(s2); }
+        tr.appendChild(th); tr.appendChild(td); tb.appendChild(tr);
+      }
+      if (type === 'w') {
+        row('연 총급여', '비과세 수당 제외', won(inc), '');
+        row('근로소득공제', '소득세법 제47조', '− ' + won(ded), '');
+      }
+      row('연간 소득금액', type === 'w' ? '총급여 − 근로소득공제' : '직접 입력', won(income), '');
+      row('상환기준소득', year + '년 소득분', '− ' + man(c.base), '');
+      row('기준 초과 소득', '', won(over), '');
+      row('연 의무상환액', '초과 소득 × ' + pct + '%', won(annual), capped ? '잔액까지만 (원래 ' + won(raw) + ')' : '', 'kst-total');
+      if (type === 'w' && annual > 0) row('월 원천공제액', annual < MIN_WITHHOLD ? '36만원 미만이라 원천공제 없음' : '의무상환액 ÷ 12', annual < MIN_WITHHOLD ? '직접 납부' : '약 ' + won(monthly), '');
+
+      var po = null;
+      if (bal > 0 && annual > 0) {
+        po = payoff(bal, annual, rate);
+        if (po && po.never) row('다 갚기까지', '소득·금리 고정 가정', '줄지 않음', '상환액 ≤ 1년 이자');
+        else if (po) row('다 갚기까지', '소득·금리 고정 가정', po.years === 1 ? '1년 안' : '약 ' + po.years + '년', '총 ' + won(po.paid) + ' 상환');
+      }
+
+      var warn = $('[data-warn]');
+      warn.hidden = true;
+      var label = year + '년 소득분 · ' + (type === 'w' ? '근로소득자' : '종합소득자');
+      $('[data-main-label]').textContent = label + ' · 1년 의무상환액';
+      if (annual === 0) {
+        $('[data-big]').innerHTML = '0<small>원</small>';
+        $('[data-badge]').textContent = '의무상환 대상이 아니에요';
+        $('[data-sub]').textContent = '소득금액 ' + won(income) + '이 상환기준소득 ' + man(c.base) + ' 이하예요. 원하면 언제든 자발적으로 갚을 수 있어요.';
+      } else {
+        $('[data-big]').innerHTML = comma(annual) + '<small>원</small>';
+        if (type === 'w') {
+          $('[data-badge]').textContent = annual < MIN_WITHHOLD ? '통지서로 직접 납부' : '월급에서 매달 약 ' + won(monthly);
+          $('[data-sub]').textContent = annual < MIN_WITHHOLD ? '의무상환액이 36만원 미만이면 회사 원천공제 없이 납부통지서 기한까지 직접 내요.' : (year === '2025' ? '2026년 7월부터 2027년 6월까지' : '2027년 7월부터 1년 동안') + ' 12번 나눠 빠져요. 미리 한 번에 낼 수도 있어요.';
+        } else {
+          $('[data-badge]').textContent = '종합소득세 신고 후 국세청 고지';
+          $('[data-sub]').textContent = (+year + 1) + '년 5월 종합소득세 신고 뒤 국세청이 결정·고지한 금액을 고지서 기한까지 내요.';
+        }
+        if (capped) { warn.textContent = '계산된 의무상환액(' + won(raw) + ')이 남은 잔액보다 많아서, 잔액 ' + won(bal) + '만 갚으면 끝나요.'; warn.hidden = false; }
+        else if (po && po.never) { warn.textContent = '1년 의무상환액이 1년 이자(약 ' + won(Math.floor(bal * rate)) + ')보다 적어서 이 조건이 계속되면 잔액이 줄지 않아요. 자발적 상환을 함께 고려해 보세요.'; warn.hidden = false; }
+      }
+
+      var lines = [];
+      if (type === 'w') lines.push('소득금액 = ' + won(inc) + ' − 근로소득공제 ' + won(ded) + ' = ' + won(income));
+      lines.push('의무상환액 = (' + won(income) + ' − ' + man(c.base) + ') × ' + pct + '% = ' + won(raw) + (income <= c.base ? ' (기준 이하라 0원)' : ''));
+      if (capped) lines.push('잔액 ' + won(bal) + '보다 많아서 잔액만큼만 상환');
+      if (type === 'w' && annual >= MIN_WITHHOLD) lines.push('월 원천공제 ≈ ' + won(annual) + ' ÷ 12 = ' + won(monthly));
+      if (po && !po.never) lines.push('잔액 ' + won(bal) + '에 매년 연 ' + (+rRaw) + '% 이자를 더하고 ' + won(annual) + '씩 갚으면 약 ' + po.years + '년');
+      var box = $('[data-formula]');
+      box.innerHTML = '';
+      lines.forEach(function (t) { var p = document.createElement('p'); p.textContent = t; box.appendChild(p); });
+
+      lastText = '[학자금대출 의무상환액 계산 결과] ' + label +
+        (type === 'w' ? '\n연 총급여: ' + won(inc) + '\n근로소득공제: ' + won(ded) : '') +
+        '\n연간 소득금액: ' + won(income) + '\n상환기준소득: ' + man(c.base) +
+        '\n연 의무상환액(' + pct + '%): ' + won(annual) + (capped ? ' (잔액 한도)' : '') +
+        (type === 'w' && annual >= MIN_WITHHOLD ? '\n월 원천공제액: 약 ' + won(monthly) : '') +
+        (bal ? '\n대출 잔액: ' + won(bal) + ' (연 ' + (+rRaw) + '%)' : '') +
+        (po ? (po.never ? '\n다 갚기까지: 이 조건으로는 잔액이 줄지 않음' : '\n다 갚기까지: 약 ' + po.years + '년 (소득·금리 고정 가정)') : '');
+      result.classList.add('kst-show');
+    }
+
+    function money(inp) {
+      inp.addEventListener('input', function () {
+        var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 11);
+        inp.value = v ? comma(v) : '';
+        calc();
+      });
+    }
+    money(incI); money(balI);
+    rateI.addEventListener('input', function () {
+      var v = rateI.value.replace(/[^\d.]/g, '').replace(/(\..*)\./g, '$1').slice(0, 5);
+      if (v !== rateI.value) rateI.value = v;
+      syncChips(); calc();
+    });
+
+    function syncChips() {
+      $$('[data-r]').forEach(function (b) { b.classList.toggle('kst-on', String(rateI.value).trim() !== '' && +b.getAttribute('data-r') === +rateI.value); });
+      $$('[data-pct]').forEach(function (b) { b.classList.toggle('kst-on', +b.getAttribute('data-pct') === pct); });
+    }
+    $$('[data-r]').forEach(function (b) { b.addEventListener('click', function () { rateI.value = b.getAttribute('data-r'); syncChips(); calc(); }); });
+    $$('[data-pct]').forEach(function (b) { b.addEventListener('click', function () { pct = +b.getAttribute('data-pct'); syncChips(); calc(); }); });
+
+    function seg(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) { var on = b.getAttribute(attr) === val; b.classList.toggle('kst-on', on); b.setAttribute('aria-pressed', on); });
+    }
+    function setYear(y) { year = y; seg('data-year', y); $('[data-year-hint]').textContent = R[y].hint; calc(); }
+    function setType(t) {
+      type = t; seg('data-type', t);
+      $('[data-inc-label]').innerHTML = t === 'w' ? '연 총급여 <small>(세전, 비과세 제외)</small>' : '연간 소득금액 <small>(수입 − 필요경비)</small>';
+      $('[data-inc-hint]').textContent = t === 'w' ? '연봉에서 식대 같은 비과세 수당을 뺀 금액이에요. 근로소득공제를 자동으로 빼서 소득금액을 구해요.' : '종합소득세 신고서의 종합소득금액(사업·근로·연금·기타소득 등의 소득금액 합계)을 넣어 주세요.';
+      incI.placeholder = t === 'w' ? '35,000,000' : '25,000,000';
+      calc();
+    }
+    $$('[data-year]').forEach(function (b) { b.addEventListener('click', function () { setYear(b.getAttribute('data-year')); }); });
+    $$('[data-type]').forEach(function (b) { b.addEventListener('click', function () { setType(b.getAttribute('data-type')); }); });
+
+    $('[data-reset]').addEventListener('click', function () {
+      incI.value = balI.value = ''; rateI.value = '1.7'; pct = 20;
+      syncChips(); setType('w'); setYear('2026');
+      hide(''); incI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    syncChips();
+    setYear('2026');
+  })();
+  </script>
+</div>
+<!-- 학자금대출 의무상환액 계산기 위젯 끝 -->
+
+<h2>학자금대출 의무상환액 계산법</h2>
+<p>취업 후 상환 학자금대출(ICL)은 소득이 일정 수준을 넘을 때부터 갚는 대출이에요. 그 기준선이 <strong>상환기준소득</strong>이고, 교육부가 해마다 고시해요. 국세청이 전년도 소득으로 의무상환액을 계산해 통지해요.</p>
+<ol>
+  <li><strong>연간 소득금액</strong> = 총급여 − 근로소득공제 (근로소득자). 사업소득 등 종합소득이 있으면 수입에서 필요경비를 뺀 소득금액을 합쳐요.</li>
+  <li><strong>의무상환액</strong> = (연간 소득금액 − 상환기준소득) × 상환율 20% (대학원 대출은 25%)</li>
+  <li>의무상환액은 남은 대출 원리금보다 많을 수 없어요. 그 해에 자발적으로 미리 갚은 금액은 빼고 통지돼요.</li>
+</ol>
+<p>예를 들어 2026년 총급여가 3,500만원인 근로소득자라면 이렇게 계산해요.</p>
+<ul>
+  <li>근로소득공제: 750만원 + (3,500만원 − 1,500만원) × 15% = 1,050만원</li>
+  <li>소득금액: 3,500만원 − 1,050만원 = 2,450만원</li>
+  <li>의무상환액: (2,450만원 − 2,056만원) × 20% = <strong>788,000원</strong></li>
+  <li>월 원천공제: 788,000원 ÷ 12 = <strong>약 65,666원</strong> (2027년 7월부터 2028년 6월까지 매달)</li>
+</ul>
+<p>남은 잔액이 1,500만원이고 금리 연 1.7%, 소득이 그대로라고 가정하면 다 갚기까지 약 24년이 걸려요. 연봉이 오르면 의무상환액도 커져서 실제로는 더 빨리 끝나는 경우가 많아요.</p>
+
+<h2>연봉별 학자금 의무상환액 (학부 대출 20%)</h2>
+<p>근로소득만 있는 경우 총급여별 1년 의무상환액과 월 원천공제액이에요. 근로소득공제는 소득세법 제47조 기준으로 계산했어요.</p>
+<table>
+  <thead><tr><th>총급여</th><th>소득금액</th><th>2025년 소득분 (2026.7.~ 공제)</th><th>2026년 소득분 (2027.7.~ 공제)</th></tr></thead>
+  <tbody>
+    <tr><td>2,800만원</td><td>1,855만원</td><td>0원</td><td>0원</td></tr>
+    <tr><td>3,000만원</td><td>2,025만원</td><td>254,000원 (직접 납부)</td><td>0원</td></tr>
+    <tr><td>3,500만원</td><td>2,450만원</td><td>1,104,000원 (월 92,000원)</td><td>788,000원 (월 65,666원)</td></tr>
+    <tr><td>4,000만원</td><td>2,875만원</td><td>1,954,000원 (월 162,833원)</td><td>1,638,000원 (월 136,500원)</td></tr>
+    <tr><td>5,000만원</td><td>3,775만원</td><td>3,754,000원 (월 312,833원)</td><td>3,438,000원 (월 286,500원)</td></tr>
+    <tr><td>6,000만원</td><td>4,725만원</td><td>5,654,000원 (월 471,166원)</td><td>5,338,000원 (월 444,833원)</td></tr>
+    <tr><td>8,000만원</td><td>6,625만원</td><td>9,454,000원 (월 787,833원)</td><td>9,138,000원 (월 761,500원)</td></tr>
+  </tbody>
+</table>
+<p>의무상환액이 36만원 미만이면 회사에서 원천공제하지 않고, 납부통지서에 적힌 기한(다음 해 6월 30일)까지 직접 내요. 월 금액은 의무상환액을 12로 나눈 참고값이라 실제 급여명세서와 몇 원 차이 날 수 있어요.</p>
+
+<h2>연도별 상환기준소득</h2>
+<table>
+  <thead><tr><th>소득 연도</th><th>상환기준소득 (소득금액)</th><th>총급여로 환산하면</th><th>상환 시기 (근로소득자)</th></tr></thead>
+  <tbody>
+    <tr><td>2024년 소득분</td><td>1,752만원</td><td>약 2,679만원</td><td>2025년 7월 ~ 2026년 6월</td></tr>
+    <tr><td>2025년 소득분</td><td>1,898만원</td><td>약 2,851만원</td><td>2026년 7월 ~ 2027년 6월</td></tr>
+    <tr><td>2026년 소득분</td><td>2,056만원</td><td>약 3,037만원</td><td>2027년 7월 ~ 2028년 6월</td></tr>
+    <tr><td>2027년 소득분</td><td>발표 전</td><td>발표 전</td><td>2028년 7월 ~</td></tr>
+  </tbody>
+</table>
+<p>상환기준소득은 소득금액 기준으로 고시되고, 총급여 금액은 근로소득만 있는 사람이 이해하기 쉽게 바꾼 값이에요. 2027년 소득분 상환기준소득은 2026년 11월 26일 현재 아직 발표 전이에요.</p>
+
+<h2>근로소득자와 종합소득자의 상환 방법</h2>
+<ul>
+  <li><strong>근로소득자:</strong> 국세청이 4월쯤 전년도 소득으로 계산한 의무상환액을 통지해요. 미리 내지 않으면 회사가 그해 7월부터 다음 해 6월까지 매달 월급에서 의무상환액의 12분의 1씩 원천공제해요. 통지받은 뒤 미리 전액이나 절반을 직접 내면 원천공제 대신 직접 납부할 수 있어요(기한은 통지서 확인).</li>
+  <li><strong>종합소득자(사업소득 등):</strong> 5월 종합소득세 신고 때 소득금액이 확정되면, 국세청이 의무상환액을 결정해 고지해요. 고지서에 적힌 기한까지 내면 돼요.</li>
+  <li><strong>상환 유예:</strong> 실직·퇴직·육아휴직으로 형편이 어려우면 최대 2년, 다시 학교에 다니면 최대 4년까지 유예를 신청할 수 있어요. 국세청 취업 후 학자금 상환 누리집에서 신청해요.</li>
+</ul>
+
+<h2>학자금대출 금리와 이자 면제</h2>
+<p>취업 후 상환 학자금대출 금리는 2026학년도 1·2학기 모두 연 1.7%로 동결됐어요. 2026년에는 「취업 후 학자금 상환 특별법」이 바뀌어 이자 면제 대상이 넓어졌어요.</p>
+<table>
+  <thead><tr><th>시행일</th><th>이자 면제 대상 (졸업 후 의무상환 시작 전까지 생긴 이자)</th></tr></thead>
+  <tbody>
+    <tr><td>기존</td><td>기초생활수급자, 차상위계층, 다자녀 가구 학생, 학자금 지원 5구간 이하</td></tr>
+    <tr><td>2026년 7월 1일</td><td>학자금 지원 6구간(기준 중위소득 130%) 이하로 확대, 졸업 후 2년까지만 면제하던 제한 폐지</td></tr>
+    <tr><td>2026년 11월 20일</td><td>비수도권 대학 학생은 학자금 지원 8구간(기준 중위소득 200%) 이하까지 확대</td></tr>
+  </tbody>
+</table>
+<p>실직·퇴직·육아휴직 등으로 상환을 유예받은 기간의 이자도 면제 대상이 될 수 있어요. 이자 면제 대상이라면 계산기의 금리를 0%로 바꿔 다 갚는 기간을 확인해 보세요. 본인이 대상인지는 한국장학재단 누리집에서 확인할 수 있어요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>학자금대출 의무상환은 연봉 얼마부터 시작하나요?</h3>
+<p>근로소득만 있다면 2025년 소득분은 총급여 약 2,851만원(소득금액 1,898만원), 2026년 소득분은 총급여 약 3,037만원(소득금액 2,056만원)을 넘을 때부터 의무상환이 시작돼요. 이보다 적게 벌면 의무상환액은 0원이고, 원하면 언제든 자발적으로 갚을 수 있어요.</p>
+<h3>학자금 의무상환액은 월급에서 언제부터 빠지나요?</h3>
+<p>전년도 소득을 기준으로 국세청이 4월쯤 통지하고, 회사가 그해 7월부터 다음 해 6월까지 매달 의무상환액의 12분의 1씩 원천공제해요. 2025년 소득분은 2026년 7월부터 2027년 6월까지, 2026년 소득분은 2027년 7월부터 빠져요.</p>
+<h3>의무상환액은 연봉 기준인가요, 소득금액 기준인가요?</h3>
+<p>소득금액 기준이에요. 근로소득자는 총급여에서 근로소득공제를 뺀 금액이 소득금액이에요. 예를 들어 총급여 3,500만원이면 근로소득공제 1,050만원을 빼서 소득금액은 2,450만원이에요.</p>
+<h3>회사를 그만두면 학자금 원천공제는 어떻게 되나요?</h3>
+<p>퇴사하면 그 회사의 원천공제는 멈추지만 남은 의무상환액이 없어지지는 않아요. 남은 금액을 내는 방법은 국세청 취업 후 학자금 상환 누리집이나 국세상담센터(126)에서 확인하세요. 실직이나 퇴직으로 형편이 어렵다면 국세청 취업 후 학자금 상환 누리집에서 최대 2년까지 상환 유예를 신청할 수 있어요.</p>
+<h3>의무상환액 말고 더 갚아도 되나요?</h3>
+<p>네, 한국장학재단을 통해 언제든 원하는 만큼 자발적으로 상환할 수 있고 중도상환 수수료도 없어요. 그 해에 자발적으로 갚은 금액은 다음 해 의무상환액에서 빼고 통지돼요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:salary-calculator}}">연봉 실수령액 계산기</a>: 4대보험·소득세를 빼고 한 달에 실제로 받는 금액</li>
+  <li><a href="{{LINK:median-income-percent}}">기준중위소득 % 계산기</a>: 우리 집 소득이 중위소득 몇 %인지, 학자금 지원 구간을 대략 가늠할 때</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "학자금대출 의무상환은 연봉 얼마부터 시작하나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "근로소득만 있다면 2025년 소득분은 총급여 약 2,851만원(소득금액 1,898만원), 2026년 소득분은 총급여 약 3,037만원(소득금액 2,056만원)을 넘을 때부터 의무상환이 시작돼요. 이보다 적게 벌면 의무상환액은 0원이고, 원하면 언제든 자발적으로 갚을 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "학자금 의무상환액은 월급에서 언제부터 빠지나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "전년도 소득을 기준으로 국세청이 4월쯤 통지하고, 회사가 그해 7월부터 다음 해 6월까지 매달 의무상환액의 12분의 1씩 원천공제해요. 2025년 소득분은 2026년 7월부터 2027년 6월까지, 2026년 소득분은 2027년 7월부터 빠져요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "의무상환액은 연봉 기준인가요, 소득금액 기준인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "소득금액 기준이에요. 근로소득자는 총급여에서 근로소득공제를 뺀 금액이 소득금액이에요. 예를 들어 총급여 3,500만원이면 근로소득공제 1,050만원을 빼서 소득금액은 2,450만원이에요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "회사를 그만두면 학자금 원천공제는 어떻게 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "퇴사하면 그 회사의 원천공제는 멈추지만 남은 의무상환액이 없어지지는 않아요. 남은 금액을 내는 방법은 국세청 취업 후 학자금 상환 누리집이나 국세상담센터(126)에서 확인하세요. 실직이나 퇴직으로 형편이 어렵다면 국세청 취업 후 학자금 상환 누리집에서 최대 2년까지 상환 유예를 신청할 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "의무상환액 말고 더 갚아도 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "네, 한국장학재단을 통해 언제든 원하는 만큼 자발적으로 상환할 수 있고 중도상환 수수료도 없어요. 그 해에 자발적으로 갚은 금액은 다음 해 의무상환액에서 빼고 통지돼요."
+   }
+  }
+ ]
+}
+</script>
