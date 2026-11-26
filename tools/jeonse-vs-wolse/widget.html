@@ -1,0 +1,371 @@
+<!-- 전세 vs 월세 비교 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kjw" data-kjw>
+  <style>
+    .kjw{--kjw-accent:#3b6ef5;--kjw-accent-soft:#eef3ff;--kjw-text:#1d2433;--kjw-sub:#6b7385;--kjw-line:#e3e7ef;--kjw-bg:#fff;--kjw-bad:#e0565b;--kjw-warm:#e8862a;--kjw-warm-soft:#fff4e8;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kjw-line);border-radius:20px;background:var(--kjw-bg);
+      color:var(--kjw-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kjw [hidden]{display:none!important}
+    .kjw *,.kjw *::before,.kjw *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kjw .kjw-title{font-size:20px;font-weight:700;letter-spacing:-.02em;word-break:keep-all}
+    .kjw .kjw-desc{margin-top:4px;font-size:14px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-rate{margin-top:16px;padding:12px 14px;border-radius:14px;background:var(--kjw-accent-soft)}
+    .kjw .kjw-rate-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .kjw .kjw-rate-row label{font-size:14px;font-weight:600;word-break:keep-all}
+    .kjw .kjw-rate .kjw-field{width:120px;flex:none}
+    .kjw .kjw-rate .kjw-in{height:44px;font-size:17px;padding-right:34px;background:#fff;text-align:right}
+    .kjw .kjw-box{margin-top:16px;padding:14px;border:1px solid var(--kjw-line);border-radius:16px}
+    .kjw .kjw-box-h{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;word-break:keep-all}
+    .kjw .kjw-tag{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:8px;background:var(--kjw-accent);color:#fff;font-size:13px;font-weight:800}
+    .kjw .kjw-tag.kjw-b{background:var(--kjw-warm)}
+    .kjw .kjw-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:14px 0 8px;font-size:14px;font-weight:600;color:var(--kjw-text);word-break:keep-all}
+    .kjw .kjw-label small{font-weight:500;color:var(--kjw-sub)}
+    .kjw .kjw-pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .kjw .kjw-field{position:relative}
+    .kjw .kjw-in{width:100%;height:52px;padding:0 52px 0 14px;border:1.5px solid var(--kjw-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kjw-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kjw .kjw-pair .kjw-in{padding-right:44px;font-size:17px}
+    .kjw .kjw-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kjw .kjw-in:focus{border-color:var(--kjw-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kjw .kjw-in.kjw-bad{border-color:var(--kjw-bad)}
+    .kjw .kjw-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kjw-sub);pointer-events:none}
+    .kjw .kjw-pair .kjw-unit{right:10px;font-size:13px}
+    .kjw .kjw-hint{margin-top:6px;font-size:12.5px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-hint b{color:var(--kjw-accent);font-weight:700}
+    .kjw .kjw-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kjw .kjw-chip{height:32px;padding:0 12px;border:1.5px solid var(--kjw-line);border-radius:999px;background:#fff;color:var(--kjw-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kjw .kjw-chip:hover{border-color:#c9d3ea;color:var(--kjw-text)}
+    .kjw .kjw-chip.kjw-on{border-color:var(--kjw-accent);background:var(--kjw-accent-soft);color:var(--kjw-accent)}
+    .kjw .kjw-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kjw-bad);word-break:keep-all}
+    .kjw .kjw-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kjw .kjw-result.kjw-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kjw .kjw-result-inner{overflow:hidden}
+    .kjw .kjw-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kjw-accent-soft);text-align:center}
+    .kjw .kjw-main.kjw-wb{background:var(--kjw-warm-soft)}
+    .kjw .kjw-main-label{font-size:14px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--kjw-accent);line-height:1.25;word-break:keep-all}
+    .kjw .kjw-main.kjw-wb .kjw-big{color:var(--kjw-warm)}
+    .kjw .kjw-sub{margin-top:6px;font-size:14px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kjw .kjw-card{padding:14px;border:1px solid var(--kjw-line);border-radius:14px;background:#fff}
+    .kjw .kjw-card-k{font-size:12px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kjw-text);word-break:keep-all}
+    .kjw .kjw-card-s{margin-top:2px;font-size:12px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kjw-text);word-break:keep-all}
+    .kjw .kjw-formula p+p{margin-top:2px}
+    .kjw .kjw-formula .kjw-fh{font-weight:700}
+    .kjw .kjw-formula .kjw-fh:not(:first-child){margin-top:8px}
+    .kjw .kjw-be{margin-top:8px;padding:12px 14px;border:1px solid var(--kjw-line);border-radius:12px;font-size:13.5px;word-break:keep-all}
+    .kjw .kjw-be b{color:var(--kjw-accent)}
+    .kjw .kjw-note{margin-top:12px;font-size:12.5px;color:var(--kjw-sub);word-break:keep-all}
+    .kjw .kjw-note li{margin-left:16px}
+    .kjw .kjw-note li+li{margin-top:2px}
+    .kjw .kjw-nowrap{white-space:nowrap}
+    .kjw .kjw-actions{display:flex;gap:8px;margin-top:14px}
+    .kjw .kjw-btn{flex:1;height:44px;border:1.5px solid var(--kjw-line);border-radius:12px;background:#fff;color:var(--kjw-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kjw .kjw-btn:hover{background:#f4f6fa}
+    .kjw .kjw-btn:active{transform:scale(.98)}
+    .kjw .kjw-btn.kjw-primary{border-color:var(--kjw-accent);background:var(--kjw-accent);color:#fff}
+    .kjw .kjw-btn.kjw-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kjw{padding:18px;border-radius:16px}.kjw .kjw-big{font-size:28px}.kjw .kjw-in{font-size:17px}
+      .kjw .kjw-box{padding:12px}.kjw .kjw-pair .kjw-in{font-size:16px;padding-left:12px}.kjw .kjw-card-v{font-size:16px}.kjw .kjw-in::placeholder{font-size:15px}}
+    @media (prefers-reduced-motion:reduce){.kjw .kjw-result,.kjw .kjw-in,.kjw .kjw-btn,.kjw .kjw-chip{transition:none}}
+  </style>
+
+  <p class="kjw-title">전세 vs 월세 비교 계산기</p>
+  <p class="kjw-desc">대출이자, 내 돈의 기회비용, 월세 세액공제까지 넣어 한 달에 실제로 얼마가 드는지 비교해요.</p>
+
+  <div class="kjw-rate">
+    <div class="kjw-rate-row">
+      <label for="kjw-dep-rate">내 돈의 기회비용 금리 <small>(예금 금리)</small></label>
+      <div class="kjw-field"><input class="kjw-in" id="kjw-dep-rate" data-r="dr" inputmode="decimal" placeholder="2.5" autocomplete="off"><span class="kjw-unit">%</span></div>
+    </div>
+    <p class="kjw-hint">보증금으로 묶이는 내 돈을 예금에 넣었다면 받았을 연 금리예요. 이자소득세(15.4%)를 뺀 세후 금리를 넣으면 더 정확해요.</p>
+  </div>
+
+  <div class="kjw-box">
+    <p class="kjw-box-h"><span class="kjw-tag">A</span>전세</p>
+    <label class="kjw-label" for="kjw-a-dep">전세 보증금</label>
+    <div class="kjw-field"><input class="kjw-in" id="kjw-a-dep" data-m="aDep" inputmode="numeric" placeholder="30,000" autocomplete="off"><span class="kjw-unit">만원</span></div>
+    <p class="kjw-hint" data-read="aDep"></p>
+    <div class="kjw-pair">
+      <div>
+        <label class="kjw-label" for="kjw-a-loan">전세대출</label>
+        <div class="kjw-field"><input class="kjw-in" id="kjw-a-loan" data-m="aLoan" inputmode="numeric" placeholder="0" autocomplete="off"><span class="kjw-unit">만원</span></div>
+      </div>
+      <div>
+        <label class="kjw-label" for="kjw-a-lr">대출 금리</label>
+        <div class="kjw-field"><input class="kjw-in" id="kjw-a-lr" data-r="lr" inputmode="decimal" placeholder="4.0" autocomplete="off"><span class="kjw-unit">%</span></div>
+      </div>
+    </div>
+    <p class="kjw-hint" data-read="aLoan"></p>
+    <label class="kjw-label" for="kjw-a-g"><span>전세보증보험료율 <small>(선택, 연)</small></span></label>
+    <div class="kjw-field"><input class="kjw-in" id="kjw-a-g" data-r="gr" inputmode="decimal" placeholder="가입 안 하면 비워 두기" autocomplete="off"><span class="kjw-unit">%</span></div>
+    <p class="kjw-hint">HUG 전세반환보증 임차인 보증료율은 연 약 0.097~0.211%예요. 보증서에 적힌 율을 넣으세요.</p>
+  </div>
+
+  <div class="kjw-box">
+    <p class="kjw-box-h"><span class="kjw-tag kjw-b">B</span>월세</p>
+    <div class="kjw-pair">
+      <div>
+        <label class="kjw-label" for="kjw-b-dep">보증금</label>
+        <div class="kjw-field"><input class="kjw-in" id="kjw-b-dep" data-m="bDep" inputmode="numeric" placeholder="5,000" autocomplete="off"><span class="kjw-unit">만원</span></div>
+      </div>
+      <div>
+        <label class="kjw-label" for="kjw-b-rent">월세</label>
+        <div class="kjw-field"><input class="kjw-in" id="kjw-b-rent" data-m="bRent" inputmode="numeric" placeholder="90" autocomplete="off"><span class="kjw-unit">만원</span></div>
+      </div>
+    </div>
+    <p class="kjw-hint" data-read="b"></p>
+    <p class="kjw-label">월세 세액공제 반영</p>
+    <div class="kjw-chips" role="radiogroup" aria-label="월세 세액공제">
+      <button type="button" class="kjw-chip kjw-on" role="radio" aria-checked="true" data-tax="0">반영 안 함</button>
+      <button type="button" class="kjw-chip" role="radio" aria-checked="false" data-tax="15">15%</button>
+      <button type="button" class="kjw-chip" role="radio" aria-checked="false" data-tax="17">17%</button>
+    </div>
+    <p class="kjw-hint" data-tax-hint></p>
+  </div>
+
+  <p class="kjw-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kjw-result" data-result aria-live="polite">
+    <div class="kjw-result-inner">
+      <div class="kjw-main" data-main>
+        <p class="kjw-main-label">한 달 실부담으로 비교하면</p>
+        <p class="kjw-big" data-big></p>
+        <p class="kjw-sub" data-sub></p>
+      </div>
+      <div class="kjw-grid">
+        <div class="kjw-card"><p class="kjw-card-k">A 전세 월 실부담</p><p class="kjw-card-v" data-v="a"></p><p class="kjw-card-s" data-s="a"></p></div>
+        <div class="kjw-card"><p class="kjw-card-k">B 월세 월 실부담</p><p class="kjw-card-v" data-v="b"></p><p class="kjw-card-s" data-s="b"></p></div>
+        <div class="kjw-card"><p class="kjw-card-k">A 전세 2년 총비용</p><p class="kjw-card-v" data-v="a2"></p><p class="kjw-card-s">보증금은 돌려받는다고 보고 뺐어요</p></div>
+        <div class="kjw-card"><p class="kjw-card-k">B 월세 2년 총비용</p><p class="kjw-card-v" data-v="b2"></p><p class="kjw-card-s">보증금은 돌려받는다고 보고 뺐어요</p></div>
+      </div>
+      <div class="kjw-be" data-be></div>
+      <div class="kjw-formula" data-formula></div>
+      <ul class="kjw-note">
+        <li>보증금을 돌려받지 못할 위험(전세사기·깡통전세)은 이 계산에 들어가지 않아요. 보증금이 클수록 이 위험도 커지니, 전세라면 보증보험 가입 가능 여부를 먼저 확인하세요.</li>
+        <li>월세 세액공제는 총급여 8천만원 이하 무주택 세대주(요건을 갖춘 세대원 포함), 전용 85㎡ 이하 또는 기준시가 4억원 이하 주택, 전입신고 등 요건을 갖춰야 받아요. 낼 세금보다 많이 돌려받지는 못해요.</li>
+        <li>금리와 금액은 입력값 그대로 2년 동안 같다고 보고 계산한 참고값이에요. 중개보수·이사비는 넣지 않았어요.</li>
+      </ul>
+      <div class="kjw-actions">
+        <button type="button" class="kjw-btn" data-reset>다시 입력</button>
+        <button type="button" class="kjw-btn kjw-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kjw]');
+    if (!root || root.__kjw) return;
+    root.__kjw = true;
+
+    // 월세 세액공제(조세특례제한법 제95조의2): 총급여 5,500만원 이하 17%, 8,000만원 이하 15%, 연 월세 1,000만원 한도
+    var TAX_CAP = 1000;   // 만원, 연간 월세 공제 대상 한도 (2026년 지급분)
+    // 주택 전월세 전환율 법정 상한 = 기준금리 + 2% (tools/rent-conversion-rate 의 BASE 와 같게)
+    var LEGAL = { base: 3.25, add: 2, decided: '2026. 11. 26.' };
+    var MONTHS = 24;      // 2년 계약
+    var MAX = 9999999;    // 만원
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var m = {}, r = {};
+    $$('[data-m]').forEach(function (i) { m[i.getAttribute('data-m')] = i; });
+    $$('[data-r]').forEach(function (i) { r[i.getAttribute('data-r')] = i; });
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var tax = 0, lastText = '';
+
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function num(s) { return s === '' ? NaN : +String(s).replace(/,/g, ''); }
+    function man(v) {
+      if (v <= 0) return '0원';
+      var eok = Math.floor(v / 10000), rest = v % 10000;
+      if (!eok) return comma(rest) + '만원';
+      return comma(eok) + '억' + (rest ? ' ' + comma(rest) + '만원' : '원');
+    }
+    function won(w) { return (w < 0 ? '-' : '') + comma(Math.abs(w)) + '원'; }
+    // 원 → "43만 7,500원"
+    function wonK(w) {
+      var neg = w < 0; w = Math.abs(w);
+      var s;
+      if (w < 10000) s = comma(w) + '원';
+      else { var mm = Math.floor(w / 10000), rr = w % 10000; s = man(mm).replace(/원$/, '') + (rr ? ' ' + comma(rr) + '원' : '원'); }
+      return (neg ? '-' : '') + s;
+    }
+    function pct(x) { return (Math.round(x * 100) / 100).toFixed(2) + '%'; }
+    function pctS(x) { return String(+x) + '%'; }
+    function josa(w, a, b) { var c = w.charCodeAt(w.length - 1) - 0xAC00; return c >= 0 && c < 11172 && c % 28 ? a : b; }
+
+    function hide(text, bad) {
+      result.classList.remove('kjw-show');
+      msg.textContent = text || '';
+      $$('.kjw-in').forEach(function (i) { i.classList.toggle('kjw-bad', !!bad && i === bad); });
+    }
+
+    function readAll() {
+      var a = num(m.aDep.value), l = num(m.aLoan.value), bd = num(m.bDep.value), br = num(m.bRent.value);
+      $('[data-read="aDep"]').innerHTML = a > 0 ? '= <b>' + man(a) + '</b>' : '만원 단위로 입력하세요. 3억원이면 30,000';
+      $('[data-read="aLoan"]').textContent = l > 0 && a > 0 && l <= a ? '= 대출 ' + man(l) + ' + 내 돈 ' + man(a - l) : '대출이 없으면 0을 넣거나 비워 두세요.';
+      $('[data-read="b"]').textContent = m.bDep.value !== '' || br > 0 ? '= 보증금 ' + (bd > 0 ? man(bd) : '없음') + ' / 월세 ' + (br > 0 ? man(br) : '-') : '금액은 모두 만원 단위예요. 월세 90만원이면 90';
+      $('[data-tax-hint]').textContent = tax === 17 ? '총급여 5,500만원 이하(종합소득금액 4,500만원 이하)면 17%예요. 연 월세 1,000만원까지 공제돼요.'
+        : tax === 15 ? '총급여 5,500만원 초과 8,000만원 이하(종합소득금액 7,000만원 이하)면 15%예요. 연 월세 1,000만원까지 공제돼요.'
+        : '공제 요건을 갖췄다면 내 총급여에 맞는 공제율을 골라 보세요.';
+    }
+
+    function money(i, name, allowZero, empty0) {
+      if (i.value === '') return empty0 ? 0 : null;
+      var v = num(i.value);
+      if (!(allowZero ? v >= 0 : v > 0)) return { err: name + josa(name, '을', '를') + (allowZero ? ' 0 이상으로' : ' 1만원 이상으로') + ' 입력해 주세요.', el: i };
+      if (v > MAX) return { err: name + josa(name, '이', '가') + ' 너무 커요. 만원 단위로 입력했는지 확인해 주세요.', el: i };
+      return v;
+    }
+    function rate(i, name, max, empty0) {
+      if (i.value === '') return empty0 ? 0 : null;
+      if (!/^\d{1,2}(\.\d{0,3})?$/.test(i.value) || +i.value > max) return { err: name + josa(name, '을', '를') + ' 0~' + max + '% 사이로 입력해 주세요.', el: i };
+      return +i.value;
+    }
+
+    function calc() {
+      readAll();
+      var fields = [m.aDep, m.bDep, m.bRent, r.dr];
+      if (fields.some(function (i) { return i.value === ''; })) {
+        // 필수 칸이 비어 있으면 결과를 숨김. 이미 적은 칸에 오류가 있으면 그것부터 알려 줌
+        var pre = [money(m.aDep, '전세 보증금'), money(m.aLoan, '전세대출', true, true), money(m.bDep, '월세 보증금', true), money(m.bRent, '월세'),
+          rate(r.dr, '기회비용 금리', 20), rate(r.lr, '대출 금리', 20, true), rate(r.gr, '보증보험료율', 1, true)];
+        for (var q = 0; q < pre.length; q++) if (pre[q] && pre[q].err) return hide(pre[q].err, pre[q].el);
+        return hide(r.dr.value === '' && m.aDep.value !== '' && m.bRent.value !== '' ? '내 돈의 기회비용 금리(예금 금리)를 넣어 주세요. 예금을 안 한다면 0을 넣어도 돼요.' : '');
+      }
+      var aDep = money(m.aDep, '전세 보증금'), aLoan = money(m.aLoan, '전세대출', true, true),
+          bDep = money(m.bDep, '월세 보증금', true), bRent = money(m.bRent, '월세'),
+          dr = rate(r.dr, '기회비용 금리', 20), lr = rate(r.lr, '대출 금리', 20, true), gr = rate(r.gr, '보증보험료율', 1, true);
+      var all = [aDep, aLoan, bDep, bRent, dr, lr, gr];
+      for (var k = 0; k < all.length; k++) if (all[k] && all[k].err) return hide(all[k].err, all[k].el);
+      if (aLoan > aDep) return hide('전세대출은 전세 보증금보다 클 수 없어요.', m.aLoan);
+      if (aLoan > 0 && r.lr.value === '') return hide('전세대출 금리를 넣어 주세요.', r.lr);
+      hide('');
+
+      // A 전세: 대출이자 + 내 돈 기회비용 + 보증보험료 (원, 계산은 소수 그대로, 표시할 때만 반올림)
+      var own = aDep - aLoan;
+      var aInt = aLoan * 1e4 * lr / 1200;
+      var aOpp = own * 1e4 * dr / 1200;
+      var aGua = aDep * 1e4 * gr / 1200;
+      var A = aInt + aOpp + aGua;
+      // B 월세: 월세 + 보증금 기회비용 − 세액공제
+      var rentW = bRent * 1e4;
+      var bOpp = bDep * 1e4 * dr / 1200;
+      var capW = TAX_CAP * 1e4;
+      var credit = tax ? Math.min(bRent * 12 * 1e4, capW) * tax / 1200 : 0;
+      var B = rentW + bOpp - credit;
+      var R = Math.round, diff = R(A - B);
+
+      var main = $('[data-main]');
+      main.classList.toggle('kjw-wb', diff > 0);
+      if (diff === 0) { $('[data-big]').textContent = '두 조건이 같아요'; $('[data-sub]').textContent = '한 달 실부담이 ' + wonK(R(A)) + '으로 같아요'; }
+      else {
+        $('[data-big]').textContent = (diff > 0 ? '월세' : '전세') + '가 월 ' + wonK(Math.abs(diff)) + ' 유리';
+        $('[data-sub]').textContent = '2년이면 ' + wonK(R(Math.abs(A - B) * MONTHS)) + ' 차이예요';
+      }
+      $('[data-v="a"]').textContent = '월 ' + wonK(R(A));
+      $('[data-s="a"]').textContent = '이자 ' + wonK(R(aInt)) + ' + 기회비용 ' + wonK(R(aOpp)) + (aGua ? ' + 보증료 ' + wonK(R(aGua)) : '');
+      $('[data-v="b"]').textContent = '월 ' + wonK(R(B));
+      $('[data-s="b"]').textContent = '월세 ' + wonK(rentW) + ' + 기회비용 ' + wonK(R(bOpp)) + (credit ? ' − 공제 ' + wonK(R(credit)) : '');
+      $('[data-v="a2"]').textContent = wonK(R(A * MONTHS));
+      $('[data-v="b2"]').textContent = wonK(R(B * MONTHS));
+
+      // 손익분기 전환율: B 월세를 얼마로 하면 A와 같아지는지 → (그 월세 × 12) ÷ (A 보증금 − B 보증금)
+      var legal = LEGAL.base + LEGAL.add, beLines = [], beTxt = '';
+      var gap = (aDep - bDep) * 1e4;
+      if (gap > 0) {
+        var X = A - bOpp, t = tax / 100, Rstar;
+        if (X <= 0) Rstar = 0;
+        else if (!t) Rstar = X;
+        else if (X <= capW / 12 * (1 - t)) Rstar = X / (1 - t);
+        else Rstar = X + capW / 12 * t;
+        var be = Rstar * 1200 / gap, cur = rentW * 1200 / gap;
+        var beW = Math.round(Rstar);
+        beTxt = '지금 월세 조건의 전환율은 <b>' + pct(cur) + '</b>, 두 조건이 같아지는 손익분기 전환율은 <b>' + pct(be) + '</b>예요. ';
+        beTxt += Math.abs(cur - be) < 0.005 ? '거의 같아서 어느 쪽이든 비용 차이가 작아요. ' : (cur < be ? '전환율이 손익분기보다 낮아서 월세가 유리해요. ' : '전환율이 손익분기보다 높아서 전세가 유리해요. ');
+        beTxt += beW > 0 ? '같은 보증금이라면 월세가 <span class="kjw-nowrap">월 ' + wonK(beW) + '</span>보다 적어야 월세가 유리해요. ' : '월세 보증금의 기회비용만으로도 전세 비용과 같거나 넘어서, 월세가 0원이어도 전세가 유리해요. ';
+        beTxt += '참고로 계약 중·갱신 때 집주인이 받을 수 있는 법정 상한 전환율은 <span class="kjw-nowrap">' + pctS(legal) + '</span>(기준금리 ' + pctS(LEGAL.base) + ' + 2%)예요' +
+          (be >= legal ? '. 손익분기가 이보다 높아서, 상한 안에서 바꾸면 계산상 월세 쪽이 유리해요.' : '. 손익분기가 이보다 낮아서, 상한까지 받는 조건이면 계산상 전세 쪽이 유리해요.');
+        beLines = ['지금 전환율: ' + pct(cur), '손익분기 전환율: ' + pct(be) + ' (월세 ' + won(beW) + ')', '법정 상한 전환율: ' + pctS(legal)];
+      } else {
+        beTxt = '월세 보증금이 전세 보증금보다 작지 않아서 전환율은 계산하지 않았어요. 위의 월 실부담으로만 비교해 보세요.';
+      }
+      $('[data-be]').innerHTML = beTxt;
+
+      var f = $('[data-formula]'); f.innerHTML = '';
+      var lines = [
+        ['h', 'A 전세 월 실부담'],
+        ['', '대출이자 = ' + man(aLoan) + ' × ' + pctS(lr) + ' ÷ 12 = ' + won(R(aInt))],
+        ['', '내 돈 기회비용 = ' + man(own) + ' × ' + pctS(dr) + ' ÷ 12 = ' + won(R(aOpp))]
+      ];
+      if (gr) lines.push(['', '보증보험료 = ' + man(aDep) + ' × ' + pctS(gr) + ' ÷ 12 = ' + won(R(aGua))]);
+      lines.push(['h', 'B 월세 월 실부담']);
+      lines.push(['', '월세 ' + won(rentW) + ' + 보증금 기회비용 ' + man(bDep) + ' × ' + pctS(dr) + ' ÷ 12 = ' + won(R(bOpp))]);
+      if (tax) lines.push(['', '세액공제 = min(연 월세 ' + man(bRent * 12) + ', 1,000만원) × ' + tax + '% ÷ 12 = ' + won(R(credit))]);
+      lines.forEach(function (l) { var p = document.createElement('p'); if (l[0]) p.className = 'kjw-fh'; p.textContent = l[1]; f.appendChild(p); });
+      result.classList.add('kjw-show');
+
+      lastText = '[전세 vs 월세 비교]\n' +
+        'A 전세: 보증금 ' + man(aDep) + (aLoan ? ' (대출 ' + man(aLoan) + ', 금리 ' + pctS(lr) + ')' : '') + (gr ? ', 보증료율 ' + pctS(gr) : '') + '\n' +
+        'B 월세: 보증금 ' + man(bDep) + ' / 월세 ' + man(bRent) + (tax ? ' (세액공제 ' + tax + '% 반영)' : '') + '\n' +
+        '기회비용 금리: ' + pctS(dr) + '\n' +
+        'A 월 실부담: ' + won(R(A)) + ' / 2년 ' + won(R(A * MONTHS)) + '\n' +
+        'B 월 실부담: ' + won(R(B)) + ' / 2년 ' + won(R(B * MONTHS)) + '\n' +
+        (diff === 0 ? '결과: 두 조건이 같아요' : '결과: ' + (diff > 0 ? '월세' : '전세') + '가 월 ' + won(Math.abs(diff)) + ' 유리 (2년 ' + won(R(Math.abs(A - B) * MONTHS)) + ')') +
+        (beLines.length ? '\n' + beLines.join('\n') : '') + '\n※ 보증금 반환 위험은 계산에 넣지 않았어요';
+    }
+
+    Object.keys(m).forEach(function (key) {
+      var i = m[key];
+      i.addEventListener('input', function () {
+        var v = i.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 7);
+        i.value = v === '' ? '' : comma(v);
+        calc();
+      });
+    });
+    Object.keys(r).forEach(function (key) {
+      var i = r[key];
+      i.addEventListener('input', function () {
+        var v = i.value.replace(/[^\d.]/g, ''), p = v.split('.');
+        if (p.length > 1) v = p[0].slice(0, 2) + '.' + p.slice(1).join('').slice(0, 3); else v = v.slice(0, 2);
+        i.value = v;
+        calc();
+      });
+    });
+    $$('[data-tax]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        tax = +b.getAttribute('data-tax');
+        $$('[data-tax]').forEach(function (c) { var on = c === b; c.classList.toggle('kjw-on', on); c.setAttribute('aria-checked', on); });
+        calc();
+      });
+    });
+
+    $('[data-reset]').addEventListener('click', function () {
+      Object.keys(m).forEach(function (key) { m[key].value = ''; });
+      Object.keys(r).forEach(function (key) { r[key].value = ''; });
+      tax = 0;
+      $$('[data-tax]').forEach(function (c) { var on = c.getAttribute('data-tax') === '0'; c.classList.toggle('kjw-on', on); c.setAttribute('aria-checked', on); });
+      calc();
+      r.dr.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    calc();
+  })();
+  </script>
+</div>
+<!-- 전세 vs 월세 비교 계산기 위젯 끝 -->
