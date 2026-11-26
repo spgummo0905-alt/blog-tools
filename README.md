@@ -56,6 +56,10 @@ tools/
 | 퇴직소득세 계산기 (IRP 연금 수령 시 절세액 비교) | `tools/retirement-income-tax` | 완성 |
 | 청약 1순위 자격·예치금 확인기 (지역·면적별 예치금, 가입기간 D-day) | `tools/subscription-first-rank` | 완성 |
 | 계약갱신청구권 기간·5% 인상 상한 계산기 (갱신 요구 D-day·전월세 상한) | `tools/lease-renewal-calculator` | 완성 |
+| 법정상속분 계산기 (배우자·자녀 비율, 대습상속, 유류분) | `tools/inheritance-share-calculator` | 완성 |
+| 기준중위소득 % 계산기 (2026·2027 가구원수별 기준표·급여별 선정기준) | `tools/median-income-percent` | 완성 |
+| 양육비 계산기 (2021 양육비 산정기준표·자녀 나이·부모 소득별 분담액) | `tools/child-support-calculator` | 완성 |
+| 건강보험 피부양자 자격 확인기 (소득 2천만원·재산 과세표준·형제자매 기준) | `tools/dependent-eligibility-check` | 완성 |
 | 육아기 근로시간 단축 급여 계산기 (주 10시간 100%·회사 월급 합산) | `tools/reduced-hours-pay` | 완성 |
 
 ## 작업 규칙
