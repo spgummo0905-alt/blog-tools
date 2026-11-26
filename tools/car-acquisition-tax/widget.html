@@ -1,0 +1,365 @@
+<!-- 자동차 취득세 계산기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kca" data-kca>
+  <style>
+    .kca{--kca-accent:#3b6ef5;--kca-accent-soft:#eef3ff;--kca-text:#1d2433;--kca-sub:#6b7385;--kca-line:#e3e7ef;--kca-bg:#fff;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kca-line);border-radius:20px;background:var(--kca-bg);
+      color:var(--kca-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kca [hidden]{display:none!important}
+    .kca *,.kca *::before,.kca *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kca .kca-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kca .kca-desc{margin-top:4px;font-size:14px;color:var(--kca-sub)}
+    .kca .kca-label{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kca-text)}
+    .kca .kca-aside{font-size:12.5px;font-weight:500;color:var(--kca-sub)}
+    .kca .kca-field{position:relative}
+    .kca .kca-in{width:100%;height:52px;padding:0 40px 0 14px;border:1.5px solid var(--kca-line);border-radius:12px;background:#f8f9fc;
+      font-size:18px;font-weight:600;color:var(--kca-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none}
+    .kca .kca-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kca .kca-in:focus{border-color:var(--kca-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kca .kca-in.kca-bad{border-color:#e0565b}
+    .kca .kca-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kca-sub);pointer-events:none}
+    .kca .kca-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .kca .kca-chip{height:32px;padding:0 12px;border:1.5px solid var(--kca-line);border-radius:999px;background:#fff;color:var(--kca-sub);
+      font-size:13px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kca .kca-chip:hover{border-color:#c9d3ea;color:var(--kca-text)}
+    .kca .kca-chip.kca-on{border-color:var(--kca-accent);background:var(--kca-accent-soft);color:var(--kca-accent)}
+    .kca .kca-seg{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+    .kca .kca-seg.kca-3{grid-template-columns:repeat(3,1fr)}
+    .kca .kca-seg-btn{height:44px;padding:0 4px;border:1.5px solid var(--kca-line);border-radius:12px;background:#f8f9fc;color:var(--kca-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap}
+    .kca .kca-seg-btn:hover{border-color:#c9d3ea}
+    .kca .kca-seg-btn.kca-on{border-color:var(--kca-accent);background:var(--kca-accent);color:#fff}
+    .kca .kca-hint{margin-top:6px;font-size:12.5px;color:var(--kca-sub)}
+    .kca .kca-hint b{color:var(--kca-text);font-weight:600}
+    .kca .kca-msg{min-height:20px;margin-top:12px;font-size:13px;color:#e0565b}
+    .kca .kca-sub,.kca .kca-note,.kca .kca-desc,.kca .kca-hint,.kca .kca-msg,.kca .kca-formula{word-break:keep-all}
+    .kca .kca-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kca .kca-result.kca-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kca .kca-result-inner{overflow:hidden}
+    .kca .kca-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kca-accent-soft);text-align:center}
+    .kca .kca-main-label{font-size:14px;color:var(--kca-sub)}
+    .kca .kca-big{margin-top:2px;font-size:40px;font-weight:800;letter-spacing:-.03em;color:var(--kca-accent);line-height:1.2;word-break:keep-all}
+    .kca .kca-big small{font-size:20px;font-weight:700;margin-left:2px}
+    .kca .kca-sub{margin-top:6px;font-size:14px;color:var(--kca-sub)}
+    .kca .kca-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+    .kca .kca-card{padding:14px;border:1px solid var(--kca-line);border-radius:14px;background:#fff}
+    .kca .kca-card-k{font-size:12px;color:var(--kca-sub);word-break:keep-all}
+    .kca .kca-card-v{margin-top:2px;font-size:17px;font-weight:700;color:var(--kca-text);word-break:keep-all}
+    .kca .kca-table{width:100%;margin-top:8px;border:1px solid var(--kca-line);border-radius:14px;border-collapse:separate;border-spacing:0;overflow:hidden;font-size:14px}
+    .kca .kca-table th,.kca .kca-table td{padding:10px 14px;border:0;border-bottom:1px solid var(--kca-line);background:#fff;text-align:left;font-weight:500;color:var(--kca-text)}
+    .kca .kca-table td{text-align:right;font-weight:600;white-space:nowrap}
+    .kca .kca-table th small{display:block;font-size:11.5px;color:var(--kca-sub);font-weight:400;word-break:keep-all}
+    .kca .kca-table tr:last-child th,.kca .kca-table tr:last-child td{border-bottom:0}
+    .kca .kca-table .kca-total th,.kca .kca-table .kca-total td{background:#f8f9fc;font-weight:700}
+    .kca .kca-table .kca-minus td{color:#e0565b}
+    .kca .kca-table .kca-pay th,.kca .kca-table .kca-pay td{background:#f8f9fc;font-weight:700}
+    .kca .kca-table .kca-pay td{color:var(--kca-accent)}
+    .kca .kca-formula{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px;color:var(--kca-text)}
+    .kca .kca-note{margin-top:12px;font-size:12.5px;color:var(--kca-sub)}
+    .kca .kca-note li{margin-left:16px}
+    .kca .kca-actions{display:flex;gap:8px;margin-top:14px}
+    .kca .kca-btn{flex:1;height:44px;border:1.5px solid var(--kca-line);border-radius:12px;background:#fff;color:var(--kca-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kca .kca-btn:hover{background:#f4f6fa}
+    .kca .kca-btn:active{transform:scale(.98)}
+    .kca .kca-btn.kca-primary{border-color:var(--kca-accent);background:var(--kca-accent);color:#fff}
+    .kca .kca-btn.kca-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kca{padding:18px;border-radius:16px}.kca .kca-big{font-size:34px}.kca .kca-in{font-size:17px}
+      .kca .kca-seg-btn{font-size:13px}.kca .kca-table th,.kca .kca-table td{padding:9px 11px}}
+    @media (prefers-reduced-motion:reduce){.kca .kca-result,.kca .kca-in,.kca .kca-btn,.kca .kca-chip,.kca .kca-seg-btn{transition:none}}
+  </style>
+
+  <p class="kca-title">자동차 취득세 계산기</p>
+  <p class="kca-desc">차량 가격과 차종을 넣으면 신차·중고차 취득세와 경차·전기차·다자녀 감면액을 바로 계산해요. (비영업용 기준)</p>
+
+  <p class="kca-label">기준 연도 <span class="kca-aside">차를 취득(등록)하는 해</span></p>
+  <div class="kca-seg" role="group" aria-label="기준 연도">
+    <button type="button" class="kca-seg-btn kca-on" data-year="2026" aria-pressed="true">2026년</button>
+    <button type="button" class="kca-seg-btn" data-year="2027" aria-pressed="false">2027년</button>
+  </div>
+
+  <p class="kca-label">구분</p>
+  <div class="kca-seg" role="group" aria-label="신차 또는 중고차">
+    <button type="button" class="kca-seg-btn kca-on" data-cond="new" aria-pressed="true">신차</button>
+    <button type="button" class="kca-seg-btn" data-cond="used" aria-pressed="false">중고차</button>
+  </div>
+
+  <p class="kca-label">차종</p>
+  <div class="kca-seg kca-3" role="group" aria-label="차종">
+    <button type="button" class="kca-seg-btn kca-on" data-type="car" aria-pressed="true">승용차</button>
+    <button type="button" class="kca-seg-btn" data-type="light" aria-pressed="false">경차</button>
+    <button type="button" class="kca-seg-btn" data-type="van" aria-pressed="false">승합·화물</button>
+    <button type="button" class="kca-seg-btn" data-type="ev" aria-pressed="false">전기차</button>
+    <button type="button" class="kca-seg-btn" data-type="h2" aria-pressed="false">수소차</button>
+  </div>
+  <p class="kca-hint" data-type-hint></p>
+
+  <div data-new-box>
+    <p class="kca-label"><label for="kca-price">차량 가격</label><span class="kca-aside">할인 후 실제 계약 금액</span></p>
+    <div class="kca-seg" role="group" aria-label="가격 기준">
+      <button type="button" class="kca-seg-btn kca-on" data-vat="incl" aria-pressed="true">부가세 포함 가격</button>
+      <button type="button" class="kca-seg-btn" data-vat="excl" aria-pressed="false">공급가액(부가세 제외)</button>
+    </div>
+    <div class="kca-field" style="margin-top:8px"><input class="kca-in" id="kca-price" data-price inputmode="numeric" placeholder="44,000,000" autocomplete="off"><span class="kca-unit">원</span></div>
+    <div class="kca-chips" data-chips></div>
+    <p class="kca-hint" data-price-hint>견적서의 최종 차량가(옵션 포함, 부가세 포함)를 넣으면 공급가액을 자동으로 계산해요.</p>
+  </div>
+
+  <div data-used-box hidden>
+    <p class="kca-label"><label for="kca-deal">실제 거래 가격</label><span class="kca-aside">매매 계약서 금액</span></p>
+    <div class="kca-field"><input class="kca-in" id="kca-deal" data-deal inputmode="numeric" placeholder="15,000,000" autocomplete="off"><span class="kca-unit">원</span></div>
+    <p class="kca-hint" data-deal-hint></p>
+    <p class="kca-label"><label for="kca-std">시가표준액</label><span class="kca-aside">선택 · 위택스에서 조회</span></p>
+    <div class="kca-field"><input class="kca-in" id="kca-std" data-std inputmode="numeric" placeholder="모르면 비워 두세요" autocomplete="off"><span class="kca-unit">원</span></div>
+    <p class="kca-hint" data-std-hint>거래 가격이 시가표준액보다 낮으면 시가표준액으로 세금을 매겨요.</p>
+  </div>
+
+  <p class="kca-label">다자녀 감면 <span class="kca-aside">18세 미만 자녀 수</span></p>
+  <div class="kca-seg kca-3" role="group" aria-label="다자녀 감면">
+    <button type="button" class="kca-seg-btn kca-on" data-kids="0" aria-pressed="true">해당 없음</button>
+    <button type="button" class="kca-seg-btn" data-kids="2" aria-pressed="false">2자녀</button>
+    <button type="button" class="kca-seg-btn" data-kids="3" aria-pressed="false">3자녀 이상</button>
+  </div>
+  <div data-seat-box hidden>
+    <p class="kca-label">승차 정원</p>
+    <div class="kca-seg" role="group" aria-label="승차 정원">
+      <button type="button" class="kca-seg-btn kca-on" data-seat="6" aria-pressed="true">6인승 이하</button>
+      <button type="button" class="kca-seg-btn" data-seat="7" aria-pressed="false">7~10인승</button>
+    </div>
+  </div>
+
+  <p class="kca-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kca-result" data-result aria-live="polite">
+    <div class="kca-result-inner">
+      <div class="kca-main">
+        <p class="kca-main-label" data-main-label></p>
+        <p class="kca-big" data-big></p>
+        <p class="kca-sub" data-sub></p>
+      </div>
+      <div class="kca-grid">
+        <div class="kca-card"><p class="kca-card-k">과세표준</p><p class="kca-card-v" data-base-v></p></div>
+        <div class="kca-card"><p class="kca-card-k" data-c2-k>세율</p><p class="kca-card-v" data-c2-v></p></div>
+      </div>
+      <table class="kca-table">
+        <tbody data-rows></tbody>
+      </table>
+      <p class="kca-formula" data-formula></p>
+      <ul class="kca-note" data-notes></ul>
+      <div class="kca-actions">
+        <button type="button" class="kca-btn" data-reset>다시 입력</button>
+        <button type="button" class="kca-btn kca-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kca]');
+    if (!root || root.__kca) return;
+    root.__kca = true;
+
+    // ===== 법령·연도별 값: 바뀌면 여기만 고치세요 (README.md "매년 할 일" 참고) =====
+    var R = {
+      // 지방세법 제12조 제1항 제2호 (비영업용)
+      rate: { car: 0.07, light: 0.04, van: 0.05, ev: 0.07, h2: 0.07 },
+      freeMax: 500000, // 지방세법 제17조 면세점: 취득가액 50만원 이하는 취득세를 매기지 않음
+      // 지방세특례제한법 감면 한도(원). status: law = 현행법, bill = 국회 심의 중인 정부 개정안(확정 아님), none = 감면 없음
+      ev:    { 2026: { cap: 1400000, status: 'law', until: '2026. 12. 31.' }, 2027: { cap: 700000, status: 'bill', until: '2029. 12. 31.(개정안)' } }, // 제66조
+      h2:    { 2026: { cap: 1400000, status: 'law', until: '2027. 12. 31.' }, 2027: { cap: 1400000, status: 'law', until: '2027. 12. 31.' } }, // 제66조
+      light: { 2026: { cap: 750000,  status: 'law', until: '2027. 12. 31.' }, 2027: { cap: 750000,  status: 'law', until: '2027. 12. 31.' } }, // 제67조
+      // 제22조의2 다자녀 (2027. 12. 31.까지): 6인승 이하 승용은 한도, 그 밖의 대상 차량은 비율만
+      kids: { 3: { ratio: 1, cap6: 1400000 }, 2: { ratio: 0.5, cap6: 700000 } }
+    };
+    var NAMES = { car: '승용차', light: '경차', van: '승합·화물차', ev: '전기차', h2: '수소차' };
+    var CHIPS = [['2천만', 20000000], ['3천만', 30000000], ['4천만', 40000000], ['5천만', 50000000], ['7천만', 70000000]];
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var priceI = $('[data-price]'), dealI = $('[data-deal]'), stdI = $('[data-std]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var st = { year: 2026, cond: 'new', type: 'car', vat: 'incl', kids: 0, seat: 6 }, lastText = '';
+
+    function f10(n) { return Math.floor(n / 10 + 1e-9) * 10; }
+    function c(n) { return Math.round(n).toLocaleString('ko-KR'); }
+    function won(n) { return c(n) + '원'; }
+    function man(n) { // 1,234만원 / 1억 2,345만원
+      var m = Math.floor(n / 10000), e = Math.floor(m / 10000), r = m % 10000;
+      if (m < 1) return won(n);
+      return (n % 10000 ? '약 ' : '') + (e ? e + '억' + (r ? ' ' : '') : '') + (r ? c(r) + '만' : '') + '원';
+    }
+    function pct(r) { return (Math.round(r * 1000) / 10) + '%'; }
+    function num(el) { return +el.value.replace(/\D/g, '') || 0; }
+    function esc(s) { return String(s).replace(/[&<>"]/g, function (ch) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[ch]; }); }
+
+    var chipBox = $('[data-chips]');
+    CHIPS.forEach(function (ch) {
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'kca-chip'; b.setAttribute('data-p', ch[1]); b.textContent = ch[0];
+      chipBox.appendChild(b);
+    });
+
+    function seg(attr, val) {
+      $$('[' + attr + ']').forEach(function (b) { var on = b.getAttribute(attr) === String(val); b.classList.toggle('kca-on', on); b.setAttribute('aria-pressed', on); });
+    }
+    function syncChips() { var v = num(priceI); $$('[data-p]').forEach(function (b) { b.classList.toggle('kca-on', +b.getAttribute('data-p') === v); }); }
+    function hide(text) { result.classList.remove('kca-show'); msg.textContent = text || ''; }
+    function passenger() { return st.type === 'car' || st.type === 'ev' || st.type === 'h2' || st.type === 'light'; }
+
+    function typeHint() {
+      var t = st.type, y = st.year, h = '';
+      if (t === 'car') h = '세율 7% · 하이브리드도 2025년부터 감면 없이 7%예요.';
+      else if (t === 'light') h = '세율 4% · 1,000cc 미만 경형 승용차, 취득세 75만원까지 감면 (' + R.light[y].until + '까지)';
+      else if (t === 'van') h = '세율 5% · 비영업용 승합·화물차 (경형 승합·화물은 4%)';
+      else if (t === 'ev') h = R.ev[y].status === 'bill'
+        ? '세율 7% · 2027년 감면은 국회 심의 중인 정부안(한도 70만원)으로 계산해요.'
+        : '세율 7% · 취득세 140만원까지 감면 (' + R.ev[y].until + '까지)';
+      else h = '세율 7% · 취득세 140만원까지 감면 (' + R.h2[y].until + '까지)';
+      $('[data-type-hint]').textContent = h;
+    }
+    function syncBoxes() {
+      $('[data-new-box]').hidden = st.cond !== 'new';
+      $('[data-used-box]').hidden = st.cond !== 'used';
+      $('[data-seat-box]').hidden = !(st.kids && (st.type === 'car' || st.type === 'ev' || st.type === 'h2'));
+      typeHint();
+    }
+
+    function calc() {
+      var isNew = st.cond === 'new', y = st.year, t = st.type;
+      var price = num(priceI), deal = num(dealI), std = num(stdI);
+      var base, baseNote, rawIn = isNew ? priceI.value : dealI.value;
+      priceI.classList.remove('kca-bad'); dealI.classList.remove('kca-bad'); stdI.classList.remove('kca-bad');
+      $('[data-price-hint]').innerHTML = '견적서의 최종 차량가(옵션 포함, 부가세 포함)를 넣으면 공급가액을 자동으로 계산해요.';
+      $('[data-deal-hint]').textContent = '';
+
+      if (!rawIn) return hide('');
+      var v = isNew ? price : deal, inp = isNew ? priceI : dealI;
+      if (v < 10000) { inp.classList.add('kca-bad'); return hide('차량 가격을 다시 확인해 주세요. (1만원 이상)'); }
+      if (v > 10000000000) { inp.classList.add('kca-bad'); return hide('차량 가격이 너무 커요. 100억원 이하로 넣어 주세요.'); }
+      if (!isNew && stdI.value && (std < 10000 || std > 10000000000)) { stdI.classList.add('kca-bad'); return hide('시가표준액을 다시 확인해 주세요. (1만원~100억원, 모르면 비워 두세요)'); }
+      msg.textContent = '';
+
+      if (isNew) {
+        base = st.vat === 'incl' ? Math.round(price / 1.1) : price;
+        baseNote = st.vat === 'incl' ? won(price) + ' ÷ 1.1 (부가세 제외)' : '공급가액 그대로';
+        $('[data-price-hint]').innerHTML = st.vat === 'incl'
+          ? '<b>' + man(price) + '</b> → 공급가액 <b>' + won(base) + '</b>'
+          : '<b>' + man(price) + '</b> (부가세 제외 금액)';
+      } else {
+        $('[data-deal-hint]').textContent = man(deal);
+        if (std && std > deal) { base = std; baseNote = '시가표준액 (거래 가격 ' + won(deal) + '보다 높음)'; }
+        else { base = deal; baseNote = std ? '실제 거래 가격 (시가표준액 ' + won(std) + ' 이상)' : '실제 거래 가격'; }
+      }
+
+      var rate = R.rate[t], free = base <= R.freeMax;
+      var tax = free ? 0 : f10(base * rate);
+
+      // 감면 후보: 중복 감면은 안 되고 감면액이 큰 것 하나만 (지방세특례제한법 제180조)
+      var cands = [], evRule = R.ev[y];
+      if (!free) {
+        if (t === 'light') cands.push({ name: '경차 감면', how: '75만원 한도', amt: Math.min(tax, R.light[y].cap) });
+        if (t === 'ev') cands.push({ name: '전기차 감면' + (evRule.status === 'bill' ? ' (정부안)' : ''), how: c(evRule.cap / 10000) + '만원 한도', amt: Math.min(tax, evRule.cap) });
+        if (t === 'h2') cands.push({ name: '수소차 감면', how: '140만원 한도', amt: Math.min(tax, R.h2[y].cap) });
+        if (st.kids) {
+          var K = R.kids[st.kids], six = passenger() && (t === 'light' || st.seat === 6);
+          var a = K.ratio === 1 ? tax : f10(tax * K.ratio);
+          if (six) a = Math.min(a, K.cap6);
+          cands.push({ name: '다자녀 감면 (' + (st.kids === 3 ? '3자녀 이상' : '2자녀') + ')',
+            how: (K.ratio === 1 ? '면제' : '50%') + (six ? ', ' + c(K.cap6 / 10000) + '만원 한도' : ''), amt: a });
+        }
+      }
+      var best = null;
+      cands.forEach(function (x) { if (!best || x.amt > best.amt) best = x; });
+      var cut = best ? best.amt : 0, pay = tax - cut;
+
+      // 화면
+      $('[data-main-label]').textContent = y + '년 ' + (isNew ? '신차' : '중고차') + ' 취득세 (' + NAMES[t] + ')';
+      $('[data-big]').innerHTML = c(pay) + '<small>원</small>';
+      $('[data-sub]').textContent = free ? '과세표준이 50만원 이하라 취득세가 없어요'
+        : cut ? '감면 전 ' + won(tax) + '에서 ' + won(cut) + ' 감면' : '감면 없이 과세표준의 ' + pct(rate);
+      $('[data-base-v]').textContent = won(base);
+      if (t === 'ev' && evRule.status === 'bill') {
+        $('[data-c2-k]').textContent = '개정안 통과 안 되면';
+        $('[data-c2-v]').textContent = won(tax);
+      } else {
+        $('[data-c2-k]').textContent = '세율';
+        $('[data-c2-v]').textContent = pct(rate);
+      }
+
+      var rows = [];
+      function row(k, s, val, cls) { rows.push('<tr' + (cls ? ' class="' + cls + '"' : '') + '><th>' + esc(k) + (s ? '<small>' + esc(s) + '</small>' : '') + '</th><td>' + val + '</td></tr>'); }
+      row('과세표준', baseNote, won(base));
+      row('세율', NAMES[t] + (t === 'van' ? ' (경형은 4%)' : ''), pct(rate));
+      row('감면 전 취득세', free ? '면세점(50만원 이하)' : '10원 미만 버림', won(tax), 'kca-total');
+      if (best) row(best.name, best.how, '−' + won(cut), 'kca-minus');
+      row('납부할 취득세', '', won(pay), 'kca-pay');
+      $('[data-rows]').innerHTML = rows.join('');
+
+      $('[data-formula]').innerHTML = free ? esc('과세표준 ' + won(base) + ' ≤ 50만원 → 취득세 ') + '<b>0원</b>'
+        : esc('과세표준 ' + won(base) + ' × ' + pct(rate) + ' = ' + (cut ? won(tax) + ' − 감면 ' + won(cut) + ' = ' : '')) + '<b>' + won(pay) + '</b>';
+
+      var notes = [];
+      if (t === 'ev' && evRule.status === 'bill') notes.push('지금 법으로는 전기차 감면이 2026. 12. 31.에 끝나요. 2027년부터 한도를 70만원으로 줄여 2029년까지 연장하는 정부 개정안이 국회에 있어(2026. 11. 26. 기준) 그 안으로 계산했어요. 통과되지 않으면 감면 없이 ' + won(tax) + '이에요.');
+      if (t === 'ev' && y === 2026) notes.push('전기차 140만원 감면은 2026. 12. 31.까지 취득한 차에 적용돼요. 2027년에는 줄어들 수 있으니 기준 연도를 2027년으로 바꿔 비교해 보세요.');
+      if (cands.length > 1) notes.push('감면은 겹쳐 받을 수 없어서 감면액이 가장 큰 ' + best.name.replace(/ \(.*\)$/, '') + '만 적용했어요.');
+      if (st.kids) notes.push(t === 'van' ? '다자녀 감면은 15인승 이하 승합차, 1톤 이하 화물차만 대상이에요. 가구당 1대, 18세 미만 자녀를 기르는 양육자 명의로 2027. 12. 31.까지 취득해야 해요.'
+        : '다자녀 감면은 가구당 1대, 18세 미만 자녀를 기르는 양육자 명의여야 하고, 1년 안에 팔면 감면받은 세금을 다시 낼 수 있어요.');
+      if (isNew) notes.push('전기차 보조금은 과세표준에서 빼지 않아요. 할인받았다면 할인 후 실제 계약 금액을 넣으세요.');
+      else if (!std) notes.push('거래 가격이 시가표준액보다 낮으면 시가표준액으로 과세돼요. 위택스 "차량 시가표준액 조회"에서 확인해 넣으면 더 정확해요.');
+      notes.push('공채(도시철도·지역개발채권) 매입 비용, 번호판·인지대 등 등록 비용은 시·도마다 달라 포함하지 않았어요. 장애인·국가유공자 감면은 관할 시·군·구청에 확인하세요.');
+      $('[data-notes]').innerHTML = notes.map(function (n) { return '<li>' + esc(n) + '</li>'; }).join('');
+      result.classList.add('kca-show');
+
+      var tx = ['[' + y + '년 자동차 취득세 계산 결과]',
+        '구분: ' + (isNew ? '신차' : '중고차') + ' / ' + NAMES[t],
+        isNew ? '차량 가격: ' + won(price) + (st.vat === 'incl' ? ' (부가세 포함)' : ' (공급가액)') : '거래 가격: ' + won(deal) + (std ? ' / 시가표준액: ' + won(std) : ''),
+        '과세표준: ' + won(base),
+        '세율: ' + pct(rate),
+        '감면 전 취득세: ' + won(tax),
+        best ? best.name + ': −' + won(cut) : '',
+        '납부할 취득세: ' + won(pay),
+        (t === 'ev' && evRule.status === 'bill') ? '※ 2027년 전기차 감면은 국회 심의 중인 정부안 기준. 미통과 시 ' + won(tax) : ''];
+      lastText = tx.filter(Boolean).join('\n');
+    }
+
+    function money(el) {
+      el.addEventListener('input', function () {
+        var v = el.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, 12);
+        el.value = v ? (+v).toLocaleString('ko-KR') : '';
+        if (el === priceI) syncChips();
+        calc();
+      });
+    }
+    money(priceI); money(dealI); money(stdI);
+    $$('[data-p]').forEach(function (b) { b.addEventListener('click', function () { priceI.value = c(+b.getAttribute('data-p')); syncChips(); calc(); }); });
+
+    function bind(attr, key, numeric) {
+      $$('[' + attr + ']').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var v = b.getAttribute(attr); st[key] = numeric ? +v : v; seg(attr, v); syncBoxes(); calc();
+        });
+      });
+    }
+    bind('data-year', 'year', true); bind('data-cond', 'cond'); bind('data-type', 'type'); bind('data-vat', 'vat');
+    bind('data-kids', 'kids', true); bind('data-seat', 'seat', true);
+
+    $('[data-reset]').addEventListener('click', function () {
+      priceI.value = dealI.value = stdI.value = ''; syncChips(); hide('');
+      (st.cond === 'new' ? priceI : dealI).focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+
+    syncBoxes();
+  })();
+  </script>
+</div>
+<!-- 자동차 취득세 계산기 위젯 끝 -->
