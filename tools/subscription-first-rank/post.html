@@ -1,0 +1,515 @@
+<p><strong>민영주택 청약 1순위는 ① 통장 가입기간(규제지역 2년, 수도권 1년, 비수도권 6개월)과 ② 지역·면적별 예치금(서울·부산 85㎡ 이하 300만 원)을 입주자모집공고일 현재 채우면 되고, 규제지역에서는 세대주·5년 내 당첨 없음·2주택 미만 조건이 더 붙어요.</strong> 국민주택(공공분양)은 예치금 대신 납입 인정 횟수(24회·12회·6회)를 봐요. 아래 확인기에 통장 가입일과 예치금(또는 납입 횟수)만 넣으면 항목별 충족 여부와 부족한 금액, 가입기간이 차는 날까지 바로 보여 줘요.</p>
+<!-- 청약 1순위 자격·예치금 확인기 위젯 시작 : 티스토리/블로거/워드프레스 글의 HTML 모드에 그대로 붙여 넣으세요 -->
+<div class="kfr" data-kfr>
+  <style>
+    .kfr{--kfr-accent:#3b6ef5;--kfr-accent-soft:#eef3ff;--kfr-text:#1d2433;--kfr-sub:#6b7385;--kfr-line:#e3e7ef;--kfr-bg:#fff;--kfr-bad:#e0565b;--kfr-bad-soft:#fdeeee;
+      box-sizing:border-box;max-width:520px;margin:24px auto;padding:24px;border:1px solid var(--kfr-line);border-radius:20px;background:var(--kfr-bg);
+      color:var(--kfr-text);font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Pretendard","Noto Sans KR","Malgun Gothic",sans-serif;
+      line-height:1.5;text-align:left;box-shadow:0 6px 24px rgba(30,45,90,.06)}
+    .kfr [hidden]{display:none!important}
+    .kfr *,.kfr *::before,.kfr *::after{box-sizing:border-box;margin:0;padding:0;font-family:inherit}
+    .kfr .kfr-title{font-size:20px;font-weight:700;letter-spacing:-.02em}
+    .kfr .kfr-desc{margin-top:4px;font-size:14px;color:var(--kfr-sub)}
+    .kfr .kfr-label{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:20px 0 8px;font-size:14px;font-weight:600;color:var(--kfr-text)}
+    .kfr .kfr-label small{font-weight:500;color:var(--kfr-sub)}
+    .kfr .kfr-field{position:relative}
+    .kfr .kfr-in{width:100%;height:52px;padding:0 14px;border:1.5px solid var(--kfr-line);border-radius:12px;background:#f8f9fc;
+      font-size:17px;font-weight:600;color:var(--kfr-text);outline:none;transition:border-color .2s,background .2s,box-shadow .2s;-webkit-appearance:none;appearance:none;min-width:0;display:block}
+    .kfr .kfr-field .kfr-in{padding-right:40px}
+    .kfr .kfr-in::placeholder{color:#b3b9c6;font-weight:500}
+    .kfr .kfr-in:focus{border-color:var(--kfr-accent);background:#fff;box-shadow:0 0 0 4px rgba(59,110,245,.12)}
+    .kfr .kfr-in.kfr-bad{border-color:var(--kfr-bad)}
+    .kfr .kfr-unit{position:absolute;right:14px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--kfr-sub);pointer-events:none}
+    .kfr .kfr-chips{display:flex;flex-wrap:wrap;gap:6px}
+    .kfr .kfr-chip{height:36px;min-width:44px;padding:0 12px;border:1.5px solid var(--kfr-line);border-radius:999px;background:#fff;color:var(--kfr-sub);
+      font-size:13.5px;font-weight:600;cursor:pointer;transition:all .2s}
+    .kfr .kfr-chip:hover{border-color:#c9d3ea;color:var(--kfr-text)}
+    .kfr .kfr-chip.kfr-on{border-color:var(--kfr-accent);background:var(--kfr-accent-soft);color:var(--kfr-accent)}
+    .kfr .kfr-chip:disabled{opacity:.45;cursor:default}
+    .kfr .kfr-hint{margin-top:6px;font-size:12.5px;color:var(--kfr-sub)}
+    .kfr .kfr-msg{min-height:20px;margin-top:12px;font-size:13px;color:var(--kfr-bad)}
+    .kfr .kfr-result{display:grid;grid-template-rows:0fr;opacity:0;transform:translateY(8px);
+      transition:grid-template-rows .35s ease,opacity .35s ease,transform .35s ease}
+    .kfr .kfr-result.kfr-show{grid-template-rows:1fr;opacity:1;transform:none}
+    .kfr .kfr-result-inner{overflow:hidden}
+    .kfr .kfr-main{margin-top:4px;padding:22px 20px;border-radius:16px;background:var(--kfr-accent-soft);text-align:center}
+    .kfr .kfr-main.kfr-no{background:var(--kfr-bad-soft)}
+    .kfr .kfr-main-label{font-size:14px;color:var(--kfr-sub)}
+    .kfr .kfr-big{margin-top:2px;font-size:34px;font-weight:800;letter-spacing:-.03em;color:var(--kfr-accent);line-height:1.25}
+    .kfr .kfr-main.kfr-no .kfr-big{color:var(--kfr-bad)}
+    .kfr .kfr-sub{margin-top:6px;font-size:14px;color:var(--kfr-sub)}
+    .kfr .kfr-checks{margin-top:8px;padding:6px 14px;border:1px solid var(--kfr-line);border-radius:14px;list-style:none;background:#fff}
+    .kfr .kfr-checks li{position:relative;padding:9px 0 9px 28px;font-size:13.5px}
+    .kfr .kfr-checks li+li{border-top:1px solid #f0f2f6}
+    .kfr .kfr-checks li::before{position:absolute;left:0;top:9px;width:20px;height:20px;border-radius:50%;font-size:12px;font-weight:800;line-height:20px;text-align:center}
+    .kfr .kfr-checks li.kfr-ok::before{content:"✓";background:var(--kfr-accent-soft);color:var(--kfr-accent)}
+    .kfr .kfr-checks li.kfr-x::before{content:"✗";background:var(--kfr-bad-soft);color:var(--kfr-bad)}
+    .kfr .kfr-checks li.kfr-na::before{content:"–";background:#f1f3f7;color:var(--kfr-sub)}
+    .kfr .kfr-ck-t{font-weight:700;color:var(--kfr-text)}
+    .kfr .kfr-checks li.kfr-x .kfr-ck-t{color:var(--kfr-bad)}
+    .kfr .kfr-ck-d{margin-top:1px;font-size:12.5px;color:var(--kfr-sub)}
+    .kfr .kfr-ck-d b{color:var(--kfr-text)}
+    .kfr .kfr-box{margin-top:8px;padding:12px 14px;border-radius:12px;background:#f8f9fc;font-size:13px}
+    .kfr .kfr-box p+p{margin-top:4px}
+    .kfr .kfr-box b{color:var(--kfr-accent)}
+    .kfr .kfr-nw{white-space:nowrap}
+    .kfr .kfr-note{margin-top:12px;font-size:12.5px;color:var(--kfr-sub)}
+    .kfr .kfr-note li{margin-left:16px}
+    .kfr .kfr-note li+li{margin-top:2px}
+    .kfr .kfr-desc,.kfr .kfr-hint,.kfr .kfr-sub,.kfr .kfr-box,.kfr .kfr-note,.kfr .kfr-msg,.kfr .kfr-checks li,.kfr .kfr-big{word-break:keep-all}
+    .kfr .kfr-actions{display:flex;gap:8px;margin-top:14px}
+    .kfr .kfr-btn{flex:1;height:44px;border:1.5px solid var(--kfr-line);border-radius:12px;background:#fff;color:var(--kfr-text);
+      font-size:14px;font-weight:600;cursor:pointer;transition:background .2s,transform .1s}
+    .kfr .kfr-btn:hover{background:#f4f6fa}
+    .kfr .kfr-btn:active{transform:scale(.98)}
+    .kfr .kfr-btn.kfr-primary{border-color:var(--kfr-accent);background:var(--kfr-accent);color:#fff}
+    .kfr .kfr-btn.kfr-primary:hover{background:#2f5fe0}
+    @media (max-width:420px){.kfr{padding:18px;border-radius:16px}.kfr .kfr-big{font-size:26px}.kfr .kfr-in{font-size:16px}
+      .kfr .kfr-chips{gap:5px}.kfr .kfr-chip{min-width:34px;padding:0 10px;font-size:13px}}
+    @media (prefers-reduced-motion:reduce){.kfr .kfr-result,.kfr .kfr-in,.kfr .kfr-btn,.kfr .kfr-chip{transition:none}}
+  </style>
+
+  <p class="kfr-title">청약 1순위 자격·예치금 확인기</p>
+  <p class="kfr-desc">통장 가입일과 예치금(또는 납입 횟수)만 넣으면 1순위 조건을 항목별로 바로 확인해요.</p>
+
+  <p class="kfr-label">주택 유형</p>
+  <div class="kfr-chips" data-group="type" role="group" aria-label="주택 유형">
+    <button type="button" class="kfr-chip kfr-on" data-v="private" aria-pressed="true">민영주택 (일반 분양)</button>
+    <button type="button" class="kfr-chip" data-v="public" aria-pressed="false">국민주택 (공공분양)</button>
+  </div>
+
+  <p class="kfr-label">청약할 단지 위치</p>
+  <div class="kfr-chips" data-group="loc" role="group" aria-label="단지 위치">
+    <button type="button" class="kfr-chip kfr-on" data-v="seoul" aria-pressed="true">서울</button>
+    <button type="button" class="kfr-chip" data-v="metro" aria-pressed="false">경기·인천</button>
+    <button type="button" class="kfr-chip" data-v="local" aria-pressed="false">그 외 (비수도권)</button>
+  </div>
+  <p class="kfr-hint" style="margin-top:10px">그 단지가 규제지역(투기과열지구·조정대상지역)인가요?</p>
+  <div class="kfr-chips" data-group="reg" role="group" aria-label="규제지역 여부" style="margin-top:6px">
+    <button type="button" class="kfr-chip kfr-on" data-v="1" aria-pressed="true">규제지역</button>
+    <button type="button" class="kfr-chip" data-v="0" aria-pressed="false">비규제지역</button>
+  </div>
+  <p class="kfr-hint" data-reg-hint>2026. 11. 26. 기준 규제지역: 서울 25개 구 전역, 경기 과천·광명·의왕·하남·구리, 성남 분당·수정·중원, 수원 영통·장안·팔달, 안양 동안, 용인 수지·기흥, 화성 동탄.</p>
+
+  <div data-private-only>
+    <p class="kfr-label"><span>내 주소지 <small>(주민등록 기준)</small></span></p>
+    <div class="kfr-chips" data-group="home" role="group" aria-label="내 주소지">
+      <button type="button" class="kfr-chip kfr-on" data-v="0" aria-pressed="true">서울·부산</button>
+      <button type="button" class="kfr-chip" data-v="1" aria-pressed="false">그 밖의 광역시</button>
+      <button type="button" class="kfr-chip" data-v="2" aria-pressed="false">그 밖의 시·군</button>
+    </div>
+    <p class="kfr-hint">예치금은 단지 위치가 아니라 신청하는 사람의 주소지로 정해요. 그 밖의 광역시는 인천·대구·광주·대전·울산이에요.</p>
+
+    <p class="kfr-label">희망 전용면적</p>
+    <div class="kfr-chips" data-group="area" role="group" aria-label="전용면적">
+      <button type="button" class="kfr-chip kfr-on" data-v="0" aria-pressed="true">85㎡ 이하</button>
+      <button type="button" class="kfr-chip" data-v="1" aria-pressed="false">102㎡ 이하</button>
+      <button type="button" class="kfr-chip" data-v="2" aria-pressed="false">135㎡ 이하</button>
+      <button type="button" class="kfr-chip" data-v="3" aria-pressed="false">135㎡ 초과</button>
+    </div>
+    <p class="kfr-hint">국민평형이라 부르는 84㎡는 85㎡ 이하예요.</p>
+  </div>
+
+  <label class="kfr-label" for="kfr-join"><span>청약통장 가입일 <small>(최초 가입일)</small></span></label>
+  <input class="kfr-in" id="kfr-join" type="date" data-join min="1970-01-01" max="2100-12-31">
+
+  <div data-private-only>
+    <label class="kfr-label" for="kfr-bal"><span>예치금 잔액 <small>(납입 원금)</small></span></label>
+    <div class="kfr-field"><input class="kfr-in" id="kfr-bal" data-bal inputmode="numeric" placeholder="3,000,000" autocomplete="off"><span class="kfr-unit">원</span></div>
+    <p class="kfr-hint">은행 앱이나 청약홈 ‘청약자격 확인’에서 볼 수 있어요.</p>
+  </div>
+
+  <div data-public-only hidden>
+    <label class="kfr-label" for="kfr-cnt"><span>납입 인정 횟수</span></label>
+    <div class="kfr-field"><input class="kfr-in" id="kfr-cnt" data-cnt inputmode="numeric" maxlength="3" placeholder="24" autocomplete="off"><span class="kfr-unit">회</span></div>
+    <label class="kfr-label" for="kfr-amt"><span>납입 인정 총액 <small>(선택)</small></span></label>
+    <div class="kfr-field"><input class="kfr-in" id="kfr-amt" data-amt inputmode="numeric" placeholder="3,600,000" autocomplete="off"><span class="kfr-unit">원</span></div>
+    <p class="kfr-hint">연체 없이 낸 달만 1회로 쳐요. 인정 금액은 한 달에 최대 25만 원(2024. 11. 1. 이후 납입분)이에요.</p>
+  </div>
+
+  <p class="kfr-label">세대주인가요?</p>
+  <div class="kfr-chips" data-group="head" role="group" aria-label="세대주 여부">
+    <button type="button" class="kfr-chip kfr-on" data-v="1" aria-pressed="true">세대주</button>
+    <button type="button" class="kfr-chip" data-v="0" aria-pressed="false">세대원</button>
+  </div>
+
+  <p class="kfr-label"><span>세대가 가진 주택 수 <small>(본인·배우자·같은 등본 세대원)</small></span></p>
+  <div class="kfr-chips" data-group="houses" role="group" aria-label="주택 수">
+    <button type="button" class="kfr-chip kfr-on" data-v="0" aria-pressed="true">무주택</button>
+    <button type="button" class="kfr-chip" data-v="1" aria-pressed="false">1주택</button>
+    <button type="button" class="kfr-chip" data-v="2" aria-pressed="false">2주택 이상</button>
+  </div>
+
+  <p class="kfr-label"><span>최근 5년 안에 세대원이 당첨된 적</span></p>
+  <div class="kfr-chips" data-group="won" role="group" aria-label="5년 내 당첨 이력">
+    <button type="button" class="kfr-chip kfr-on" data-v="0" aria-pressed="true">없음</button>
+    <button type="button" class="kfr-chip" data-v="1" aria-pressed="false">있음</button>
+  </div>
+
+  <label class="kfr-label" for="kfr-base"><span>기준일 <small>(입주자모집공고일)</small></span></label>
+  <input class="kfr-in" id="kfr-base" type="date" data-base min="1970-01-01" max="2100-12-31">
+  <p class="kfr-hint">공고일을 모르면 오늘 날짜로 미리 볼 수 있어요.</p>
+
+  <p class="kfr-msg" data-msg role="status" aria-live="polite"></p>
+
+  <div class="kfr-result" data-result aria-live="polite">
+    <div class="kfr-result-inner">
+      <div class="kfr-main" data-main>
+        <p class="kfr-main-label" data-main-label>1순위 판정</p>
+        <p class="kfr-big" data-big></p>
+        <p class="kfr-sub" data-sub></p>
+      </div>
+      <ul class="kfr-checks" data-checks></ul>
+      <div class="kfr-box" data-box></div>
+      <ul class="kfr-note">
+        <li>예치금·납입 횟수는 입주자모집공고일 현재 기준이에요. 이체가 늦어질 수 있으니 공고일 전날까지 넣어 두세요.</li>
+        <li>지역 거주기간, 특별공급 요건은 따로 공고문에서 확인하세요. 최종 자격은 청약홈 ‘청약자격 확인’으로 확인하세요.</li>
+        <li>2027년부터 바뀌는 1순위 기준은 아직 발표되지 않았어요(2026. 11. 26. 기준). 규제지역은 바뀔 수 있어요.</li>
+      </ul>
+      <div class="kfr-actions">
+        <button type="button" class="kfr-btn" data-reset>다시 입력</button>
+        <button type="button" class="kfr-btn kfr-primary" data-copy>결과 복사</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function () {
+    var me = document.currentScript || (function (s) { return s[s.length - 1]; })(document.getElementsByTagName('script'));
+    var root = me.closest('[data-kfr]');
+    if (!root || root.__kfr) return;
+    root.__kfr = true;
+
+    var $ = function (s) { return root.querySelector(s); };
+    var $$ = function (s) { return Array.prototype.slice.call(root.querySelectorAll(s)); };
+    var joinI = $('[data-join]'), baseI = $('[data-base]'), balI = $('[data-bal]'), cntI = $('[data-cnt]'), amtI = $('[data-amt]');
+    var msg = $('[data-msg]'), result = $('[data-result]');
+    var DEFAULT = { type: 'private', loc: 'seoul', reg: '1', home: '0', area: '0', head: '1', houses: '0', won: '0' };
+    var state = {}, lastText = '';
+    for (var k in DEFAULT) state[k] = DEFAULT[k];
+
+    // 민영주택 예치기준금액 (주택공급에 관한 규칙 별표2, 단위: 만원)
+    // 행: 주소지 [서울·부산, 그 밖의 광역시, 그 밖의 시·군] / 열: [85㎡ 이하, 102㎡ 이하, 135㎡ 이하, 모든 면적]
+    var DEPOSIT = [[300, 600, 1000, 1500], [250, 400, 700, 1000], [200, 300, 400, 500]];
+    var HOME_NAME = ['서울·부산', '그 밖의 광역시', '그 밖의 시·군'];
+    var AREA_NAME = ['85㎡ 이하', '102㎡ 이하', '135㎡ 이하', '모든 면적(135㎡ 초과)'];
+
+    // 날짜는 1970-01-01부터 센 '일 번호'로 다룬다 (시간대 영향 없음)
+    function dn(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 864e5); }
+    function ymd(n) { var t = new Date(n * 864e5); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+    function dim(y, m) { return new Date(Date.UTC(y, m, 0)).getUTCDate(); }
+    // k개월 뒤 같은 날짜. 그 달에 같은 날이 없으면 다음 달 1일
+    function addMonths(n, k) {
+      var a = ymd(n), t = a.y * 12 + (a.m - 1) + k, y = Math.floor(t / 12), m = t - y * 12 + 1;
+      return a.d > dim(y, m) ? dn(y, m, 1) + dim(y, m) : dn(y, m, a.d);
+    }
+    function fullMonths(start, end) {
+      if (end < start) return -1;
+      var a = ymd(start), b = ymd(end), k = (b.y - a.y) * 12 + (b.m - a.m);
+      while (k > 0 && addMonths(start, k) > end) k--;
+      while (addMonths(start, k + 1) <= end) k++;
+      return k;
+    }
+    var WD = ['일', '월', '화', '수', '목', '금', '토'];
+    function fmt(n) { var a = ymd(n); return a.y + '. ' + a.m + '. ' + a.d + '.'; }
+    function fmtW(n) { return fmt(n) + '(' + WD[new Date(n * 864e5).getUTCDay()] + ')'; }
+    function nw(s) { return '<span class="kfr-nw">' + s + '</span>'; }
+    function ym(k) { var y = Math.floor(k / 12), m = k % 12; return y ? y + '년' + (m ? ' ' + m + '개월' : '') : m + '개월'; }
+    function parse(v) {
+      var p = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || '');
+      if (!p || +p[1] < 1970 || +p[1] > 2100) return null;
+      var n = dn(+p[1], +p[2], +p[3]), a = ymd(n);
+      return a.m === +p[2] && a.d === +p[3] ? n : null;
+    }
+    function todayN() { var t = new Date(); return dn(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+    function iso(n) { var a = ymd(n); return a.y + '-' + ('0' + a.m).slice(-2) + '-' + ('0' + a.d).slice(-2); }
+    function comma(n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ','); }
+    function won(w) {
+      var man = Math.floor(w / 10000), rest = w % 10000;
+      if (!rest && man) return (man >= 10000 ? comma(Math.floor(man / 10000)) + '억' + (man % 10000 ? ' ' + comma(man % 10000) + '만' : '') : comma(man) + '만') + ' 원';
+      return comma(w) + '원';
+    }
+    function digits(inp, max) {
+      var v = inp.value.replace(/\D/g, '').replace(/^0+(?=\d)/, '').slice(0, max);
+      var out = inp.getAttribute('data-cnt') !== null ? v : (v ? comma(v) : '');
+      if (out !== inp.value) inp.value = out;
+      return v;
+    }
+
+    // 1순위 통장 요건: 규제지역(투기과열지구·청약과열지역) 24개월·24회, 수도권 12개월·12회, 비수도권 6개월·6회
+    function needMonths() { return state.reg === '1' ? 24 : state.loc === 'local' ? 6 : 12; }
+    function areaName() { return state.reg === '1' ? '규제지역' : state.loc === 'local' ? '비수도권' : '수도권 비규제지역'; }
+
+    function hide(text) { result.classList.remove('kfr-show'); msg.textContent = text || ''; }
+
+    function calc() {
+      var priv = state.type === 'private', reg = state.reg === '1';
+      var balS = digits(balI, 11), cntS = digits(cntI, 3), amtS = digits(amtI, 11);
+      [joinI, baseI, cntI, amtI].forEach(function (i) { i.classList.remove('kfr-bad'); });
+      var join = parse(joinI.value), base = parse(baseI.value);
+      if (joinI.value && join === null) { joinI.classList.add('kfr-bad'); return hide('가입일을 다시 확인해 주세요.'); }
+      if (baseI.value && base === null) { baseI.classList.add('kfr-bad'); return hide('기준일을 다시 확인해 주세요.'); }
+      if (join === null || base === null) return hide('');
+      if (join > base) { joinI.classList.add('kfr-bad'); return hide('가입일이 기준일(공고일)보다 뒤예요.'); }
+      if (priv && !balS) return hide('');
+      if (!priv && !cntS) return hide('');
+      var bal = +balS, cnt = +cntS, amt = amtS ? +amtS : null;
+      var months = fullMonths(join, base);
+      if (!priv) {
+        // 선납은 최대 24회까지 가능 → 지난 개월 수 + 1회 + 24회보다 많을 수 없음
+        if (cnt > months + 25) { cntI.classList.add('kfr-bad'); return hide('납입 횟수가 가입 기간에 비해 너무 많아요. 다시 확인해 주세요.'); }
+        if (amt !== null && amt > cnt * 250000) { amtI.classList.add('kfr-bad'); return hide('인정 총액은 납입 횟수 × 25만 원을 넘을 수 없어요.'); }
+      }
+
+      var need = needMonths(), okDay = addMonths(join, need), okJoin = okDay <= base;
+      var checks = [];
+      function add(st, t, d, k) { checks.push({ st: st, t: t, d: d, k: k || t }); }
+
+      // 1) 가입기간
+      add(okJoin ? 'ok' : 'x', '통장 가입기간 ' + (need >= 12 ? need / 12 + '년(' + need + '개월)' : need + '개월') + ' 이상',
+        '가입한 지 ' + ym(months) + ' · ' + (okJoin ? nw(fmtW(okDay)) + '에 채웠어요'
+          : nw(fmtW(okDay)) + '에 채워요 ' + nw('(<b>D-' + (okDay - base) + '</b>)')), '가입기간');
+
+      // 2) 예치금 / 납입 횟수
+      var depMan = 0, short = 0, needCnt = need;
+      if (priv) {
+        depMan = DEPOSIT[+state.home][+state.area];
+        short = Math.max(depMan * 10000 - bal, 0);
+        add(short ? 'x' : 'ok', '예치금 ' + won(depMan * 10000) + ' 이상',
+          HOME_NAME[+state.home] + ' 거주 · ' + AREA_NAME[+state.area] + ' 기준 · 잔액 ' + won(bal) +
+          (short ? ' → <b>' + won(short) + ' 부족</b>' : ''), '예치금');
+      } else {
+        add(cnt >= needCnt ? 'ok' : 'x', '납입 인정 횟수 ' + needCnt + '회 이상',
+          '지금 ' + cnt + '회' + (cnt >= needCnt ? '' : ' → <b>' + (needCnt - cnt) + '회 더</b> 내야 해요 (매달 내면 약 ' + (needCnt - cnt) + '개월)'), '납입 횟수');
+      }
+
+      // 3) 세대주 (규제지역만)
+      if (reg) add(state.head === '1' ? 'ok' : 'x', '세대주', state.head === '1' ? '규제지역 1순위는 세대주만 가능해요' : '규제지역은 세대주만 1순위예요. 세대원은 2순위로 접수돼요');
+      else add('na', '세대주', '비규제지역은 세대원도 1순위가 될 수 있어요');
+
+      // 4) 주택 수
+      var h = +state.houses;
+      if (!priv) add(h === 0 ? 'ok' : 'x', '무주택세대구성원', h === 0 ? '국민주택은 세대 전원이 무주택이어야 해요' : '국민주택은 세대 전원이 무주택이어야 신청할 수 있어요', '무주택');
+      else if (reg) add(h <= 1 ? 'ok' : 'x', '2주택 이상 세대가 아닐 것',
+        h === 0 ? '무주택 세대예요' : h === 1 ? '1주택 세대도 1순위는 돼요 (가점제는 무주택기간 0점)' : '규제지역은 2주택 이상 세대면 1순위가 안 돼요', '주택 수');
+      else add('na', '주택 수', '비규제지역 민영주택은 주택 수와 관계없이 1순위가 될 수 있어요');
+
+      // 5) 5년 내 당첨 (규제지역만)
+      if (reg) add(state.won === '0' ? 'ok' : 'x', '최근 5년 내 세대원 당첨 없음', state.won === '0' ? '당첨 이력이 없어요' : '규제지역은 세대원이 5년 안에 당첨됐으면 1순위가 안 돼요', '5년 내 당첨');
+      else add('na', '5년 내 당첨 이력', '비규제지역은 1순위 요건이 아니에요 (재당첨 제한은 공고문 확인)');
+
+      var fails = checks.filter(function (c) { return c.st === 'x'; });
+      var ok = !fails.length;
+      $('[data-main]').classList.toggle('kfr-no', !ok);
+      $('[data-main-label]').textContent = (priv ? '민영주택' : '국민주택') + ' · ' + areaName();
+      $('[data-big]').textContent = ok ? '1순위 조건 충족' : '아직 1순위가 아니에요';
+      var sub;
+      if (ok) sub = '기준일 ' + fmt(base) + ' 현재 1순위 요건을 모두 채웠어요.';
+      else if (fails.length === 1 && !okJoin) sub = fmt(okDay) + '부터 1순위예요 (D-' + (okDay - base) + ').';
+      else sub = '부족한 조건 ' + fails.length + '개: ' + fails.map(function (c) { return c.k; }).join(', ');
+      $('[data-sub]').textContent = sub;
+
+      var ul = $('[data-checks]');
+      ul.innerHTML = '';
+      checks.forEach(function (c) {
+        var li = document.createElement('li');
+        li.className = 'kfr-' + c.st;
+        li.innerHTML = '<p class="kfr-ck-t">' + c.t + '</p><p class="kfr-ck-d">' + c.d + '</p>';
+        ul.appendChild(li);
+      });
+
+      // 참고 박스
+      var box = [];
+      if (priv) {
+        box.push('<p>예치금 기준표 (' + HOME_NAME[+state.home] + '): ' + DEPOSIT[+state.home].map(function (v, i) { return ['85㎡ 이하', '102㎡ 이하', '135㎡ 이하', '모든 면적'][i] + ' ' + comma(v) + '만'; }).join(' · ') + '</p>');
+        var canArea = -1;
+        for (var i = 3; i >= 0; i--) if (bal >= DEPOSIT[+state.home][i] * 10000) { canArea = i; break; }
+        box.push('<p>지금 잔액으로 청약할 수 있는 면적: <b>' + (canArea < 0 ? '없음' : AREA_NAME[canArea].replace('(135㎡ 초과)', '') + (canArea === 3 ? '' : '까지')) + '</b></p>');
+        if (short) box.push('<p>입주자모집공고일 ' + nw(fmt(base)) + ' 현재 잔액이 기준 이상이어야 해요. <b>' + won(short) + '</b>을 공고일 전날까지 넣어 두세요.</p>');
+      } else {
+        box.push('<p>1순위 안에서는 전용 40㎡ 초과면 <b>납입 인정 총액</b>이 많은 순, 40㎡ 이하면 <b>납입 횟수</b>가 많은 순으로 뽑아요.</p>');
+        if (amt !== null) box.push('<p>지금 인정 총액 ' + won(amt) + ' → 매달 25만 원씩 1년 더 내면 ' + won(amt + 3000000) + '이 돼요.</p>');
+        if (cnt < needCnt) box.push('<p>납입 횟수는 공고일 현재 기준이라, 빠진 달은 공고일 전날까지 넣어야 해요.</p>');
+      }
+      if (!okJoin) box.push('<p>가입기간은 돈을 더 넣어도 줄일 수 없어요. ' + nw(fmtW(okDay)) + ' 이후 공고부터 1순위로 신청할 수 있어요.</p>');
+      $('[data-box]').innerHTML = box.join('');
+
+      msg.textContent = '';
+      result.classList.add('kfr-show');
+
+      var mark = { ok: '✓', x: '✗', na: '–' };
+      lastText = '[청약 1순위 자격 확인]\n' + (priv ? '민영주택' : '국민주택') + ' · ' + areaName() + ' · 기준일 ' + fmt(base) +
+        '\n판정: ' + (ok ? '1순위 조건 충족' : '아직 1순위 아님') + '\n' +
+        checks.map(function (c) { return mark[c.st] + ' ' + c.t + ': ' + c.d.replace(/<[^>]+>/g, ''); }).join('\n');
+    }
+
+    function sync() {
+      var seoul = state.loc === 'seoul';
+      if (seoul) setChip('reg', '1');
+      $$('[data-group="reg"] .kfr-chip').forEach(function (c) { c.disabled = seoul && c.getAttribute('data-v') === '0'; });
+      $$('[data-private-only]').forEach(function (el) { el.hidden = state.type !== 'private'; });
+      $$('[data-public-only]').forEach(function (el) { el.hidden = state.type !== 'public'; });
+    }
+    function setChip(group, v) {
+      state[group] = v;
+      $$('[data-group="' + group + '"] .kfr-chip').forEach(function (c) {
+        var on = c.getAttribute('data-v') === v; c.classList.toggle('kfr-on', on); c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+    }
+    $$('[data-group]').forEach(function (g) {
+      g.addEventListener('click', function (e) {
+        var b = e.target.closest('.kfr-chip');
+        if (!b || b.disabled) return;
+        setChip(g.getAttribute('data-group'), b.getAttribute('data-v'));
+        sync(); calc();
+      });
+    });
+
+    [joinI, baseI, balI, cntI, amtI].forEach(function (inp) {
+      inp.addEventListener('input', calc);
+      inp.addEventListener('change', calc);
+    });
+
+    baseI.value = iso(todayN());
+    sync();
+
+    $('[data-reset]').addEventListener('click', function () {
+      joinI.value = balI.value = cntI.value = amtI.value = '';
+      baseI.value = iso(todayN());
+      for (var k in DEFAULT) setChip(k, DEFAULT[k]);
+      sync(); hide(''); joinI.focus();
+    });
+
+    $('[data-copy]').addEventListener('click', function () {
+      var btn = this;
+      function done() { btn.textContent = '복사됐어요 ✓'; setTimeout(function () { btn.textContent = '결과 복사'; }, 1500); }
+      function fallback() { var ta = document.createElement('textarea'); ta.value = lastText; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0'; document.body.appendChild(ta); ta.select(); try { document.execCommand('copy'); } catch (e) {} ta.remove(); done(); }
+      if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(lastText).then(done, fallback);
+      else fallback();
+    });
+  })();
+  </script>
+</div>
+<!-- 청약 1순위 자격·예치금 확인기 위젯 끝 -->
+
+<h2>청약 1순위 확인하는 법</h2>
+<p>1순위인지는 <strong>입주자모집공고일 현재</strong> 아래 조건을 모두 채웠는지로 정해요. 하나라도 빠지면 2순위로 접수돼요.</p>
+<p><strong>민영주택 1순위 = 가입기간 충족 + 예치금 ≥ 예치기준금액(주소지·면적별) + (규제지역이면) 세대주·5년 내 세대원 당첨 없음·2주택 이상 세대 아님</strong></p>
+<p><strong>국민주택 1순위 = 무주택세대구성원 + 가입기간 충족 + 납입 인정 횟수 충족 + (규제지역이면) 세대주·5년 내 세대원 당첨 없음</strong></p>
+<p><strong>예시</strong>: 인천에 사는 세대원 A씨가 2025년 3월 10일 청약통장에 가입해 지금 잔액이 200만 원이고, 2026년 11월 26일 공고가 난 서울 아파트 전용 84㎡에 청약하려고 해요.</p>
+<ul>
+  <li>가입기간: 서울은 전역이 규제지역이라 24개월이 필요한데, 1년 8개월이라 부족해요. 2027. 3. 10.부터 채워져요.</li>
+  <li>예치금: 주소지가 인천(그 밖의 광역시)이라 85㎡ 이하는 <strong>250만 원</strong>이 기준이에요. 서울 기준 300만 원이 아니에요. 지금 200만 원이니 <strong>50만 원이 부족</strong>해요.</li>
+  <li>세대주: 규제지역은 세대주만 1순위라, 세대원인 A씨는 이 조건도 채우지 못해요.</li>
+  <li>결론: 이 공고에서는 2순위예요. 2027. 3. 10. 이후 공고부터, 예치금 50만 원을 채우고 세대주가 되면 1순위로 넣을 수 있어요.</li>
+</ul>
+
+<h2>민영주택 청약 예치금 기준표</h2>
+<p>예치금은 <strong>청약하는 단지가 아니라 내 주민등록상 주소지</strong>를 기준으로 정해요(입주자모집공고일 현재). 큰 면적 기준을 채우면 그보다 작은 면적에도 모두 청약할 수 있어요.</p>
+<table>
+  <thead><tr><th>전용면적</th><th>서울·부산</th><th>그 밖의 광역시</th><th>그 밖의 시·군</th></tr></thead>
+  <tbody>
+    <tr><td>85㎡ 이하</td><td>300만 원</td><td>250만 원</td><td>200만 원</td></tr>
+    <tr><td>102㎡ 이하</td><td>600만 원</td><td>400만 원</td><td>300만 원</td></tr>
+    <tr><td>135㎡ 이하</td><td>1,000만 원</td><td>700만 원</td><td>400만 원</td></tr>
+    <tr><td>모든 면적</td><td>1,500만 원</td><td>1,000만 원</td><td>500만 원</td></tr>
+  </tbody>
+</table>
+<p>그 밖의 광역시는 인천·대구·광주·대전·울산이고, 그 밖의 시·군은 경기도와 각 도의 시·군이에요. (근거: 주택공급에 관한 규칙 별표2, 2026년 11월 기준)</p>
+
+<h2>지역별 1순위 가입기간·납입 횟수</h2>
+<table>
+  <thead><tr><th>청약 단지 위치</th><th>가입기간</th><th>국민주택 납입 횟수</th><th>세대주·5년 내 당첨·주택 수</th></tr></thead>
+  <tbody>
+    <tr><td>규제지역 (투기과열지구·조정대상지역)</td><td>24개월 이상</td><td>24회 이상</td><td>세대주만, 5년 내 세대원 당첨 없음, (민영) 2주택 이상 세대 제외</td></tr>
+    <tr><td>수도권 비규제지역</td><td>12개월 이상</td><td>12회 이상</td><td>요건 없음</td></tr>
+    <tr><td>비수도권 비규제지역</td><td>6개월 이상</td><td>6회 이상</td><td>요건 없음</td></tr>
+  </tbody>
+</table>
+<p>국민주택은 지역과 관계없이 세대 전원이 무주택이어야 해요. 비규제지역이라도 거주지역 우선 공급, 재당첨 제한 같은 단지별 조건은 입주자모집공고문에 따로 적혀 있어요.</p>
+
+<h2>지금 규제지역은 어디인가요?</h2>
+<p>2026년 11월 26일 기준으로 투기과열지구·조정대상지역으로 함께 지정된 곳은 다음과 같아요. 이 지역 단지는 1순위 가입기간이 2년이고 세대주 요건이 붙어요.</p>
+<ul>
+  <li><strong>서울</strong>: 25개 구 전역 (강남·서초·송파·용산은 계속 지정, 나머지 21개 구는 2025. 10. 16. 지정)</li>
+  <li><strong>경기 (2025. 10. 16. 지정)</strong>: 과천시, 광명시, 의왕시, 하남시, 성남시 분당·수정·중원구, 수원시 영통·장안·팔달구, 안양시 동안구, 용인시 수지구</li>
+  <li><strong>경기 (2026. 7. 1. 지정)</strong>: 화성시 동탄구, 용인시 기흥구, 구리시</li>
+</ul>
+<p>국토교통부는 규제지역 조정 여부를 2026년 12월 중 발표할 예정이라고 밝혔어요. 청약 전에는 공고문 첫 장의 ‘규제지역 여부’를 꼭 확인하세요.</p>
+
+<h2>국민주택은 횟수와 총액이 중요해요</h2>
+<p>국민주택(LH·SH 등 공공분양)은 1순위 자격을 <strong>납입 인정 횟수</strong>로 보고, 1순위끼리 경쟁할 때는 전용 40㎡ 초과는 <strong>납입 인정 총액</strong>이 많은 순, 40㎡ 이하는 <strong>납입 횟수</strong>가 많은 순으로 뽑아요. 2024년 11월 1일 이후 납입분부터는 한 달에 최대 <strong>25만 원</strong>까지 인정돼요(그 전에는 10만 원). 연체한 달은 횟수에 늦게 반영될 수 있으니 자동이체로 꾸준히 넣는 게 좋아요.</p>
+
+<h2>예치금은 언제까지 넣어야 하나요?</h2>
+<p>예치금과 납입 횟수는 <strong>입주자모집공고일 현재</strong> 기준이에요. 공고가 난 뒤 청약 접수일에 채우면 인정되지 않아요. 은행 점검 시간이나 이체 지연이 생길 수 있으니 <strong>공고일 전날까지</strong> 넣어 두는 게 안전해요. 반대로 가입기간은 돈을 더 넣어도 앞당길 수 없으니, 청약할 계획이 있다면 통장부터 일찍 만들어 두세요.</p>
+
+<h2>2027년에 달라지는 점</h2>
+<p>2026년 11월 26일 기준으로 2027년 1월 1일부터 바뀌는 1순위 가입기간·예치금 기준은 발표된 것이 없어요. 이 글과 확인기는 2026년 현행 기준으로 계산해요. 규제지역 지정·해제는 수시로 바뀌니 발표가 나오면 이 글도 고칠게요.</p>
+
+<h2>자주 묻는 질문</h2>
+<h3>청약 예치금은 아파트가 있는 지역 기준인가요, 내 주소지 기준인가요?</h3>
+<p>내 주민등록상 주소지 기준이에요. 인천에 사는 사람이 서울 아파트 85㎡ 이하에 청약하면 서울 기준 300만 원이 아니라 인천(그 밖의 광역시) 기준 250만 원만 있으면 돼요.</p>
+<h3>예치금은 청약 신청일에 채워도 되나요?</h3>
+<p>안 돼요. 입주자모집공고일 현재 잔액이 기준 이상이어야 해요. 이체 지연을 피하려면 공고일 전날까지 넣어 두는 게 안전해요.</p>
+<h3>서울 아파트 1순위가 되려면 통장 가입 몇 년이 필요한가요?</h3>
+<p>2026년 11월 기준 서울은 25개 구 전역이 규제지역이라 가입 2년(24개월)이 지나야 하고, 세대주여야 하며, 최근 5년 안에 세대원이 당첨된 적이 없어야 해요. 민영주택은 2주택 이상 세대도 1순위에서 빠져요.</p>
+<h3>세대원도 청약 1순위가 될 수 있나요?</h3>
+<p>비규제지역에서는 세대원도 가입기간과 예치금(또는 납입 횟수)을 채우면 1순위가 될 수 있어요. 규제지역에서는 세대주만 1순위로 청약할 수 있어요.</p>
+<h3>국민주택 청약통장은 한 달에 얼마씩 넣는 게 좋나요?</h3>
+<p>2024년 11월 1일 이후 납입분부터 한 달에 최대 25만 원까지 납입 인정 금액으로 쳐 줘요. 40㎡ 초과 국민주택은 인정 총액이 많은 순으로 뽑으니 공공분양을 노린다면 25만 원씩 넣는 것이 유리하고, 민영주택만 노린다면 예치금 기준만 채워도 돼요.</p>
+
+<h2>함께 쓰면 좋은 계산기</h2>
+<!-- 발행할 때 {{LINK:폴더명}} 을 실제 글 주소로 바꾸고, 아직 발행되지 않은 계산기 줄은 지운다 -->
+<ul>
+  <li><a href="{{LINK:subscription-score-calculator}}">청약 가점 계산기</a>: 1순위 안에서 경쟁할 가점(84점 만점) 계산</li>
+  <li><a href="{{LINK:acquisition-tax-calculator}}">취득세 계산기</a>: 당첨 뒤 내야 할 아파트 취득세 계산</li>
+</ul>
+
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "청약 예치금은 아파트가 있는 지역 기준인가요, 내 주소지 기준인가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "내 주민등록상 주소지 기준이에요. 인천에 사는 사람이 서울 아파트 85㎡ 이하에 청약하면 서울 기준 300만 원이 아니라 인천(그 밖의 광역시) 기준 250만 원만 있으면 돼요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "예치금은 청약 신청일에 채워도 되나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "안 돼요. 입주자모집공고일 현재 잔액이 기준 이상이어야 해요. 이체 지연을 피하려면 공고일 전날까지 넣어 두는 게 안전해요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "서울 아파트 1순위가 되려면 통장 가입 몇 년이 필요한가요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2026년 11월 기준 서울은 25개 구 전역이 규제지역이라 가입 2년(24개월)이 지나야 하고, 세대주여야 하며, 최근 5년 안에 세대원이 당첨된 적이 없어야 해요. 민영주택은 2주택 이상 세대도 1순위에서 빠져요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "세대원도 청약 1순위가 될 수 있나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "비규제지역에서는 세대원도 가입기간과 예치금(또는 납입 횟수)을 채우면 1순위가 될 수 있어요. 규제지역에서는 세대주만 1순위로 청약할 수 있어요."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "국민주택 청약통장은 한 달에 얼마씩 넣는 게 좋나요?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "2024년 11월 1일 이후 납입분부터 한 달에 최대 25만 원까지 납입 인정 금액으로 쳐 줘요. 40㎡ 초과 국민주택은 인정 총액이 많은 순으로 뽑으니 공공분양을 노린다면 25만 원씩 넣는 것이 유리하고, 민영주택만 노린다면 예치금 기준만 채워도 돼요."
+   }
+  }
+ ]
+}
+</script>
